@@ -1,20 +1,152 @@
-footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+/* State Farm B2B footer — full-width banner + content, constrained inner content */
+
+/* stylelint-disable no-descending-specificity */
+
+:root {
+  --sf-footer-red: #d62311;
+  --sf-footer-cream: #f7f0e4;
+  --sf-footer-text: rgb(64 60 60);
+  --sf-footer-max: 1200px;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer {
+  background-color: var(--sf-footer-cream);
+  font-family: MecherleSans, Arial, sans-serif;
+}
+
+footer .footer {
+  width: 100%;
 }
 
 footer .footer p {
   margin: 0;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+/* ---- red slogan banner (full-width) ---- */
+footer .footer .footer-banner {
+  width: 100%;
+  background-color: var(--sf-footer-red);
+  color: #fff;
+}
+
+footer .footer .footer-banner p {
+  max-width: var(--sf-footer-max);
+  margin: 0 auto;
+  padding: 18px 24px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+}
+
+/* ---- cream content area (full-width bg, constrained inner) ---- */
+footer .footer .footer-content {
+  width: 100%;
+  background-color: var(--sf-footer-cream);
+  color: var(--sf-footer-text);
+}
+
+footer .footer .footer-content > * {
+  max-width: var(--sf-footer-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+footer .footer .footer-logo {
+  padding-top: 24px;
+  text-align: center;
+}
+
+footer .footer .footer-logo img {
+  width: auto;
+  height: 56px;
+}
+
+/* primary link list */
+footer .footer .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 24px;
+  list-style: none;
+  margin: 16px auto 0;
+  padding: 0 24px;
+}
+
+footer .footer .footer-links li {
+  margin: 0;
+}
+
+footer .footer .footer-links a {
+  color: var(--sf-footer-text);
+  font-size: 16px;
+  text-decoration: none;
+}
+
+footer .footer .footer-links a:hover {
+  color: var(--sf-footer-red);
+  text-decoration: underline;
+}
+
+/* privacy notices row */
+footer .footer .footer-notices {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  list-style: none;
+  margin: 16px auto 0;
+  padding: 0 24px;
+}
+
+footer .footer .footer-notices li {
+  margin: 0;
+}
+
+footer .footer .footer-notices a {
+  color: var(--sf-footer-text);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+footer .footer .footer-notices a:hover {
+  color: var(--sf-footer-red);
+  text-decoration: underline;
+}
+
+/* copyright */
+footer .footer .footer-copyright {
+  padding-top: 16px;
+  padding-bottom: 24px;
+  font-size: 13px;
+  color: var(--sf-footer-text);
+  text-align: center;
+}
+
+/* ---- mobile ---- */
+@media (width < 600px) {
+  footer .footer .footer-banner p {
+    font-size: 15px;
+    padding: 14px 16px;
+  }
+
+  footer .footer .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  footer .footer .footer-notices {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+
+  footer .footer .footer-content > * {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
