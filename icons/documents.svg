@@ -1,0 +1,24 @@
+<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ec0c21;
+      }
+
+      .cls-2 {
+        fill: #403c3c;
+      }
+    </style>
+  </defs>
+
+  <path class="cls-1" d="M45,25V10H55a5,5,0,0,1,5-5H75a5,5,0,0,1,5,5H90V25Z"/>
+  <path class="cls-1" d="M130,35V142a8,8,0,0,1-8,8H45V140h75V35Z"/>
+  <path class="cls-2" d="M122,151.8H45v-3.6h77a6.21,6.21,0,0,0,6.2-6.2V35h3.6V142A9.82,9.82,0,0,1,122,151.8Z"/>
+  <polygon class="cls-2" points="121.8 141.8 35 141.8 35 138.2 118.2 138.2 118.2 25 121.8 25 121.8 141.8"/>
+  <rect class="cls-2" x="40" y="43.2" width="55" height="3.6"/>
+  <rect class="cls-2" x="40" y="58.2" width="55" height="3.6"/>
+  <rect class="cls-2" x="40" y="73.2" width="55" height="3.6"/>
+  <rect class="cls-2" x="40" y="88.22" width="55" height="3.6"/>
+  <rect class="cls-2" x="40" y="103.2" width="35" height="3.6"/>
+  <path class="cls-2" d="M91.82,13.2v-5H81.55A6.77,6.77,0,0,0,75,3.2H60a6.8,6.8,0,0,0-6.55,5H43.18v5h-20V131.8h88.6V13.2Zm16.38,115H26.8V16.8H43.18V25h3.6V11.8h10V10A3.19,3.19,0,0,1,60,6.8H75A3.19,3.19,0,0,1,78.19,10v1.8h10V25h3.6V16.8H108.2Z"/>
+</svg>

@@ -23,7 +23,15 @@ function closeAllDrops(navSections) {
 function openDrop(navSections, li) {
   closeAllDrops(navSections);
   li.setAttribute('aria-expanded', 'true');
-  if (li.megaPanel) li.megaPanel.classList.add('open');
+  if (li.megaPanel) {
+    li.megaPanel.classList.add('open');
+    // panels host is position:fixed on desktop — align it under the nav bar
+    if (isDesktop.matches) {
+      const host = li.megaPanel.parentElement;
+      const nav = navSections.closest('nav');
+      if (host && nav) host.style.top = `${Math.round(nav.getBoundingClientRect().bottom)}px`;
+    }
+  }
 }
 
 /**

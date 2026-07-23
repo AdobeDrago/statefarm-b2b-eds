@@ -12,6 +12,11 @@
   --sf-hover-bg: #f4f4f4;
 }
 
+header.header-wrapper {
+  position: relative;
+  z-index: 30;
+}
+
 header .nav-wrapper {
   width: 100%;
   background-color: #fff;
@@ -227,14 +232,20 @@ header nav .nav-sections > ul > li[aria-expanded='true'] > a::after {
   transform: rotate(180deg);
 }
 
-/* dropdown panels: full-width mega-panel below the nav bar (matches source) */
+/* dropdown panels: full-width mega-panel below the nav bar (matches source).
+   Fixed so it escapes the sticky header's stacking/overflow context and
+   always paints above page content. top is set in header.js on open. */
 header nav .nav-drop-panels {
-  position: absolute;
-  top: 100%;
-  left: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
-  transform: translateX(-50%);
-  z-index: 25;
+  z-index: 40;
+  pointer-events: none;
+}
+
+header nav .nav-drop-panels .nav-drop-panel.open {
+  pointer-events: auto;
 }
 
 header nav .nav-drop-panel {
@@ -442,7 +453,9 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     display: block;
     width: 100%;
     transform: none;
+    top: auto;
     left: auto;
+    pointer-events: auto;
   }
 
   header nav .nav-drop-panel {

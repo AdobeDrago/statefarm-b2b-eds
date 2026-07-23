@@ -1,4 +1,6 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
+import { createOptimizedPicture, decorateIcons } from '../../scripts/aem.js';
+
+const ICON_TOKEN = /^:([a-z0-9-]+):$/i;
 
 export default function decorate(block) {
   /* change to ul, li */
@@ -7,8 +9,19 @@ export default function decorate(block) {
     const li = document.createElement('li');
     while (row.firstElementChild) li.append(row.firstElementChild);
     [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-service-card-image';
-      else div.className = 'cards-service-card-body';
+      // an icon cell is either a single picture, or a paragraph holding an :icon: token
+      const iconP = [...div.children].find((el) => el.tagName === 'P' && ICON_TOKEN.test(el.textContent.trim()));
+      if (div.children.length === 1 && div.querySelector('picture')) {
+        div.className = 'cards-service-card-image';
+      } else if (iconP) {
+        const name = iconP.textContent.trim().match(ICON_TOKEN)[1];
+        const span = document.createElement('span');
+        span.className = `icon icon-${name}`;
+        iconP.replaceWith(span);
+        div.className = 'cards-service-card-image';
+      } else {
+        div.className = 'cards-service-card-body';
+      }
     });
     ul.append(li);
   });
@@ -18,4 +31,5 @@ export default function decorate(block) {
   });
   block.textContent = '';
   block.append(ul);
+  decorateIcons(block);
 }
