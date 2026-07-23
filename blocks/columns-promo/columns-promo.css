@@ -1,5 +1,7 @@
 .columns-promo {
-  width: 1060px;
+  width: 100%;
+  max-width: 1060px;
+  box-sizing: border-box;
   margin: 64px auto;
 }
 
