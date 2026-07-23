@@ -142,11 +142,21 @@ export default async function decorate(block) {
         navSection.classList.add('nav-drop');
         navSection.setAttribute('aria-expanded', 'false');
 
-        // build the dropdown panel: group each H3 + UL into a column
-        const topLink = navSection.querySelector(':scope > a');
+        // build the dropdown panel: group each H3 + UL into a column.
+        // The trigger link may be a direct <a> (local) or wrapped in a <p> (DA/EDS).
+        let topLink = navSection.querySelector(':scope > a');
+        let topNode = topLink;
+        if (!topLink) {
+          const firstP = navSection.querySelector(':scope > p');
+          const wrappedLink = firstP ? firstP.querySelector('a') : null;
+          if (wrappedLink) {
+            topLink = wrappedLink;
+            topNode = firstP;
+          }
+        }
         const panel = document.createElement('div');
         panel.className = 'nav-drop-panel';
-        const nodes = Array.from(navSection.children).filter((el) => el !== topLink);
+        const nodes = Array.from(navSection.children).filter((el) => el !== topNode);
         let currentCol = null;
         nodes.forEach((node) => {
           if (node.tagName === 'H3') {
