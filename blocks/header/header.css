@@ -106,6 +106,7 @@ header nav .nav-tools ul li {
 }
 
 header nav .nav-tools a {
+  position: relative;
   color: var(--sf-utility-text);
   font-family: MecherleSans, Arial, sans-serif;
   font-size: 12px;
@@ -114,9 +115,29 @@ header nav .nav-tools a {
   white-space: nowrap;
 }
 
+/* animated red underline: scales in from the center on hover, matching
+   the main nav links */
+header nav .nav-tools a::before,
+header nav .nav-search-toggle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background-color: var(--sf-red);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+
 header nav .nav-tools a:hover {
   color: var(--sf-red);
-  text-decoration: underline;
+}
+
+header nav .nav-tools a:hover::before,
+header nav .nav-search-toggle:hover::before {
+  transform: scaleX(1);
 }
 
 /* search control (built in JS) */
@@ -127,6 +148,7 @@ header nav .nav-search {
 }
 
 header nav .nav-search-toggle {
+  position: relative;
   background: none;
   border: 0;
   color: var(--sf-utility-text);
@@ -140,7 +162,6 @@ header nav .nav-search-toggle {
 
 header nav .nav-search-toggle:hover {
   color: var(--sf-red);
-  text-decoration: underline;
 }
 
 header nav .nav-search-form {

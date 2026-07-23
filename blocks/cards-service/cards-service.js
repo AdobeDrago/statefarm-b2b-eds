@@ -10,9 +10,16 @@ export default function decorate(block) {
     const li = document.createElement('li');
     while (row.firstElementChild) li.append(row.firstElementChild);
     [...li.children].forEach((div) => {
-      // an icon cell is either a single picture, or a paragraph holding an :icon: token
+      // an icon cell is a single picture, an already-decorated icon span
+      // (scripts.js runs decorateIcons on the whole page before this block's
+      // own decoration, so authored `:icon:` tokens are usually already
+      // converted to span.icon by the time we get here), or — as a fallback
+      // for content that isn't decorated yet — a paragraph holding the token.
+      const iconSpan = div.querySelector(':scope > span.icon, :scope > p > span.icon');
       const iconP = [...div.children].find((el) => el.tagName === 'P' && ICON_TOKEN.test(el.textContent.trim()));
       if (div.children.length === 1 && div.querySelector('picture')) {
+        div.className = 'cards-service-card-image';
+      } else if (iconSpan) {
         div.className = 'cards-service-card-image';
       } else if (iconP) {
         const name = iconP.textContent.trim().match(ICON_TOKEN)[1];
