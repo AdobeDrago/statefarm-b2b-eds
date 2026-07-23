@@ -141,12 +141,6 @@ header nav .nav-search-toggle:hover::before {
 }
 
 /* search control (built in JS) */
-header nav .nav-search {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
 header nav .nav-search-toggle {
   position: relative;
   background: none;
@@ -164,41 +158,88 @@ header nav .nav-search-toggle:hover {
   color: var(--sf-red);
 }
 
-header nav .nav-search-form {
-  position: absolute;
-  top: 130%;
-  right: 0;
+/* search pane: its own row inside nav's grid (grid-area: search), between
+   the utility row and the brand/sections/login row — nav.search-open (see
+   the desktop media query) animates the row's own track size from 0fr to
+   1fr, so this only needs to fade in/out and clip while that row is small. */
+header .nav-search-pane {
+  grid-area: search;
+
+  /* nav uses align-items: center for its other rows' content — without an
+     explicit stretch here, this item would ignore its collapsed row-track
+     size entirely and render at its natural content height, overlapping
+     the row below regardless of the 0fr/1fr animation. */
+  align-self: stretch;
+  position: relative;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--sf-panel-bg);
+  border-top: 1px solid var(--sf-border);
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+header nav.search-open .nav-search-pane {
+  opacity: 1;
+}
+
+header .nav-search-pane-inner {
   display: flex;
-  gap: 4px;
-  background: #fff;
+  align-items: center;
+  gap: 16px;
+  min-height: 0;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+header .nav-search-form {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+header .nav-search-form input[type='search'] {
+  flex: 1;
+  height: 48px;
+  box-sizing: border-box;
   border: 1px solid var(--sf-border);
   border-radius: 4px;
-  padding: 6px;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
-  z-index: 30;
-}
-
-header nav .nav-search-form[hidden] {
-  display: none;
-}
-
-header nav .nav-search-form input {
-  border: 1px solid var(--sf-border);
-  border-radius: 3px;
-  padding: 4px 8px;
+  padding: 0 16px;
   font: inherit;
-  font-size: 13px;
+  font-size: 16px;
 }
 
-header nav .nav-search-form .nav-search-submit {
+/* same size/style as the columns-auth Log In button */
+header .nav-search-submit {
+  flex: none;
+  width: 138px;
+  height: 48px;
+  padding-left: 48px;
+  padding-right: 48px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+header .nav-search-close {
+  flex: none;
+  width: 24px;
+  height: 24px;
   border: 0;
-  background: var(--sf-red);
-  color: #fff;
-  border-radius: 3px;
-  padding: 4px 10px;
+  background: none;
+  color: var(--sf-utility-text);
+  font-size: 20px;
+  line-height: 1;
   cursor: pointer;
-  font: inherit;
-  font-size: 13px;
+}
+
+header .nav-search-close:hover {
+  color: var(--sf-red);
 }
 
 /* ---- login button (lifted from tools into the main row, right side) ---- */
@@ -472,10 +513,20 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   header nav {
     grid-template:
       'tools tools tools' 32px
+      'search search search' 0fr
       'brand sections login' 60px
       / auto 1fr auto;
+    transition: grid-template-rows 0.3s ease;
     row-gap: 0;
     padding: 0 24px;
+  }
+
+  /* opening search grows the middle row from 0fr to 1fr, pushing the
+     brand/sections/login row (and everything in the page below it) down —
+     the megamenu panels, by contrast, are position: fixed overlays and are
+     intentionally unaffected by this */
+  header nav.search-open {
+    grid-template-rows: 32px 1fr 60px;
   }
 
   header nav .nav-brand {
@@ -519,6 +570,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
       'hamburger brand spacer'
       'sections sections sections'
       'tools tools tools'
+      'search search search'
       'login login login';
     grid-template-columns: auto auto 1fr;
     padding: 0 16px;
@@ -534,6 +586,16 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   header nav[aria-expanded='false'] .nav-tools,
   header nav[aria-expanded='false'] .nav-login-wrap {
     display: none;
+  }
+
+  /* no row-track animation on mobile (rows are auto-sized) — simple show/hide */
+  header nav .nav-search-pane {
+    display: none;
+  }
+
+  header nav.search-open .nav-search-pane {
+    display: block;
+    opacity: 1;
   }
 
   header nav[aria-expanded='true'] .nav-sections {
