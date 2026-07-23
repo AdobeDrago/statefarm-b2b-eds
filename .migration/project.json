@@ -1,8 +1,10 @@
 {
+  "type": "doc",
   "sites": {
     "statefarm-b2b-eds": {
       "previewOrg": "adobedrago",
-      "previewSite": "statefarm-b2b-eds"
+      "previewSite": "statefarm-b2b-eds",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
     }
   }
 }

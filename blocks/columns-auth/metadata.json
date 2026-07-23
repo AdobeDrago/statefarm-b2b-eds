@@ -1,0 +1,39 @@
+{
+  "variantName": "columns-auth",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-07-22T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://b2b.statefarm.com/b2b-content",
+    "originPage": "State Farm B2B portal home page",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "hero",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + heading + intro + supporting text + login CTA + secondary links + quick links",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "hero / authentication sections with an image on one side and heading + CTA + links on the other",
+      "two-column intro sections with a photo and login/action content",
+      "portal landing page headers"
+    ],
+    "notSuitableFor": [
+      "repeating card grids",
+      "full-bleed hero banners with background images and overlaid text",
+      "single-column centered promotional panels"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/b2b-content"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-22T00:00:00.000Z"
+  }
+}

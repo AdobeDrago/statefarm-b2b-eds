@@ -1,0 +1,39 @@
+{
+  "variantName": "columns-promo",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-07-22T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://b2b.statefarm.com/b2b-content",
+    "originPage": "State Farm B2B portal home page",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "feature",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading + subheading + product selector dropdown",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "single-column centered promotional panels",
+      "product/service call-to-action panels with a selector or dropdown",
+      "contained promo blocks with heading + subheading + interactive control"
+    ],
+    "notSuitableFor": [
+      "two-column image + text hero layouts",
+      "repeating card grids",
+      "tabular data"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/b2b-content"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-22T00:00:00.000Z"
+  }
+}

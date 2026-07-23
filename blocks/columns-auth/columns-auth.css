@@ -1,0 +1,33 @@
+.columns-auth > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-auth img {
+  width: 100%;
+}
+
+.columns-auth > div > div {
+  order: 1;
+}
+
+.columns-auth > div > .columns-auth-img-col {
+  order: 0;
+}
+
+.columns-auth > div > .columns-auth-img-col img {
+  display: block;
+}
+
+@media (width >= 900px) {
+  .columns-auth > div {
+    align-items: center;
+    flex-direction: unset;
+    gap: 24px;
+  }
+
+  .columns-auth > div > div {
+    flex: 1;
+    order: unset;
+  }
+}

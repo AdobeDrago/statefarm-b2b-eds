@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-service",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-07-22T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://b2b.statefarm.com/b2b-content",
+    "originPage": "State Farm B2B portal home page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "feature",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "icon + linked heading + description + related-actions dropdown",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "service/category card grids with an icon, heading, description",
+      "portal navigation card grids",
+      "3-up responsive card layouts with per-card quick-navigation controls"
+    ],
+    "notSuitableFor": [
+      "photo-heavy article/product card grids with large images",
+      "single-column text-only lists",
+      "two-column hero layouts"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/b2b-content"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-22T00:00:00.000Z"
+  }
+}
