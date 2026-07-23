@@ -15,13 +15,15 @@
   --background-color: white;
   --light-color: #f8f8f8;
   --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  --text-color: #3b3b3b;
+  --link-color: #d62311;
+  --link-hover-color: #b81c0e;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* stylelint-disable-next-line value-keyword-case -- MecherleSans is a brand font name, not a CSS keyword */
+  --body-font-family: MecherleSans, Arial, sans-serif;
+  /* stylelint-disable-next-line value-keyword-case -- MecherleSans is a brand font name, not a CSS keyword */
+  --heading-font-family: MecherleSans, Arial, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -40,33 +42,20 @@
   --nav-height: 64px;
 }
 
-/* fallback fonts */
-@font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
-}
-
 @media (width >= 900px) {
   :root {
     /* body sizes */
-    --body-font-size-m: 18px;
+    --body-font-size-m: 16px;
     --body-font-size-s: 16px;
     --body-font-size-xs: 14px;
 
     /* heading sizes */
-    --heading-font-size-xxl: 45px;
+    --heading-font-size-xxl: 48px;
     --heading-font-size-xl: 36px;
     --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
+    --heading-font-size-m: 28px;
     --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    --heading-font-size-xs: 20px;
   }
 }
 
@@ -115,7 +104,12 @@ h6 {
 h1 { font-size: var(--heading-font-size-xxl); }
 h2 { font-size: var(--heading-font-size-xl); }
 h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
+
+h4 {
+  font-size: var(--heading-font-size-m);
+  font-weight: 500;
+}
+
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
 
@@ -293,6 +287,46 @@ main img {
 .icon img {
   height: 100%;
   width: 100%;
+}
+
+/* dropdown jump-menu (converted from an authored list of links) */
+.dropdown-select-wrapper {
+  position: relative;
+  background-color: #fff;
+  box-shadow:
+    inset 0 -1px 0 0 #767676,
+    inset -1px 0 0 #f4f3f3,
+    inset 1px 0 0 #f4f3f3,
+    inset 0 1px 0 0 #f4f3f3;
+}
+
+.dropdown-select {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  margin: 0;
+  padding: 12px 32px 12px 16px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  color: #767676;
+  cursor: pointer;
+}
+
+.dropdown-select-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  width: 8px;
+  height: 8px;
+  margin-top: -6px;
+  border: 4px solid transparent;
+  border-top-color: var(--text-color);
+  pointer-events: none;
 }
 
 /* sections */

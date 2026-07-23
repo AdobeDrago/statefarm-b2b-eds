@@ -143,10 +143,46 @@ function decorateButtons(main) {
 }
 
 /**
+ * Replaces a list of links (or plain text items) with a native <select> jump menu,
+ * matching the dropdown pattern used across the source site for secondary navigation lists.
+ * @param {HTMLUListElement} ul The list to convert
+ * @param {string} placeholder Label shown before a selection is made
+ * @returns {HTMLElement} the wrapper element that replaced the list
+ */
+export function decorateDropdown(ul, placeholder) {
+  const select = document.createElement('select');
+  select.className = 'dropdown-select';
+
+  const placeholderOption = document.createElement('option');
+  placeholderOption.textContent = placeholder;
+  placeholderOption.selected = true;
+  placeholderOption.disabled = true;
+  select.append(placeholderOption);
+
+  [...ul.children].forEach((li) => {
+    const link = li.querySelector('a');
+    const option = document.createElement('option');
+    option.textContent = (link || li).textContent.trim();
+    if (link) option.value = link.href;
+    select.append(option);
+  });
+
+  select.addEventListener('change', () => {
+    const { value } = select.options[select.selectedIndex];
+    if (value) window.location.href = value;
+  });
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'dropdown-select-wrapper';
+  wrapper.append(select);
+  ul.replaceWith(wrapper);
+  return wrapper;
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
-// eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);

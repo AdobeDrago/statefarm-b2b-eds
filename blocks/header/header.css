@@ -60,8 +60,9 @@ header nav .nav-brand .nav-brand-link {
 }
 
 header nav .nav-brand img {
-  width: auto;
-  height: 34px;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 
 /* ---- tools (utility bar: Search / Help / Contact / FAQ) ---- */
@@ -88,7 +89,9 @@ header nav .nav-tools ul li {
 
 header nav .nav-tools a {
   color: var(--sf-utility-text);
+  font-family: MecherleSans, Arial, sans-serif;
   font-size: 12px;
+  font-weight: 400;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -110,7 +113,9 @@ header nav .nav-search-toggle {
   border: 0;
   color: var(--sf-utility-text);
   font: inherit;
+  font-family: MecherleSans, Arial, sans-serif;
   font-size: 12px;
+  font-weight: 400;
   cursor: pointer;
   padding: 0;
 }
@@ -169,18 +174,17 @@ header nav .nav-login-wrap p {
 
 header nav .nav-login {
   display: inline-block;
-  background: var(--sf-red);
-  color: #fff;
+  background: none;
+  color: var(--sf-red);
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;
-  padding: 8px 20px;
-  border-radius: 4px;
   white-space: nowrap;
 }
 
 header nav .nav-login:hover {
-  background: var(--sf-red-dark);
+  color: var(--sf-red-dark);
+  text-decoration: underline;
 }
 
 /* ---- sections (megamenu) ---- */
@@ -204,7 +208,10 @@ header nav .nav-sections > ul > li {
   margin: 0;
 }
 
-header nav .nav-sections > ul > li > a {
+/* the top-level trigger link may be a direct child of the <li> (no dropdown)
+   or wrapped in a <p> (DA/EDS-authored items with a megamenu) */
+header nav .nav-sections > ul > li > a,
+header nav .nav-sections > ul > li > p > a {
   display: inline-block;
   color: var(--sf-header-text);
   font-size: 14px;
@@ -213,7 +220,8 @@ header nav .nav-sections > ul > li > a {
   cursor: pointer;
 }
 
-header nav .nav-sections > ul > li.nav-drop > a::after {
+header nav .nav-sections > ul > li.nav-drop > a::after,
+header nav .nav-sections > ul > li.nav-drop > p > a::after {
   content: '';
   display: inline-block;
   margin-left: 6px;
@@ -224,11 +232,14 @@ header nav .nav-sections > ul > li.nav-drop > a::after {
 }
 
 header nav .nav-sections > ul > li[aria-expanded='true'] > a,
-header nav .nav-sections > ul > li > a:hover {
+header nav .nav-sections > ul > li[aria-expanded='true'] > p > a,
+header nav .nav-sections > ul > li > a:hover,
+header nav .nav-sections > ul > li > p > a:hover {
   color: var(--sf-red);
 }
 
-header nav .nav-sections > ul > li[aria-expanded='true'] > a::after {
+header nav .nav-sections > ul > li[aria-expanded='true'] > a::after,
+header nav .nav-sections > ul > li[aria-expanded='true'] > p > a::after {
   transform: rotate(180deg);
 }
 
@@ -361,22 +372,36 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
    ========================================================= */
 @media (width >= 900px) {
   header nav {
-    grid-template-areas:
-      'brand tools tools'
-      'brand sections login';
-    grid-template-columns: auto 1fr auto;
-    row-gap: 4px;
-    padding: 8px 24px;
+    grid-template:
+      'tools tools tools' 32px
+      'brand sections login' 60px
+      / auto 1fr auto;
+    row-gap: 0;
+    padding: 0 24px;
   }
 
   header nav .nav-brand {
     align-self: center;
+    padding: 0;
   }
 
+  /* utility bar: light gray strip spanning the true 100% viewport width,
+     distinct from the white main-nav row. The nav itself is a centered
+     max-width: 1200px container narrower than the viewport, so this breaks
+     out of it with the width: 100vw + negative-margin-via-50% technique —
+     the element's own box becomes viewport-wide regardless of its ancestor's
+     constraint, instead of relying on background bleed past its own edges. */
   header nav .nav-tools {
     grid-area: tools;
-    align-self: start;
-    padding-top: 2px;
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    height: 32px;
+    box-sizing: border-box;
+    padding: 0 max(24px, calc((100vw - 1200px) / 2 + 24px)) 0 24px;
+    background-color: var(--sf-hover-bg);
+    border-bottom: 1px solid var(--sf-border);
   }
 
   header nav .nav-login-wrap {
@@ -435,14 +460,16 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     border-bottom: 1px solid var(--sf-border);
   }
 
-  header nav .nav-sections > ul > li > a {
+  header nav .nav-sections > ul > li > a,
+  header nav .nav-sections > ul > li > p > a {
     display: block;
     width: 100%;
     padding: 14px 4px;
     font-size: 16px;
   }
 
-  header nav .nav-sections > ul > li.nav-drop > a::after {
+  header nav .nav-sections > ul > li.nav-drop > a::after,
+  header nav .nav-sections > ul > li.nav-drop > p > a::after {
     float: right;
     margin-top: 8px;
   }

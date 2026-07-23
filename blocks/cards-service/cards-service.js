@@ -1,4 +1,5 @@
 import { createOptimizedPicture, decorateIcons } from '../../scripts/aem.js';
+import { decorateDropdown } from '../../scripts/scripts.js';
 
 const ICON_TOKEN = /^:([a-z0-9-]+):$/i;
 
@@ -23,6 +24,17 @@ export default function decorate(block) {
         div.className = 'cards-service-card-body';
       }
     });
+
+    // icon + body sit side-by-side in a row; a nested list of links becomes
+    // a full-width dropdown strip below that row, matching the source design
+    const cardRow = document.createElement('div');
+    cardRow.className = 'cards-service-card-row';
+    [...li.children].forEach((div) => cardRow.append(div));
+    li.append(cardRow);
+
+    const list = cardRow.querySelector('.cards-service-card-body ul');
+    if (list) li.append(decorateDropdown(list, 'Select option'));
+
     ul.append(li);
   });
   ul.querySelectorAll('picture > img').forEach((img) => {

@@ -5,22 +5,38 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
+  grid-template-columns: repeat(auto-fill, 350px);
   gap: 24px;
 }
 
 .cards-service > ul > li {
-  border: 1px solid #dadada;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  border: none;
   background-color: var(--background-color);
 }
 
+.cards-service .cards-service-card-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 15px;
+}
+
 .cards-service .cards-service-card-body {
-  margin: 16px;
+  margin: 0;
+}
+
+.cards-service .cards-service-card-body h4,
+.cards-service .cards-service-card-body p {
+  font-size: 16px;
 }
 
 .cards-service .cards-service-card-image {
+  flex: none;
   line-height: 0;
-  margin: 16px 16px 0;
+  margin: 0;
 }
 
 /* pictogram icon */
@@ -36,6 +52,11 @@
   height: 64px;
   aspect-ratio: auto;
   object-fit: contain;
+}
+
+/* push the dropdown strip to the bottom of the card, even when card text heights differ */
+.cards-service > ul > li .dropdown-select-wrapper {
+  margin-top: auto;
 }
 
 /* photo cards (if any) keep the cover treatment */

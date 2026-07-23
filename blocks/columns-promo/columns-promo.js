@@ -1,3 +1,5 @@
+import { decorateDropdown } from '../../scripts/scripts.js';
+
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-promo-${cols.length}-cols`);
@@ -14,5 +16,10 @@ export default function decorate(block) {
         }
       }
     });
+  });
+
+  // a plain list of links becomes a full-width dropdown, matching the source design
+  block.querySelectorAll('ul').forEach((list) => {
+    decorateDropdown(list, 'Select a product');
   });
 }

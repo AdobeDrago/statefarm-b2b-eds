@@ -6,6 +6,7 @@
   --sf-footer-red: #d62311;
   --sf-footer-cream: #f7f0e4;
   --sf-footer-text: rgb(64 60 60);
+  --sf-footer-border: rgb(64 60 60 / 20%);
   --sf-footer-max: 1200px;
 }
 
@@ -36,7 +37,7 @@ footer .footer .footer-banner p {
   font-size: 16px;
   font-weight: 400;
   color: #fff;
-  text-align: center;
+  text-align: left;
 }
 
 /* ---- cream content area (full-width bg, constrained inner) ---- */
@@ -54,25 +55,21 @@ footer .footer .footer-content > * {
   padding-right: 24px;
 }
 
+/* logo is authored but not part of this footer layout — kept in the DOM, hidden visually */
 footer .footer .footer-logo {
-  padding-top: 24px;
-  text-align: center;
-}
-
-footer .footer .footer-logo img {
-  width: auto;
-  height: 56px;
+  display: none;
 }
 
 /* primary link list */
 footer .footer .footer-links {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   gap: 12px 24px;
   list-style: none;
-  margin: 16px auto 0;
-  padding: 0 24px;
+  margin: 32px auto 0;
+  padding: 0 24px 20px;
+  border-bottom: 1px solid var(--sf-footer-border);
 }
 
 footer .footer .footer-links li {
@@ -81,7 +78,8 @@ footer .footer .footer-links li {
 
 footer .footer .footer-links a {
   color: var(--sf-footer-text);
-  font-size: 16px;
+  font-size: 17px;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -94,7 +92,7 @@ footer .footer .footer-links a:hover {
 footer .footer .footer-notices {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px 20px;
   list-style: none;
   margin: 16px auto 0;
@@ -108,6 +106,7 @@ footer .footer .footer-notices li {
 footer .footer .footer-notices a {
   color: var(--sf-footer-text);
   font-size: 13px;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -122,7 +121,7 @@ footer .footer .footer-copyright {
   padding-bottom: 24px;
   font-size: 13px;
   color: var(--sf-footer-text);
-  text-align: center;
+  text-align: left;
 }
 
 /* ---- mobile ---- */
@@ -134,15 +133,15 @@ footer .footer .footer-copyright {
 
   footer .footer .footer-links {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
   }
 
   footer .footer .footer-notices {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
-    text-align: center;
+    text-align: left;
   }
 
   footer .footer .footer-content > * {

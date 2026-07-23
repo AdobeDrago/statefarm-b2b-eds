@@ -1,6 +1,35 @@
+.columns-promo {
+  width: 1060px;
+  margin: 64px 24px;
+}
+
 .columns-promo > div {
   display: flex;
   flex-direction: column;
+  border: 1px solid #dadada;
+  background-color: #f7f0e4;
+}
+
+.columns-promo h2 {
+  color: var(--link-color);
+  margin-top: 0;
+}
+
+.columns-promo h4 {
+  font-size: 25px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.columns-promo .dropdown-select-wrapper {
+  width: 256px;
+  height: 48px;
+  box-sizing: border-box;
+  margin-top: 16px;
+}
+
+.columns-promo .dropdown-select {
+  height: 100%;
 }
 
 .columns-promo img {
@@ -9,6 +38,10 @@
 
 .columns-promo > div > div {
   order: 1;
+}
+
+.columns-promo > div > div:not(.columns-promo-img-col) {
+  padding: 24px;
 }
 
 .columns-promo > div > .columns-promo-img-col {
