@@ -164,6 +164,8 @@ export default async function decorate(block) {
         }
         const panel = document.createElement('div');
         panel.className = 'nav-drop-panel';
+        const panelInner = document.createElement('div');
+        panelInner.className = 'nav-drop-panel-inner';
         const nodes = Array.from(navSection.children).filter((el) => el !== topNode);
         let currentCol = null;
         nodes.forEach((node) => {
@@ -171,13 +173,20 @@ export default async function decorate(block) {
             currentCol = document.createElement('div');
             currentCol.className = 'nav-drop-col';
             currentCol.append(node);
-            panel.append(currentCol);
+            panelInner.append(currentCol);
           } else if (node.tagName === 'UL' && currentCol) {
             currentCol.append(node);
           } else {
-            panel.append(node);
+            panelInner.append(node);
           }
         });
+        const closeBtn = document.createElement('button');
+        closeBtn.type = 'button';
+        closeBtn.className = 'nav-drop-close';
+        closeBtn.setAttribute('aria-label', 'Close menu');
+        closeBtn.innerHTML = '<span aria-hidden="true">&times;</span>';
+        closeBtn.addEventListener('click', () => closeAllDrops(navSections));
+        panel.append(panelInner, closeBtn);
         navSection.megaPanel = panel;
 
         navSection.addEventListener('mouseenter', () => {

@@ -1,6 +1,6 @@
 .columns-promo {
   width: 1060px;
-  margin: 64px 24px;
+  margin: 64px auto;
 }
 
 .columns-promo > div {
