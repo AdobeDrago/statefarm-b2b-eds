@@ -1,5 +1,5 @@
 .columns-auth {
-  margin: 32px 0 48px;
+  margin: 32px 0;
 }
 
 .columns-auth > div {
@@ -79,6 +79,12 @@
     align-items: center;
     flex-direction: unset;
     gap: 24px;
+  }
+
+  /* fixed row height for the 3-col (fixed-icon) variant — the 2-col
+     wide-photo variant sizes to its image instead */
+  .columns-auth-3-cols > div {
+    height: 165px;
   }
 
   .columns-auth > div > div {
