@@ -64,6 +64,16 @@
   display: block;
 }
 
+/* fixed-size pictogram (not a fluid promotional photo). Targeted
+   structurally (nth-child) rather than via .columns-auth-img-col, since
+   that class is only added once the image is wrapped in a <picture> —
+   true after the DA pipeline processes it, but not for a raw <img> */
+.columns-auth-3-cols > div > div:first-child img {
+  width: 104px;
+  height: 104px;
+  margin: 0 auto;
+}
+
 @media (width >= 900px) {
   .columns-auth > div {
     align-items: center;
@@ -79,6 +89,22 @@
 
   .columns-auth > div > .columns-auth-img-col {
     flex: 5;
+  }
+
+  /* 3-column layout (icon, title block, right-aligned login/links) used
+     when the image is a small fixed-size pictogram rather than a wide
+     promotional photo */
+  .columns-auth-3-cols > div > div:first-child {
+    flex: none;
+  }
+
+  .columns-auth-3-cols > div > div:nth-child(2) {
+    flex: 3;
+  }
+
+  .columns-auth-3-cols > div > div:nth-child(3) {
+    flex: 2;
+    text-align: right;
   }
 }
 
