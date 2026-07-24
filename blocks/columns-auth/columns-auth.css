@@ -125,7 +125,7 @@
    than the default paragraph margins, not smaller — a blanket margin
    collapse here is what was making the column read as crushed together. */
 .columns-auth h1 {
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
 
 .columns-auth h1 + p {
