@@ -66,13 +66,24 @@
    title paragraph (not a span.icon) because span is stripped from block
    cell content on the DA round-trip — only img/picture survive there.
    Positioned absolutely in the card's top-right corner, inset by the
-   card's own 24px padding, matching the source. */
-.cards .cards-card-body p:first-child picture,
-.cards .cards-card-body p:first-child img {
+   card's own 24px padding, matching the source. Only the outermost
+   element (the bare <img>, or the <picture> the pipeline wraps it in)
+   gets the absolute position — an <img> nested inside an already
+   absolutely-positioned <picture> would offset a second time against
+   the picture itself instead of just filling it. */
+.cards .cards-card-body p:first-child > picture,
+.cards .cards-card-body p:first-child > img {
   position: absolute;
   top: 24px;
   right: 24px;
   width: 24px;
   height: 24px;
   aspect-ratio: auto;
+}
+
+.cards .cards-card-body p:first-child picture img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
 }
