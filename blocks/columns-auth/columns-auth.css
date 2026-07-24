@@ -82,10 +82,11 @@
     gap: 24px;
   }
 
-  /* fixed row height for the 3-col (fixed-icon) variant — the 2-col
-     wide-photo variant sizes to its image instead */
+  /* baseline row height for the 3-col (fixed-icon) variant — min-height,
+     not height, so content that renders slightly taller than the source
+     (font differences) grows the row instead of getting clipped */
   .columns-auth-3-cols > div {
-    height: 165px;
+    min-height: 165px;
   }
 
   .columns-auth > div > div {
