@@ -3,17 +3,41 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
+  grid-template-columns: 1fr;
   gap: 24px;
 }
 
+@media (width >= 600px) {
+  .cards > ul {
+    /* 2 per row, each sharing 50% of the row (minus the gap) */
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .cards > ul > li {
+  margin: 0;
   border: 1px solid #dadada;
   background-color: var(--background-color);
 }
 
 .cards .cards-card-body {
-  margin: 16px;
+  box-sizing: border-box;
+  padding: 24px;
+}
+
+.cards .cards-card-body p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.cards .cards-card-body p + p {
+  margin-top: 8px;
+}
+
+.cards .cards-card-body p:first-child,
+.cards .cards-card-body p:first-child a {
+  font-weight: 600;
 }
 
 .cards .cards-card-image {
@@ -24,4 +48,17 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+/* "login required" lock icon: authored as a plain trailing <img> in the
+   title paragraph (not a span.icon) because span is stripped from block
+   cell content on the DA round-trip — only img/picture survive there */
+.cards .cards-card-body p:first-child picture,
+.cards .cards-card-body p:first-child img {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  aspect-ratio: auto;
+  margin-left: 6px;
+  vertical-align: middle;
 }

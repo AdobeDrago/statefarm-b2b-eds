@@ -288,6 +288,14 @@ header nav .nav-sections > ul > li {
   margin: 0;
 }
 
+/* the DA/EDS-authored <p> wrapper is structural, not body copy — without
+   this reset it inherits the global default-content paragraph margin
+   (0.8em top / 0.25em bottom), which pushes the trigger link down and
+   breaks its vertical centering in the nav row */
+header nav .nav-sections > ul > li > p {
+  margin: 0;
+}
+
 /* the top-level trigger link may be a direct child of the <li> (no dropdown)
    or wrapped in a <p> (DA/EDS-authored items with a megamenu) */
 header nav .nav-sections > ul > li > a,
