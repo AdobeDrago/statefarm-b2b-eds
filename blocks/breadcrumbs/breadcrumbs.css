@@ -1,3 +1,10 @@
+/* full-bleed separator below the trail, matching the source site's
+   breadcrumb strip (a thin border directly under the section, not the
+   page's usual 1200px-constrained content) */
+main .breadcrumbs-container {
+  border-bottom: 1px solid var(--sf-border);
+}
+
 main .breadcrumbs nav {
   padding: 12px 0;
 }
