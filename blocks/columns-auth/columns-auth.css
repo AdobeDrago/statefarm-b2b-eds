@@ -101,8 +101,12 @@
   /* 3-column layout (icon, title block, right-aligned login/links) used
      when the image is a small fixed-size pictogram rather than a wide
      promotional photo */
+
+  /* wider than the 104px icon itself so the icon reads as centered with
+     breathing room, matching the source's column proportions (roughly
+     1:3:2 across icon : title : actions) */
   .columns-auth-3-cols > div > div:first-child {
-    flex: none;
+    flex: 1;
   }
 
   .columns-auth-3-cols > div > div:nth-child(2) {
@@ -121,7 +125,7 @@
    than the default paragraph margins, not smaller — a blanket margin
    collapse here is what was making the column read as crushed together. */
 .columns-auth h1 {
-  margin-bottom: 0.2em;
+  margin-bottom: 32px;
 }
 
 .columns-auth h1 + p {
@@ -140,7 +144,7 @@
 }
 
 .columns-auth p.button-wrapper + p {
-  margin-top: 0.8em;
+  margin-top: 24px;
 }
 
 .columns-auth h6 {
