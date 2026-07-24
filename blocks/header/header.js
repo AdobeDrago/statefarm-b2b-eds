@@ -55,14 +55,18 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
- * Build the search control (form + input) from JS — not authored in the fragment.
+ * Build the search control from JS — not authored in the fragment. The
+ * toggle lives in the utility bar; the pane is its own row inside <nav>'s
+ * grid, between the gray utility row and the logo/links row, so opening it
+ * grows nav's own grid-template-rows and pushes everything below (including
+ * the logo/links row and the rest of the page) down — unlike the megamenu
+ * panels, which float over content via position: fixed.
+ * @param {Element} nav the nav element (search row lives in its grid)
  * @param {Element} searchLink the placeholder anchor for search in the tools section
  */
-function decorateSearch(searchLink) {
+function decorateSearch(nav, searchLink) {
   if (!searchLink) return;
   const li = searchLink.closest('li') || searchLink.parentElement;
-  const wrapper = document.createElement('div');
-  wrapper.className = 'nav-search';
 
   const toggle = document.createElement('button');
   toggle.type = 'button';
@@ -70,11 +74,18 @@ function decorateSearch(searchLink) {
   toggle.setAttribute('aria-expanded', 'false');
   toggle.setAttribute('aria-label', 'Search');
   toggle.textContent = 'Search';
+  searchLink.replaceWith(toggle);
+  if (li) li.classList.add('nav-search-item');
+
+  const pane = document.createElement('div');
+  pane.className = 'nav-search-pane';
+
+  const paneInner = document.createElement('div');
+  paneInner.className = 'nav-search-pane-inner';
 
   const form = document.createElement('form');
   form.className = 'nav-search-form';
   form.setAttribute('role', 'search');
-  form.hidden = true;
   const input = document.createElement('input');
   input.type = 'search';
   input.name = 'q';
@@ -82,20 +93,31 @@ function decorateSearch(searchLink) {
   input.setAttribute('aria-label', 'Search');
   const submit = document.createElement('button');
   submit.type = 'submit';
-  submit.className = 'nav-search-submit';
+  submit.className = 'nav-search-submit button accent';
   submit.textContent = 'Search';
   form.append(input, submit);
 
-  toggle.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
-    form.hidden = open;
-    if (!open) input.focus();
-  });
+  const closeBtn = document.createElement('button');
+  closeBtn.type = 'button';
+  closeBtn.className = 'nav-search-close';
+  closeBtn.setAttribute('aria-label', 'Close search');
+  closeBtn.innerHTML = '<span aria-hidden="true">&times;</span>';
 
-  wrapper.append(toggle, form);
-  searchLink.replaceWith(wrapper);
-  if (li) li.classList.add('nav-search-item');
+  paneInner.append(form, closeBtn);
+  pane.append(paneInner);
+  nav.append(pane);
+
+  const setOpen = (open) => {
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    nav.classList.toggle('search-open', open);
+    if (open) input.focus();
+  };
+
+  toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  closeBtn.addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.code === 'Escape') setOpen(false);
+  });
 }
 
 /**
@@ -240,8 +262,8 @@ export default async function decorate(block) {
       if (navSections) navSections.after(loginWrap);
       else nav.append(loginWrap);
     }
-    const searchLink = navTools.querySelector('a[href="#search"], a[href$="#search"]');
-    decorateSearch(searchLink);
+    const searchLink = [...navTools.querySelectorAll('a')].find((a) => a.textContent.trim() === 'Search');
+    decorateSearch(nav, searchLink);
   }
 
   // hamburger for mobile
