@@ -15,9 +15,16 @@
 }
 
 .cards > ul > li {
+  position: relative;
   margin: 0;
   border: 1px solid #dadada;
   background-color: var(--background-color);
+  box-shadow: 0 0 3px rgb(33 33 33 / 25%);
+  transition: box-shadow 0.2s ease;
+}
+
+.cards > ul > li:hover {
+  box-shadow: 0 2px 5px rgb(33 33 33 / 25%);
 }
 
 .cards .cards-card-body {
@@ -35,7 +42,12 @@
   margin-top: 8px;
 }
 
-.cards .cards-card-body p:first-child,
+.cards .cards-card-body p:first-child {
+  /* reserve room so title text doesn't run under the icon */
+  padding-right: 32px;
+  font-weight: 600;
+}
+
 .cards .cards-card-body p:first-child a {
   font-weight: 600;
 }
@@ -52,13 +64,15 @@
 
 /* "login required" lock icon: authored as a plain trailing <img> in the
    title paragraph (not a span.icon) because span is stripped from block
-   cell content on the DA round-trip — only img/picture survive there */
+   cell content on the DA round-trip — only img/picture survive there.
+   Positioned absolutely in the card's top-right corner, inset by the
+   card's own 24px padding, matching the source. */
 .cards .cards-card-body p:first-child picture,
 .cards .cards-card-body p:first-child img {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
   aspect-ratio: auto;
-  margin-left: 6px;
-  vertical-align: middle;
 }
