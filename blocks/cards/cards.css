@@ -17,6 +17,7 @@
 .cards > ul > li {
   position: relative;
   margin: 0;
+  min-height: 160px;
   border: 1px solid #dadada;
   background-color: var(--background-color);
   box-shadow: 0 0 3px rgb(33 33 33 / 25%);
