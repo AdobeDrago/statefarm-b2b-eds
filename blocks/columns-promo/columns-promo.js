@@ -1,6 +1,8 @@
 import { decorateDropdown } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
+  if (!block.firstElementChild) return;
+
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-promo-${cols.length}-cols`);
 

@@ -7,6 +7,9 @@ import { loadCSS } from '../../scripts/aem.js';
  */
 function parseWidgetHref(pathname) {
   const pathSegments = pathname.split('/').filter((p) => p);
+  if (pathSegments[0] !== 'widgets' || pathSegments.some((p) => p === '.' || p === '..')) {
+    throw new Error(`invalid widget path: ${pathname}`);
+  }
   const widgetName = pathSegments[pathSegments.length - 1].split('.')[0];
   const widgetPath = pathSegments.slice(1, -1).join('/');
   return { widgetPath, widgetName };

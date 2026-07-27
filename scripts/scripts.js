@@ -18,19 +18,15 @@ if (window.trustedTypes && window.trustedTypes.createPolicy) {
   });
 
   window.trustedTypes.createPolicy('default', {
-    createHTML: (input, type, sink) => {
-      let processedInput = input;
-      if (/srcdoc\s*=/i.test(processedInput)) {
-        const doc = new DOMParser().parseFromString(innerTT.createHTML(processedInput), 'text/html');
-        doc.querySelectorAll('iframe[srcdoc]').forEach((el) => el.removeAttribute('srcdoc'));
-        processedInput = doc.body.innerHTML;
-      }
-      if (sink.includes('createContextualFragment') || sink.includes('Document write')) {
-        const doc = new DOMParser().parseFromString(innerTT.createHTML(processedInput), 'text/html');
-        doc.querySelectorAll('script').forEach((el) => el.remove());
-        processedInput = doc.body.innerHTML;
-      }
-      return processedInput;
+    // applies to every HTML sink (innerHTML, outerHTML, document.write,
+    // createContextualFragment, srcdoc, ...) — not just a couple of
+    // sink names — since blocks like widget.js assign fetched HTML via
+    // plain `.innerHTML =`, which must go through this same policy.
+    createHTML: (input) => {
+      const doc = new DOMParser().parseFromString(innerTT.createHTML(input), 'text/html');
+      doc.querySelectorAll('script').forEach((el) => el.remove());
+      doc.querySelectorAll('iframe[srcdoc]').forEach((el) => el.removeAttribute('srcdoc'));
+      return doc.body.innerHTML;
     },
     createScriptURL: (input) => input,
     createScript: (input) => input,
