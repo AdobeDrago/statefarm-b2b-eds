@@ -11,7 +11,7 @@ main .breadcrumbs-container {
    fills up to its max-width and stays left-aligned; making the container a
    flex parent instead would shrink the wrapper to content width and let its
    margin: auto center that narrow box in the viewport. */
-main .breadcrumbs-container > div {
+main .breadcrumbs-container > .breadcrumbs-wrapper {
   box-sizing: border-box;
   display: flex;
   align-items: center;

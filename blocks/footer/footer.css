@@ -2,15 +2,15 @@
 
 /* stylelint-disable no-descending-specificity */
 
-:root {
+footer {
+  /* scoped to the footer landmark (not :root) so these tokens can't bleed
+     into or collide with unrelated blocks' global custom properties */
   --sf-footer-red: #d62311;
   --sf-footer-cream: #f7f0e4;
   --sf-footer-text: rgb(64 60 60);
   --sf-footer-border: rgb(64 60 60 / 20%);
   --sf-footer-max: 1200px;
-}
 
-footer {
   background-color: var(--sf-footer-cream);
   font-family: MecherleSans, Arial, sans-serif;
 }

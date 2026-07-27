@@ -2,7 +2,12 @@
 
 /* stylelint-disable no-descending-specificity */
 
-:root {
+header.header-wrapper {
+  position: relative;
+  z-index: 30;
+
+  /* scoped to the block wrapper (not :root) so these tokens can't bleed
+     into or collide with unrelated blocks' global custom properties */
   --sf-header-text: rgb(64 60 60);
   --sf-utility-text: rgb(33 33 33);
   --sf-red: #d62311;
@@ -10,11 +15,6 @@
   --sf-border: #e6e6e6;
   --sf-panel-bg: #fff;
   --sf-hover-bg: #f4f4f4;
-}
-
-header.header-wrapper {
-  position: relative;
-  z-index: 30;
 }
 
 header .nav-wrapper {
