@@ -38,10 +38,36 @@ def strip_attrs(html, tags):
     )
 
 
-def clean_table(table_html):
-    t = strip_attrs(table_html, ['table', 'thead', 'tbody', 'tr', 'th', 'td', 'p', 'ul', 'li'])
-    t = re.sub(r'>\s+<', '><', t)
-    return t.strip()
+def table_to_list(table_html):
+    """DA's preview pipeline treats every <table> as a block-authoring
+    attempt: it reads the first header cell's text as a block name and
+    silently discards the rest of the header row, regardless of whether
+    the header is a genuine single-cell block title or a real multi-column
+    label row. For a plain multi-column reference table (e.g. FIELD /
+    DESCRIPTION / SIZE / CONTENT), that destroys the column labels
+    entirely — confirmed empirically by uploading ach-payments to DA and
+    finding the delivered HTML had lost every header cell except the
+    first, converted into a meaningless `<div class="field">` wrapper.
+    There's no way to author a plain data table as default content in
+    DA/EDS, so represent each row as a header-labeled list item instead —
+    verbose, but preserves every field with no ambiguity."""
+    header_cells = [
+        clean_inline(m.group(1))
+        for m in re.finditer(r'<th\b[^>]*>(.*?)</th>', table_html, re.S)
+    ]
+    rows = []
+    tbody_m = re.search(r'<tbody[^>]*>(.*?)</tbody>', table_html, re.S)
+    tbody_html = tbody_m.group(1) if tbody_m else table_html
+    for tr_m in re.finditer(r'<tr[^>]*>(.*?)</tr>', tbody_html, re.S):
+        cells = [clean_inline(m.group(1)) for m in re.finditer(r'<td[^>]*>(.*?)</td>', tr_m.group(1), re.S)]
+        if not cells:
+            continue
+        parts = []
+        for i, cell in enumerate(cells):
+            label = header_cells[i] if i < len(header_cells) else None
+            parts.append(f'<strong>{label}:</strong> {cell}' if label else cell)
+        rows.append(f'<li>{" &mdash; ".join(parts)}</li>')
+    return f'<ul>{"".join(rows)}</ul>' if rows else ''
 
 
 def clean_inline(html):
@@ -87,10 +113,17 @@ def get_main_content_column(html):
 
     breadcrumb_nav_m = re.search(r'<nav id="breadcrumb-[^"]*">.*?</nav>', html, re.S)
     footer_start = html.find('cmp-experiencefragment--footer')
-    if not breadcrumb_nav_m:
-        raise ValueError('main content column (7-col) not found, and no breadcrumb nav to fall back from')
     end = footer_start if footer_start != -1 else len(html)
-    return html[breadcrumb_nav_m.end():end]
+    if breadcrumb_nav_m:
+        return html[breadcrumb_nav_m.end():end]
+
+    # some pages (e.g. contact-us) have neither a breadcrumb component nor
+    # a left-nav — <main> reliably appears exactly once on every page
+    # checked so far, so use it as the outermost fallback boundary
+    main_start = html.find('<main')
+    if main_start != -1:
+        return html[main_start:end]
+    raise ValueError('main content column (7-col) not found, and no breadcrumb nav or <main> to fall back from')
 
 
 def clean_list(list_html):
@@ -107,7 +140,9 @@ FLOW_PATTERN = re.compile(
     r'|(<(?:ul|ol)\b.*?</(?:ul|ol)>)'
     r'|<button\b[^>]*-oneX-panel-button[^>]*>(.*?)</button>'
     r'|(<img\b[^>]*>)'
-    r'|<a[^>]*>\s*Back to top\s*</a>',
+    r'|<span\b[^>]*-oneX-body--intro[^>]*>(.*?)</span>'
+    r'|<a[^>]*>\s*Back to top\s*</a>'
+    r'|(<a\b[^>]*href="[^"]*"[^>]*>.*?</a>)',
     re.S,
 )
 
@@ -124,7 +159,8 @@ def extract_flow_parts(html_fragment):
     with how the edi-faq page was handled in Batch 1."""
     parts = []
     for m in FLOW_PATTERN.finditer(html_fragment):
-        h_tag, h_inner, p_attrs, p_inner, table_html, list_html, button_inner, img_tag = m.groups()
+        (h_tag, h_inner, p_attrs, p_inner, table_html, list_html,
+         button_inner, img_tag, span_text, bare_link) = m.groups()
         if h_tag:
             text = clean_inline(h_inner)
             if text:
@@ -139,6 +175,13 @@ def extract_flow_parts(html_fragment):
             if src_m:
                 alt = alt_m.group(1) if alt_m else ''
                 parts.append(f'<p><img src="{src_m.group(1)}" alt="{alt}"></p>')
+        elif span_text is not None:
+            # standalone label span (source class "-oneX-body--intro*"),
+            # seen outside a <p>/<a> wrapper — e.g. a resource-card's title
+            # text split across sibling spans rather than one link
+            text = clean_inline(span_text)
+            if text:
+                parts.append(f'<h4>{text}</h4>')
         elif p_inner is not None:
             text = clean_inline(p_inner)
             if not text or text in ('<br>', '<br/>', '<br />'):
@@ -150,9 +193,22 @@ def extract_flow_parts(html_fragment):
             else:
                 parts.append(f'<p>{text}</p>')
         elif table_html:
-            parts.append(clean_table(table_html))
+            rendered = table_to_list(table_html)
+            if rendered:
+                parts.append(rendered)
         elif list_html:
             parts.append(clean_list(list_html))
+        elif bare_link:
+            # "Back" chevron-icon links are page-level nav chrome (like
+            # header/footer), not authored content — skip. clean_inline
+            # doesn't strip unknown block tags (div/h5 used for icon
+            # markup), so without this check they'd leak as raw HTML soup.
+            if '-oneX-icon--chevron' in bare_link:
+                pass
+            else:
+                text = clean_inline(bare_link)
+                if text:
+                    parts.append(f'<p>{text}</p>')
         elif m.group(0).strip():
             parts.append('<p><a href="#top">Back to top</a></p>')
     return parts
@@ -234,6 +290,15 @@ def extract_cards(html):
     Confirmed on both the edi-transactions hub (Batch 1, built by hand)
     and medical-ebilling/med-mpp-cv (Batch 3) — same component, reused
     across the site for "grid of link cards" sections."""
+    # a third markup variant (seen on select-service/ss-agreement) uses this
+    # same "ds_dh-card" component for a resource-link card where the real
+    # label lives in <span>s and the <a> is just a generic "View PDF" /
+    # "Create PDF" action — too different from the title-link+description
+    # model to represent as a `cards` block faithfully. Recognize and skip
+    # these (they fall through to extract_flow_parts instead, which knows
+    # how to render the <span> labels and the action link).
+    GENERIC_TITLES = {'view pdf', 'create pdf', 'download', 'download pdf', 'click here'}
+
     cards = []
     spans = []
     seen = set()
@@ -246,6 +311,8 @@ def extract_cards(html):
             continue
         href, title = link_m.groups()
         title = clean_inline(title)
+        if title.lower() in GENERIC_TITLES:
+            continue
         desc = clean_inline(desc_m.group(1)) if desc_m else ''
         if desc in ('&nbsp;', ''):
             desc = ''
@@ -436,9 +503,9 @@ def main():
 
     image_count = copy_referenced_images(doc, cleaned_html_path, out_path)
 
-    table_count = doc.count('<table>')
+    list_count = doc.count('<ul>')
     heading_count = len(re.findall(r'<h3>', doc))
-    print(f'wrote {out_path} ({len(doc)} chars, {heading_count} h3 headings, {table_count} tables, {image_count} images)')
+    print(f'wrote {out_path} ({len(doc)} chars, {heading_count} h3 headings, {list_count} lists, {image_count} images)')
 
 
 if __name__ == '__main__':
