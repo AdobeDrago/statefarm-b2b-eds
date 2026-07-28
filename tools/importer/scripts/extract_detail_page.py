@@ -38,10 +38,36 @@ def strip_attrs(html, tags):
     )
 
 
-def clean_table(table_html):
-    t = strip_attrs(table_html, ['table', 'thead', 'tbody', 'tr', 'th', 'td', 'p', 'ul', 'li'])
-    t = re.sub(r'>\s+<', '><', t)
-    return t.strip()
+def table_to_list(table_html):
+    """DA's preview pipeline treats every <table> as a block-authoring
+    attempt: it reads the first header cell's text as a block name and
+    silently discards the rest of the header row, regardless of whether
+    the header is a genuine single-cell block title or a real multi-column
+    label row. For a plain multi-column reference table (e.g. FIELD /
+    DESCRIPTION / SIZE / CONTENT), that destroys the column labels
+    entirely — confirmed empirically by uploading ach-payments to DA and
+    finding the delivered HTML had lost every header cell except the
+    first, converted into a meaningless `<div class="field">` wrapper.
+    There's no way to author a plain data table as default content in
+    DA/EDS, so represent each row as a header-labeled list item instead —
+    verbose, but preserves every field with no ambiguity."""
+    header_cells = [
+        clean_inline(m.group(1))
+        for m in re.finditer(r'<th\b[^>]*>(.*?)</th>', table_html, re.S)
+    ]
+    rows = []
+    tbody_m = re.search(r'<tbody[^>]*>(.*?)</tbody>', table_html, re.S)
+    tbody_html = tbody_m.group(1) if tbody_m else table_html
+    for tr_m in re.finditer(r'<tr[^>]*>(.*?)</tr>', tbody_html, re.S):
+        cells = [clean_inline(m.group(1)) for m in re.finditer(r'<td[^>]*>(.*?)</td>', tr_m.group(1), re.S)]
+        if not cells:
+            continue
+        parts = []
+        for i, cell in enumerate(cells):
+            label = header_cells[i] if i < len(header_cells) else None
+            parts.append(f'<strong>{label}:</strong> {cell}' if label else cell)
+        rows.append(f'<li>{" &mdash; ".join(parts)}</li>')
+    return f'<ul>{"".join(rows)}</ul>' if rows else ''
 
 
 def clean_inline(html):
@@ -167,7 +193,9 @@ def extract_flow_parts(html_fragment):
             else:
                 parts.append(f'<p>{text}</p>')
         elif table_html:
-            parts.append(clean_table(table_html))
+            rendered = table_to_list(table_html)
+            if rendered:
+                parts.append(rendered)
         elif list_html:
             parts.append(clean_list(list_html))
         elif bare_link:
@@ -475,9 +503,9 @@ def main():
 
     image_count = copy_referenced_images(doc, cleaned_html_path, out_path)
 
-    table_count = doc.count('<table>')
+    list_count = doc.count('<ul>')
     heading_count = len(re.findall(r'<h3>', doc))
-    print(f'wrote {out_path} ({len(doc)} chars, {heading_count} h3 headings, {table_count} tables, {image_count} images)')
+    print(f'wrote {out_path} ({len(doc)} chars, {heading_count} h3 headings, {list_count} lists, {image_count} images)')
 
 
 if __name__ == '__main__':
