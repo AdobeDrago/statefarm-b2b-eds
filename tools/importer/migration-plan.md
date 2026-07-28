@@ -18,18 +18,18 @@ Update this file's status column as work happens so any session can resume witho
 | `home-auto-lenders/ins-inquiry` | 12 | Done — Batch 2, PR #5 (base: batch-1 branch) |
 | `home-auto-lenders/mbps` | 6 | Done — Batch 2 |
 | `home-auto-lenders/help-support` | 6 | Done — Batch 2 |
-| `medical-ebilling/health-insurance` | 4 | **Done — Batch 3, PR pending (base: batch-2 branch)** |
-| `medical-ebilling/auto-work-comp` | 4 | **Done — Batch 3** |
-| `medical-ebilling` (top-level pages: `med-mpp-cv`, `what-is-edi-eft`) | 2 | **Done — Batch 3** |
-| `claim-services/personal-property` | 3 | Not started (Batch 4) |
-| `suppliers/suppliers-coupa` | 2 | Not started (Batch 4) |
-| `claim-services` (top-level pages) | ~6 | Not started (Batch 4) |
-| `select-service` | 4 | Not started (Batch 4) |
-| `suppliers` (top-level pages) | 3 | Not started (Batch 4) |
-| `acct-mgmt` | 4 | Not started (Batch 4) |
-| `electronic-payments` | 2 | Not started (Batch 4) |
-| Singletons (`contact-us`, `terms-of-use`) | 2 | Not started (Batch 4) |
+| `medical-ebilling/health-insurance` | 4 | Done — Batch 3, PR #6 (base: batch-2 branch) |
+| `medical-ebilling/auto-work-comp` | 4 | Done — Batch 3 |
+| `medical-ebilling` (top-level pages: `med-mpp-cv`, `what-is-edi-eft`) | 2 | Done — Batch 3 |
+| `claim-services` (incl. `personal-property` sub-cluster) | 9 | **Done — Batch 4, PR pending (base: batch-3 branch)** |
+| `suppliers` (incl. `suppliers-coupa` sub-cluster) | 4 | **Done — Batch 4** |
+| `select-service` | 3 | **Done — Batch 4** |
+| `acct-mgmt` | 4 | **Done — Batch 4** |
+| `electronic-payments/eft-remit-faq` | 1 | **Done — Batch 4** |
+| Singletons (`contact-us`, `terms-of-use`) | 2 | **Done — Batch 4** |
 | `/b2b-content` homepage | 1 | **Out of scope for bulk sweep** — has its own hero/auth/cards-service/promo blocks and pre-existing WebImporter tooling (`tools/importer/import-b2b-portal-home.js`); needs dedicated `page-import` skill treatment, not this script pipeline. |
+
+**All 4 batches complete.** 99 of the 100 discovered pages migrated (35+24+10+23+7 pre-existing top-level pages that already existed before this migration started — `claim-services.plain.html`, `select-service.plain.html`, `suppliers.plain.html`, `medical-ebilling.plain.html`, `electronic-payments.plain.html`, `other-ins-carrier.plain.html`, `home-auto-lenders.plain.html`). The 1 remaining page is the `/b2b-content` homepage itself, flagged out of scope above.
 
 Note: `home-auto-lenders` (12) covers the section landing page; its sub-clusters (edi-transactions, ins-inquiry, mbps, help-support) are listed separately above.
 
@@ -144,4 +144,23 @@ Same overall template family, confirmed via samples. All 10 pages handled by `ex
 
 ### Status: Batch 3 complete
 
-All 10 pages generated, coverage-validated, and spot-checked in the browser — including the `med-mpp-cv` cards page (2 unique cards, no duplication) and `health-insurance/safe-harbor` (a legal-document-style page with deeply nested numbered lists, renders correctly).
+All 10 pages generated, coverage-validated, and spot-checked in the browser — including the `med-mpp-cv` cards page (2 unique cards, no duplication) and `health-insurance/safe-harbor` (a legal-document-style page with deeply nested numbered lists, renders correctly). Shipped as PR #6 (base: batch-2 branch).
+
+## Batch 4: `claim-services` + `suppliers` + `select-service` + `acct-mgmt` + `electronic-payments/eft-remit-faq` + singletons (23 pages)
+
+URL list: `tools/importer/urls-misc-batch4.txt`. Branch `worktree-b2b-import-batch4`, stacked on `worktree-b2b-import-batch3`. This is the last batch — 23 smaller/miscellaneous pages across the remaining sections that already had a top-level landing page migrated in earlier repo history.
+
+**New bugs found and fixed** (the biggest batch for new content-type gaps — these sections apparently used more varied authoring than the `home-auto-lenders`/`medical-ebilling` sections):
+- **`contact-us` has neither a left-nav (no 7-col) nor any breadcrumb component at all** (not even an empty one — the whole thing is absent). Added a third fallback tier to `get_main_content_column`: when both the 7-col column and the breadcrumb `<nav>` are missing, use the `<main>` tag itself as the content boundary (confirmed it appears exactly once on every page type checked so far, making it a safe outermost anchor).
+- **A third `ds_dh-card` markup variant** (`select-service/ss-agreement`): the card's real label lives in sibling `<span class="-oneX-body--intro...">` elements, and the `<a>` is just a generic action link ("View PDF" / "Create PDF") — too different from the title-link+description model to represent as a `cards` block faithfully. Added a `GENERIC_TITLES` skip-list so `extract_cards()` recognizes and skips this variant, letting it fall through to the general flow extractor instead of misrepresenting the link text as the card's title.
+- To handle that fallthrough correctly, `extract_flow_parts` needed two new capabilities it didn't have before:
+  - Standalone `<span class="-oneX-body--intro...">` label text (not wrapped in a `<p>` or `<a>`) — promoted to `<h4>`.
+  - Bare `<a href>` links that aren't wrapped in a `<p>` at all — previously silently dropped since every other page's links lived inside `<p>` or `<li>`.
+- The bare-link addition surfaced a **"Back" chevron-icon navigation link** (page-level UI chrome, not content) that would otherwise leak as raw unstripped HTML (`clean_inline` only strips attributes from a small tag whitelist, so the icon `<div>`/`<h5>` markup inside it passed through verbatim). Filtered out any bare link containing the `-oneX-icon--chevron` icon class — same "skip nav/header/footer chrome" principle as everything else, per AGENTS.md scope.
+- Re-verified no regression on Batch 1's `ach-payments` and Batch 3's `med-mpp-cv` after all of the above (both still produce byte-identical output).
+
+### Status: Batch 4 complete — all batches done
+
+All 23 pages generated, coverage-validated, and spot-checked in the browser — including `contact-us` (a large accordion FAQ page using the `<main>`-tag fallback, every section renders correctly) and `select-service/ss-agreement` (the new card-variant fallback: resource labels and PDF links all present, no raw HTML leakage, "Back" chrome correctly excluded).
+
+This completes the migration except the `/b2b-content` homepage (see cluster inventory table above — out of scope for this pipeline).

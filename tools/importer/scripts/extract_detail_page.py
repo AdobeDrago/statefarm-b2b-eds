@@ -87,10 +87,17 @@ def get_main_content_column(html):
 
     breadcrumb_nav_m = re.search(r'<nav id="breadcrumb-[^"]*">.*?</nav>', html, re.S)
     footer_start = html.find('cmp-experiencefragment--footer')
-    if not breadcrumb_nav_m:
-        raise ValueError('main content column (7-col) not found, and no breadcrumb nav to fall back from')
     end = footer_start if footer_start != -1 else len(html)
-    return html[breadcrumb_nav_m.end():end]
+    if breadcrumb_nav_m:
+        return html[breadcrumb_nav_m.end():end]
+
+    # some pages (e.g. contact-us) have neither a breadcrumb component nor
+    # a left-nav — <main> reliably appears exactly once on every page
+    # checked so far, so use it as the outermost fallback boundary
+    main_start = html.find('<main')
+    if main_start != -1:
+        return html[main_start:end]
+    raise ValueError('main content column (7-col) not found, and no breadcrumb nav or <main> to fall back from')
 
 
 def clean_list(list_html):
@@ -107,7 +114,9 @@ FLOW_PATTERN = re.compile(
     r'|(<(?:ul|ol)\b.*?</(?:ul|ol)>)'
     r'|<button\b[^>]*-oneX-panel-button[^>]*>(.*?)</button>'
     r'|(<img\b[^>]*>)'
-    r'|<a[^>]*>\s*Back to top\s*</a>',
+    r'|<span\b[^>]*-oneX-body--intro[^>]*>(.*?)</span>'
+    r'|<a[^>]*>\s*Back to top\s*</a>'
+    r'|(<a\b[^>]*href="[^"]*"[^>]*>.*?</a>)',
     re.S,
 )
 
@@ -124,7 +133,8 @@ def extract_flow_parts(html_fragment):
     with how the edi-faq page was handled in Batch 1."""
     parts = []
     for m in FLOW_PATTERN.finditer(html_fragment):
-        h_tag, h_inner, p_attrs, p_inner, table_html, list_html, button_inner, img_tag = m.groups()
+        (h_tag, h_inner, p_attrs, p_inner, table_html, list_html,
+         button_inner, img_tag, span_text, bare_link) = m.groups()
         if h_tag:
             text = clean_inline(h_inner)
             if text:
@@ -139,6 +149,13 @@ def extract_flow_parts(html_fragment):
             if src_m:
                 alt = alt_m.group(1) if alt_m else ''
                 parts.append(f'<p><img src="{src_m.group(1)}" alt="{alt}"></p>')
+        elif span_text is not None:
+            # standalone label span (source class "-oneX-body--intro*"),
+            # seen outside a <p>/<a> wrapper — e.g. a resource-card's title
+            # text split across sibling spans rather than one link
+            text = clean_inline(span_text)
+            if text:
+                parts.append(f'<h4>{text}</h4>')
         elif p_inner is not None:
             text = clean_inline(p_inner)
             if not text or text in ('<br>', '<br/>', '<br />'):
@@ -153,6 +170,17 @@ def extract_flow_parts(html_fragment):
             parts.append(clean_table(table_html))
         elif list_html:
             parts.append(clean_list(list_html))
+        elif bare_link:
+            # "Back" chevron-icon links are page-level nav chrome (like
+            # header/footer), not authored content — skip. clean_inline
+            # doesn't strip unknown block tags (div/h5 used for icon
+            # markup), so without this check they'd leak as raw HTML soup.
+            if '-oneX-icon--chevron' in bare_link:
+                pass
+            else:
+                text = clean_inline(bare_link)
+                if text:
+                    parts.append(f'<p>{text}</p>')
         elif m.group(0).strip():
             parts.append('<p><a href="#top">Back to top</a></p>')
     return parts
@@ -234,6 +262,15 @@ def extract_cards(html):
     Confirmed on both the edi-transactions hub (Batch 1, built by hand)
     and medical-ebilling/med-mpp-cv (Batch 3) — same component, reused
     across the site for "grid of link cards" sections."""
+    # a third markup variant (seen on select-service/ss-agreement) uses this
+    # same "ds_dh-card" component for a resource-link card where the real
+    # label lives in <span>s and the <a> is just a generic "View PDF" /
+    # "Create PDF" action — too different from the title-link+description
+    # model to represent as a `cards` block faithfully. Recognize and skip
+    # these (they fall through to extract_flow_parts instead, which knows
+    # how to render the <span> labels and the action link).
+    GENERIC_TITLES = {'view pdf', 'create pdf', 'download', 'download pdf', 'click here'}
+
     cards = []
     spans = []
     seen = set()
@@ -246,6 +283,8 @@ def extract_cards(html):
             continue
         href, title = link_m.groups()
         title = clean_inline(title)
+        if title.lower() in GENERIC_TITLES:
+            continue
         desc = clean_inline(desc_m.group(1)) if desc_m else ''
         if desc in ('&nbsp;', ''):
             desc = ''
