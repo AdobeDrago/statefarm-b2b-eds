@@ -1,0 +1,40 @@
+<div>
+  <div class="breadcrumbs">
+    <div>
+      <div>
+        <ul>
+          <li><a href="/b2b-content">B2B</a></li>
+          <li><a href="/b2b-content/home-auto-lenders">Home &amp; Auto Lenders</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions">EDI transactions</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/daily-811-notifications">Daily EDI mortgagee notification overview</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/daily-811-notifications/examples-997">Example 997 acknowledgement</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Example 997 acknowledgement</h1>
+<h3>997 Functional Acknowledgement electronic file</h3>
+<p>For every 811 Mortgage Daily EDI file sent from State Farm, a 997 Functional Acknowledgement electronic file is required to be returned to State Farm. When State Farm receives a 997 acknowledgement electronic file, State Farm’s system automatically acknowledge receiving of the files so manual follow-up is not needed.</p>
+<p>In addition to the Interchange Control Header &amp; Trailer and the Functional Group Header &amp; Trailer, <b>State Farm requires the following fields in 997 electronic file:</b></p>
+<h3>Functional Acknowledgement Example</h3>
+<ul><li>ISA*00*..........<br> *01*SECRET....<br> *ZZ*SUBMITTERS.ID...<br> *Z*RECEIVERS.ID...<br> *980727*1250*U*0040<br> 1*000000905*1*P*:~ &mdash; ISA Interchange Control Header – ISA is a fixed record length segment and all positions within each of the data elements must be filled. The first element separator defines the element separator to be used through the entire interchange. The segment terminator used after the ISA defines the segment terminator to be used throughout the entire interchange. Spaces in the example are represented by"." for clarity.&nbsp;To start and identify an interchange of zero or more functional groups and interchange-related control segments. T is for Test, P is for Production</li><li>GS*IN*SENDER CODE*<br> RECEIVER CODE*<br> 19940331*0900*1*X<br> *004010~ &mdash; To indicate the beginning of a functional group and to provide control information.</li><li>ST*997*0001~ &mdash; Transaction Header – to indicate the start of a transaction set and to assign a control number. The Transaction Set Control Numbers in ST02 and SE02 must be identical. The number is assigned by the originator and must be unique within a functional group (GS-GE). The number also aids in error resolution research. For example, start with the number 0001 and increment from there.</li><li>AK1*CI*1~ &mdash; Functional Group Response – to acknowledgement of the cancellations sent in the 811. AK101 is the functional ID found in the GS segment (GS01) in the functional group being acknowledged. AK102 is the functional group control number found in the GS segment in the functional group being acknowledged.</li><li>Ak2*811*0005~ &mdash; Transaction Set Response Header – to start acknowledgment of a single transaction set. AK201 is the transaction set ID found in the ST segment (ST01) in the transaction set being acknowledged. AK202 is the transaction set control number found in the ST segment in the transaction set being acknowledged.</li><li>AK3*NM1*37~ &mdash; Data Segment Note – to report errors in a data segment and to identify the location of the data segment. AK301 is the 2 or 3 characters which occur at the beginning of a segment. AK302 is a data count, not a segment position in the standard description.</li><li>AK4*1*98*7~ &mdash; Data Element note - To report errors in a data element and to identify the location of the data element. Data Element Syntax Error Code for AK403 is as follows:<br> 1 Mandatory data element missing<br> 2 Conditional required data element missing<br> 3 Too many data elements<br> 4 Data element too short<br> 5 Data element too long<br> 6 Invalid character in data element<br> 7 Invalid code value<br> 8 Invalid Date<br> 9 Invalid Time<br> 10 Exclusion Condition Violated</li><li>AK5*E~ &mdash; Transaction Set Response Trailer - to acknowledge acceptance or rejection and to report errors in a transaction set. AK501 acknowledgment codes are as follows:<br> A – Accepted (ADVISED)<br> E – Accepted but errors were noted<br> R – Rejected (ADVISED)<br></li><li>AK9*A*2*2*2~ &mdash; Functional Group Response Trailer - to acknowledge acceptance or rejection of a functional group and report the number of included transaction sets from the original trailer, the accepted sets, and the received sets. AK901 functional group acknowledge codes are as follows:<br> A – Accepted (ADVISED)<br> E – Accepted, but errors were noted<br> P – Partially accepted, at least one transaction set was rejected (ADVISED)<br> R – Rejected (ADVISED)<br> AK902 number of transactions sets included<br> AK903 number or received transaction sets<br> AK904 number of accepted transaction sets<br></li><li>SE*67*0001~ &mdash; To indicate the end of a transaction set and to provide a count of the transmitted segments. SE01 is total number of segments included in a transaction set including ST and SE segments. SE02 - the Transaction Set Control Numbers in ST02 and SE02 must be identical. The number is assigned by the originator and must be unique within a functional group (GS-GE). The number also aids in error resolution research. For example, start with the number 0001 and increment from there.</li></ul>
+<p><a href="#top">Back to top</a></p>
+</div>
+<div>
+  <div class="metadata">
+    <div>
+      <div>title</div>
+      <div>B2B | Example 997 acknowledgement</div>
+    </div>
+    <div>
+      <div>description</div>
+      <div>Daily EDI notification examples 997 acknowledgement.</div>
+    </div>
+    <div>
+      <div>tags</div>
+      <div>Daily, EDI, notification, examples, 997, acknowledgement</div>
+    </div>
+  </div>
+</div>

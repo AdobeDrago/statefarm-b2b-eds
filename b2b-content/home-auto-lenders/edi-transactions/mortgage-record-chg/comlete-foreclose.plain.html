@@ -1,0 +1,39 @@
+<div>
+  <div class="breadcrumbs">
+    <div>
+      <div>
+        <ul>
+          <li><a href="/b2b-content">B2B</a></li>
+          <li><a href="/b2b-content/home-auto-lenders">Home &amp; Auto Lenders</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions">EDI transactions</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/mortgage-record-chg">Mortgage Record Change</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/mortgage-record-chg/comlete-foreclose">Completed Foreclosure 105</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Completed foreclosure 105</h1>
+<h3>105</h3>
+<p>In foreclosures, the borrower has lost all rights, privileges, and possession of the property due to a long term inability to make payments on their existing mortgage loan. The borrower has exhausted all means possible to avoid foreclosure and the mortgagee manages transferring the title of the property to themselves, a third party bidder, HUD, or the VA, depending on the type of loan.</p>
+<p>When using code 105, the DTP03 element should contain the date that the title for the property was transferred form the borrower to the new owner.</p>
+<p>State Farm will schedule this change for an underwriting review.</p>
+<ul><li><strong><b>266 Data Format</b>:</strong> ISA*00*0000000000*00* *ZZ*123456789*ZZ*STFM SF00053 *041115*0817*U*00401*000000010*1*P*~ &mdash; <strong><b>Description</b>:</strong> This is the envelope segment for the 266.<ul> <li> <b>000000010</b> is the unique number for this envelope.</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> GS*MG*123456789*STFM&nbsp;&nbsp; SF00053 *20041115*0817*10*X*00401X132~ &mdash; <strong><b>Description</b>:</strong> <ul> <li>This is the group segment for the 266.</li> <li> <b>10</b> is the unique number for this group.</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> ST*266*00000010~ &mdash; <strong><b>Description</b>:</strong> <ul> <li>This is the transaction segment for the 266</li> <li> <b>00000010</b> is the unique number for this transaction.</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> BGN*00*1800*20041114******03~ &mdash; <strong><b>Description</b>:</strong> <ul> <li>This is the beginning segment for the 266.</li> <li> <b>00</b> Original</li> <li> <b>1800</b> a unique number of the sender.</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> N1*SJ*INSURANCE TRACKING CO*FI*123456789~ &mdash; <strong><b>Description</b>:</strong> This is the sender of the 266.<ul> <li> <b>LV</b> Lender or<br> <b>SJ</b> Service Provider</li> <li>&nbsp;<b>FI</b> Federal Tax ID</li> <li> <b>123456789</b> is the Tax ID of the sender</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> N1*IN*STATE FARM INS*FI*37053100~ &mdash; <strong><b>Description</b>:</strong> This is the receiver of the 266.<ul> <li> <b>IN</b> Insurer or<br> <b>SQ</b> Service Bureau.</li> <li> <b>FI</b> Federal Tax ID</li> <li> <b>37053100</b> is the Tax ID of the receiver.</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> LX*1~ &mdash; <strong><b>Description</b>:</strong> This is a separator. It separates the sender/receiver information from the buying and/or selling lender information. The number can increment.</li><li><strong><b>266 Data Format</b>:</strong> N1*LV*A-ONE MORTGAGE*FI*133947742~N2*ITS SUCCESSORS AND/OR ASSIGNS~N3*PO BOX 99999~N4*ANYTOWN*CA*914100212**RJ*XX~ &mdash; <strong><b>Description</b>:</strong> This series of segments (N1, N2, N3, and N4) represents the exact mortgage clause that should be reflected on the insurance policy.<ul> <li> <b>LV</b> Current Lender</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> N9*LD*0000000001~ &mdash; <strong><b>Description</b>:</strong> <ul> <li>The N9 segment is the start of the insurance policy information.</li> <li> <b>LD</b> Loan Number.</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> NM1*QP*1*RICHARDS*MARY*K~N3*9999 WOODVIEW LANE~N4*CHICO*CA*959267705~ &mdash; <strong><b>Description</b>:</strong> <ul> <li>This is the name and mailing address of the borrower (insured).</li> <li> <b>QP</b> Borrower</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> REF*TV*HOME~ &mdash; <strong><b>Description</b>:</strong> Valid policy types are:<br> <br> HOME, PPTHO, PPUHO, FLOOD, COTHR, RDP, DFIRE, EQKP, FARM, BOAT, RCUP, PPMBH, PPCHO, PPART, BOP. The policy type will be returned in the 824 if corrected.<ul> <li> <b>TV</b> Line of Business</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> REF*IG*551252837~ &mdash; <strong><b>Description</b>:</strong> <ul> <li>The policy number will be returned in the 824 if corrected.</li> <li> <b>IG</b> Policy Number.</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> REF*NF*25143~ &mdash; <strong><b>Description</b>:</strong> <ul> <li>The company code will be returned in the 824 if corrected.</li> <li> <b>25143</b> SF Fire</li> <li> <b>43419</b> SF Lloyds</li> <li> <b>25151</b> SF General</li> <li> <b>10739</b> SF Florida</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> API*A1**105~ &mdash; <strong><b>Description</b>:</strong> <ul> <li> <b>105</b> Completed Foreclosure</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> N3*9999 WOODVIEW LANE~N4*CHICO*CA*959267705~ &mdash; <strong><b>Description</b>:</strong> <ul> <li>This is the property address.</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> DTP*009*D8*20040312~ &mdash; <strong><b>Description</b>:</strong> <ul> <li>The policy process date for a foreclosure is the date the property title transferred to the new owner.</li> <li> <b>009</b> Title Transfer Date</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> DTP*540*D8*20040115~ &mdash; <strong><b>Description</b>:</strong> <ul> <li>The policy expiration date will be returned in the 824 if corrected.</li> <li> <b>540</b> Policy Expiration Date</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> REF*UA*1~ &mdash; <strong><b>Description</b>:</strong> <ul> <li>Valid loan types are 1, 2, or 3.</li> <li> <b>UA</b> Mortgage Order</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> CRC*A1*Y*T5~ &mdash; <strong><b>Description</b>:</strong> <ul> <li>This segment identifies if a return Insurance Verification is needed.</li> <li> <b>Y</b> No Insurance Verification</li> <li> <b>N</b> Insurance Verification</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> PID*S*02*AD*MG~ &mdash; <strong><b>Description</b>:</strong> <ul> <li> <b>MG</b> Bill the Mortgagee</li> <li> <b>IN</b> Bill the Insured.</li> </ul></li><li><strong><b>266 Data Format</b>:</strong> <strong>The next policy goes here by repeating the N9 – PID segments.</strong></li><li><strong><b>266 Data Format</b>:</strong> SE*24*00000010 &mdash; <strong><b>Description</b>:</strong> SE01 is the number of segments. SE03 is the same number as ST02.</li><li><strong><b>266 Data Format</b>:</strong> GE*1*10~ &mdash; <strong><b>Description</b>:</strong> GE03 is the same number as GS06.</li><li><strong><b>266 Data Format</b>:</strong> IEA*1*000000010~ &mdash; <strong><b>Description</b>:</strong> IEA02 is the same number as ISA12.</li><li><strong><b>266 Data Format</b>:</strong> <p>*Interchange receiver for test is SF00014 and interchange receiver for production is SF00053</p></li></ul>
+</div>
+<div>
+  <div class="metadata">
+    <div>
+      <div>title</div>
+      <div>B2B | Completed Foreclosure 105</div>
+    </div>
+    <div>
+      <div>description</div>
+      <div>EDI Completed Foreclosure 105.</div>
+    </div>
+    <div>
+      <div>tags</div>
+      <div>EDI, Completed, Foreclosure, 105</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div>
+  <div class="breadcrumbs">
+    <div>
+      <div>
+        <ul>
+          <li><a href="/b2b-content">B2B</a></li>
+          <li><a href="/b2b-content/home-auto-lenders">Home &amp; Auto Lenders</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions">EDI transactions</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/auto811files">Auto EDI Notifications</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/auto811files/exampletransactionset">811 example transaction set</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Example transaction set segment uses &amp; sequence</h1>
+<p><b>HEADER</b></p>
+<ul><li>ISA*XX*0000000000*01*000000000000000*ZZ*000000000 <br> *LH*922222222222222*920125*1448*U*003040*00000000 <br> 02*1*T~ &mdash; Interchange Control Header</li><li>GS*CI*111111111*922222222*920125*1448*2*X*003040~ &mdash; Functional Group Header</li></ul>
+<p><b>TABLE 1 - Sender -&gt; Insurance Co/Agent</b></p>
+<ul><li>ST*811*0001~ &mdash; Begin transaction set 811, control #0001</li><li>BIG*921101*001*****IC ~ &mdash; Information current as of date, statement #0001, Insurance Coverage Notification</li><li>N1*IN*STATEFARM*FI*123456780~ &mdash; Insurance company is State Farm whose Federal Taxpayer ID code is 12-3456780</li><li>N2*ADDITIONAL NAME*AND MORE NAME~ &mdash; Additional name</li><li>N3*ABC BLVD~ &mdash; Address is ABC Blvd</li><li>N3*123 DALLAS DR~ &mdash; Address is 123 Dallas Dr</li><li>N4*ANYWHERE*TX*12345~ &mdash; City, State, Zip Code</li><li>REF*TJ*123456400~ &mdash; Federal Taxpayer ID is 12-3456400</li><li>PER*AM*JOHN DOE*FX*5551234567~ &mdash; Administrator is John Doe whose FAX number is 555-123-4567</li><li>N1*LM*AA LENDING INSTITUTION*FI*039621260~ &mdash; Lending Institution is AA Lending Institution whose Federal Taxpayer ID is 03-9621260</li><li>N2*ADDITIONAL NAME*MORE ADDITIONAL NAME ~ &mdash; Additional Name</li><li>N3*PO BOX 1111~ &mdash; Address is PO Box 1111</li><li>N3*0000 MINERAL PT RD~ &mdash; Address is 0000 Mineral Pt Rd</li><li>N4*ANYWHERE*TX*12345~ &mdash; City, State, Zip Code</li><li>PER*AM*JOHN SMITH*FX* 5551111111~ &mdash; Administrator is John Smith whose fax number is 555-111-1111</li></ul>
+<p><b>TABLE 2 – Receiver -&gt; Financial Institution/Service Bureau</b></p>
+<p><b>Level 1 – Interested Financial Institution</b></p>
+<ul><li>HL*1**1*1~ &mdash; Hierarchical Count is 1, Information has no Parent. <br> Hierarchical Level is 1, Information has Children.</li><li>NM1*LM*2*ABC CREDIT UNION *****FI*1234567890~ &mdash; Lending Institution is ABC Credit Union whose Federal Taxpayer ID is 12-34567890</li><li>N2*ADDITIONAL NAME AND MORE NAME~ &mdash; Additional Name</li><li>N3*PO BOX 300~ &mdash; Address is P.O. Box 300</li><li>N3*6060 MONROE ST~ &mdash; Address is 6060 Monroe St</li><li>N4*ANYWHERE*WI*53201*RJ* 01~ &mdash; City, State, Zip; Region or Branch is 01</li></ul>
+<p><b>Level 2 – Agency/Agent/Branch</b></p>
+<ul><li>HL*2*1*2*1~ &mdash; Hierarchical Count is 1, Information has Parent, Hierarchical Level is 2, Information has Children.</li><li>NM1*AG*EFG AGENCY* *****FI*0683327766~ &mdash; Agent is EFG Texas Agency whose Federal Taxpayer ID is 06-83327766</li><li>N2*ADDITIONAL NAME*AND MORE NAME~ &mdash; Additional Name</li><li>N3*PO BOX 11111~ &mdash; Address is PO Box 11111</li><li>N3*RURAL ROUTE 1~ &mdash; Address is Rural Route 1</li><li>N4*ANYWHERE*TX*12345~ &mdash; City, State, Zip Code</li><li>PER*AM*JOHN SMITH*TE* 5554985637~ &mdash; John Smith, Administrator Telephone number is 555-498-5637</li></ul>
+<p><b>Level 4 Named Insured - Insurance Company</b></p>
+<ul><li>HL*3*2*4*1~ &mdash; Hierarchical Count is 1, Information has Parent. Hierarchical Level is 4, Information Has Children.</li><li>NM1*IL*1*RICHARD*JAMES*A~ &mdash; Insured name is James A Richards</li><li>N2*ADDITIONAL NAME*AND MORE NAME ~ &mdash; Additional Name</li><li>N3*1020 W MARION~ &mdash; Address is 1020 W Marion</li><li>N4*SOMEWHERE*HI*21111*00~ &mdash; City, State, Zip code; Country, Branch 00</li><li>IT1*1*IP*0~ &mdash; Quantity Invoiced is 1. The information is an Insurance Policy and the Unit Price is 0.</li><li>SI*AD*08*CER~ &mdash; The Table is Provided by ACORD. The Table Name is 08. The Type of Policy Transaction is New Business</li><li>SI*AD*09*CON~ &mdash; The table is provided by ACORD, The Table Name is 09. The Type of Policy Term is continuous.</li><li>REF*IG*12345678~ &mdash; Insurance Policy is 1245678</li><li>DTM*007*920201***19~ &mdash; The Effective Date is 02/01/92, Effective Century is 1900.</li><li>DTM*009*921202~ &mdash; The Process Date is 12/02/92.</li><li>DTM*152*921202~ &mdash; The Effective Date of Change is 12/02/92.</li></ul>
+<p><b>Level 5 – Vehicle – Coverage/Lienholder Loss Payee Endorsement</b></p>
+<ul><li>HL*4*3*5*1~ &mdash; Hierarchical Count is 1, Information has Parent. Hierarchical Level is 5, Information Has Children 1.</li><li>LX*1~ &mdash; signed by Sender</li><li>VEH*1*2P4FH5138JR534777*19*88*NA*PLYM*VOYG* <br> WGN***IL~ &mdash; 1st Vehicle on Policy, Vehicle Identification Number is 2P4FH5138JR534777, Vehicle Century is 1900, Vehicle Year is 88, Agency Providing Codes is NICB (National Insurance Crime Bureau), Vehicle Make is Plymouth, Vehicle Model is Voyager, Vehicle Style is Wagon, Vehicle Length is not given, Vehicle Location is in Illinois</li></ul>
+<p><b>PID IS USED WHEN THE VEHICLE MAKE, MODEL AND STYLE ARE IN NON-STANDARD FORMAT. VEH &amp; PID ARE NOT TO BE USED TOGETHER; SHOWN FOR ILLUSTRATION PURPOSES ONLY.</b></p>
+<ul><li>PID*X**AD*VEHMK* PLYMOUTH~ &mdash; The Information is in Semi-structured Text (X), the Table is Provided by ACORD, and the Vehicle is a Plymouth</li><li>PID*X**AD*VEHMD*VOYAGER ~ &mdash; The Information is in Semi-structured Text (X), the Table is Provided by ACORD, and the Vehicle Make is Voyager</li><li>PID*X**AD*VEHTY*WAGON ~ &mdash; The Information is in Semi-structured Text (X), the Table is Provided by ACORD, and the Vehicle Type is Wagon</li><li>REF*LD*39002651~ &mdash; The Loan Number is 39-000265-01</li><li>III*CV*COMP~ &mdash; The Table is provided by ACORD indicating Policy Coverage and the coverage is comprehensive.</li><li>DTP*007*D6*921202~ &mdash; The Effective Date is 12/02/92</li><li>DTP*009*D6*921202~ &mdash; The Process Date is 12/02/92</li><li>DTP*152*D6*921202~ &mdash; The Effective Date of Change 12/02/92</li><li>AMT*PH*100~ &mdash; $100 per occurrence deductible</li><li>OR:</li><li>PCT*PP*10~ &mdash; 10% deductible per person limit</li><li>III*CV*LP~ &mdash; The Table is provided by ACORD indicating Policy Coverage and the coverage is collision</li><li>DTP*007*D6*921202~ &mdash; The Effective Date is 12/02/92.</li><li>DTP*009*D6*921202~ &mdash; The Process Date is 12/02/92</li><li>DTP*152*D6*921202~ &mdash; The Effective Date of Change 12/02/92</li><li>AMT*PH*250~ &mdash; $25 per occurrence deductible</li></ul>
+<p><b>OR:</b></p>
+<ul><li>PCT*PP*10~ &mdash; 10% deductible per person limit</li><li>III*CV*LP~ &mdash; The Institution Referenced in Level 1 is Loss Payee</li></ul>
+<p><b>Level 8 – Excluded Driver, Additional Insured or other Interested Party, Lending Institution, Lessor End (Rather than AI &amp; LP)</b></p>
+<ul><li>HL*5*4*8~ &mdash; Hierarchical Count is 5, Information has parent, Hierarchical Level 8, Information has No Children</li><li>SLN*1**I*0*EA~ &mdash; Assigned # of 1, Policy Information is I, Quantity is 0, EA will indicate the limit to follow</li><li>NM1*I1*2*GENERAL SOLUTIONS~ &mdash; The Interested Party is General Solutions.</li><li>N2*ADDITIONAL NAME*AND MORE NAME~ &mdash; Additional Name</li><li>N3*0000 BROWN AVENUE~ &mdash; Address is 0000 Brown Avenue</li><li>N4*NOWHERE*TX*12345~ &mdash; City, State &amp; Zip code</li></ul>
+<p><b>TABLE 3 – Summary Data</b></p>
+<ul><li>TDS*1~ &mdash; Total Invoice Amount</li><li>CTT*30~ &mdash; Total number of insurance policies in 811 transaction set is 30</li><li>SE*1200*0001~ &mdash; 1200 is a fictional number, it should represent the total number of segments in between the ST and SE including the ST and SE, the control number is 0001</li></ul>
+<p><b>TRAILER</b></p>
+<ul><li>GE*1*2~ &mdash; Functional Group Trailer</li><li>IEA*1*000000002~ &mdash; Interchange Control Trailer</li></ul>
+<p><a href="#top">Back to top</a></p>
+</div>
+<div>
+  <div class="metadata">
+    <div>
+      <div>title</div>
+      <div>B2B | 811 example transaction set</div>
+    </div>
+    <div>
+      <div>description</div>
+      <div>EDI notifications 811 example transaction set.</div>
+    </div>
+    <div>
+      <div>tags</div>
+      <div>EDI, notifications, 811, exampl, e transaction set</div>
+    </div>
+  </div>
+</div>

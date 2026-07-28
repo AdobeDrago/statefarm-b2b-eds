@@ -1,0 +1,37 @@
+<div>
+  <div class="breadcrumbs">
+    <div>
+      <div>
+        <ul>
+          <li><a href="/b2b-content">B2B</a></li>
+          <li><a href="/b2b-content/home-auto-lenders">Home &amp; Auto Lenders</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions">EDI transactions</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/daily-811-notifications">Daily EDI mortgagee notification overview</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/daily-811-notifications/specific-instructions">Specific instructions</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Specific instructions for EDI billing</h1>
+<p>State Farm supports the electronic exchange of insurance renewals using the EDI X12 format as described in the 4010 | 811/820 Mortgagee Billing and Payment v2000 for Mortgage and the 4010 | 811 Motor Vehicle Insurance Coverage Notification for Auto located at <a href="http://www.wpc-edi.com/products/property-and-casualty/">Washington Publishing Company</a>.</p>
+<p>The following information defines those State Farm specific requirements that should be considered additions to the Mortgagee Billing and Payment implementation guide.</p>
+<ol><li>State Farm will use the following Line Of Business codes sent in the REF02 element (REV*TV) of the 811 invoice:<br><ul><li>HOME &mdash; Home</li><li>PPTHO &mdash; Renters</li><li>PPUHO &mdash; Condo Unit Owners</li><li>DFIRE &mdash; Fire</li><li>EQKP &mdash; Earthquake</li><li>FARM &mdash; Farm Ranch Owners</li><li>BOAT &mdash; Boat Owners</li><li>RCUP &mdash; Rental Condo Unit Owner</li><li>PPMBH &mdash; Mobile Home</li><li>PPCHO &mdash; Condominium</li><li>PPART &mdash; Apartment</li><li>FLOOD &mdash; Flood</li><li>RDP &mdash; Rental Dwelling</li><li>COTHR &mdash; Other Commercial</li><li>BOP &mdash; Business Owners</li><li>CNT &mdash; Contractors</li><li>PPCHR &mdash; Church</li><li>PAP &mdash; Personal Aricles</li><li>PLU &mdash; Personal Liability Umbrella</li></ul></li><li>State Farm will send the Regional Office Code in the REF02 element (REF*32) of the 811 invoice which must be returned in the REF02 element (REF*32) of the 820 remittance.</li><li>State Farm expects the following information to be supplied in the BPR segment of the 820 remittance:<br><ul><li>BPR12 &mdash; 01</li><li>BPR13 &mdash; 011001234</li><li>BPR14 &mdash; DA</li><li>BPR15 &mdash; 0106151</li><li>BPR16 &mdash; the settlement date</li><li>BPR17 &mdash; VEN</li></ul></li><li>State Farm will only accept a 15 position Trace Number in the TNR02 element of the 820 remittance.</li><li>The TRN02 element of the 820 remittance must be unique with each transmission sent to State Farm and returned with the RFB tag for Federal Wires or in ACH record 6.</li><li>State Farm requires the REF02 element (REF*IV) in the 820 remittance be returned with the same number that was sent in the BIG02 element of the 811 invoice.</li><li>State Farm requires the use of code LN in the ENT03 element of the 820 remittance and the existing loan number in the ENT04 element. When the loan number in ENT04 is a corrected number, then the code CL should be used in ENT03.</li><li>State Farm can receive in the Daily 820 remittance both escrow and non-escrow policy information. Returning zero in the RMR05 element will identify non-escrow policies. Escrow policies will be identified by returning the value of the IT104 element in the 811 invoice in the RMR05 element of the 820 remittance.</li><li>Reason Codes H1, H2, H3, H4, H5, H7, H9, K1 and K2, which can be sent in the ADX02 element of the 820 remittance, should only be sent when the RMR04 element is zero.</li><li>Reason Code H6, which can be sent in the ADX02 element of the 820 remittance, should only be used when the RMR04 element is less than the RMR05 element.</li><li>Reason Code K3, which can be sent in the ADX02 element of the 820 remittance, should not be used.</li><li><ul><li>State Farm Tax ID &mdash; 370533100</li><li>SF Fire NAIC Code &mdash; 25143</li><li>SF Lloyds NAIC Code &mdash; 43419</li><li>SF General NAIC Code &mdash; 25151</li><li>SF Florida NAIC Code &mdash; 10739</li></ul></li></ol>
+</div>
+<div>
+  <div class="metadata">
+    <div>
+      <div>title</div>
+      <div>B2B | Specific instructions</div>
+    </div>
+    <div>
+      <div>description</div>
+      <div>Daily EDI Specific instructions.</div>
+    </div>
+    <div>
+      <div>tags</div>
+      <div>Daily, EDI, Specific, instructions</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div>
+  <div class="breadcrumbs">
+    <div>
+      <div>
+        <ul>
+          <li><a href="/b2b-content">B2B</a></li>
+          <li><a href="/b2b-content/home-auto-lenders">Home &amp; Auto Lenders</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions">EDI transactions</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/mortgage-record-chg">Mortgage Record Change</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/mortgage-record-chg/acquisition">Acquisition 114</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Acquisition 114</h1>
+<h3>114</h3>
+<p>Used by the acquiring mortgage servicer to communicate the purchase of loans.</p>
+<p>State Farm will change the billing option, loan number and lender on the policy.</p>
+<ul><li><strong><b> <b>266 Data Format</b> </b>:</strong> ISA&lt;&lt;span&gt;*00*0000000000*00* *ZZ*123456789<span>*ZZ*STFM&nbsp;&nbsp; SF00053*021115*0817*U*00401*000000010*1*P*&gt;~</span> &mdash; <strong><b>Description</b>:</strong> This is the envelope segment for the 266.<ul> <li>000000010 is the unique number for this envelope</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> GS*MG*123456789*STFM&nbsp;&nbsp; SF00053 *20021115*0817*10*X*00401X132~ &mdash; <strong><b>Description</b>:</strong> This is the group segment for the 266.<ul> <li>10 is the unique number for this group.</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> ST*266*00000010~ &mdash; <strong><b>Description</b>:</strong> This is the transaction segment for the 266.<ul> <li>00000010 is the unique number for this transaction.</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> BGN*00*1800*20031114******03~ &mdash; <strong><b>Description</b>:</strong> This is the beginning segment for the 266.<ul> <li>00 Original</li> <li>1800 a unique number of the sender.</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> N1*SJ*INSURANCE TRACKING CO*FI*123456789~ &mdash; <strong><b>Description</b>:</strong> This is the <u>sender</u> of the 266.<ul> <li>LV Lender or SJ Service Provider</li> <li>FI Federal Tax ID</li> <li>123456789 is the Tax ID of the sender</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> N1*IN*STATE FARM INS*FI*37053100~ &mdash; <strong><b>Description</b>:</strong> This is the <u>receiver</u> of the 266.<ul> <li>IN Insurer or SQ Service Bureau</li> <li>FI Federal Tax ID</li> <li>37053100 is the Tax ID of the receiver.</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> LX*1~ &mdash; <strong><b>Description</b>:</strong> This is a separator. It separates the sender/receiver information from the buying and/or selling lender information. The number can increment.</li><li><strong><b> <b>266 Data Format</b> </b>:</strong> &gt;N1*LV*A - ONE MORTGAGE* &gt;FI*123456789~ N2*ITS SUCCESSORS AND/OR ASSIGNS~ N3*PO BOX 11111~ N4*ANYTOWN*CA*914100212**RJ*XX~ &mdash; <strong><b>Description</b>:</strong> This series of segments (N1, N2, N3, N4) represents the exact mortgage clause that should be reflected on the insurance policy.<ul> <li>LV Buying Lender</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> N1*SE*A - ONE MORTGAGE*FI*123456789~ N2*ITS SUCCESSORS AND/OR ASSIGNS~ N3*PO BOX 99999~ N4*ANYTOWN*CA*914100212**RJ*XX~ &mdash; <strong><b>Description</b>:</strong> This series of segments (N1, N2, N3, N4) represents the old mortgage clause that is being replaced.<ul> <li>SE Selling Lender</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> N9*LD*0000000001~ &mdash; <strong><b>Description</b>:</strong> The N9 segment is the start of the insurance policy information.<ul> <li>LD Loan Number</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> NM1*QP*1*RICHARDS, MARY*K~ N3*9999 WOODVIEW LANE~ N4*CHICO*CA*959267705~ &mdash; <strong><b>Description</b>:</strong> This is the name and mailing address of the borrower (insured).<ul> <li>QP Borrower</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> REF*TV*HOME~ &mdash; <strong><b>Description</b>:</strong> Valid policy types are:<br> <br> HOME, PPTHO, PPUHO, FLOOD, COTHR, RDP, DFIRE, EQKP, FARM, BOAT, RCUP, PPMBH, PPCHO, PPART, BOP. The policy type will be returned in the 824 if corrected.<ul> <li> <b>TV</b> Line of Business</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> REF*IG*551252837~ &mdash; <strong><b>Description</b>:</strong> The policy number will be returned in the 824 if corrected.<ul> <li>IG Policy Number</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> REF*NF*25143~ &mdash; <strong><b>Description</b>:</strong> The company code will be returned in the 824 if corrected.<ul> <li>25143 SF Fire</li> <li>43419 SF Lloyds</li> <li>25151 SF General</li> <li>10739 SF Florida</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> API*A1**114~ &mdash; <strong><b>Description</b>:</strong> <ul> <li> <b>114</b> Acquisition</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> &gt;N3*9999 WOODVIEW LANE~ N4*CHICO*CA*959267705~ &mdash; <strong><b>Description</b>:</strong> This is the property address.</li><li><strong><b> <b>266 Data Format</b> </b>:</strong> DTP*540*D8*20030115~ &mdash; <strong><b>Description</b>:</strong> The policy expiration date will be returned in the 824 if corrected.<ul> <li>540 Policy Expiration Date</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> REF*UA*1~ &mdash; <strong><b>Description</b>:</strong> Valid loan types are 1, 2, or 3.<ul> <li>UA Mortgage Order</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> CRC*A1*Y*T5~ &mdash; <strong><b>Description</b>:</strong> This segment identifies if a return Insurance Verification is needed.<ul> <li> <b>Y</b> No Insurance Verification</li> <li> <b>N</b> Insurance Verification</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> PID*S*02*AD*MG~ &mdash; <strong><b>Description</b>:</strong> MG Bill the Mortgagee<ul> <li>IN Bill the Insured.</li> </ul></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> <strong>The next policy goes here by repeating the N9 - PID segments.</strong></li><li><strong><b> <b>266 Data Format</b> </b>:</strong> SE*27*00000010 &mdash; <strong><b>Description</b>:</strong> SE01 is the number of segments. SE03 is the same number as ST02.</li><li><strong><b> <b>266 Data Format</b> </b>:</strong> GE*1*10~ &mdash; <strong><b>Description</b>:</strong> GE03 is the same number as GS06.</li><li><strong><b> <b>266 Data Format</b> </b>:</strong> IEA*1*000000010~ &mdash; <strong><b>Description</b>:</strong> IEA02 is the same number as ISA12.</li><li><strong><b> <b>266 Data Format</b> </b>:</strong> <p>*Interchange receiver for test is SF00014 and interchange receiver for production is SF00053</p></li></ul>
+</div>
+<div>
+  <div class="metadata">
+    <div>
+      <div>title</div>
+      <div>B2B | Acquisition 114</div>
+    </div>
+    <div>
+      <div>description</div>
+      <div>EDI Acquisition 114.</div>
+    </div>
+    <div>
+      <div>tags</div>
+      <div>EDI, Acquisition, 114</div>
+    </div>
+  </div>
+</div>

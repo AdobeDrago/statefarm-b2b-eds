@@ -1,0 +1,37 @@
+<div>
+  <div class="breadcrumbs">
+    <div>
+      <div>
+        <ul>
+          <li><a href="/b2b-content">B2B</a></li>
+          <li><a href="/b2b-content/home-auto-lenders">Home &amp; Auto Lenders</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions">EDI transactions</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/auto811files">Auto EDI Notifications</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/auto811files/997acknowledgement">997 functional acknowledgement</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>997 functional acknowledgement electronic file</h1>
+<p>For every 811 Auto EDI file sent from State Farm, a 997 Functional Acknowledgement electronic file is required to be returned.</p>
+<p><b>997 Functional Acknowledgement</b></p>
+<ul><li>ST*997*0001~ &mdash; Transaction Header – to indicate the start of a transaction set and to assign a control number</li><li>AK1*CI*1~ &mdash; Functional Group Response</li><li>Ak2*811*0005~ &mdash; Transaction Set Response Header</li><li>AK3*NM1*37~ &mdash; Data Segment Note – to report errors in a data segment and to identify the location of the data segment</li><li>AK4*1*98*7~ &mdash; Data Element note - To report errors in a data element and to identify the location of the data element</li><li>AK5*E*5~ &mdash; Transaction Set Response Trailer - to acknowledge acceptance or rejection and to report errors in a transaction set</li><li>AK9*A*2*2*2~ &mdash; Functional Group Response Trailer - to acknowledge acceptance or rejection of a functional group and report the number of included transaction sets from the original trailer, the accepted sets, and the received sets</li><li>SE*67*0001~ &mdash; To indicate the end of a transaction set and to provide a count of the transmitted segments</li></ul>
+</div>
+<div>
+  <div class="metadata">
+    <div>
+      <div>title</div>
+      <div>B2B | 997 functional acknowledgement</div>
+    </div>
+    <div>
+      <div>description</div>
+      <div>EDI notifications 997 functional acknowledgement.</div>
+    </div>
+    <div>
+      <div>tags</div>
+      <div>EDI, notifications, 997, functional acknowledgement.</div>
+    </div>
+  </div>
+</div>
