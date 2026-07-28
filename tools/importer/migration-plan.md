@@ -14,10 +14,10 @@ Update this file's status column as work happens so any session can resume witho
 
 | Cluster (path prefix under /b2b-content) | Pages | Status |
 |---|---|---|
-| `home-auto-lenders/edi-transactions` | 35 | **Done — Batch 1 PR open, awaiting review** |
-| `home-auto-lenders/ins-inquiry` | 12 | Not started |
-| `home-auto-lenders/mbps` | 6 | Not started |
-| `home-auto-lenders/help-support` | 6 | Not started |
+| `home-auto-lenders/edi-transactions` | 35 | Done — Batch 1, PR #4 (base: main) |
+| `home-auto-lenders/ins-inquiry` | 12 | **Done — Batch 2, PR pending (base: batch-1 branch)** |
+| `home-auto-lenders/mbps` | 6 | **Done — Batch 2** |
+| `home-auto-lenders/help-support` | 6 | **Done — Batch 2** |
 | `medical-ebilling/health-insurance` | 4 | Not started |
 | `medical-ebilling/auto-work-comp` | 4 | Not started |
 | `claim-services/personal-property` | 3 | Not started |
@@ -105,6 +105,24 @@ All 35 pages generated, coverage-validated, and spot-checked in the browser (dev
 - `tools/importer/scripts/validate_coverage.py <cleaned.html> <output.plain.html> <url>` — coverage tripwire, run after every extraction.
 - Local verification: run `npx -y @adobe/aem-cli up --html-folder b2b-content` (not the default DA-proxied mode) to preview newly-authored local content before it's pushed to DA.
 
-### Handoff note for user review
+### Handoff note
 
-Per user's chosen pacing ("pilot one batch first"): stopping here for review. Do not start Batch 2 until the user reviews this PR.
+Batch 1 shipped as PR #4 (base `main`). Per user direction, subsequent batches proceed without waiting for review — see Batch 2 below and PR chain notes.
+
+## Batch 2: `home-auto-lenders/ins-inquiry` + `mbps` + `help-support` (24 pages)
+
+URL list: `tools/importer/urls-home-auto-lenders-batch2.txt`. Branch `worktree-b2b-import-batch2`, stacked on top of `worktree-b2b-import-edi-batch1` (not on `main`) so its PR only shows this batch's diff — shares the batch-1 tooling instead of duplicating it. Same for Batch 3/4: each stacks on the previous batch's branch.
+
+Same overall legacy-AEM template family as Batch 1 (breadcrumb + `aem-GridColumn--default--7` main column), confirmed via samples before sweeping. All 24 pages handled by the existing `extract_detail_page.py` — no manual hub-page work needed this time (the 3 index pages `ins-inquiry`, `mbps`, `help-support` all matched the flow/grouped shapes already handled).
+
+**New bugs found and fixed** (in addition to Batch 1's list — these are real content-type gaps, not batch-1-specific):
+- **No image support at all.** `mbps/step-four` has legitimate content screenshots (not decorative chrome) — completely dropped. Added `<img>` handling to `extract_flow_parts` (emits `<p><img src alt></p>`) plus `copy_referenced_images()` in `main()`, which copies the scraped image files from the scrape temp dir's `images/` folder into a sibling `images/` folder next to the generated `.plain.html` (matching this project's existing image-placement convention).
+- **`build_body_grouped` dropped all content after the *last* `anchoredtitle` group.** Batch 1's pages happened to end exactly at their last group, so this never surfaced. `mbps/step-four` has a whole extra paragraph (with a link) after its last group. Fixed by treating the flat trailing content after the last group the same way as the leading "intro" content, including applying the same back-to-top shift quirk (the last group's "Back to top" link, if any, is nested in the *trailing* content when there's no next group).
+- **Some source pages have a genuinely empty breadcrumb component** (a content gap on the legacy site itself, e.g. `help-support/auto-ops-faq` — confirmed by inspecting the raw source, not a parser bug). Added `fallback_breadcrumb()`: builds the chain from the URL path, using a `KNOWN_ANCESTOR_LABELS` lookup (real labels collected from pages where the breadcrumb *is* present) for shared ancestors, and the page's own H1 for the final segment.
+- **Accordion/FAQ-toggle widgets** (`<button class="-oneX-panel-button">` for the question, sibling panel `<div>` for the answer — distinct from the `-oneX-body--intro` plain-paragraph FAQ style already handled) — silently dropped every question, leaving only answers. Flattened to the same `<h3>` question + `<p>` answer treatment as the other FAQ style, trading the collapse/expand interaction for content that's fully visible and crawlable — consistent with how `edi-faq` was handled in Batch 1.
+- `validate_coverage.py`'s coverage ratio undercounted image-heavy pages (stripped `<img>` tags without crediting their alt text) — gave a false-positive CHECK flag on `step-four` even after images were correctly extracted. Fixed to count each image's alt text (plus a fixed per-image marker) as content on both sides of the ratio.
+- Extracted a reusable `tools/importer/scripts/sweep.sh <urls-file> [log-file]` from batch 1's inline sweep loop — scrapes + extracts + validates every URL in a list file. Use this for future batches instead of rewriting the loop each time.
+
+### Status: Batch 2 complete
+
+All 24 pages generated, coverage-validated, and spot-checked in the browser — including `mbps/step-four`'s images (render correctly) and the empty-breadcrumb fallback (`help-support/auto-ops-faq`, produces the correct real ancestor labels plus its own H1 for the current page).

@@ -16,6 +16,14 @@ from extract_detail_page import get_main_content_column  # noqa: E402
 
 
 def strip_text(html):
+    # count each <img>'s alt text (and a fixed weight per image so even
+    # alt="" images register as content) before stripping tags, so
+    # image-heavy pages don't look artificially truncated
+    def img_to_text(m):
+        alt_m = re.search(r'alt="([^"]*)"', m.group(0))
+        alt = alt_m.group(1) if alt_m else ''
+        return f' {alt} [[image]] '
+    html = re.sub(r'<img\b[^>]*>', img_to_text, html)
     text = re.sub(r'<[^>]+>', ' ', html)
     text = re.sub(r'\s+', ' ', text)
     return text.strip()
