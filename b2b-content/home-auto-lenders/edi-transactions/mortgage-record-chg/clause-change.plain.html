@@ -1,0 +1,56 @@
+<div>
+  <div class="breadcrumbs">
+    <div>
+      <div>
+        <ul>
+          <li><a href="/b2b-content">B2B</a></li>
+          <li><a href="/b2b-content/home-auto-lenders">Home &amp; Auto Lenders</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions">EDI transactions</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/mortgage-record-chg">Mortgage Record Change</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/mortgage-record-chg/clause-change">Mortgage Clause Change 026</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Mortgage clause change 026</h1>
+<h3>026</h3>
+<p>Used to notify State Farm the lender’s name or address or both has changed. It is also used to notify State Farm that a mortgagee clause on an insurance policy is incorrect.</p>
+<p>State Farm will correct the mortgagee clause if the lender on the policy matches the lender requesting the change.</p>
+<table><thead><tr><th>266 Data Format</th><th>Description</th></tr></thead><tbody><tr><td>ISA*00*0000000000*00* *ZZ*123456789*ZZ*STFM&nbsp;&nbsp; SF00053 *021115*0817*U*00401*000000010*1*P*&gt;~</td><td>This is the envelope segment for the 266.
+                                                                <ul><li>000000010 is the unique number for this envelope</li></ul></td></tr><tr><td>GS*MG*123456789*STFM SF00053*20021115*0817*10*X*00401X132~</td><td>This is the group segment for the 266.
+                                                                <ul><li>10 is the unique number for this group.</li></ul></td></tr><tr><td>ST*266*00000010~</td><td>This is the transaction segment for the 266.
+                                                                <ul><li>00000010 is the unique number for this transaction.</li></ul></td></tr><tr><td>BGN*00*1800*20031114******03~</td><td>This is the beginning segment for the 266.
+                                                                <ul><li>00 Original</li><li>1800 a unique number of the sender.</li></ul></td></tr><tr><td>N1*SJ*INSURANCE TRACKING CO*FI*123456789~</td><td>This is the <u>sender</u> of the 266.
+                                                                <ul><li>LV Lender or SJ Service Provider</li><li>FI Federal Tax ID</li><li>123456789 is the Tax ID of the sender</li></ul></td></tr><tr><td>N1*IN*STATE FARM INS*FI*37053100~</td><td>This is the <u>receiver</u> of the 266.
+                                                                <ul><li>IN Insurer or SQ Service Bureau</li><li>FI Federal Tax ID</li><li>37053100 is the Tax ID of the receiver.</li></ul></td></tr><tr><td>LX*1~</td><td>This is a separator. It separates the sender/receiver information from the buying and/or selling lender information. The number can increment.</td></tr><tr><td>N1*LV*A - ONE MORTGAGE*FI*123456789~N2*ITS SUCCESSORS AND/OR ASSIGNS~N3*PO BOX 11111~N4*ANYTOWN*CA*914100212**RJ*XX~</td><td>This series of segments (N1, N2, N3, N4) represents the exact mortgage clause that should be reflected on the insurance policy.
+                                                                <ul><li>LV New Mortgage Clause</li></ul></td></tr><tr><td>N1*SE*A - ONE MORTGAGE*FI*123456789~N2*ITS SUCCESSORS AND/OR ASSIGNS~N3*PO BOX 99999~N4*ANYTOWN*CA*914100212**RJ*XX~</td><td>This series of segments (N1, N2, N3, N4) represents the old mortgage clause that is being replaced.
+                                                                <ul><li>SE Old Mortgage Clause</li></ul></td></tr><tr><td>N9*LD*0000000001~</td><td>The N9 segment is the start of the insurance policy information.
+                                                                <ul><li>LD Loan Number.</li></ul></td></tr><tr><td>NM1*QP*1*RICHARDS, MARY*K~N3*9999 WOODVIEW LANE~N4*CHICO*CA*959267705~</td><td>This is the name and mailing address of the borrower (insured).
+                                                                <ul><li>QP Borrower</li></ul></td></tr><tr><td>REF*TV*HOME~</td><td>Valid policy types are:
+                                                                <br><br>
+                                                                    HOME, PPTHO, PPUHO, FLOOD, COTHR, RDP, DFIRE, EQKP, FARM, BOAT, RCUP, PPMBH, PPCHO, PPART, BOP. The policy type will be returned in the 824 if corrected.
+                                                                    <ul><li><strong>TV</strong> Line of Business</li></ul></td></tr><tr><td>REF*IG*551252837~</td><td>The policy number will be returned in the 824 if corrected.
+                                                                      <ul><li>IG Policy Number.</li></ul></td></tr><tr><td>REF*NF*25143~</td><td>The company code will be returned in the 824 if corrected.
+                                                                      <ul><li>25143 SF Fire</li><li>43419 SF Lloyds</li><li>25151 SF General</li><li>10739 SF Florida</li></ul></td></tr><tr><td>API*A1**026~</td><td><ul><li><strong>026</strong> Mortgage Clause Change.</li></ul></td></tr><tr><td>N3*9999 WOODVIEW LANE~N4*CHICO*CA*959267705~</td><td>This is the property address.</td></tr><tr><td>DTP*540*D8*20030115~</td><td>The policy expiration date will be returned in the 824 if corrected.
+                                                                        <ul><li>540 Policy Expiration Date</li></ul></td></tr><tr><td>REF*UA*1~</td><td>Valid loan types are 1, 2, or 3.
+                                                                        <ul><li>UA Mortgage Order</li></ul></td></tr><tr><td>CRC*A1*Y*T5~</td><td>This segment identifies if a return Insurance Verification is needed.
+                                                                        <ul><li><strong>Y</strong> No Insurance Verification</li><li><strong>N</strong> Insurance Verification</li></ul></td></tr><tr><td>PID*S*02*AD*MG~</td><td><ul><li>MG Bill the Mortgagee</li><li>IN Bill the Insured</li></ul></td></tr><tr><td><strong>The next policy goes here by repeating the N9 - PID segments.</strong></td></tr><tr><td>SE*27*00000010</td><td>SE01 is the number of segments. SE03 is the same number as ST02.</td></tr><tr><td>GE*1*10~</td><td>GE03 is the same number as GS06.</td></tr><tr><td>&nbsp;IEA*1*000000010~</td><td>IEA02 is the same number as ISA12.</td></tr><tr><td><p>*Interchange receiver for test is SF00014 and interchange receiver for production is SF00053</p></td></tr></tbody></table>
+</div>
+<div>
+  <div class="metadata">
+    <div>
+      <div>title</div>
+      <div>B2B | Mortgage Clause Change 026</div>
+    </div>
+    <div>
+      <div>description</div>
+      <div>EDI Mortgage Clause Change 026.</div>
+    </div>
+    <div>
+      <div>tags</div>
+      <div>EDI, Mortgage, Clause, Change, 026</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div>
+  <div class="breadcrumbs">
+    <div>
+      <div>
+        <ul>
+          <li><a href="/b2b-content">B2B</a></li>
+          <li><a href="/b2b-content/home-auto-lenders">Home &amp; Auto Lenders</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions">EDI transactions</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/mortgage-record-chg">Mortgage Record Change</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/mortgage-record-chg/errors-corrections">Errors and Corrections</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Errors and corrections</h1>
+<h3>Errors and corrections</h3>
+<p>The Application Advice returns errors and corrections to the lender in response to an individual Mortgage Record Change.</p>
+<table><thead><tr><th><b><b>824 Data Format</b></b></th><th><b>Description</b></th></tr></thead><tbody><tr><td>ISA*00**00**ZZ*STFMSF00053*12* 8186665767INS*030206*1652*U*00400*000000007*Y*P*</td><td>This is the envelope segment for the 824.
+                                                                  <ul><li>000000007 is the unique number for this envelope</li></ul></td></tr><tr><td><span>GS*MG*STFM SF00053*</span><span>8186665767INS*20030206*1652*7*X*</span>004010~</td><td>This is the group segment for the 824.
+                                                                    <ul><li>7 is the unique number for this group.</li></ul></td></tr><tr><td>ST*824*0001~</td><td>This is the transaction segment for the 824.
+                                                                    <ul><li>0001 is the unique number for this transaction.</li></ul></td></tr><tr><td>BGN*00*TS266*20030206*165201** 1800~</td><td>This is the beginning segment for the 824.
+                                                                    <ul><li>00 Original</li><li>1800 the unique number from the originating 266..</li></ul></td></tr><tr><td>N1*IN*State Farm Mutual Automobile Insurance Company*FI*370533100~</td><td>This is the <u>sender</u> of the 824.
+                                                                    <ul><li>IN Insurer</li><li>FI Federal Tax ID</li><li>370533100 is the Tax ID of the sender</li></ul></td></tr><tr><td>N1*SJ*INSURANCE TRACKING CO*FI*123456789~</td><td>This is the <u>receiver</u> of the 824.
+                                                                    <ul><li>SJ Service Provider</li><li>FI Federal Tax ID</li><li>123456789 is the Tax ID of the receiver.</li></ul></td></tr><tr><td>N1*LV*A - ONE MORTGAGE*FI*123456789~</td><td>This is the lender (new or current) for which the changes were made.
+                                                                    <ul><li>LV Lender</li><li>FI Federal Tax ID</li><li>123456789 is the Tax ID of the lender.</li></ul></td></tr><tr><td>REF*3L*A1~</td><td>This is the branch code of the lender, which, along with the Tax ID, creates a unique electronic signature.
+                                                                    <ul><li>3L Branch Identifier</li></ul></td></tr><tr><td>OTI*IR*LD*020941499*******266~</td><td>This is the start of the individual exceptions for each loan.
+                                                                    <ul><li>IR Exception</li><li>IC Correction</li><li>LD Loan Number</li></ul></td></tr><tr><td>REF*IG*13P374667~</td><td>The policy number from the 266 if valid, otherwise, the corrected policy number from the insurer.
+                                                                    <ul><li>IG Policy Number.</li></ul></td></tr><tr><td>REF*66*13P374667~</td><td>If the original policy number provided in the 266 was invalid.
+                                                                    <ul><li>66 Incorrect Policy Number</li></ul></td></tr><tr><td>REF*TV*HOME~</td><td>The policy type is returned in the 824 if corrected. Valid policy types are:
+                                                                    <br><br> HOME, PPTHO, PPUHO, FLOOD, COTHR, RDP, DFIRE, EQKP, FARM, BOAT, RCUP, PPMBH, PPCHO, PPART, BOP. The policy type will be returned in the 824 if corrected.
+                                                                        <ul><li><b>TV</b> Line of Business</li></ul></td></tr><tr><td>REF*NF*25143~</td><td>The company code is returned in the 824 if corrected.
+                                                                          <ul><li>25143 SF Fire</li><li>43419 SF Lloyds</li><li>25151 SF General</li><li>10739 SF Florida</li></ul></td></tr><tr><td>DTM*540****D8*20031015~</td><td>The policy expiration date will be returned in the 824 if corrected or this could be the Coverage Cease Date if the policy is cancelled.
+                                                                          <ul><li>540 Policy Expiration Date</li></ul></td></tr><tr><td>LM*AD~</td><td>The identification of the code source.
+                                                                          <ul><li>AD ACORD</li></ul></td></tr><tr><td>LQ*ABS*100~</td><td>This policy error code.
+                                                                          <ul><li>100 Policy not found</li><li>110 Non pay cancel</li><li>111 Insured cancel</li><li>112 Company cancel</li><li>115 Corrected</li><li>180 Renewal Forthcoming</li><li>181&nbsp; Policy Type Not Supported</li><li>182 State Farm Payment Plan</li></ul></td></tr><tr><td><strong>The next policy goes here by repeating the OTI - LQ segments.</strong></td></tr><tr><td>SE*17*0001~</td><td>SE01 is the number of segments. SE03 is the same number as ST02.</td></tr><tr><td>GE*1*7~</td><td>GE03 is the same number as GS06.</td></tr><tr><td>IEA*1*000000007~</td><td>IEA02 is the same number as ISA12.</td></tr><tr><td><p>*Interchange receiver for test is SF00014 and interchange receiver for production is SF00053</p></td></tr></tbody></table>
+</div>
+<div>
+  <div class="metadata">
+    <div>
+      <div>title</div>
+      <div>B2B | Errors and Corrections</div>
+    </div>
+    <div>
+      <div>description</div>
+      <div>EDI Errors and Corrections.</div>
+    </div>
+    <div>
+      <div>tags</div>
+      <div>EDI, Errors, Corrections</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div>
+  <div class="breadcrumbs">
+    <div>
+      <div>
+        <ul>
+          <li><a href="/b2b-content">B2B</a></li>
+          <li><a href="/b2b-content/home-auto-lenders">Home &amp; Auto Lenders</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions">EDI transactions</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/mortgage-record-chg">Mortgage Record Change</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/mortgage-record-chg/deed-in-lieu">Deed In Lieu 106</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Deed in lieu 106</h1>
+<h3>106</h3>
+<p>A last resort option used by the lending industry rather than actually foreclosing where the borrower gives up all rights to the deed, title, and possession of the property.</p>
+<p>State Farm will schedule this change for an underwriting review.</p>
+<table><thead><tr><th><b><b>266 Data Format</b></b></th><th><b>Description</b></th></tr></thead><tbody><tr><td>ISA*00*0000000000*00* *ZZ*123456789*ZZ*STFM&nbsp;&nbsp; SF00053*021115*0817*U*00401*000000010*1*P*&gt;~</td><td>This is the envelope segment for the 266.<ul><li><b>000000010</b> is the unique number for this envelope.</li></ul></td></tr><tr><td>GS*MG*123456789*STFM&nbsp;&nbsp; SF00053*20041115*0817*10*X*00401X132~</td><td><ul><li>This is the group segment for the 266.</li><li><b>10</b> is the unique number for this group.</li></ul></td></tr><tr><td>ST*266*00000010~</td><td><ul><li>This is the transaction segment for the 266</li><li><b>00000010</b> is the unique number for this transaction.</li></ul></td></tr><tr><td>BGN*00*1800*20041114******03~</td><td><ul><li>This is the beginning segment for the 266.</li><li><b>00</b> Original</li><li><b>1800</b> a unique number of the sender.</li></ul></td></tr><tr><td>N1*SJ*INSURANCE TRACKING CO*FI*123456789~</td><td>This is the sender of the 266.<ul><li><b>LV</b> Lender or<br><b>SJ</b> Service Provider</li><li>&nbsp;<b>FI</b> Federal Tax ID</li><li><b>123456789</b> is the Tax ID of the sender</li></ul></td></tr><tr><td>N1*IN*STATE FARM INS*FI*37053100~</td><td>This is the receiver of the 266.<ul><li><b>IN</b> Insurer or<br><b>SQ</b> Service Bureau.</li><li><b>FI</b> Federal Tax ID</li><li><b>37053100</b> is the Tax ID of the receiver.</li></ul></td></tr><tr><td>LX*1~</td><td>This is a separator. It separates the sender/receiver information from the buying and/or selling lender information. The number can increment.</td></tr><tr><td>N1*LV*A-ONE MORTGAGE*FI*133947742~N2*ITS SUCCESSORS AND/OR ASSIGNS~N3*PO BOX 99999~N4*ANYTOWN*CA*914100212**RJ*XX~</td><td>This series of segments (N1, N2, N3, and N4) represents the exact mortgage clause that should be reflected on the insurance policy.<ul><li><b>LV</b> Current Lender</li></ul></td></tr><tr><td>N9*LD*0000000001~</td><td><ul><li>The N9 segment is the start of the insurance policy information.</li><li><b>LD</b> Loan Number.</li></ul></td></tr><tr><td>NM1*QP*1*RICHARDS*MARY*K~N3*9999 WOODVIEW LANE~N4*CHICO*CA*959267705~</td><td><ul><li>This is the name and mailing address of the borrower (insured).</li><li><b>QP</b> Borrower</li></ul></td></tr><tr><td>REF*TV*HOME~</td><td>Valid policy types are:<br><br>
+                                                                                          HOME, PPTHO, PPUHO, FLOOD, COTHR, RDP, DFIRE, EQKP, FARM, BOAT, RCUP, PPMBH, PPCHO, PPART, BOP. The policy type will be returned in the 824 if corrected.<ul><li><b>TV</b> Line of Business</li></ul></td></tr><tr><td>REF*IG*551252837~</td><td><ul><li>The policy number will be returned in the 824 if corrected.</li><li><b>IG</b> Policy Number.</li></ul></td></tr><tr><td>REF*NF*25143~</td><td><ul><li>The company code will be returned in the 824 if corrected.</li><li><b>25143</b> SF Fire</li><li><b>43419</b> SF Lloyds</li><li><b>25151</b> SF General</li><li><b>10739</b> SF Florida</li></ul></td></tr><tr><td>API*A1**106~</td><td><ul><li><b>106</b> Deed In Lieu</li></ul></td></tr><tr><td>N3*9999 WOODVIEW LANE~N4*CHICO*CA*959267705~</td><td><ul><li>This is the property address.</li></ul></td></tr><tr><td>DTP*540*D8*20040115~</td><td><ul><li>The policy expiration date will be returned in the 824 if corrected.</li><li><b>540</b> Policy Expiration Date</li></ul></td></tr><tr><td>REF*UA*1~</td><td><ul><li>Valid loan types are 1, 2, or 3.</li><li><b>UA</b> Mortgage Order</li></ul></td></tr><tr><td>CRC*A1*Y*T5~</td><td><ul><li>This segment identifies if a return Insurance Verification is needed.</li><li><b>Y</b> No Insurance Verification</li><li><b>N</b> Insurance Verification</li></ul></td></tr><tr><td>PID*S*02*AD*MG~</td><td><ul><li><b>MG</b> Bill the Mortgagee</li><li><b>IN</b> Bill the Insured.</li></ul></td></tr><tr><td><strong>The next policy goes here by repeating the N9 – PID segments.</strong></td></tr><tr><td>SE*24*00000010</td><td>SE01 is the number of segments.<br><br>
+                                                                                                                    SE03 is the same number as ST02.</td></tr><tr><td>GE*1*10~</td><td>GE03 is the same number as GS06.</td></tr><tr><td>IEA*1*000000010~</td><td>IEA02 is the same number as ISA12.</td></tr><tr><td><p>*Interchange receiver for test is SF00014 and interchange receiver for production is SF00053</p></td></tr></tbody></table>
+</div>
+<div>
+  <div class="metadata">
+    <div>
+      <div>title</div>
+      <div>B2B | Deed In Lieu 106</div>
+    </div>
+    <div>
+      <div>description</div>
+      <div>EDI Deed In Lieu 106.</div>
+    </div>
+    <div>
+      <div>tags</div>
+      <div>EDI, Deed In Lieu, 106</div>
+    </div>
+  </div>
+</div>

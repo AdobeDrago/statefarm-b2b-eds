@@ -1,0 +1,58 @@
+<div>
+  <div class="breadcrumbs">
+    <div>
+      <div>
+        <ul>
+          <li><a href="/b2b-content">B2B</a></li>
+          <li><a href="/b2b-content/home-auto-lenders">Home &amp; Auto Lenders</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions">EDI transactions</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/daily-811-notifications">Daily EDI mortgagee notification overview</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/daily-811-notifications/ach-payments">ACH payments</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Automated clearinghouse payments</h1>
+<p>To ensure properly identified payment, the ACH transaction must be complete, including <b>Amount, Tax Identification Number, and Trace Number*</b>. Any payment that does not meet these requirements will cause a delay with State Farm's custody bank.</p>
+<p><b>*</b>For EDI Trading Partners, your Company Entry Description (Example: M97) value is character positions 11-13 located in the BIG02 in the 811 file.</p>
+<p><b>*</b>For Online Billing and Payment users, your Company Entry Description (Example: M97) value is the last three characters of the trace number of your online file.</p>
+<p>The amount of payment should equal the total in the remittance detail sent to State Farm.</p>
+<p>State Farm's custody bank will not accept checks mailed through the Post Office as payment.</p>
+<p>Any problems delaying the payment should be communicated to the Lender Relations area at State Farm Corporate Headquarters.</p>
+<h3>CCD Transaction Format</h3>
+<h3>File Header Record</h3>
+<table><thead><tr><th><b>FIELD</b></th><th><b>DESCRIPTION</b></th><th><b>SIZE</b></th><th><b>CONTENT</b></th></tr></thead><tbody><tr><td>1</td><td>Record Type</td><td>1</td><td><b>1</b></td></tr><tr><td>2</td><td>Priority Code</td><td>2</td><td><i>numeric</i></td></tr><tr><td>3</td><td>Immediate Destination</td><td>10</td><td><i>bTTTTAAAAC</i></td></tr><tr><td>4</td><td>Immediate Origin</td><td>10</td><td><i>bTTTTAAAAC</i></td></tr><tr><td>5</td><td>File Creation Date</td><td>6</td><td><i>yymmdd</i></td></tr><tr><td>6</td><td>File Creation Time</td><td>4</td><td><i>hhmm</i></td></tr><tr><td>7</td><td>File ID Modifier</td><td>1</td><td><i>uppercase alpha-numeric</i></td></tr><tr><td>8</td><td>Record Size</td><td>3</td><td><b>094</b></td></tr><tr><td>9</td><td>Blocking Factor</td><td>2</td><td><b>10</b></td></tr><tr><td>10</td><td>Format Code</td><td>1</td><td><b>1</b></td></tr><tr><td>11</td><td>Immediate Destination Name</td><td>23</td><td><i>alpha-numeric</i></td></tr><tr><td>12</td><td>Immediate Origin Name</td><td>23</td><td><i>alpha-numeric</i></td></tr><tr><td>13</td><td>Reference Code</td><td>8</td><td><i>alpha-numeric</i></td></tr></tbody></table>
+<p><a href="#top">Back to top</a></p>
+<h3>Company Batch Header Record</h3>
+<table><thead><tr><th><b>FIELD</b></th><th><b>DESCRIPTION</b></th><th><b>SIZE</b></th><th><b>CONTENT</b></th></tr></thead><tbody><tr><td>1</td><td>Record Type</td><td>1</td><td><b>5</b></td></tr><tr><td>2</td><td>Service Class Code</td><td>2</td><td><i>numeric</i></td></tr><tr><td>3</td><td>Company Code</td><td>16</td><td><i>mortgage company name</i></td></tr><tr><td>4</td><td>Company Discretionary Data</td><td>2</td><td><i>blank</i></td></tr><tr><td>5</td><td>Company ID</td><td>10</td><td><b>1</b><i>plus mortgage tax id</i></td></tr><tr><td>6</td><td>Standard Entry Class Code</td><td>3</td><td><b>CCD</b></td></tr><tr><td>7</td><td>Company Entry Description</td><td>10</td><td><b>Example: M97</b></td></tr><tr><td>8</td><td>Company Descriptive Data</td><td>6</td><td><i>blank</i></td></tr><tr><td>9</td><td>Effective Entry Date</td><td>6</td><td><i>date for same day settlement</i></td></tr><tr><td>10</td><td>Settlement Date</td><td>6</td><td><i>blank</i></td></tr><tr><td>11</td><td>Originator Status Code</td><td>23</td><td><i>alpha-numeric</i></td></tr><tr><td>12</td><td>Originating DFI ID</td><td>8</td><td><i>originator's routing/transit number</i></td></tr><tr><td>13</td><td>Batch Number</td><td>7</td><td><i>originator's batch number</i></td></tr></tbody></table>
+<p><a href="#top">Back to top</a></p>
+<h3>Entry Detail Record</h3>
+<table><thead><tr><th><b>FIELD</b></th><th><b>DESCRIPTION</b></th><th><b>SIZE</b></th><th><b>CONTENT</b></th></tr></thead><tbody><tr><td>1</td><td>Record Type</td><td>1</td><td><b>6</b></td></tr><tr><td>2</td><td>Transaction Code</td><td>2</td><td><b>22</b></td></tr><tr><td>3</td><td>Receiving DFI Identification</td><td>8</td><td><b>02100001</b></td></tr><tr><td>4</td><td>Check Digit</td><td>1</td><td><b>8</b></td></tr><tr><td>5</td><td>DFI Account Number</td><td>17</td><td><b>8901589608</b></td></tr><tr><td>6</td><td>Amount</td><td>10</td><td><i>insurance payment</i></td></tr><tr><td>7</td><td>Individual Identification Number</td><td>15</td><td><i>contents of TRN02</i></td></tr><tr><td>8</td><td>Individual Name</td><td>23</td><td><b>State Farm Fire</b></td></tr><tr><td>9</td><td>Discretionary Data</td><td>2</td><td><i>blank</i></td></tr><tr><td>10</td><td>Addenda Record Identification</td><td>1</td><td><b>1</b></td></tr><tr><td>11</td><td>Trace Number</td><td>15</td><td><i>record 5 fields 12 + 13</i></td></tr></tbody></table>
+<p><a href="#top">Back to top</a></p>
+<h3>CCD+ Addenda Record</h3>
+<table><thead><tr><th><b>FIELD</b></th><th><b>DESCRIPTION</b></th><th><b>SIZE</b></th><th><b>CONTENT</b></th></tr></thead><tbody><tr><td>1</td><td>Record Type</td><td>1</td><td><b>7</b></td></tr><tr><td>2</td><td>Addenda Class Code</td><td>2</td><td><b>05</b></td></tr><tr><td>3</td><td>Payment Related Information</td><td>80</td><td><b>TRN*1*</b><i>TRN02<b>;</b></i></td></tr><tr><td>4</td><td>Addenda Sequence Number</td><td>4</td><td><b>0001</b></td></tr><tr><td>5</td><td>Entry Detail Sequence Number</td><td>7</td><td><i>record 5 field 13</i></td></tr></tbody></table>
+<p><a href="#top">Back to top</a></p>
+<h3>Company/Batch Control Record</h3>
+<table><thead><tr><th><b>FIELD</b></th><th><b>DESCRIPTION</b></th><th><b>SIZE</b></th><th><b>CONTENT</b></th></tr></thead><tbody><tr><td>1</td><td>Record Type</td><td>1</td><td><b>8</b></td></tr><tr><td>2</td><td>Service Class Code</td><td>3</td><td><b>220</b></td></tr><tr><td>3</td><td>Entry Addenda Count</td><td>6</td><td><i>total number of 6 and 7 records</i></td></tr><tr><td>4</td><td>Entry Hash</td><td>10</td><td><i>hashed 6 records</i></td></tr><tr><td>5</td><td>Total Debit Entry Dollar Amount</td><td>12</td><td><b>0</b></td></tr><tr><td>6</td><td>Total Credit Entry Dollar Amount</td><td>12</td><td><i>same as record 6 field 6</i></td></tr><tr><td>7</td><td>Company Identification</td><td>10</td><td><b>1</b><i>plus mortgagee tax ID</i></td></tr><tr><td>8</td><td>Message Authentication Code</td><td>22</td><td><i>blank</i></td></tr><tr><td>9</td><td>Reserved</td><td>6</td><td><i>blank</i></td></tr><tr><td>10</td><td>Originating DFI Identification</td><td>8</td><td><i>same as record 5 field 12</i></td></tr><tr><td>11</td><td>Trace Number</td><td>7</td><td><i>same as record 5 field 13</i></td></tr></tbody></table>
+<p><a href="#top">Back to top</a></p>
+<h3>File Control Record</h3>
+<table><thead><tr><th><b>FIELD</b></th><th><b>DESCRIPTION</b></th><th><b>SIZE</b></th><th><b>CONTENT</b></th></tr></thead><tbody><tr><td>1</td><td>Record Type</td><td>1</td><td><b>9</b></td></tr><tr><td>2</td><td>Batch Count</td><td>6</td><td><i>numeric</i></td></tr><tr><td>3</td><td>Block Count</td><td>6</td><td><i>numeric</i></td></tr><tr><td>4</td><td>Entry/Addenda Count</td><td>8</td><td><i>numeric</i></td></tr><tr><td>5</td><td>Entry Hash</td><td>10</td><td><i>numeric</i></td></tr><tr><td>6</td><td>Total Debit Entry Amount</td><td>12</td><td><i>$$$$$$$$$$$$</i></td></tr><tr><td>7</td><td>Total Credit Entry Amount</td><td>12</td><td><i>$$$$$$$$$$$$</i></td></tr><tr><td>8</td><td>Reserved</td><td>7</td><td><i>blank</i></td></tr></tbody></table>
+</div>
+<div>
+  <div class="metadata">
+    <div>
+      <div>title</div>
+      <div>B2B | ACH payments</div>
+    </div>
+    <div>
+      <div>description</div>
+      <div>Daily EDI ACH payments.</div>
+    </div>
+    <div>
+      <div>tags</div>
+      <div>Daily, EDI, Clearinghouse, ACH, payments</div>
+    </div>
+  </div>
+</div>

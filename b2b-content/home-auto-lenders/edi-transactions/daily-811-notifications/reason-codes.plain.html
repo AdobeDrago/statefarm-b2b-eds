@@ -1,0 +1,60 @@
+<div>
+  <div class="breadcrumbs">
+    <div>
+      <div>
+        <ul>
+          <li><a href="/b2b-content">B2B</a></li>
+          <li><a href="/b2b-content/home-auto-lenders">Home &amp; Auto Lenders</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions">EDI transactions</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/daily-811-notifications">Daily EDI mortgagee notification overview</a></li>
+          <li><a href="/b2b-content/home-auto-lenders/edi-transactions/daily-811-notifications/reason-codes">Mortgagee reason codes</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Mortgagee reason codes</h1>
+<p>State Farm mortgagee processing conforms to the national standard that has been defined for reason code processing. Reason codes identify bills mortgagees have chosen not to pay, and define the "reason"they are not paying.</p>
+<p>The following is a list of all reason codes and a short explanation of the activity that should be initiated in each case:</p>
+<h3>H1 Information Forthcoming (A)</h3>
+<p>Used to indicate that paper correspondence is being sent with specific details on this policy. The correspondence will be to explain why the payment could not be made at this time due to constraints existing within the mortgagee's company or system.</p>
+<h3>H2 Payment Already Submitted (D)</h3>
+<p>Used to indicate that payment for this policy has been submitted by check to the regional office that services the policy. No checks are to be submitted to State Farm's Corporate location because no payment processing exists there.</p>
+<h3>H3 Loan Paid in Full (B)</h3>
+<p>Lender no longer has an interest in the property because the loan has been paid in full. State Farm will delete the lender's interest from the policy and re-bill the insured.</p>
+<h3>H4 Bill Insured (B)</h3>
+<p>Should only be used when we have indicated that you are the billing party on the policy (escrowed). This reason code indicates that we need to change our billing instructions and rebill the insured in order to collect premium.</p>
+<h3>H5 Service Released to Another Mortgagee (S)</h3>
+<p>Use this code to inform us that the servicing rights to a loan were sold to another company. State Farm will notify the insured to receive the new mortgagee's name and address.</p>
+<h3>H7 Payment Forthcoming (L)</h3>
+<p>Used to indicate that total compensation for this policy will be sent at a later time, probably by check mailed to the regional office that services the policy.</p>
+<h3>H8 Bill Mortgagee (M)</h3>
+<p>This code is used when the billing indicated a non escrow, or information bill and the mortgagee is actually escrowing for this policy. A non escrow or informational bill is identified by a 2 in position 21 of the billing transmission or by the amount due field being all zeros. This is the only other reason code that State Farm will allow when payment is being remitted.</p>
+<h3>K1 Other Coverage Placed (O)</h3>
+<p>Used by the mortgagee to indicate that your records show another insurance company has the policy on this loan. We will follow up by contacting the policyholder for confirmation.</p>
+<h3>K2 Cannot Identify Loan (C)</h3>
+<p>Used to indicate that you are NOT the mortgagee for this loan. Our activity is to identify the correct mortgagee and to rebill the policy to the appropriate party. Do NOT use this code to indicate that we have the wrong loan number. This is only to be used when you cannot identify an account that cannot be matched in your data.</p>
+<h3>H6 Partial Payment (P) - Not accepted by State Farm at this time</h3>
+<p>Used infrequently when a lesser amount is being paid. Any balance due will be billed to the insured. <b>Note: State Farm would not expect partial payment</b>.</p>
+<h3>H9 Coverage Summary Needed - Not accepted by State Farm at this time</h3>
+<p>State Farm sends coverage information in the electronic billing and would not expect this reason code to be returned. Insurance Verifications can be requested through the Mortgage Record Change and Application Advice.</p>
+<h3>K3 Renewal Not Received (R) - Not accepted by State Farm at this time</h3>
+<p>State Farm does not accept this reason code at this time. It will eventually allow mortgagees to tell us that they have a loan with an expiring policy for which a renewal notification was not received.</p>
+</div>
+<div>
+  <div class="metadata">
+    <div>
+      <div>title</div>
+      <div>B2B | Mortgagee reason codes</div>
+    </div>
+    <div>
+      <div>description</div>
+      <div>Daily EDI Mortgagee reason codes.</div>
+    </div>
+    <div>
+      <div>tags</div>
+      <div>Daily, EDI, Mortgagee, reason codes</div>
+    </div>
+  </div>
+</div>
