@@ -1,0 +1,121 @@
+<div>
+  <div class="breadcrumbs">
+    <div>
+      <div>
+        <ul>
+          <li><a href="/b2b-content">B2B</a></li>
+          <li><a href="/b2b-content/medical-ebilling">Medical Billing</a></li>
+          <li><a href="/b2b-content/medical-ebilling/health-insurance">Health Insurance</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Health Insurance</h1>
+<h3>Legislative overview</h3>
+<h3>HIPAA</h3>
+<p>State Farm Mutual Automobile Insurance Company's Health Division is a Covered Entity under the HIPAA law, therefore must comply with the Administrative Simplification provision.</p>
+<p>The Administrative Simplification provision of HIPAA standardized the exchange of certain electronic data and established standards for the privacy and security of certain individual's protected health information.</p>
+<h3>Minnesota 62J.536</h3>
+<p>Minnesota Statutes, 62J.536, requires group purchasers and Health Care providers to use electronic claims and eligibility transactions. All Minnesota Health Care providers and group purchasers must use ASC X12 Version 5010 of the Minnesota Uniform Companion Guides.</p>
+<h3>Affordable Care Act</h3>
+<p>The Administrative Simplification section of the Affordable Care Act requires HIPAA covered entities to comply with new standards and operating rules for electronic transmissions. For detailed information regarding the individual operating rules, click here for <a href="../medical-ebilling/health-insurance#hc-aca-eligibility">Eligibility &amp; Claim Status</a>, or here for <a href="../medical-ebilling/health-insurance#hc-aca-eft_era-rules">ERA/EFT</a>.</p>
+<p><a href="#top">Back to top</a></p>
+<h3>ACA - Eligibility &amp; claim status operating rules</h3>
+<h3>CORE rule version for connectivity</h3>
+<p>2.2.0</p>
+<h3>Details on the message format and the supported transactions</h3>
+<p>State Farm Health Division supports the CORE II 270 Connectivity rule for Eligibility and Claim Status in Real Time only, version 2.2.0.</p>
+<h3>Details about the entity's ASC X12 Interchange</h3>
+<p>Example - Will an interchange contain multiple functional groups; will the TA1 be in its own interchange without any functional group(s).</p>
+<p><a href="/content/dam/sf-library/en-us/secure/legacy/pdf/b2b/mb_entitysascx12interchange.pdf">Example in PDF</a></p>
+<h3>Value of ReceiverID for that site</h3>
+<p>370533100</p>
+<h3>Production and testing URLs for Real time (only)</h3>
+<p><b>PROD</b> <br> SOAP: https://services.statefarm.com/b2b/core/soap<br> MIME: https://services.statefarm.com:3443/b2b/core/mime</p>
+<p><b>TEST</b> <br> SOAP: https://services.tcidv.statefarm.com/b2b/core/soap<br> MIME: https://services.tcidv.statefarm.com:3443/b2b/core/mime</p>
+<h3>Maximum size of Batch files that can be received by the Server</h3>
+<p>The maximum number of Real time transactions that can be sent per minute by a single Trading Partner is 10.</p>
+<h3>Authentication/Authorization policies using either X.509 Client Certificates or User ID and Password</h3>
+<p>Example - How to enroll and obtain a Client Certificate or UserID and Password to connect to that Receiver.</p>
+<p>Email to <a href="mailto:Home.hlth-medicalprovider.538o00@statefarm.com">HLTH-MEDICAL PROVIDERS</a> Entity Name, primary contact, phone number, TIN, NPI (if applicable), email address. Once registered, User ID and Password will be communicated via email.</p>
+<h3>System Availability as required by Phase I CORE 157 System Availability Rule version 1.1.0 and Phase II CORE 250 Claim Status Rule version 2.1.0, 4.6: Claim Status System Availability</h3>
+<p>This system is virtually available 24/7 365 days. However, there are daily and weekly maintenance windows for the system components that could result in temporary unavailability. Any Scheduled Maintenance, Non-Routine, or Unscheduled system downtown will be reported as required in CORE II 270 Rule.</p>
+<h3>Business/Technical points of contact</h3>
+<ul><li>Business Contact - <a href="mailto:Home.hlth-medicalprovider.538o00@statefarm.com">Home.hlth-medicalprovider.538o00@statefarm.com</a></li><li>Technical Contact - <a href="mailto:dixy.thornton.fz2s@statefarm.com">dixy.thornton.fz2s@statefarm.com</a></li></ul>
+<p><a href="#top">Back to top</a></p>
+<h3>ACA - EFT &amp; ERA operating rules</h3>
+<h3>CAQH CORE 350 – Health care claim payment/advice (835) infrastructure rule</h3>
+<h3>CORE rule version for connectivity</h3>
+<p>Phase II CORE 270 Connectivity rule version 2.2.0.</p>
+<p>Enrollment of the CORE 270 Connectivity (Safe Harbor) will require Enrollee to agree to Safe Harbor Terms of Use, during ERA Enrollment.</p>
+<h3>ERA file retrieval instructions</h3>
+<h3>ERA file retrieval</h3>
+<p>ERA (835) files are available for retrieval via the Safe Harbor Method of Retrieval for 90 days from the date they are created. Each file retrieval request will result in a single file response if a file is available for the sender of the request for the date requested. If no file is available for the date requested, the response will contain an Error Code of “No File Found” and an Error Message of “No File for date requested available”.</p>
+<p>Files are named with the following naming convention. The first component of the file name is your receiver ID, the second component is the date of the file you are requesting, and the third component is STATE FARM’s identifier followed by the type of file it is.</p>
+<p>DEG 7, Preference for Aggregation of Remittance Data is where obtain your preference for your receiver ID.</p>
+<p>1112223334_20130510_SFCORE.835</p>
+<p>The following request would retrieve the above file.</p>
+<p>&lt;soapenv:Body&gt;<br> &lt;ns1:COREEnvelopeBatchResultsRetrievalRequest<br> xmlns:ns1="http://www.caqh.org/SOAP/WSDL/CORERule2.2.0.xsd"&gt;<br> &lt;PayloadType&gt;X12_005010_Request_Batch_Results_835&lt;/PayloadType&gt;<br> &lt;ProcessingMode&gt;Batch&lt;/ProcessingMode&gt;<br> &lt;PayloadID&gt;f81d4fae-7dec-11d0-a765-00a0c91e6bf6&lt;/PayloadID&gt;<br> &lt;TimeStamp&gt;2013-05-10T10:20:34Z&lt;/TimeStamp&gt;<br> &lt;SenderID&gt;1112223334&lt;/SenderID&gt;<br> &lt;ReceiverID&gt;SFCORE&lt;/ReceiverID&gt;<br> &lt;CORERuleVersion&gt;2.2.0&lt;/CORERuleVersion&gt;<br> &lt;/ns1:COREEnvelopeBatchResultsRetrievalRequest&gt;<br> &lt;/soapenv:Body&gt;</p>
+<p><b>Note:</b> Normal processing will result in one file per Business day when remits were processed. However, we are aware that an anomaly to our processing could result in a second file being created for a given Business day. If this occurs you will be contacted and instructions will be provided on how to retrieve this exception file.</p>
+<h3>Error Handling</h3>
+<p>If the username and/or password included in the request are not valid an HTTP 403 error response will be returned.</p>
+<p>Envelope Processing Status and Error Codes are handled per section 4.3.3.2 of CORE Phase II 270 rule.</p>
+<h3>Dual delivery of v5010 X12 835 and proprietary paper claim remittance advices<br> <br></h3>
+<p>Once enrolled in ERA, you will receive dual delivery of the paper remittance, during the first 31 days and three payments, along with the ERA. Paper remittance will discontinue one the timeframes are met.</p>
+<p>Providers currently enrolled in ERA, who sign up for electronic enrollment, will receive Dual Delivery.</p>
+<p>Enrollee will have the option to opt out of Dual Delivery. Located on the ERA and EFT Enrollment page, a link to cancel Dual Delivery will be available.</p>
+<h3>CAQH CORE 360 – Uniform Use of Claim Adjustment Reason Codes and Remittance Advice Remark Codes (835) Rule</h3>
+<h3>Uniform use of codes</h3>
+<p>State Farm – Health has aligned our internal codes to correspond to the scenarios and code list specified by CORE.</p>
+<h3>CAQH CORE 370 – EFT &amp; ERA Reassociation (CCD+/835) Rule <br> Receipt of the CORE-required Minimum CCD+ Data Required for Reassociation</h3>
+<p>Enrollee (Healthcare provider) will need to contact its financial institution to arrange for the delivery of the CORE-required Minimum CCD+ Data Elements necessary for successful reassociation of the EFT payment with the ERA remittance advice.</p>
+<h3>CORE-required Minimum CCD+ Data and corresponding v5010 X12 835 Data Elements</h3>
+<ul><li><strong>CCD+ record #:</strong> 5 &mdash; <strong>Field #:</strong> 9 &mdash; <strong>Field name:</strong> Effective Entry Date &mdash; <strong>Data element segment position, number &amp; name:</strong> BPR16 – 373 Date (EFT Effective Date)</li><li><strong>CCD+ record #:</strong> 6 &mdash; <strong>Field #:</strong> 6 &mdash; <strong>Field name:</strong> Amount &mdash; <strong>Data element segment position, number &amp; name:</strong> BPR02-782 Monetary Amount (Total Actual Provider Payment Amount)</li><li><strong>CCD+ record #:</strong> 7 &mdash; <strong>Field #:</strong> 3 &mdash; <strong>Field name:</strong> Payment Related Information &mdash; <strong>Data element segment position, number &amp; name:</strong> TRN Reassociation Trace Number Segment, specifically data elements (all required):<br> <ul> <li>TRN01-481 Trace Type Code</li> <li>TRN02-127 Reference Identification (EFT Trace Number) (State Farm Health Payment Number)</li> <li>TRN03-509 Originating Company Identifier (Payer Identifier)</li> <li>TRN04-127 Reference Identification (Originating Company Supplemental Code)</li> </ul></li></ul>
+<h3>Resolving late/missing EFT and ERA transactions</h3>
+<p>When an ERA or EFT is late/missing (four business days following the receipt of either the ERA or EFT) email HOME HLTH-MEDICALPROVIDER with your TIN, NPI, Method of Retrieval.</p>
+<ul><li>Missing ERA - please include the payment number (#########GH####)</li><li>Missing EFT - please include the TRN02 (EFT Trace Number) and, if available, the 2100 Other Claim Related Identification (this is our Bill ID)</li></ul>
+<h3>CAQH CORE 380 – EFT enrollment data rule &amp; CAQH CORE 382 – ERA enrollment data rules</h3>
+<p>ERA enrollment “only” is allowed.</p>
+<p>EFT enrollment “only” is NOT allowed.</p>
+<p>ERA enrollment is required prior to EFT enrollment.</p>
+<p>When choosing your Method of Retrieval from State Farm – Health, (Emdeon, PNC Bank, UHIN, CORE Connectivity Safe Harbor), it is your responsibility to confirm your ability to receive your ERA through one of these connections.</p>
+<p>EFT and ERA electronic enrollment applications are located on a secured B2B site. Assess to the secure B2B site starts with completion of the <a href="https://health-contact.b2b.statefarm.com/b2bapp/hcu-forms/health-contact-us">Contact Us</a> form.</p>
+<p><a href="../medical-ebilling/health-insurance/hc-help-support#hc-help-era_eft">EFT &amp; ERA enrollment instructions</a></p>
+<p><a href="#top">Back to top</a></p>
+<h3>State Farm medicare supplement policies</h3>
+<h3>Disclaimer</h3>
+<p>Verification of coverage is not a guarantee that payment will be made. It is only a statement of the in-force status of the policy and a description of the maximum benefits that it may provide. Payments of benefits is subject to the policy's coverage, exclusions and limitations.</p>
+<p>For additional information contact us: 866-855-1212</p>
+<p>State Farm accepts electronic bills from the Medicare coordination of Benefits Contractor (COBC). These transactions are received through an eligibility-based crossover process.</p>
+<h3>Medicare coverage plans</h3>
+<ul><li><strong>&nbsp;:</strong> No<br> Coverage &mdash; <strong>Plan A:</strong> Coverage &mdash; <strong>Plan B:</strong> Coverage &mdash; <strong>Plan C:</strong> Coverage &mdash; <strong>Plan D:</strong> Coverage &mdash; <strong>Plan F:</strong> Coverage &mdash; <strong>Plan G:</strong> Coverage</li><li><strong>&nbsp;:</strong> No<br> Coverage &mdash; <strong>Plan A:</strong> No<br> Coverage &mdash; <strong>Plan B:</strong> Coverage &mdash; <strong>Plan C:</strong> No<br> Coverage &mdash; <strong>Plan D:</strong> Coverage &mdash; <strong>Plan F:</strong> No<br> Coverage &mdash; <strong>Plan G:</strong> No<br> Coverage</li><li><strong>&nbsp;:</strong> Coverage &mdash; <strong>Plan A:</strong> Coverage &mdash; <strong>Plan B:</strong> Coverage &mdash; <strong>Plan C:</strong> Coverage &mdash; <strong>Plan D:</strong> Coverage &mdash; <strong>Plan F:</strong> Coverage &mdash; <strong>Plan G:</strong> Coverage</li><li><strong>&nbsp;:</strong> Coverage &mdash; <strong>Plan A:</strong> Coverage &mdash; <strong>Plan B:</strong> Coverage &mdash; <strong>Plan C:</strong> Coverage &mdash; <strong>Plan D:</strong> Coverage &mdash; <strong>Plan F:</strong> Coverage &mdash; <strong>Plan G:</strong> Coverage after:<br> $20-Office<br> Visit Co-pay;<br> $50-ER Visit<br> Co-pay, if<br> not admitted</li><li><strong>&nbsp;:</strong> No<br> Coverage &mdash; <strong>Plan A:</strong> No<br> Coverage &mdash; <strong>Plan B:</strong> Coverage &mdash; <strong>Plan C:</strong> Coverage &mdash; <strong>Plan D:</strong> Coverage &mdash; <strong>Plan F:</strong> Coverage &mdash; <strong>Plan G:</strong> Coverage</li><li><strong>&nbsp;:</strong> No<br> Coverage &mdash; <strong>Plan A:</strong> No<br> Coverage &mdash; <strong>Plan B:</strong> No<br> Coverage &mdash; <strong>Plan C:</strong> No<br> Coverage &mdash; <strong>Plan D:</strong> Coverage &mdash; <strong>Plan F:</strong> Coverage &mdash; <strong>Plan G:</strong> No<br> Coverage</li></ul>
+<p><a href="#top">Back to top</a></p>
+<h3>System availability</h3>
+<h3>Scheduled downtime (regulary scheduled system downtime)</h3>
+<p>Monday - Friday 10 p.m. to midnight CST<br> Thursday 2 a.m. to 3 a.m.</p>
+<h3>Non-routine downtime</h3>
+<h3>Unscheduled downtime</h3>
+<p>Unscheduled downtime will be posted as an "Alert" on the main health care providers page of this site.</p>
+<h3>Holiday schedule</h3>
+<p>The holiday schedule does not impact the CORE "Safe Harbor" process however these dates do have a reduced number of staff resources.</p>
+<h3>Holidays</h3>
+<p>New Years Day<br> Memorial Day<br> Independence Day<br> Independence Day (observed during weekday)<br> Labor Day<br> Thanksgiving Day<br> Day After Thanksgiving<br> Christmas Day<br></p>
+</div>
+<div>
+  <div class="metadata">
+    <div>
+      <div>title</div>
+      <div>B2B |  Health Insurance</div>
+    </div>
+    <div>
+      <div>description</div>
+      <div>The Legislative Overview covers State Farm Health Division, HIPAA law and compliance with the Administrative Simplification provision</div>
+    </div>
+    <div>
+      <div>tags</div>
+      <div>medical, ebilling, era, eft, health, hipaa, ACA</div>
+    </div>
+  </div>
+</div>

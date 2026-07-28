@@ -1,0 +1,50 @@
+<div>
+  <div class="breadcrumbs">
+    <div>
+      <div>
+        <ul>
+          <li><a href="/b2b-content">B2B</a></li>
+          <li><a href="/b2b-content/medical-ebilling">Medical Billing</a></li>
+          <li><a href="/b2b-content/medical-ebilling/health-insurance">Health Insurance</a></li>
+          <li><a href="/b2b-content/medical-ebilling/health-insurance/safe-harbor">Safe Harbor</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Safe Harbor Participants</h1>
+<h3>Safe Harbor agreement additional terms and conditions</h3>
+<h3>For Safe Harbor participants</h3>
+<h3><b>If you have selected the Safe Harbor Option you are hereby agreeing to the following additional terms and conditions.</b></h3>
+<h3>1. Electronic information transmission prerequisites</h3>
+<ol><li>All Transmissions shall be made in accordance with the standards set forth in the Phase II CORE 270: connectivity rule version 2.2.0.</li><li>Third party service providers.
+                                                                    <ol><li>Transmissions may involve use of any third party service provider ("Third Party Service Provider") with which either party may contract. Either party may modify its election to use, not use, or change a Third Party Service Provider upon thirty (30) days' prior written notice to the other party.</li><li>Each party shall be responsible for the costs of any Third Party Service Provider with which it contracts.</li><li>Each party shall be liable for the acts or omissions of its Third Party Service Provider while sending, receiving, storing or handling Transmissions, or performing related activities for such party; provided that if both the parties use the same Third Party Service Provider to effect the sending and receipt of a Transmission, the originating party shall be liable for the acts or omissions of such Third Party Service Provider as to such Transmission.</li></ol>
+<ol><li>Each party shall adopt as its signature an electronic identification consisting of symbol(s) or code(s) which are to be affixed to or contained in each non-Internet Transmission made by such party ("Signatures"). Each party agrees that any Signature of such party affixed to or contained in any non-Internet Transmission shall be sufficient to verify such party originated such non-Internet Transmission.</li><li>Both parties agree that any digital signature (i.e., electronic key issued by a certification authority for the purpose of authenticating the sender and ensuring the message contents are not altered prior to receipt) affixed to or contained in any Transmission shall be sufficient to verify such person originated such Transmission.</li><li>Neither party shall disclose to any unauthorized person the Signatures of the other party.</li></ol>
+<h3>2. File retrieval</h3>
+<p>ERA (835) files are available for retrieval via the Safe Harbor Method of Retrieval for 90 days from the date they are created. Each file retrieval request will result in a single file response if a file is available for the sender of the request for the date requested. If no file is available for the date requested, the response will contain an Error Code of "No File Found" and an Error Message of "No File for date requested available".</p>
+<p>Files are named with the following naming convention. The first component of the file name is your receiver ID, the second component is the date of the file you are requesting, and the third component is State Farm's identifier followed by the type of file it is.</p>
+<p>DEG 7, preference for aggregation of remittance data is where obtain your preference for your receiver ID.</p>
+<p>1112223334_20130510_SFCORE.835</p>
+<p>The following request would retrieve the above file.</p>
+<p>&lt;soapenv:Body&gt; <br> &lt;ns1:COREEnvelopeBatchResultsRetrievalRequest <br> xmlns:ns1="http://www.caqh.org/SOAP/WSDL/CORERule2.2.0.xsd"&gt; <br> &lt;PayloadType&gt;X12_005010_Request_Batch_Results_835&lt;/PayloadType&gt; <br> &lt;ProcessingMode&gt;Batch&lt;/ProcessingMode&gt; <br> &lt;PayloadID&gt;f81d4fae-7dec-11d0-a765-00a0c91e6bf6&lt;/PayloadID&gt; <br> &lt;TimeStamp&gt;2013-05-10T10:20:34Z&lt;/TimeStamp&gt; <br> &lt;SenderID&gt;1112223334&lt;/SenderID&gt; <br> &lt;ReceiverID&gt;SFCORE&lt;/ReceiverID&gt; <br> &lt;CORERuleVersion&gt;2.2.0&lt;/CORERuleVersion&gt; <br> &lt;/ns1:COREEnvelopeBatchResultsRetrievalRequest&gt; <br> &lt;/soapenv:Body&gt;</p>
+<h3>3. Error handling</h3>
+<p>If the username and/or password included in the request are not valid an HTTP 403 error response will be returned.</p>
+<p>Envelope Processing Status and Error Codes are handled per section 4.3.3.2 of CORE Phase II 270 rule.</p>
+</div>
+<div>
+  <div class="metadata">
+    <div>
+      <div>title</div>
+      <div>B2B | Safe Harbor</div>
+    </div>
+    <div>
+      <div>description</div>
+      <div>Health insurance Safe Harbor participants, agreement additional terms and conditions.</div>
+    </div>
+    <div>
+      <div>tags</div>
+      <div>medical, ebilling, era, eft, Medical Billing, Help & Support, Safe Harbor, agreement, payment</div>
+    </div>
+  </div>
+</div>

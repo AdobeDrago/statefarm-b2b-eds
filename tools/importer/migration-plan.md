@@ -14,21 +14,22 @@ Update this file's status column as work happens so any session can resume witho
 
 | Cluster (path prefix under /b2b-content) | Pages | Status |
 |---|---|---|
-| `home-auto-lenders/edi-transactions` | 35 | **Done — Batch 1 PR open, awaiting review** |
-| `home-auto-lenders/ins-inquiry` | 12 | Not started |
-| `home-auto-lenders/mbps` | 6 | Not started |
-| `home-auto-lenders/help-support` | 6 | Not started |
-| `medical-ebilling/health-insurance` | 4 | Not started |
-| `medical-ebilling/auto-work-comp` | 4 | Not started |
-| `claim-services/personal-property` | 3 | Not started |
-| `suppliers/suppliers-coupa` | 2 | Not started |
-| `claim-services` (top-level pages) | ~6 | Not started |
-| `select-service` | 4 | Not started |
-| `medical-ebilling` (top-level pages) | 3 | Not started |
-| `suppliers` (top-level pages) | 3 | Not started |
-| `acct-mgmt` | 4 | Not started |
-| `electronic-payments` | 2 | Not started |
-| Singletons (`contact-us`, `terms-of-use`, `other-ins-carrier`, `home-auto-lenders` index) | 4 | Not started |
+| `home-auto-lenders/edi-transactions` | 35 | Done — Batch 1, PR #4 (base: main) |
+| `home-auto-lenders/ins-inquiry` | 12 | Done — Batch 2, PR #5 (base: batch-1 branch) |
+| `home-auto-lenders/mbps` | 6 | Done — Batch 2 |
+| `home-auto-lenders/help-support` | 6 | Done — Batch 2 |
+| `medical-ebilling/health-insurance` | 4 | Done — Batch 3, PR #6 (base: batch-2 branch) |
+| `medical-ebilling/auto-work-comp` | 4 | Done — Batch 3 |
+| `medical-ebilling` (top-level pages: `med-mpp-cv`, `what-is-edi-eft`) | 2 | Done — Batch 3 |
+| `claim-services` (incl. `personal-property` sub-cluster) | 9 | **Done — Batch 4, PR pending (base: batch-3 branch)** |
+| `suppliers` (incl. `suppliers-coupa` sub-cluster) | 4 | **Done — Batch 4** |
+| `select-service` | 3 | **Done — Batch 4** |
+| `acct-mgmt` | 4 | **Done — Batch 4** |
+| `electronic-payments/eft-remit-faq` | 1 | **Done — Batch 4** |
+| Singletons (`contact-us`, `terms-of-use`) | 2 | **Done — Batch 4** |
+| `/b2b-content` homepage | 1 | **Out of scope for bulk sweep** — has its own hero/auth/cards-service/promo blocks and pre-existing WebImporter tooling (`tools/importer/import-b2b-portal-home.js`); needs dedicated `page-import` skill treatment, not this script pipeline. |
+
+**All 4 batches complete.** 99 of the 100 discovered pages migrated (35+24+10+23+7 pre-existing top-level pages that already existed before this migration started — `claim-services.plain.html`, `select-service.plain.html`, `suppliers.plain.html`, `medical-ebilling.plain.html`, `electronic-payments.plain.html`, `other-ins-carrier.plain.html`, `home-auto-lenders.plain.html`). The 1 remaining page is the `/b2b-content` homepage itself, flagged out of scope above.
 
 Note: `home-auto-lenders` (12) covers the section landing page; its sub-clusters (edi-transactions, ins-inquiry, mbps, help-support) are listed separately above.
 
@@ -105,6 +106,99 @@ All 35 pages generated, coverage-validated, and spot-checked in the browser (dev
 - `tools/importer/scripts/validate_coverage.py <cleaned.html> <output.plain.html> <url>` — coverage tripwire, run after every extraction.
 - Local verification: run `npx -y @adobe/aem-cli up --html-folder b2b-content` (not the default DA-proxied mode) to preview newly-authored local content before it's pushed to DA.
 
-### Handoff note for user review
+### Handoff note
 
-Per user's chosen pacing ("pilot one batch first"): stopping here for review. Do not start Batch 2 until the user reviews this PR.
+Batch 1 shipped as PR #4 (base `main`). Per user direction, subsequent batches proceed without waiting for review — see Batch 2 below and PR chain notes.
+
+## Batch 2: `home-auto-lenders/ins-inquiry` + `mbps` + `help-support` (24 pages)
+
+URL list: `tools/importer/urls-home-auto-lenders-batch2.txt`. Branch `worktree-b2b-import-batch2`, stacked on top of `worktree-b2b-import-edi-batch1` (not on `main`) so its PR only shows this batch's diff — shares the batch-1 tooling instead of duplicating it. Same for Batch 3/4: each stacks on the previous batch's branch.
+
+Same overall legacy-AEM template family as Batch 1 (breadcrumb + `aem-GridColumn--default--7` main column), confirmed via samples before sweeping. All 24 pages handled by the existing `extract_detail_page.py` — no manual hub-page work needed this time (the 3 index pages `ins-inquiry`, `mbps`, `help-support` all matched the flow/grouped shapes already handled).
+
+**New bugs found and fixed** (in addition to Batch 1's list — these are real content-type gaps, not batch-1-specific):
+- **No image support at all.** `mbps/step-four` has legitimate content screenshots (not decorative chrome) — completely dropped. Added `<img>` handling to `extract_flow_parts` (emits `<p><img src alt></p>`) plus `copy_referenced_images()` in `main()`, which copies the scraped image files from the scrape temp dir's `images/` folder into a sibling `images/` folder next to the generated `.plain.html` (matching this project's existing image-placement convention).
+- **`build_body_grouped` dropped all content after the *last* `anchoredtitle` group.** Batch 1's pages happened to end exactly at their last group, so this never surfaced. `mbps/step-four` has a whole extra paragraph (with a link) after its last group. Fixed by treating the flat trailing content after the last group the same way as the leading "intro" content, including applying the same back-to-top shift quirk (the last group's "Back to top" link, if any, is nested in the *trailing* content when there's no next group).
+- **Some source pages have a genuinely empty breadcrumb component** (a content gap on the legacy site itself, e.g. `help-support/auto-ops-faq` — confirmed by inspecting the raw source, not a parser bug). Added `fallback_breadcrumb()`: builds the chain from the URL path, using a `KNOWN_ANCESTOR_LABELS` lookup (real labels collected from pages where the breadcrumb *is* present) for shared ancestors, and the page's own H1 for the final segment.
+- **Accordion/FAQ-toggle widgets** (`<button class="-oneX-panel-button">` for the question, sibling panel `<div>` for the answer — distinct from the `-oneX-body--intro` plain-paragraph FAQ style already handled) — silently dropped every question, leaving only answers. Flattened to the same `<h3>` question + `<p>` answer treatment as the other FAQ style, trading the collapse/expand interaction for content that's fully visible and crawlable — consistent with how `edi-faq` was handled in Batch 1.
+- `validate_coverage.py`'s coverage ratio undercounted image-heavy pages (stripped `<img>` tags without crediting their alt text) — gave a false-positive CHECK flag on `step-four` even after images were correctly extracted. Fixed to count each image's alt text (plus a fixed per-image marker) as content on both sides of the ratio.
+- Extracted a reusable `tools/importer/scripts/sweep.sh <urls-file> [log-file]` from batch 1's inline sweep loop — scrapes + extracts + validates every URL in a list file. Use this for future batches instead of rewriting the loop each time.
+
+### Status: Batch 2 complete
+
+All 24 pages generated, coverage-validated, and spot-checked in the browser — including `mbps/step-four`'s images (render correctly) and the empty-breadcrumb fallback (`help-support/auto-ops-faq`, produces the correct real ancestor labels plus its own H1 for the current page). Shipped as PR #5 (base: batch-1 branch).
+
+## Batch 3: `medical-ebilling/health-insurance` + `auto-work-comp` + top-level singletons (10 pages)
+
+URL list: `tools/importer/urls-medical-ebilling-batch3.txt`. Branch `worktree-b2b-import-batch3`, stacked on `worktree-b2b-import-batch2`.
+
+Same overall template family, confirmed via samples. All 10 pages handled by `extract_detail_page.py`.
+
+**New bugs found and fixed:**
+- **`medical-ebilling/med-mpp-cv` has no left-nav sidebar at all** — it's a standalone app-landing page, full-width (12-col) layout instead of the usual 7-col-next-to-3-col-leftnav split. `get_main_content_column` raised on every such page. Added a fallback: when no 7-col column exists, use everything between the breadcrumb `<nav>` and the footer experience fragment instead.
+  - First attempt at this fallback used `html.find('</nav>')` (the *first* `</nav>` on the page) as the start boundary — but the site header has its own `<nav>` that closes long before the breadcrumb's, so this leaked raw header/breadcrumb markup into the body. Fixed to specifically match `<nav id="breadcrumb-...">...</nav>` and use *its* end position.
+- **Generalized card-grid detection.** `med-mpp-cv` has the same "grid of link cards" component (`ds_dh-card`) already seen on the `edi-transactions` hub in Batch 1, but that one was built by hand. Added `extract_cards()` / `build_cards_html()` so this is now automatic: detects the component (in either of its two markup variants — plain, or wrapped in an icon-container row), and emits a `cards` block. Verified it reproduces the batch-1 `edi-transactions` hub's hand-built output when re-run through the new code.
+  - The source duplicates each card's markup for responsive breakpoints (`med-mpp-cv` had every card appear twice in the DOM) — deduped by `(href, title)`, keeping the first occurrence.
+  - An empty card description renders in source as a literal `&nbsp;` rather than being absent — treated as empty (matches the Batch 1 hand-built convention of omitting an empty description line).
+- Added `Medical Billing` to `KNOWN_ANCESTOR_LABELS` (the real breadcrumb label for `/b2b-content/medical-ebilling`, used by the empty-breadcrumb fallback from Batch 2 — not hit in this batch, but collected for future batches since `medical-ebilling` subpages are done now).
+
+### Status: Batch 3 complete
+
+All 10 pages generated, coverage-validated, and spot-checked in the browser — including the `med-mpp-cv` cards page (2 unique cards, no duplication) and `health-insurance/safe-harbor` (a legal-document-style page with deeply nested numbered lists, renders correctly). Shipped as PR #6 (base: batch-2 branch).
+
+## Batch 4: `claim-services` + `suppliers` + `select-service` + `acct-mgmt` + `electronic-payments/eft-remit-faq` + singletons (23 pages)
+
+URL list: `tools/importer/urls-misc-batch4.txt`. Branch `worktree-b2b-import-batch4`, stacked on `worktree-b2b-import-batch3`. This is the last batch — 23 smaller/miscellaneous pages across the remaining sections that already had a top-level landing page migrated in earlier repo history.
+
+**New bugs found and fixed** (the biggest batch for new content-type gaps — these sections apparently used more varied authoring than the `home-auto-lenders`/`medical-ebilling` sections):
+- **`contact-us` has neither a left-nav (no 7-col) nor any breadcrumb component at all** (not even an empty one — the whole thing is absent). Added a third fallback tier to `get_main_content_column`: when both the 7-col column and the breadcrumb `<nav>` are missing, use the `<main>` tag itself as the content boundary (confirmed it appears exactly once on every page type checked so far, making it a safe outermost anchor).
+- **A third `ds_dh-card` markup variant** (`select-service/ss-agreement`): the card's real label lives in sibling `<span class="-oneX-body--intro...">` elements, and the `<a>` is just a generic action link ("View PDF" / "Create PDF") — too different from the title-link+description model to represent as a `cards` block faithfully. Added a `GENERIC_TITLES` skip-list so `extract_cards()` recognizes and skips this variant, letting it fall through to the general flow extractor instead of misrepresenting the link text as the card's title.
+- To handle that fallthrough correctly, `extract_flow_parts` needed two new capabilities it didn't have before:
+  - Standalone `<span class="-oneX-body--intro...">` label text (not wrapped in a `<p>` or `<a>`) — promoted to `<h4>`.
+  - Bare `<a href>` links that aren't wrapped in a `<p>` at all — previously silently dropped since every other page's links lived inside `<p>` or `<li>`.
+- The bare-link addition surfaced a **"Back" chevron-icon navigation link** (page-level UI chrome, not content) that would otherwise leak as raw unstripped HTML (`clean_inline` only strips attributes from a small tag whitelist, so the icon `<div>`/`<h5>` markup inside it passed through verbatim). Filtered out any bare link containing the `-oneX-icon--chevron` icon class — same "skip nav/header/footer chrome" principle as everything else, per AGENTS.md scope.
+- Re-verified no regression on Batch 1's `ach-payments` and Batch 3's `med-mpp-cv` after all of the above (both still produce byte-identical output).
+
+### Status: Batch 4 complete — all batches done
+
+All 23 pages generated, coverage-validated, and spot-checked in the browser — including `contact-us` (a large accordion FAQ page using the `<main>`-tag fallback, every section renders correctly) and `select-service/ss-agreement` (the new card-variant fallback: resource labels and PDF links all present, no raw HTML leakage, "Back" chrome correctly excluded).
+
+This completes the migration except the `/b2b-content` homepage (see cluster inventory table above — out of scope for this pipeline).
+
+## Post-migration: DA upload and a critical table bug (all 4 batches)
+
+Uploading to DA requires an actual Adobe IMS login (`da-auth-helper`), which succeeded — a token was obtained and verified against `admin.da.live` for `adobedrago/statefarm-b2b-eds`. Uploading via `tools/importer/scripts/upload_to_da.py`:
+- Wraps the bare-div `.plain.html` content in `<body><header></header><main>...</main><footer></footer></body>` at upload time — this is the real DA document format (confirmed against `references/html-content.md` in the `da-content` skill), distinct from the bare-div format committed to git (which exists specifically so `aem up --html-folder` local testing works without double-nesting).
+- Rewrites `./images/<file>` references to absolute `content.da.live` URLs and pre-uploads the binaries, since DA requires image `src` to be a fetchable absolute URL (relative paths render as `<img src="about:error">`).
+- Previews against each batch's own feature branch (e.g. `worktree-b2b-import-batch4`), not `main` — this avoids touching the shared main preview surface before the PRs are reviewed, and doubles as the working feature-preview link each PR's description promised (previously blocked on the same expired-token issue, now resolved).
+
+**Critical bug found via this live DA testing, not catchable by local `--html-folder` testing** (which never exercises the real DA/EDS preview pipeline): every `<table>` in the generated HTML — used for all the reference/spec-format tables across the migration (FIELD/DESCRIPTION/SIZE/CONTENT-style tables) — was silently destroyed on upload. DA's `md2da` preview-pipeline conversion treats *every* `<table>` as a block-authoring attempt: it reads the first header cell's text as a block name (e.g. "FIELD" → `<div class="field">`) and discards the rest of the header row, regardless of whether the table was ever intended as a block. The data rows survived, but every column label except the first vanished, and the surviving content rendered as unstyled, illegible stacked divs. Confirmed by uploading `ach-payments` and screenshotting the live `aem.page` render.
+
+There is no way to author a plain multi-column data table as default content in DA/EDS — `extract_detail_page.py`'s `table_to_list()` now converts each table into a header-labeled `<ul><li>` list instead (e.g. `<strong>FIELD:</strong> 2 — <strong>DESCRIPTION:</strong> Priority Code — ...`) — verbose, but preserves every field with zero ambiguity. Verified correct on DA for both a 4-column table (`ach-payments`, 6 tables) and a 2-column table (`paid-in-full`). All 30 pages across all 4 batches that contained a `<table>` were regenerated and re-committed as a follow-up fix commit on each existing branch/PR (no new PRs — this landed as an additional commit on #4, #5, #6, #7).
+
+A secondary regex bug surfaced while writing `table_to_list()`: `<th[^>]*>` also matches the start of `<thead ...>` (since `"th"` is a literal prefix of `"thead"`), swallowing everything up to the real `</th>` as bogus header-label content. Fixed with a word boundary (`<th\b[^>]*>`).
+
+### Two more bugs found during the actual bulk upload
+
+**Bug 2 — incomplete scoping.** The original bug-scoping search used `grep -l '<table>'` (the literal string, no attributes), which missed every file whose table opens as `<table class="...">` — i.e. basically all of them except the ones I'd hand-checked. `home-auto-lenders/edi-transactions/daily-811-notifications/specific-instructions.plain.html` was the one page that fell through this gap entirely (never scraped for the fix). Re-scoped with `grep -l '<table'` (substring, no closing bracket) to catch every variant.
+
+That same page also exposed a **third table shape**: a table nested *inside* a `<li>` (a numbered-instructions list where individual steps embed a short lookup table). `clean_list()` strips attributes from `<ul>/<ol>/<li>` but doesn't recurse into cell content, so a nested `<table>` passed through untouched — same DA block-misinterpretation failure as Bug 1, just one level deeper. Fixed: `clean_list()` now runs `table_to_list()` on any nested table before stripping the list's own attributes.
+
+**Bug 3 — git branch stacking doesn't propagate fixes to already-forked descendants.** Batch 1's original table-fix commit was correct and pushed to PR #4. But `worktree-b2b-import-batch4` (used for the actual bulk DA upload, since it has the full cumulative 92-page tree) had *forked from batch 3 before batch 1's fix commit existed* — git doesn't retroactively carry a new commit on an ancestor branch into a branch that already diverged. So batch4's copy of every batch-1/2/3 table page was **still the old, broken pre-fix version**, even though each origin branch's own commit was correct. The first bulk-upload run (92/92 "succeeded" — upload succeeds regardless of content correctness) pushed the broken version of all ~28 affected pages to live DA.
+
+Caught by spot-checking `paid-in-full` post-upload and seeing a `266-data-format` block-load 404 in the console — the exact signature of Bug 1, on a page whose *origin branch* had already been fixed. That mismatch was the tell.
+
+**Fix:** re-swept all 29 table-containing pages (see Bug 2) directly in the batch4 worktree (which has the latest script), re-uploaded just those 29 to DA, verified `paid-in-full` and `specific-instructions` render correctly (console back to the 7-error baseline, no block-load 404). Then synced the corrected files back into each origin branch: batch1/2/3's own copies of their respective files were already correct (confirmed via diff — the earlier per-branch fix commits were right all along; only batch4's tree was stale), so those branches only needed the `specific-instructions` file (batch1, new) and the `clean_list()` script fix (batch1/2/3, propagated for consistency, no content changes since none of their pages have a nested-table case). Batch4 needed all 29 files plus the script fix, committed as a "sync" commit.
+
+**Lesson for future batches:** when stacking worktree branches, a fix landed on an earlier branch does NOT automatically appear in a later branch's tree — even though `git log` on the later branch would show it's "ahead" or "behind" in a way that looks fine at a glance. Diff the actual file content, not just the branch relationship, before trusting a cumulative tree for a bulk operation like a DA upload.
+
+### Bug 4 — case-sensitive absolute links break on DA's lowercased paths
+
+A full sweep of all 92 *live-delivered* pages (not local files — fetched each `.plain.html` from the actual `aem.page` preview) turned up two more issues, both stemming from the same root cause: **DA lowercases every document path on write**, per its own documented path rule (lowercase a-z/0-9/dash only), but the source site's URLs and internal links preserve the legacy site's mixed case (e.g. `auto811files/exampleTransactionSet`, `auto811files/811autoTest`).
+
+- Uploading `exampleTransactionSet.plain.html`/`811autoTest.plain.html` (git filenames, mixed case) succeeds and the content lands correctly — just at the auto-lowercased path (`exampletransactionset`, `811autotest`). Not a bug by itself: nothing else links to them by their old mixed-case name (confirmed via `grep -rl`), and each page's own breadcrumb self-link already uses the correct lowercased `documentPath` from the scrape metadata.
+- The actual bug: a **"Back to top" link wrapped in its own `<p>`** (most instances are bare `<a>` and already get normalized to `href="#top"` by a dedicated regex alternative — these three were the exception, caught by the `<p>` alternative earlier in `FLOW_PATTERN`'s alternation instead) kept its **original absolute href verbatim**, including the source's mixed-case path segment. Since that mixed-case path doesn't exist on DA (only the lowercased version does), clicking that one link 404s — everything else on the page is fine. Found in 3 pages: `auto811files/exampleTransactionSet` (case mismatch), `mbps/step-two` (also a wrong-target-page bug in the *source itself* — the anchor ID names step-two but the href points at the parent `mbps` hub page, almost certainly a legacy authoring typo), `daily-811-notifications/examples-997` (correct case, just inconsistent absolute-vs-relative form).
+
+Fixed by normalizing any `<p>`-wrapped "Back to top" link to `href="#top"` regardless of its original target — this also happens to correct the `mbps/step-two` source-authoring bug (jumping to the top of *itself*, which is unambiguously the intended UX, rather than to the parent page). Verified via a case-insensitive sweep (`grep -riE '>back to top<'`) that zero non-`#top` instances remain anywhere in the 92 pages, then re-verified no regression on `ach-payments`.
+
+**Status: all 4 bugs (raw-table misinterpretation, incomplete bug-scoping + nested-table gap, git-branch-stacking staleness, case-sensitive absolute links) fixed, regenerated, verified on live DA, and pushed to all 4 branches. All 92 pages are uploaded to DA and previewed against the `worktree-b2b-import-batch4` branch** (`https://worktree-b2b-import-batch4--statefarm-b2b-eds--adobedrago.aem.page/<path>`) — verified with a full programmatic sweep of every live-delivered page (not just local files or a sample) confirming zero remaining `<table>` elements and zero broken/empty responses, plus manual spot-checks across content shapes (plain text, multi-table reference pages, cards, images, accordion FAQs, nested-list-with-table) with no rendering issues beyond this environment's known baseline console noise (unrelated `nav.plain.html`/`footer.plain.html` 404s and an unreachable internal test domain, both present on already-existing pages too).
