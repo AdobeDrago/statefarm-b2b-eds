@@ -15,20 +15,21 @@ Update this file's status column as work happens so any session can resume witho
 | Cluster (path prefix under /b2b-content) | Pages | Status |
 |---|---|---|
 | `home-auto-lenders/edi-transactions` | 35 | Done — Batch 1, PR #4 (base: main) |
-| `home-auto-lenders/ins-inquiry` | 12 | **Done — Batch 2, PR pending (base: batch-1 branch)** |
-| `home-auto-lenders/mbps` | 6 | **Done — Batch 2** |
-| `home-auto-lenders/help-support` | 6 | **Done — Batch 2** |
-| `medical-ebilling/health-insurance` | 4 | Not started |
-| `medical-ebilling/auto-work-comp` | 4 | Not started |
-| `claim-services/personal-property` | 3 | Not started |
-| `suppliers/suppliers-coupa` | 2 | Not started |
-| `claim-services` (top-level pages) | ~6 | Not started |
-| `select-service` | 4 | Not started |
-| `medical-ebilling` (top-level pages) | 3 | Not started |
-| `suppliers` (top-level pages) | 3 | Not started |
-| `acct-mgmt` | 4 | Not started |
-| `electronic-payments` | 2 | Not started |
-| Singletons (`contact-us`, `terms-of-use`, `other-ins-carrier`, `home-auto-lenders` index) | 4 | Not started |
+| `home-auto-lenders/ins-inquiry` | 12 | Done — Batch 2, PR #5 (base: batch-1 branch) |
+| `home-auto-lenders/mbps` | 6 | Done — Batch 2 |
+| `home-auto-lenders/help-support` | 6 | Done — Batch 2 |
+| `medical-ebilling/health-insurance` | 4 | **Done — Batch 3, PR pending (base: batch-2 branch)** |
+| `medical-ebilling/auto-work-comp` | 4 | **Done — Batch 3** |
+| `medical-ebilling` (top-level pages: `med-mpp-cv`, `what-is-edi-eft`) | 2 | **Done — Batch 3** |
+| `claim-services/personal-property` | 3 | Not started (Batch 4) |
+| `suppliers/suppliers-coupa` | 2 | Not started (Batch 4) |
+| `claim-services` (top-level pages) | ~6 | Not started (Batch 4) |
+| `select-service` | 4 | Not started (Batch 4) |
+| `suppliers` (top-level pages) | 3 | Not started (Batch 4) |
+| `acct-mgmt` | 4 | Not started (Batch 4) |
+| `electronic-payments` | 2 | Not started (Batch 4) |
+| Singletons (`contact-us`, `terms-of-use`) | 2 | Not started (Batch 4) |
+| `/b2b-content` homepage | 1 | **Out of scope for bulk sweep** — has its own hero/auth/cards-service/promo blocks and pre-existing WebImporter tooling (`tools/importer/import-b2b-portal-home.js`); needs dedicated `page-import` skill treatment, not this script pipeline. |
 
 Note: `home-auto-lenders` (12) covers the section landing page; its sub-clusters (edi-transactions, ins-inquiry, mbps, help-support) are listed separately above.
 
@@ -125,4 +126,22 @@ Same overall legacy-AEM template family as Batch 1 (breadcrumb + `aem-GridColumn
 
 ### Status: Batch 2 complete
 
-All 24 pages generated, coverage-validated, and spot-checked in the browser — including `mbps/step-four`'s images (render correctly) and the empty-breadcrumb fallback (`help-support/auto-ops-faq`, produces the correct real ancestor labels plus its own H1 for the current page).
+All 24 pages generated, coverage-validated, and spot-checked in the browser — including `mbps/step-four`'s images (render correctly) and the empty-breadcrumb fallback (`help-support/auto-ops-faq`, produces the correct real ancestor labels plus its own H1 for the current page). Shipped as PR #5 (base: batch-1 branch).
+
+## Batch 3: `medical-ebilling/health-insurance` + `auto-work-comp` + top-level singletons (10 pages)
+
+URL list: `tools/importer/urls-medical-ebilling-batch3.txt`. Branch `worktree-b2b-import-batch3`, stacked on `worktree-b2b-import-batch2`.
+
+Same overall template family, confirmed via samples. All 10 pages handled by `extract_detail_page.py`.
+
+**New bugs found and fixed:**
+- **`medical-ebilling/med-mpp-cv` has no left-nav sidebar at all** — it's a standalone app-landing page, full-width (12-col) layout instead of the usual 7-col-next-to-3-col-leftnav split. `get_main_content_column` raised on every such page. Added a fallback: when no 7-col column exists, use everything between the breadcrumb `<nav>` and the footer experience fragment instead.
+  - First attempt at this fallback used `html.find('</nav>')` (the *first* `</nav>` on the page) as the start boundary — but the site header has its own `<nav>` that closes long before the breadcrumb's, so this leaked raw header/breadcrumb markup into the body. Fixed to specifically match `<nav id="breadcrumb-...">...</nav>` and use *its* end position.
+- **Generalized card-grid detection.** `med-mpp-cv` has the same "grid of link cards" component (`ds_dh-card`) already seen on the `edi-transactions` hub in Batch 1, but that one was built by hand. Added `extract_cards()` / `build_cards_html()` so this is now automatic: detects the component (in either of its two markup variants — plain, or wrapped in an icon-container row), and emits a `cards` block. Verified it reproduces the batch-1 `edi-transactions` hub's hand-built output when re-run through the new code.
+  - The source duplicates each card's markup for responsive breakpoints (`med-mpp-cv` had every card appear twice in the DOM) — deduped by `(href, title)`, keeping the first occurrence.
+  - An empty card description renders in source as a literal `&nbsp;` rather than being absent — treated as empty (matches the Batch 1 hand-built convention of omitting an empty description line).
+- Added `Medical Billing` to `KNOWN_ANCESTOR_LABELS` (the real breadcrumb label for `/b2b-content/medical-ebilling`, used by the empty-breadcrumb fallback from Batch 2 — not hit in this batch, but collected for future batches since `medical-ebilling` subpages are done now).
+
+### Status: Batch 3 complete
+
+All 10 pages generated, coverage-validated, and spot-checked in the browser — including the `med-mpp-cv` cards page (2 unique cards, no duplication) and `health-insurance/safe-harbor` (a legal-document-style page with deeply nested numbered lists, renders correctly).

@@ -75,11 +75,22 @@ def get_h1(html):
 
 
 def get_main_content_column(html):
+    """Most pages have a left-nav sidebar, so main content lives in the
+    7-col column next to it. Some pages (e.g. standalone app-landing
+    pages like medical-ebilling/med-mpp-cv) have no left-nav and are
+    full-width instead — fall back to everything between the breadcrumb
+    nav and the footer experience fragment."""
     idx = html.find('aem-GridColumn--default--7')
-    if idx == -1:
-        raise ValueError('main content column (7-col) not found')
-    div_start = html.rfind('<div', 0, idx)
-    return balanced_div(html, div_start)
+    if idx != -1:
+        div_start = html.rfind('<div', 0, idx)
+        return balanced_div(html, div_start)
+
+    breadcrumb_nav_m = re.search(r'<nav id="breadcrumb-[^"]*">.*?</nav>', html, re.S)
+    footer_start = html.find('cmp-experiencefragment--footer')
+    if not breadcrumb_nav_m:
+        raise ValueError('main content column (7-col) not found, and no breadcrumb nav to fall back from')
+    end = footer_start if footer_start != -1 else len(html)
+    return html[breadcrumb_nav_m.end():end]
 
 
 def clean_list(list_html):
@@ -216,7 +227,68 @@ def build_body_flow(main_col_html):
     return '\n'.join(parts)
 
 
+def extract_cards(html):
+    """Detect the source's "ds_dh-card" link-card component (title link +
+    description, seen in two markup variants — plain, and wrapped in an
+    icon-container row) and pull out (href, title, description) triples.
+    Confirmed on both the edi-transactions hub (Batch 1, built by hand)
+    and medical-ebilling/med-mpp-cv (Batch 3) — same component, reused
+    across the site for "grid of link cards" sections."""
+    cards = []
+    spans = []
+    seen = set()
+    for m in re.finditer(r'<div class="ds_dh-card[^"]*">', html):
+        block = balanced_div(html, m.start())
+        span = (m.start(), m.start() + len(block))
+        link_m = re.search(r'<a\b[^>]*href="([^"]*)"[^>]*>(.*?)</a>', block, re.S)
+        desc_m = re.search(r'<div class="-oneX-cards-body">\s*<p>(.*?)</p>', block, re.S)
+        if not link_m:
+            continue
+        href, title = link_m.groups()
+        title = clean_inline(title)
+        desc = clean_inline(desc_m.group(1)) if desc_m else ''
+        if desc in ('&nbsp;', ''):
+            desc = ''
+        # source duplicates card markup for responsive breakpoints (seen on
+        # med-mpp-cv: same 2 cards appear twice) — dedupe by (href, title)
+        key = (href, title)
+        spans.append(span)
+        if key in seen:
+            continue
+        seen.add(key)
+        cards.append((href, title, desc))
+    return cards, spans
+
+
+def build_cards_html(cards):
+    items = '\n'.join(
+        '    <div>\n'
+        '      <div>\n'
+        f'        <p><a href="{href}">{title}</a></p>\n'
+        + (f'        <p>{desc}</p>\n' if desc else '')
+        + '      </div>\n'
+        '    </div>'
+        for href, title, desc in cards
+    )
+    return f'<div class="cards">\n{items}\n</div>'
+
+
 def build_body(main_col_html):
+    cards, spans = extract_cards(main_col_html)
+    if cards:
+        # strip the matched card spans out before running the rest through
+        # normal flow extraction, so surrounding prose (if any) isn't lost
+        # and the raw card markup doesn't get double-picked-up as text
+        remaining = []
+        pos = 0
+        for start, end in spans:
+            remaining.append(main_col_html[pos:start])
+            pos = end
+        remaining.append(main_col_html[pos:])
+        rest_html = ''.join(remaining)
+
+        rest_parts = extract_flow_parts(rest_html) if rest_html.strip() else []
+        return '\n'.join([*rest_parts, build_cards_html(cards)])
     if '<div class="anchoredtitle title">' in main_col_html:
         return build_body_grouped(main_col_html)
     return build_body_flow(main_col_html)
@@ -281,6 +353,7 @@ KNOWN_ANCESTOR_LABELS = {
     '/b2b-content/claim-services': 'Claim Services',
     '/b2b-content/select-service': 'Select Service',
     '/b2b-content/suppliers': 'Suppliers',
+    '/b2b-content/medical-ebilling': 'Medical Billing',
 }
 
 
