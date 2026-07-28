@@ -127,7 +127,13 @@ def get_main_content_column(html):
 
 
 def clean_list(list_html):
-    t = re.sub(r'<a\b[^>]*href="([^"]*)"[^>]*>', r'<a href="\1">', list_html)
+    # a table can be nested inside a <li> (e.g. a numbered-instructions
+    # list where one step embeds a lookup table) — convert those the same
+    # unsafe-for-DA way as top-level tables before stripping attrs, or the
+    # raw <table> passes through untouched since this function doesn't
+    # otherwise recurse into cell content
+    t = re.sub(r'<table\b.*?</table>', lambda m: table_to_list(m.group(0)), list_html, flags=re.S)
+    t = re.sub(r'<a\b[^>]*href="([^"]*)"[^>]*>', r'<a href="\1">', t)
     t = strip_attrs(t, ['ul', 'ol', 'li', 'b', 'i'])
     t = re.sub(r'>\s+<', '><', t)
     return t.strip()
