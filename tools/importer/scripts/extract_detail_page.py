@@ -192,6 +192,13 @@ def extract_flow_parts(html_fragment):
             text = clean_inline(p_inner)
             if not text or text in ('<br>', '<br/>', '<br />'):
                 pass
+            # a "Back to top" link is usually bare (caught by the dedicated
+            # alternative below), but is occasionally wrapped in its own
+            # <p> — normalize its href the same way regardless, since the
+            # original absolute+anchor href can carry a case-sensitive path
+            # segment that doesn't match DA's lowercased live path
+            elif re.fullmatch(r'<a href="[^"]*">\s*Back to top\s*</a>', text):
+                parts.append('<p><a href="#top">Back to top</a></p>')
             # source marks FAQ-style question paragraphs with this class —
             # promote to a real heading for proper heading hierarchy
             elif p_attrs and '-oneX-body--intro' in p_attrs:
