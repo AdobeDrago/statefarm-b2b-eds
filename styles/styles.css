@@ -18,6 +18,7 @@
   --text-color: #3b3b3b;
   --link-color: #d62311;
   --link-hover-color: #b81c0e;
+  --khaki-color: #f7f0e4;
 
   /* fonts */
   /* stylelint-disable-next-line value-keyword-case -- MecherleSans is a brand font name, not a CSS keyword */
@@ -347,6 +348,12 @@ main > .section:first-of-type {
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
+  margin: 0;
+  padding: 40px 0;
+}
+
+main .section.khaki {
+  background-color: var(--khaki-color);
   margin: 0;
   padding: 40px 0;
 }
