@@ -14,19 +14,40 @@
   line-height: 0;
 }
 
+/* sizes a plain authored image in the icon cell */
+.icon-text .icon-text-icon img {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+/* an icon token resolves to span.icon > img; the span itself must be resized
+   too (not just the img), or its global 24px default constrains the img */
 .icon-text .icon-text-icon .icon {
   display: inline-block;
   width: 64px;
   height: 64px;
 }
 
-.icon-text .icon-text-icon .icon img {
-  width: 100%;
-  height: 100%;
-}
-
 .icon-text .icon-text-body {
   min-width: 0;
+}
+
+.icon-text .icon-text-body h3 {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+/* small: a block variant (not a cell class - custom classes on block cells
+   don't survive DA's content normalization) for a fixed 56px icon (e.g. a
+   generic contact icon), not the default pictogram size, and not
+   responsive to the desktop breakpoint */
+.icon-text.small .icon-text-icon img,
+.icon-text.small .icon-text-icon .icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 16px;
 }
 
 .icon-text .icon-text-body ul {
@@ -37,7 +58,6 @@
 
 .icon-text .icon-text-body ul a {
   display: inline-block;
-  font-weight: 600;
   padding: 4px 0;
 }
 
@@ -45,6 +65,11 @@
   .icon-text > div {
     gap: 24px;
     margin-bottom: 56px;
+  }
+
+  .icon-text .icon-text-icon img {
+    width: 120px;
+    height: 120px;
   }
 
   .icon-text .icon-text-icon .icon {

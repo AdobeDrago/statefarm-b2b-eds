@@ -6,7 +6,7 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     const [iconCell, bodyCell] = row.children;
     if (iconCell) {
-      iconCell.className = 'icon-text-icon';
+      iconCell.classList.add('icon-text-icon');
       // scripts.js normally runs decorateIcons on the whole page before this
       // block's own decoration, converting an authored `:icon:` token into
       // span.icon. Fall back to converting it here for content that isn't
@@ -19,7 +19,7 @@ export default function decorate(block) {
         iconP.replaceWith(span);
       }
     }
-    if (bodyCell) bodyCell.className = 'icon-text-body';
+    if (bodyCell) bodyCell.classList.add('icon-text-body');
   });
   decorateIcons(block);
 }
