@@ -1,0 +1,54 @@
+.icon-text > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.icon-text > div:last-child {
+  margin-bottom: 0;
+}
+
+.icon-text .icon-text-icon {
+  flex: none;
+  line-height: 0;
+}
+
+.icon-text .icon-text-icon .icon {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+
+.icon-text .icon-text-icon .icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.icon-text .icon-text-body {
+  min-width: 0;
+}
+
+.icon-text .icon-text-body ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.icon-text .icon-text-body ul a {
+  display: inline-block;
+  font-weight: 600;
+  padding: 4px 0;
+}
+
+@media (width >= 900px) {
+  .icon-text > div {
+    gap: 24px;
+    margin-bottom: 56px;
+  }
+
+  .icon-text .icon-text-icon .icon {
+    width: 120px;
+    height: 120px;
+  }
+}
