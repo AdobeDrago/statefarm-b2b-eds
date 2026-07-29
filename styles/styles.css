@@ -369,8 +369,9 @@ main .section.khaki ul:last-child {
   margin-bottom: 0;
 }
 
+/* spacious: a khaki box with more content (e.g. multiple lists) uses more padding */
 @media (width >= 900px) {
-  main .section.khaki > div {
+  main .section.khaki.spacious > div {
     padding: 40px;
   }
 }
