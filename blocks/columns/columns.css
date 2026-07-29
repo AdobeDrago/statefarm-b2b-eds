@@ -21,7 +21,7 @@
 
 @media (width >= 900px) {
   .columns > div {
-    align-items: center;
+    align-items: flex-start;
     flex-direction: unset;
     gap: 24px;
   }
@@ -29,6 +29,12 @@
   .columns > div > div {
     flex: 1;
     order: unset;
+  }
+
+  /* quarter: an image+text header pairing, where the shorter column should be
+     vertically centered against the taller one rather than top-aligned */
+  .columns.quarter > div {
+    align-items: center;
   }
 
   /* quarter: the image column takes 25% width instead of an even split */
