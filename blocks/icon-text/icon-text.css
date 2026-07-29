@@ -39,10 +39,12 @@
   margin-bottom: 24px;
 }
 
-/* small: a fixed 56px icon (e.g. a generic contact icon), not the default
-   pictogram size, and not responsive to the desktop breakpoint */
-.icon-text .icon-text-icon.small img,
-.icon-text .icon-text-icon.small .icon {
+/* small: a block variant (not a cell class - custom classes on block cells
+   don't survive DA's content normalization) for a fixed 56px icon (e.g. a
+   generic contact icon), not the default pictogram size, and not
+   responsive to the desktop breakpoint */
+.icon-text.small .icon-text-icon img,
+.icon-text.small .icon-text-icon .icon {
   width: 56px;
   height: 56px;
   margin: 0 16px;
