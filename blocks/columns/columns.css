@@ -30,4 +30,13 @@
     flex: 1;
     order: unset;
   }
+
+  /* quarter: the image column takes 25% width instead of an even split */
+  .columns.quarter > div > div:first-child {
+    flex: 0 0 25%;
+  }
+
+  .columns.quarter > div > div:last-child {
+    flex: 1;
+  }
 }
