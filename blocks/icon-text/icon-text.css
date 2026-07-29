@@ -34,6 +34,20 @@
   min-width: 0;
 }
 
+.icon-text .icon-text-body h3 {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+/* small: a fixed 56px icon (e.g. a generic contact icon), not the default
+   pictogram size, and not responsive to the desktop breakpoint */
+.icon-text .icon-text-icon.small img,
+.icon-text .icon-text-icon.small .icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 16px;
+}
+
 .icon-text .icon-text-body ul {
   list-style: none;
   margin: 0;
