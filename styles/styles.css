@@ -352,8 +352,24 @@ main .section.highlight {
   padding: 40px 0;
 }
 
-main .section.khaki {
+/* khaki: a framed, rounded highlight box inset in the normal content width (not full-bleed) */
+main .section.khaki > div {
+  padding: 40px 24px;
+  border: 1px solid #acabab;
+  border-radius: 4px;
   background-color: var(--khaki-color);
-  margin: 0;
-  padding: 40px 0;
+  box-shadow: 0 0 3px 0 rgb(33 33 33 / 25%);
+}
+
+main .section.khaki ul {
+  margin-bottom: 24px;
+}
+
+main .section.khaki ul:last-child {
+  margin-bottom: 0;
+}
+
+/* accent-heading: marks the first heading of a section as the brand-red accent color */
+main .section.accent-heading > div > h3:first-of-type {
+  color: var(--link-color);
 }
