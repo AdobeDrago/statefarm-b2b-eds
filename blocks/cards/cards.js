@@ -1,7 +1,12 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
+import { isSimulationEnabled } from '../../scripts/auth.js';
 
 // the authored lock badge marking a card whose target needs a B2B login
 const LOCK_BADGE = 'img[alt="Login required"], img[src*="/lock.svg"]';
+
+// soft prompts like "Log In to have shop info auto-filled..." or "Log in
+// requred to access." — distinct from "No log in required", which starts with "No"
+const SOFT_LOGIN_PROMPT = /^log in\b/i;
 
 /**
  * Tags the "login required" badge so it hides once authenticated. The card
@@ -16,6 +21,18 @@ function decorateLockedCards(block) {
     // the target needs a login in either state, so the hint is unconditional
     const link = img.closest('li')?.querySelector('.cards-card-body p:first-child a[href]');
     if (link) link.title = `${link.textContent.trim()} (login required)`;
+  });
+}
+
+/**
+ * Hides card body copy that only applies to anonymous visitors — text telling
+ * them they need to log in for this card's feature.
+ * @param {Element} block The cards block
+ */
+function decorateSoftLoginPrompts(block) {
+  if (!isSimulationEnabled()) return;
+  block.querySelectorAll('.cards-card-body p').forEach((p) => {
+    if (SOFT_LOGIN_PROMPT.test(p.textContent.trim())) p.dataset.auth = 'anonymous';
   });
 }
 
@@ -38,4 +55,5 @@ export default function decorate(block) {
   ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
   block.replaceChildren(ul);
   decorateLockedCards(block);
+  decorateSoftLoginPrompts(block);
 }
