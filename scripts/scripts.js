@@ -11,6 +11,7 @@ import {
   loadCSS,
   buildBlock,
 } from './aem.js';
+import { initAuthState, decorateAuthGate, decorateAuthLinks } from './auth.js';
 
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
   const innerTT = window.trustedTypes.createPolicy('tt-inner', {
@@ -18,10 +19,8 @@ if (window.trustedTypes && window.trustedTypes.createPolicy) {
   });
 
   window.trustedTypes.createPolicy('default', {
-    // applies to every HTML sink (innerHTML, outerHTML, document.write,
-    // createContextualFragment, srcdoc, ...) — not just a couple of
-    // sink names — since blocks like widget.js assign fetched HTML via
-    // plain `.innerHTML =`, which must go through this same policy.
+    // applies to every HTML sink, not just a couple — blocks like widget.js
+    // assign fetched HTML via plain `.innerHTML =`, which must go through this.
     createHTML: (input) => {
       const doc = new DOMParser().parseFromString(innerTT.createHTML(input), 'text/html');
       doc.querySelectorAll('script').forEach((el) => el.remove());
@@ -185,6 +184,11 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
+  // must run after decorateButtons (its URL-display-link check would break)
+  // and before any block decorate() (decorateDropdown reads hrefs, then destroys them)
+  decorateAuthLinks(main);
+  // must run after decorateSections — the gate walk relies on section wrappers
+  decorateAuthGate(main);
 }
 
 /**
@@ -193,6 +197,8 @@ export function decorateMain(main) {
  */
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
+  // first, so the auth body class is in place before any decoration can throw
+  initAuthState();
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {

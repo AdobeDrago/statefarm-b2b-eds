@@ -65,10 +65,8 @@
   display: block;
 }
 
-/* fixed-size pictogram (not a fluid promotional photo). Targeted
-   structurally (nth-child) rather than via .columns-auth-img-col, since
-   that class is only added once the image is wrapped in a <picture> —
-   true after the DA pipeline processes it, but not for a raw <img> */
+/* fixed-size pictogram, targeted structurally (nth-child) since
+   .columns-auth-img-col isn't added until the DA pipeline wraps it */
 .columns-auth-3-cols > div > div:first-child img {
   width: 104px;
   height: 104px;
@@ -82,9 +80,7 @@
     gap: 24px;
   }
 
-  /* baseline row height for the 3-col (fixed-icon) variant — min-height,
-     not height, so content that renders slightly taller than the source
-     (font differences) grows the row instead of getting clipped */
+  /* min-height, not height, so taller content grows the row instead of clipping */
   .columns-auth-3-cols > div {
     min-height: 165px;
   }
@@ -99,13 +95,8 @@
     flex: 5;
   }
 
-  /* 3-column layout (icon, title block, right-aligned login/links) used
-     when the image is a small fixed-size pictogram rather than a wide
-     promotional photo */
-
-  /* wider than the 104px icon itself so the icon reads as centered with
-     breathing room, matching the source's column proportions (roughly
-     1:3:2 across icon : title : actions) */
+  /* 3-col layout: icon : title : right-aligned actions, roughly a 1:3:2
+     flex split matching the source's column proportions */
   .columns-auth-3-cols > div > div:first-child {
     flex: 1;
   }
@@ -120,11 +111,8 @@
   }
 }
 
-/* spacing sequence matches the source markup's explicit margins:
-   h1 -> intro paragraph -> second paragraph -> Log In button -> forgot
-   paragraph -> "No login required" heading. Several of these are *larger*
-   than the default paragraph margins, not smaller — a blanket margin
-   collapse here is what was making the column read as crushed together. */
+/* spacing matches the source's explicit margins between h1, intro copy,
+   Log In button and forgot-help — several are larger than the defaults */
 .columns-auth h1 {
   margin-bottom: 16px;
 }
@@ -154,9 +142,10 @@
   font-size: 16px;
 }
 
-/* Log In pill button */
+/* min-width, not width — a fixed 138px clipped "Log In" and would ellipsize
+   "Log Out"; growing it shifts nothing since the cell is right-aligned */
 .columns-auth .button.accent {
-  width: 138px;
+  min-width: 138px;
   height: 48px;
   padding-left: 48px;
   padding-right: 48px;

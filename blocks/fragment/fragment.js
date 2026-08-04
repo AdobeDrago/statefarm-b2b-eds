@@ -14,30 +14,39 @@ import {
 } from '../../scripts/aem.js';
 
 /**
- * Loads a fragment.
+ * Loads a fragment from a path or href, normalising away any query or hash
+ * that would otherwise corrupt the `.plain.html` fetch path.
  * @param {string} path The path to the fragment
  * @returns {HTMLElement} The root element of the fragment
  */
 export async function loadFragment(path) {
-  if (path && path.startsWith('/') && !path.startsWith('//')) {
-    const resp = await fetch(`${path}.plain.html`);
-    if (resp.ok) {
-      const main = document.createElement('main');
-      main.innerHTML = await resp.text();
+  if (!path) return null;
+  let url;
+  try {
+    url = new URL(path, window.location.href);
+  } catch (e) {
+    return null;
+  }
+  // normalising before this check is what stops a protocol-relative `//host/x`
+  if (url.origin !== window.location.origin) return null;
 
-      // reset base path for media to fragment base
-      const resetAttributeBase = (tag, attr) => {
-        main.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((elem) => {
-          elem[attr] = new URL(elem.getAttribute(attr), new URL(path, window.location)).href;
-        });
-      };
-      resetAttributeBase('img', 'src');
-      resetAttributeBase('source', 'srcset');
+  const resp = await fetch(`${url.pathname}.plain.html`);
+  if (resp.ok) {
+    const main = document.createElement('main');
+    main.innerHTML = await resp.text();
 
-      decorateMain(main);
-      await loadSections(main);
-      return main;
-    }
+    // reset base path for media to fragment base
+    const resetAttributeBase = (tag, attr) => {
+      main.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((elem) => {
+        elem[attr] = new URL(elem.getAttribute(attr), url).href;
+      });
+    };
+    resetAttributeBase('img', 'src');
+    resetAttributeBase('source', 'srcset');
+
+    decorateMain(main);
+    await loadSections(main);
+    return main;
   }
   return null;
 }
