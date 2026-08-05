@@ -1,5 +1,5 @@
 .columns-auth {
-  margin-top: 32px;
+  /* margin-top: 32px; */
   margin-bottom: 32px;
 }
 
@@ -64,6 +64,7 @@
 }
 
 .columns-auth > div > .columns-auth-img-col img {
+  margin-top: 2.3em;
   display: block;
 }
 
@@ -90,7 +91,7 @@
 
 @media (width >= 900px) {
   .columns-auth > div {
-    align-items: center;
+    /* align-items: center; */
     flex-direction: unset;
     gap: 24px;
   }
@@ -139,18 +140,20 @@
    than the default paragraph margins, not smaller — a blanket margin
    collapse here is what was making the column read as crushed together. */
 .columns-auth h1 {
-  margin-bottom: 16px;
+  font-size: 48px;
+  margin-bottom: 9px;
 }
 
 .columns-auth h1 + p {
   margin-top: 0;
-  margin-bottom: 0.4em;
+  margin-bottom: 10px;
   font-size: 25px;
 }
 
 .columns-auth h1 + p + p {
   margin-top: 0;
-  margin-bottom: 1.5em;
+  margin-bottom: 24px;
+  font-size: 16px;
 }
 
 .columns-auth p.button-wrapper {

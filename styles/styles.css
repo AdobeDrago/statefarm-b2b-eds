@@ -22,9 +22,9 @@
 
   /* fonts */
   /* stylelint-disable-next-line value-keyword-case -- MecherleSans is a brand font name, not a CSS keyword */
-  --body-font-family: MecherleSans, Arial, sans-serif;
+  --body-font-family: "MecherleSans", Arial, sans-serif;
   /* stylelint-disable-next-line value-keyword-case -- MecherleSans is a brand font name, not a CSS keyword */
-  --heading-font-family: MecherleSans, Arial, sans-serif;
+  --heading-font-family: "MecherleSans", Arial, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -354,7 +354,7 @@ main > .section {
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: 1090px;
   margin: auto;
   padding: 0 24px;
 }
