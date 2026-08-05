@@ -194,6 +194,7 @@ header .nav-search-pane-inner {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
+  padding-top: 48px;
   box-sizing: border-box;
 }
 
@@ -202,17 +203,25 @@ header .nav-search-form {
   align-items: center;
   gap: 16px;
   flex: 1;
+  justify-content: center;
 }
 
 header .nav-search-form input[type='search'] {
   flex: 1;
   height: 48px;
-  box-sizing: border-box;
-  border: 1px solid var(--sf-border);
-  border-radius: 4px;
+  box-sizing: border-box; 
   padding: 0 16px;
   font: inherit;
   font-size: 16px;
+  max-width: 270px; 
+  border: none;
+  border: 1px solid var(--light-color);
+  border-bottom: 1px solid var(--text-color);
+}
+
+header .nav-search-form input[type='search']:focus {
+  outline: none;
+  background-color: var(--khaki-color);
 }
 
 /* same size/style as the columns-auth Log In button */
@@ -227,15 +236,17 @@ header .nav-search-submit {
 }
 
 header .nav-search-close {
-  flex: none;
-  width: 24px;
-  height: 24px;
+  flex: none; 
   border: 0;
   background: none;
   color: var(--sf-utility-text);
-  font-size: 20px;
+  font-size: 48px;
+  font-weight: 100;
   line-height: 1;
   cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 header .nav-search-close:hover {

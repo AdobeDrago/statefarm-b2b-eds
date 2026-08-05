@@ -29,6 +29,16 @@
   gap: 8px;
 }
 
+.columns-auth-no-login-list li:last-child .icon img {
+  translate: 0 -2px;
+}
+
+@media (width <=600px) {
+  .columns-auth-no-login-list li:last-child .icon img { 
+      translate: 0 -1px;
+    }
+}
+
 @media (width >= 600px) {
   .columns-auth-no-login-list {
     display: grid;
