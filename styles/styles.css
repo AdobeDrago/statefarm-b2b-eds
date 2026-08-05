@@ -319,6 +319,7 @@ main img {
     background-color: var(--khaki-color);
     outline: 1px solid var(--text-color);
   }
+
 .dropdown-select option {
   background-color: var(--khaki-color); 
 }
@@ -327,10 +328,14 @@ main img {
   content: '';
   position: absolute; 
   right: 16px;
+
   /* width: 8px;
   height: 8px; */
+
   /* margin-top: -6px; */
+
   /* border: 8px solid transparent; */
+
   /* border-top-color: var(--text-color); */
   pointer-events: none;
   border: 2px solid var(--text-color);
