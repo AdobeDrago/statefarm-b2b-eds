@@ -10,7 +10,7 @@
  * `style` set, so no Section Metadata blocks are created for this template;
  * the logic below still handles styled sections for reuse across templates.
  *
- * Section selectors (verified against migration-work/cleaned.html):
+ * Section selectors (verified against the original page markup during import):
  *   - hero  : .authentication-container:not(.-oneX-d-none) .htmlComponent > .-oneX-row  (line 966)
  *   - cards : .gridComponent.parsys  (line 1015)
  *   - promo : #xd-container-9bd333c99c  (line 1603)

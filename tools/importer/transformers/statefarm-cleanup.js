@@ -4,7 +4,7 @@
 /**
  * Transformer: State Farm B2B site-wide cleanup.
  *
- * All selectors verified against migration-work/cleaned.html.
+ * All selectors verified against the original page markup during import.
  *
  * The authorable body content lives entirely under `#b2b-edge-content`
  * (cleaned.html line 959, inside <main>). Everything outside it is
