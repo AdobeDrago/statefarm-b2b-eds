@@ -1,11 +1,15 @@
 /* stylelint-disable no-descending-specificity */
+.cards-service
+{
+    padding-inline: 0;
+  }
 
 .cards-service > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 350px);
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   justify-content: center;
   gap: 1rem 0;
 }
