@@ -551,7 +551,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     grid-template:
       'tools tools tools' 32px
       'search search search' 0fr
-      'brand sections login' 60px
+      'brand sections login' 47px /* changed the to match the exact row height*/
       / auto 1fr auto;
     transition: grid-template-rows 0.3s ease;
     row-gap: 0;

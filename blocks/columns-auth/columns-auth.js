@@ -2,9 +2,9 @@ import { decorateIcons } from '../../scripts/aem.js';
 
 // maps the "no login required" link labels to an icon in /icons
 const NO_LOGIN_ICONS = {
-  'Request supplement': 'loan-quote',
-  'Create assignment': 'document-add',
-  'Fire service provider tool': 'homeowners-insurance',
+  'Request supplement': 'loan-quote-2',
+  'Create assignment': 'document-add-2',
+  'Fire service provider tool': 'homeowners-insurance-2',
 };
 
 /**
