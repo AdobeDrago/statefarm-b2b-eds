@@ -34,6 +34,7 @@
   .columns-auth-no-login-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    /* grid-template-columns: auto auto; */
     gap: 16px 24px;
   }
 }
