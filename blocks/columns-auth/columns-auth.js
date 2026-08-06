@@ -75,6 +75,14 @@ export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-auth-${cols.length}-cols`);
 
+  const colHeading = block.querySelector(".columns-auth h1");
+  if (colHeading && colHeading.textContent.includes("®") && !colHeading.querySelector(".registered")) {
+    colHeading.innerHTML = colHeading.innerHTML.replace(
+      /®/g,
+      '<sup class="registered">®</sup>'
+    );
+  }
+
   // setup image columns
   [...block.children].forEach((row) => {
     [...row.children].forEach((col) => {

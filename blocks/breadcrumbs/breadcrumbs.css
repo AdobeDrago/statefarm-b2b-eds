@@ -2,7 +2,8 @@
    breadcrumb strip (a thin border directly under the section, not the
    page's usual 1200px-constrained content) */
 main .breadcrumbs-container {
-  border-bottom: 1px solid var(--sf-border);
+  margin: 0;
+  border-bottom: 1px solid var(--sf-border, #e6e6e6);
 }
 
 /* fixed height with the trail vertically centered inside it, matching the
@@ -16,6 +17,7 @@ main .breadcrumbs-container > .breadcrumbs-wrapper {
   display: flex;
   align-items: center;
   height: 56px;
+  padding: 0;
 }
 
 main .breadcrumbs ol {
@@ -60,4 +62,10 @@ main .breadcrumbs a:hover {
 main .breadcrumbs span[aria-current] {
   color: var(--text-color);
   font-weight: 500;
+}
+
+@media (min-width: 1200px) {
+  main .breadcrumbs {
+    margin-left: 16px;
+  }
 }
