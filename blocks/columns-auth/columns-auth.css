@@ -1,3 +1,7 @@
+.columns-auth-container {
+  margin: 0 !important;
+}
+
 .columns-auth {
   margin-top: 32px;
   margin-bottom: 32px;
@@ -74,10 +78,15 @@
 }
 
 @media (width >= 900px) {
+  .columns-auth-wrapper {
+    width: 1140px;
+    padding: 0;
+    max-width: 100% !important;
+  }
+
   .columns-auth > div {
-    align-items: center;
+    align-items: flex-start;
     flex-direction: unset;
-    gap: 24px;
   }
 
   /* min-height, not height, so taller content grows the row instead of clipping */
@@ -88,7 +97,9 @@
   .columns-auth > div > div {
     /* matches the source's 5/12 (image) : 7/12 (text) column split */
     flex: 7;
+    padding: 0 15px;
     order: unset;
+    height: stretch;
   }
 
   .columns-auth > div > .columns-auth-img-col {
@@ -114,13 +125,23 @@
 /* spacing matches the source's explicit margins between h1, intro copy,
    Log In button and forgot-help — several are larger than the defaults */
 .columns-auth h1 {
-  margin-bottom: 16px;
+  color: #403c3c;
+  line-height: 48px;
+  margin: 0 0 32px;
+}
+
+.columns-auth h1 .registered {
+  line-height: 0;
+  font-size: 24px;
+  vertical-align: super;
 }
 
 .columns-auth h1 + p {
-  margin-top: 0;
-  margin-bottom: 0.4em;
+  margin: 0 0 25px;
   font-size: 25px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #212121;
 }
 
 .columns-auth h1 + p + p {
@@ -133,7 +154,16 @@
 }
 
 .columns-auth p.button-wrapper + p {
-  margin-top: 24px;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 22px;
+}
+
+.columns-auth p.button-wrapper + p > a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
 }
 
 .columns-auth h6 {
