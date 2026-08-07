@@ -182,3 +182,52 @@
   font-size: 16px;
   font-weight: 600;
 }
+
+.columns-auth-container .default-content-wrapper #resources {
+  padding: 0 15px;
+  font-size: 25px;
+  color: #403c3c;
+  font-weight: 500;
+  line-height: 25px;
+  margin: 37.512px 0 24px !important;
+}
+
+.columns-auth-container .default-content-wrapper #resources ~ p {
+  padding: 0 15px;
+  margin: 0 0 16px;
+}
+
+.columns-auth-container .default-content-wrapper #rental-job-aids {
+  margin: 0;
+  color: #403c3c;
+  padding: 0 15px;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 25px;
+}
+
+.columns-auth-container .columns-wrapper .columns {
+  padding: 0 15px;
+}
+
+.columns-auth-container .columns-wrapper .columns #erac, 
+.columns-auth-container .columns-wrapper .columns #hertz {
+  margin: 0 0 24px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #403c3c;
+}
+
+.columns-auth-container .columns-wrapper .columns #erac ~ p, 
+.columns-auth-container .columns-wrapper .columns #hertz ~ p {
+  margin: 0 0 16px;
+}
+
+.columns-auth-container .default-content-wrapper #resources ~ p > a,
+.columns-auth-container .columns-wrapper .columns #erac ~ p > a, 
+.columns-auth-container .columns-wrapper .columns #hertz ~ p > a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
