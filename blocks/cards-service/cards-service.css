@@ -17,6 +17,7 @@
 .cards-service > ul > li {
   display: flex;
   flex-direction: column;
+
   /* width: 350px; */
   border: none;
   background-color: var(--background-color);
