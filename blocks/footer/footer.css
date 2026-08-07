@@ -9,7 +9,7 @@ footer {
   --sf-footer-cream: #f7f0e4;
   --sf-footer-text: rgb(64 60 60);
   --sf-footer-border: rgb(64 60 60 / 20%);
-  --sf-footer-max: 1200px;
+  --sf-footer-max: 1100px;
 
   background-color: var(--sf-footer-cream);
   font-family: MecherleSans, Arial, sans-serif;
@@ -31,7 +31,7 @@ footer .footer .footer-banner {
 }
 
 footer .footer .footer-banner p {
-  max-width: var(--sf-footer-max);
+  max-width: 1100px;
   margin: 0 auto;
   padding: 18px 24px;
   font-size: 16px;
@@ -67,9 +67,9 @@ footer .footer .footer-links {
   justify-content: space-between;
   gap: 12px 24px;
   list-style: none;
-  margin: 32px auto 0;
-  padding: 0 24px 20px;
-  border-bottom: 1px solid var(--sf-footer-border);
+  margin: 20px auto 0;
+  padding: 0 24px 28px;
+  border-bottom: 2px solid var(--sf-footer-border);
 }
 
 footer .footer .footer-links li {
@@ -78,7 +78,7 @@ footer .footer .footer-links li {
 
 footer .footer .footer-links a {
   color: var(--sf-footer-text);
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 700;
   text-decoration: none;
 }
@@ -95,7 +95,7 @@ footer .footer .footer-notices {
   justify-content: flex-start;
   gap: 8px 20px;
   list-style: none;
-  margin: 16px auto 0;
+  margin: 10px auto 0;
   padding: 0 24px;
 }
 
@@ -105,7 +105,7 @@ footer .footer .footer-notices li {
 
 footer .footer .footer-notices a {
   color: var(--sf-footer-text);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   text-decoration: none;
 }
@@ -117,12 +117,35 @@ footer .footer .footer-notices a:hover {
 
 /* copyright */
 footer .footer .footer-copyright {
-  padding-top: 16px;
-  padding-bottom: 24px;
-  font-size: 13px;
+  padding-top: 12px;
+  padding-bottom: 68px;
+  font-size: 12px;
   color: var(--sf-footer-text);
   text-align: left;
 }
+
+/* under 1024p */
+
+@media (width <= 1024px){
+    footer .footer .footer-banner p,
+    footer .footer .footer-links,
+    footer .footer .footer-notices,
+    footer .footer .footer-copyright { 
+      padding-inline: 48px; 
+    }  
+  }
+
+@media (width <=768px) {
+
+  footer .footer .footer-banner p,
+  footer .footer .footer-links,
+  footer .footer .footer-notices,
+  footer .footer .footer-copyright {
+    padding-inline: 38px;
+  }
+}
+
+
 
 /* ---- mobile ---- */
 @media (width < 600px) {
@@ -132,15 +155,15 @@ footer .footer .footer-copyright {
   }
 
   footer .footer .footer-links {
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: flex-start;
-    gap: 10px;
+    gap: 10px 40px;
   }
 
   footer .footer .footer-notices {
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: flex-start;
-    gap: 8px;
+    gap: 8px 18px;
     text-align: left;
   }
 
