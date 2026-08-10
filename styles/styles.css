@@ -24,9 +24,9 @@
 
   /* fonts */
   /* stylelint-disable-next-line value-keyword-case -- MecherleSans is a brand font name, not a CSS keyword */
-  --body-font-family: MecherleSans, Arial, sans-serif;
+  --body-font-family: "MecherleSans", Arial, sans-serif;
   /* stylelint-disable-next-line value-keyword-case -- MecherleSans is a brand font name, not a CSS keyword */
-  --heading-font-family: MecherleSans, Arial, sans-serif;
+  --heading-font-family: "MecherleSans", Arial, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -42,7 +42,7 @@
   --heading-font-size-xs: 22px;
 }
 
-@media (width >=900px) {
+@media (width <=900px) {
   :root {
     /* body sizes */
     --body-font-size-m: 16px;
@@ -307,8 +307,12 @@ main img {
 
 /* dropdown jump-menu (converted from an authored list of links) */
 .dropdown-select-wrapper {
+  display: block;
+  width: 100%;
+  max-width: calc(100% - 30px);
   position: relative;
   background-color: #fff;
+  margin-inline: auto;
   box-shadow:
     inset 0 -1px 0 0 #767676,
     inset -1px 0 0 #f4f3f3,
@@ -332,17 +336,38 @@ main img {
   cursor: pointer;
 }
 
+.dropdown-select:focus,
+.dropdown-select:hover {
+  background-color: var(--khaki-color);
+  outline: 1px solid var(--text-color);
+}
+
+.dropdown-select option {
+  background-color: var(--khaki-color);
+}
+
 .dropdown-select-wrapper::after {
   content: '';
   position: absolute;
-  top: 50%;
   right: 16px;
-  width: 8px;
-  height: 8px;
-  margin-top: -6px;
-  border: 4px solid transparent;
-  border-top-color: var(--text-color);
+
+  /* width: 8px;
+  height: 8px; */
+
+  /* margin-top: -6px; */
+
+  /* border: 8px solid transparent; */
+
+  /* border-top-color: var(--text-color); */
   pointer-events: none;
+  border: 2px solid var(--text-color);
+  width: 0.7rem;
+  height: 0.7rem;
+  top: calc(50% - 0.5rem);
+  rotate: 45deg;
+  border-top: none;
+  border-left: none;
+
 }
 
 /* sections */
