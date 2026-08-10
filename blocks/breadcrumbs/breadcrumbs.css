@@ -38,6 +38,13 @@ main .breadcrumbs li {
   font-size: 13px;
 }
 
+.breadcrumbs li a,
+.breadcrumbs li span {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400 !important;
+}
+
 /* right-pointing chevron separator, same border-triangle technique used
    for the header megamenu's dropdown arrow */
 main .breadcrumbs li:not(:first-child)::before {
