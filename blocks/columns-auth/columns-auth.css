@@ -1,9 +1,13 @@
+.columns-auth-container {
+  margin: 0 !important;
+}
+
 .columns-auth {
   /* margin-top: 32px; */
   margin-bottom: 32px;
 }
 
-.columns-auth > div {
+.columns-auth>div {
   display: flex;
   flex-direction: column;
 }
@@ -15,9 +19,9 @@
 /* "No login required" icon + link row: stacked on narrow viewports,
    an even 3-across row once there is enough room */
 .columns-auth-no-login-list {
-  display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px 24px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -30,13 +34,13 @@
 }
 
 /* used .columns-auth>div>div as container */
-@container (width >= 600px) {
+@container (width >=600px) {
   .columns-auth-no-login-list {
-    display: grid; 
-    grid-template-columns: auto auto auto; 
+    display: grid;
+    grid-template-columns: auto auto auto;
     gap: 16px 24px;
   }
-} 
+}
 
 .columns-auth-no-login-list .icon {
   flex-shrink: 0;
@@ -55,24 +59,22 @@
   font-weight: 700;
 }
 
-.columns-auth > div > div {
+.columns-auth>div>div {
   order: 1;
 }
 
-.columns-auth > div > .columns-auth-img-col {
+.columns-auth>div>.columns-auth-img-col {
   order: 0;
 }
 
-.columns-auth > div > .columns-auth-img-col img {
+.columns-auth>div>.columns-auth-img-col img {
   margin-top: 2.3em;
   display: block;
 }
 
-/* fixed-size pictogram (not a fluid promotional photo). Targeted
-   structurally (nth-child) rather than via .columns-auth-img-col, since
-   that class is only added once the image is wrapped in a <picture> —
-   true after the DA pipeline processes it, but not for a raw <img> */
-.columns-auth-3-cols > div > div:first-child img {
+/* fixed-size pictogram, targeted structurally (nth-child) since
+   .columns-auth-img-col isn't added until the DA pipeline wraps it */
+.columns-auth-3-cols>div>div:first-child img {
   width: 104px;
   height: 104px;
   margin: 0 auto;
@@ -89,69 +91,82 @@
 }
 
 
-@media (width >= 900px) {
-  .columns-auth > div {
-    /* align-items: center; */
-    flex-direction: unset;
-    gap: 24px;
+@media (width >=900px) {
+  .columns-auth-wrapper {
+    width: 1140px;
+    padding: 0;
+    max-width: 100% !important;
   }
 
-  /* baseline row height for the 3-col (fixed-icon) variant — min-height,
-     not height, so content that renders slightly taller than the source
-     (font differences) grows the row instead of getting clipped */
-  .columns-auth-3-cols > div {
+  .columns-auth>div {
+    align-items: flex-start;
+    flex-direction: unset;
+  }
+
+  /* min-height, not height, so taller content grows the row instead of clipping */
+  .columns-auth-3-cols>div {
     min-height: 165px;
   }
 
-  .columns-auth > div > div {
+  .columns-auth>div>div {
     /* matches the source's 5/12 (image) : 7/12 (text) column split */
     flex: 7;
+    padding: 0 15px;
     order: unset;
     container-type: inline-size;
+    height: stretch;
   }
 
-  .columns-auth > div > .columns-auth-img-col {
+  .columns-auth>div>.columns-auth-img-col {
     flex: 5;
   }
 
-  /* 3-column layout (icon, title block, right-aligned login/links) used
-     when the image is a small fixed-size pictogram rather than a wide
-     promotional photo */
-
-  /* wider than the 104px icon itself so the icon reads as centered with
-     breathing room, matching the source's column proportions (roughly
-     1:3:2 across icon : title : actions) */
-  .columns-auth-3-cols > div > div:first-child {
+  /* 3-col layout: icon : title : right-aligned actions, roughly a 1:3:2
+     flex split matching the source's column proportions */
+  .columns-auth-3-cols>div>div:first-child {
     flex: 1;
   }
 
-  .columns-auth-3-cols > div > div:nth-child(2) {
+  .columns-auth-3-cols>div>div:nth-child(2) {
     flex: 3;
   }
 
-  .columns-auth-3-cols > div > div:nth-child(3) {
+  .columns-auth-3-cols>div>div:nth-child(3) {
     flex: 2;
     text-align: right;
   }
 }
 
-/* spacing sequence matches the source markup's explicit margins:
-   h1 -> intro paragraph -> second paragraph -> Log In button -> forgot
-   paragraph -> "No login required" heading. Several of these are *larger*
-   than the default paragraph margins, not smaller — a blanket margin
-   collapse here is what was making the column read as crushed together. */
+/* spacing matches the source's explicit margins between h1, intro copy,
+   Log In button and forgot-help — several are larger than the defaults */
 .columns-auth h1 {
   font-size: 48px;
   margin-bottom: 9px;
 }
 
-.columns-auth h1 + p {
+.columns-auth h1+p {
   margin-top: 0;
   margin-bottom: 10px;
-  font-size: 25px;
+  color: #403c3c;
+  line-height: 48px;
+  margin: 0 0 32px;
 }
 
-.columns-auth h1 + p + p {
+.columns-auth h1 .registered {
+  line-height: 0;
+  font-size: 24px;
+  vertical-align: super;
+}
+
+.columns-auth h1+p {
+  margin: 0 0 25px;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #212121;
+}
+
+.columns-auth h1+p+p {
   margin-top: 0;
   margin-bottom: 24px;
   font-size: 16px;
@@ -161,8 +176,17 @@
   margin-top: 0;
 }
 
-.columns-auth p.button-wrapper + p {
-  margin-top: 24px;
+.columns-auth p.button-wrapper+p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 22px;
+}
+
+.columns-auth p.button-wrapper+p>a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
 }
 
 .columns-auth h6 {
@@ -171,12 +195,62 @@
   font-size: 16px;
 }
 
-/* Log In pill button */
+/* min-width, not width — a fixed 138px clipped "Log In" and would ellipsize
+   "Log Out"; growing it shifts nothing since the cell is right-aligned */
 .columns-auth .button.accent {
-  width: 138px;
+  min-width: 138px;
   height: 48px;
   padding-left: 48px;
   padding-right: 48px;
   font-size: 16px;
   font-weight: 600;
+}
+
+.columns-auth-container .default-content-wrapper #resources {
+  padding: 0 15px;
+  font-size: 25px;
+  color: #403c3c;
+  font-weight: 500;
+  line-height: 25px;
+  margin: 37.512px 0 24px !important;
+}
+
+.columns-auth-container .default-content-wrapper #resources~p {
+  padding: 0 15px;
+  margin: 0 0 16px;
+}
+
+.columns-auth-container .default-content-wrapper #rental-job-aids {
+  margin: 0;
+  color: #403c3c;
+  padding: 0 15px;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 25px;
+}
+
+.columns-auth-container .columns-wrapper .columns {
+  padding: 0 15px;
+}
+
+.columns-auth-container .columns-wrapper .columns #erac,
+.columns-auth-container .columns-wrapper .columns #hertz {
+  margin: 0 0 24px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #403c3c;
+}
+
+.columns-auth-container .columns-wrapper .columns #erac~p,
+.columns-auth-container .columns-wrapper .columns #hertz~p {
+  margin: 0 0 16px;
+}
+
+.columns-auth-container .default-content-wrapper #resources~p>a,
+.columns-auth-container .columns-wrapper .columns #erac~p>a,
+.columns-auth-container .columns-wrapper .columns #hertz~p>a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
 }

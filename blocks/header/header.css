@@ -268,7 +268,8 @@ header nav .nav-login {
   background: none;
   color: var(--sf-red);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
+  padding: 2px;
   text-decoration: none;
   white-space: nowrap;
 }

@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { isSimulationEnabled, decorateAuthControl, decorateAuthForm } from '../../scripts/auth.js';
 
 // media query match that indicates desktop width (header shows full nav)
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -55,12 +56,8 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
- * Build the search control from JS — not authored in the fragment. The
- * toggle lives in the utility bar; the pane is its own row inside <nav>'s
- * grid, between the gray utility row and the logo/links row, so opening it
- * grows nav's own grid-template-rows and pushes everything below (including
- * the logo/links row and the rest of the page) down — unlike the megamenu
- * panels, which float over content via position: fixed.
+ * Builds the search control from JS — not authored in the fragment. Opening
+ * it grows nav's own grid row rather than floating over content, unlike the megamenu.
  * @param {Element} nav the nav element (search row lives in its grid)
  * @param {Element} searchLink the placeholder anchor for search in the tools section
  */
@@ -96,6 +93,7 @@ function decorateSearch(nav, searchLink) {
   submit.className = 'nav-search-submit button accent';
   submit.textContent = 'Search';
   form.append(input, submit);
+  decorateAuthForm(form);
 
   const closeBtn = document.createElement('button');
   closeBtn.type = 'button';
@@ -224,9 +222,8 @@ export default async function decorate(block) {
       }
     });
 
-    // move every panel into a trailing container so all top-level trigger
-    // anchors precede panel links in DOM order (keeps "Payments" ahead of the
-    // nested "View Payments" link)
+    // move every panel into a trailing container so top-level trigger anchors
+    // precede panel links in DOM order
     const panelHost = document.createElement('div');
     panelHost.className = 'nav-drop-panels';
     navSections.querySelectorAll(':scope > ul > li.nav-drop').forEach((li) => {
@@ -254,7 +251,11 @@ export default async function decorate(block) {
     const loginPara = navTools.querySelector('p');
     if (loginPara) {
       const loginLink = loginPara.querySelector('a');
-      if (loginLink) loginLink.classList.add('nav-login');
+      if (loginLink) {
+        loginLink.classList.add('nav-login');
+        // the authored href is the real login app, so only simulation hosts rewrite it
+        if (isSimulationEnabled()) decorateAuthControl(loginLink);
+      }
       const loginWrap = document.createElement('div');
       loginWrap.className = 'nav-login-wrap';
       loginWrap.append(loginPara);

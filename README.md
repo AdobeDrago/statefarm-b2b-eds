@@ -3,12 +3,14 @@
 State Farm B2B site built on Adobe Edge Delivery Services (EDS), authored in Document Authoring (DA).
 
 ## Environments
-- Preview: https://main--statefarm-b2b-eds--adobedrago.aem.page/
-- Live: https://main--statefarm-b2b-eds--adobedrago.aem.live/
 
-## Documentation
+- Preview: [https://main--statefarm-b2b-eds--adobedrago.aem.page/](https://main--statefarm-b2b-eds--adobedrago.aem.page/)
+- Live: [https://main--statefarm-b2b-eds--adobedrago.aem.live/](https://main--statefarm-b2b-eds--adobedrago.aem.live/)
 
-Before working on this project, go through the documentation on https://www.aem.live/docs/ and more specifically:
+## Documentation 
+
+Before working on this project, go through the documentation on [https://www.aem.live/docs/](https://www.aem.live/docs/) and more specifically:
+
 1. [Developer Tutorial](https://www.aem.live/developer/tutorial)
 2. [The Anatomy of a Project](https://www.aem.live/developer/anatomy-of-a-project)
 3. [Web Performance](https://www.aem.live/developer/keeping-it-100)
@@ -22,14 +24,19 @@ See `AGENTS.md` for the full contributor/agent workflow (skills, publishing proc
 npm i
 ```
 
+
+
 ## Linting
 
 ```sh
 npm run lint
 ```
 
+
+
 ## Local development
 
 1. Install the [AEM CLI](https://github.com/adobe/helix-cli): `npm install -g @adobe/aem-cli`
-1. Start AEM Proxy: `aem up` (opens your browser at `http://localhost:3000`)
-1. Open this directory in your favorite IDE and start coding :)
+2. Start AEM Proxy: `aem up` (opens your browser at `http://localhost:3000`)
+3. Open this directory in your favorite IDE and start coding :)
+

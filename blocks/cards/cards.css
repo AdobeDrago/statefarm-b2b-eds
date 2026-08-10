@@ -4,7 +4,6 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
 }
 
 @media (width >= 600px) {
@@ -15,42 +14,71 @@
 }
 
 .cards > ul > li {
+  padding: 0 15px;
+  margin: 0 0 20px;
+}
+
+.cards > ul > li > div {
   position: relative;
   margin: 0;
   min-height: 160px;
-  border: 1px solid #dadada;
+  border-radius: 4px;
+  border: 1px solid #acabab;
   background-color: var(--background-color);
   box-shadow: 0 0 3px rgb(33 33 33 / 25%);
   transition: box-shadow 0.2s ease;
 }
 
-.cards > ul > li:hover {
+.cards > ul > li > div:hover {
+  border: 1px solid #403c3c;
   box-shadow: 0 2px 5px rgb(33 33 33 / 25%);
 }
 
 .cards .cards-card-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   padding: 24px;
 }
 
 .cards .cards-card-body p {
-  margin: 0;
   font-size: 16px;
   font-weight: 400;
-}
-
-.cards .cards-card-body p + p {
-  margin-top: 8px;
+  line-height: 20px;
+  margin: 16px 0;
 }
 
 .cards .cards-card-body p:first-child {
   /* reserve room so title text doesn't run under the icon */
-  padding-right: 32px;
   font-weight: 600;
+  margin: 0;
+}
+
+.cards .cards-card-body p:first-child:has(> strong) {
+  gap: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.cards .cards-card-body p:first-child:has(> strong) > strong {
+  order: -1;
+  color: #FFF;
+  font-size: 12px;
+  padding: 2px 8px;
+  font-weight: 400;
+  line-height: 19px;
+  border-radius: 16px;
+  background-color: #D62311;
+  border: 1px solid #D62311;
 }
 
 .cards .cards-card-body p:first-child a {
+  padding: 2px;
+  margin: -2px;
   font-weight: 600;
+  line-height: 22px;
+  padding-right: 15px;
 }
 
 .cards .cards-card-image {
