@@ -1,19 +1,23 @@
 /* stylelint-disable no-descending-specificity */
+.cards-service {
+  padding-inline: 0;
+}
 
-.cards-service > ul {
+.cards-service>ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 350px);
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   justify-content: center;
-  gap: 24px;
+  gap: 1rem 0;
 }
 
-.cards-service > ul > li {
+.cards-service>ul>li {
   display: flex;
   flex-direction: column;
-  width: 350px;
+
+  /* width: 350px; */
   border: none;
   background-color: var(--background-color);
 }
@@ -56,12 +60,12 @@
 }
 
 /* push the dropdown strip to the bottom of the card, even when card text heights differ */
-.cards-service > ul > li .dropdown-select-wrapper {
+.cards-service>ul>li .dropdown-select-wrapper {
   margin-top: auto;
 }
 
 /* photo cards (if any) keep the cover treatment */
-.cards-service > ul > li .cards-service-card-image > picture img {
+.cards-service>ul>li .cards-service-card-image>picture img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;

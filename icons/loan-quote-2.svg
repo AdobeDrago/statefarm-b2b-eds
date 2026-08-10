@@ -1,0 +1,16 @@
+<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#d62311" stroke="#0000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <g class="background">
+ 
+  </g>
+  <g class="icon">
+    <g class="icon-2" data-name="icon">
+      <g>
+        <path d="M20.24,11c-1.15-.33-1.66-.53-1.66-1.13,0-.81.89-.89,1.27-.89a1.42,1.42,0,0,1,1.5,1.18l.06.3H23.2a4.23,4.23,0,0,0-.05-.5A3,3,0,0,0,20.79,7.3V6H19V7.23a2.66,2.66,0,0,0-2.32,2.59c0,2.06,1.62,2.55,2.93,2.94,1.11.34,1.74.56,1.74,1.26s-.75,1.05-1.45,1.05a1.77,1.77,0,0,1-1.72-1.71V13H16.32l.06.56A3.47,3.47,0,0,0,19,16.75V18h1.79V16.77A2.8,2.8,0,0,0,23.27,14C23.27,11.82,21.52,11.32,20.24,11Z"></path>
+        <rect x="6" y="6" width="8" height="2"></rect>
+        <rect x="6" y="9" width="8" height="2"></rect>
+        <rect x="6" y="12" width="5" height="2"></rect>
+        <polygon points="16 20 4 20 4 4 16 4 16 6 18 6 18 2 2 2 2 22 18 22 18 18 16 18 16 20"></polygon>
+      </g>
+    </g>
+  </g>
+</svg>

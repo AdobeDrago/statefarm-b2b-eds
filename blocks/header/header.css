@@ -54,7 +54,7 @@ header nav {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 0 16px;
-  max-width: 1200px;
+  max-width: 1155px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -194,6 +194,7 @@ header .nav-search-pane-inner {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
+  padding-top: 48px;
   box-sizing: border-box;
 }
 
@@ -202,17 +203,25 @@ header .nav-search-form {
   align-items: center;
   gap: 16px;
   flex: 1;
+  justify-content: center;
 }
 
 header .nav-search-form input[type='search'] {
   flex: 1;
   height: 48px;
-  box-sizing: border-box;
-  border: 1px solid var(--sf-border);
-  border-radius: 4px;
+  box-sizing: border-box; 
   padding: 0 16px;
   font: inherit;
   font-size: 16px;
+  max-width: 270px; 
+  border: none;
+  border: 1px solid var(--light-color);
+  border-bottom: 1px solid var(--text-color);
+}
+
+header .nav-search-form input[type='search']:focus {
+  outline: none;
+  background-color: var(--khaki-color);
 }
 
 /* same size/style as the columns-auth Log In button */
@@ -227,15 +236,17 @@ header .nav-search-submit {
 }
 
 header .nav-search-close {
-  flex: none;
-  width: 24px;
-  height: 24px;
+  flex: none; 
   border: 0;
   background: none;
   color: var(--sf-utility-text);
-  font-size: 20px;
+  font-size: 48px;
+  font-weight: 100;
   line-height: 1;
   cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 header .nav-search-close:hover {
@@ -278,7 +289,7 @@ header nav .nav-sections > ul {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px 24px;
+  gap: 4px 20px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -367,6 +378,7 @@ header nav .nav-drop-panels {
   pointer-events: none;
 }
 
+
 header nav .nav-drop-panels .nav-drop-panel.open {
   pointer-events: auto;
 }
@@ -387,15 +399,32 @@ header nav .nav-drop-panel {
   border-bottom: 1px solid var(--sf-border);
   box-shadow: 0 6px 20px rgb(0 0 0 / 12%);
   opacity: 0;
-  overflow: hidden;
-  transition: grid-template-rows 0.3s ease, opacity 0.3s ease;
+
+  /* overflow: hidden; */
+  transition: grid-template-rows 0.3s ease ;
 }
+
+
+header nav .nav-drop-panel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background-color: #000a;
+  z-index: -40; 
+}
+
+header nav .nav-drop-panel .open::after {
+  opacity: 1;
+} 
 
 header nav .nav-drop-panel.open {
   grid-template-rows: 1fr;
   opacity: 1;
 }
-
+ 
 header nav .nav-drop-panel-inner {
   display: flex;
   gap: 48px;
@@ -413,7 +442,7 @@ header nav .nav-drop-close {
   border: 0;
   background: none;
   color: var(--sf-utility-text);
-  font-size: 20px;
+  font-size: 40px;
   line-height: 1;
   cursor: pointer;
 }
@@ -523,11 +552,11 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     grid-template:
       'tools tools tools' 32px
       'search search search' 0fr
-      'brand sections login' 60px
+      'brand sections login' 47px /* changed the to match the exact row height*/
       / auto 1fr auto;
     transition: grid-template-rows 0.3s ease;
     row-gap: 0;
-    padding: 0 24px;
+    padding: 0 24px; 
   }
 
   /* opening search grows the middle row from 0fr to 1fr, pushing the

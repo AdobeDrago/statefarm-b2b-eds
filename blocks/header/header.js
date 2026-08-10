@@ -213,8 +213,7 @@ export default async function decorate(block) {
           if (isDesktop.matches) openDrop(navSections, navSection);
         });
         if (topLink) {
-          topLink.addEventListener('click', (e) => {
-            e.preventDefault();
+          topLink.addEventListener('click', () => {
             const wasOpen = navSection.getAttribute('aria-expanded') === 'true';
             if (wasOpen) closeAllDrops(navSections);
             else openDrop(navSections, navSection);
