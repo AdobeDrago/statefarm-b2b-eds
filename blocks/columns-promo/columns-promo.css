@@ -1,18 +1,24 @@
 .columns-promo {
   width: 100%;
-  max-width: 1060px;
+  max-width: 1110px;
   box-sizing: border-box;
   margin: 64px auto;
+  border-radius: 4px;
+  box-shadow: 0 0 3px 0 rgb(33 33 33 / 25%);
+  margin-bottom: 90px;
 }
 
 .columns-promo > div {
   display: flex;
   flex-direction: column;
-  border: 1px solid #dadada;
+  border-radius: 4px;
+  border: 1px solid #acabab;
   background-color: #f7f0e4;
+  align-items: start;
 }
 
 .columns-promo h2 {
+  font-size: calc(var(--heading-font-size-l) + 5px);
   color: var(--link-color);
   margin-top: 0;
 }
@@ -21,6 +27,7 @@
   font-size: 25px;
   font-weight: 500;
   color: var(--text-color);
+  margin-top: 0.2em; 
 }
 
 .columns-promo .dropdown-select-wrapper {
@@ -28,10 +35,14 @@
   height: 48px;
   box-sizing: border-box;
   margin-top: 16px;
+  box-shadow: 0 0 3px 0 rgb(33 33 33 / 25%);
+  margin-inline: unset;
 }
 
 .columns-promo .dropdown-select {
   height: 100%;
+  font-weight: 600;
+  color: black;
 }
 
 .columns-promo img {
@@ -44,6 +55,7 @@
 
 .columns-promo > div > div:not(.columns-promo-img-col) {
   padding: 24px;
+  padding-bottom: 40px;
 }
 
 .columns-promo > div > .columns-promo-img-col {
