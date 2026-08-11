@@ -319,7 +319,7 @@ header nav .nav-sections > ul > li > p > a {
   color: var(--sf-header-text);
   font-size: 14px;
   text-decoration: none;
-  padding: 12px 0;
+  padding: 10px 0;
   cursor: pointer;
 }
 
@@ -590,12 +590,12 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 
   header nav .nav-sections {
     align-self: center;
-    padding-left: 10px;
-    border-left: 1px solid var(--sf-border);
+    padding-block: 10px;
   }
 
     header nav .nav-sections ul {
-      padding-block: 8px;
+      padding-left: 10px;
+      border-left: 1px solid var(--sf-border);
     }
 
   /* desktop top-level nav links render as plain text, no dropdown arrow */
