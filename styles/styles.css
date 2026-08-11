@@ -349,7 +349,7 @@ main img {
 .dropdown-select-wrapper::after {
   content: '';
   position: absolute;
-  right: 16px;
+  right: 22px;
 
   /* width: 8px;
   height: 8px; */
@@ -361,8 +361,8 @@ main img {
   /* border-top-color: var(--text-color); */
   pointer-events: none;
   border: 2px solid var(--text-color);
-  width: 0.7rem;
-  height: 0.7rem;
+  width: 0.6rem;
+  height: 0.6rem;
   top: calc(50% - 0.5rem);
   rotate: 45deg;
   border-top: none;
