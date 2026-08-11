@@ -39,8 +39,7 @@ header .nav-wrapper {
     left: 0;
     right: 0;
     height: 32px;
-    background-color: var(--sf-hover-bg);
-    border-bottom: 1px solid var(--sf-border);
+    background-color: var(--sf-hover-bg); 
   }
 }
 
@@ -54,7 +53,7 @@ header nav {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 0 16px;
-  max-width: 1155px;
+  max-width: 1170px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -70,6 +69,7 @@ header nav .nav-brand {
 
 header nav .nav-brand p {
   margin: 0;
+  margin-left: 10px;
 }
 
 header nav .nav-brand .nav-brand-link {
@@ -95,7 +95,7 @@ header nav .nav-tools {
 header nav .nav-tools ul {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -317,7 +317,7 @@ header nav .nav-sections > ul > li > p > a {
   color: var(--sf-header-text);
   font-size: 14px;
   text-decoration: none;
-  padding: 12px 0;
+  padding: 10px 0;
   cursor: pointer;
 }
 
@@ -552,11 +552,11 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     grid-template:
       'tools tools tools' 32px
       'search search search' 0fr
-      'brand sections login' 47px /* changed the to match the exact row height*/
+      'brand sections login' minmax(47px, auto) /* changed the to match the exact row height*/
       / auto 1fr auto;
     transition: grid-template-rows 0.3s ease;
     row-gap: 0;
-    padding: 0 24px; 
+    padding: 0 24px;  
   }
 
   /* opening search grows the middle row from 0fr to 1fr, pushing the
@@ -588,9 +588,13 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 
   header nav .nav-sections {
     align-self: center;
-    padding-left: 20px;
-    border-left: 1px solid var(--sf-border);
+    padding-block: 10px;
   }
+
+    header nav .nav-sections ul {
+      padding-left: 10px;
+      border-left: 1px solid var(--sf-border);
+    }
 
   /* desktop top-level nav links render as plain text, no dropdown arrow */
   header nav .nav-sections > ul > li.nav-drop > a::after,
