@@ -2,7 +2,7 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { isSimulationEnabled } from '../../scripts/auth.js';
 
 // the authored lock badge marking a card whose target needs a B2B login
-const LOCK_BADGE = 'img[alt="Login required"], img[src*="/lock.svg"]';
+const LOCK_BADGE = 'img[alt="Login required"], img[src*="../../icons/lock-2.svg"]';
 
 // soft prompts like "Log In to have shop info auto-filled..." or "Log in
 // requred to access." — distinct from "No log in required", which starts with "No"
@@ -15,6 +15,10 @@ const SOFT_LOGIN_PROMPT = /^log in\b/i;
  */
 function decorateLockedCards(block) {
   block.querySelectorAll(LOCK_BADGE).forEach((img) => {
+    // set src to lock icon if alt is "Login required"
+    if (img.alt === 'Login required') {
+      img.src = '../../icons/lock-2.svg';
+    }
     // tag the outermost node — cards.css positions the picture or the bare img,
     // depending on whether createOptimizedPicture wrapped it
     (img.closest('picture') || img).dataset.auth = 'anonymous';
@@ -52,8 +56,8 @@ export default function decorate(block) {
     });
     ul.append(li);
   });
+  decorateLockedCards(ul);
   ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
   block.replaceChildren(ul);
-  decorateLockedCards(block);
   decorateSoftLoginPrompts(block);
 }

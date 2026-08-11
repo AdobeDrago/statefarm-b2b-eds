@@ -1,8 +1,13 @@
+.cards-wrapper {
+  margin-bottom: 20px !important;
+}
+
 .cards > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
+  gap: 20px 30px;
   grid-template-columns: 1fr;
 }
 
@@ -11,11 +16,6 @@
     /* 2 per row, each sharing 50% of the row (minus the gap) */
     grid-template-columns: repeat(2, 1fr);
   }
-}
-
-.cards > ul > li {
-  padding: 0 15px;
-  margin: 0 0 20px;
 }
 
 .cards > ul > li > div {
@@ -115,4 +115,91 @@
   height: 100%;
   aspect-ratio: auto;
   object-fit: contain;
+}
+
+.default-content-wrapper #select-service {
+  margin: 24px 0 0;
+  font-weight: 500;
+  line-height: 25px;
+  font-size: 25.008px;
+  color: var(--dark-gray-color);
+}
+
+.default-content-wrapper #create-assignment {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 48px;
+  margin: 6px 0 32px;
+  color: var(--dark-gray-color);
+}
+
+.default-content-wrapper #job-aids {
+  margin: 0 0 24px;
+  font-weight: 500;
+  line-height: 25px;
+  font-size: 25.008px;
+  color: var(--dark-gray-color);
+}
+
+.columns-wrapper #erac,
+.columns-wrapper #hertz {
+  font-size: 20px;
+  margin: 0 0 24px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--dark-gray-color);
+}
+
+.columns-wrapper #erac + ul,
+.columns-wrapper #hertz + ul {
+  padding: 0;
+  margin: 0 0 24px;
+}
+
+.columns-wrapper #erac + ul > li,
+.columns-wrapper #hertz + ul > li {
+  margin: 0 0 16px;
+  list-style-type: none;
+}
+
+.columns-wrapper #erac + ul > li > strong,
+.columns-wrapper #hertz + ul > li > strong {
+  display: flex;
+}
+
+.columns-wrapper #erac + ul > li a,
+.columns-wrapper #hertz + ul > li a {
+  padding: 2px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.cards-container .default-content-wrapper:has(#job-aids) > ul {
+  margin: 0;
+  padding: 0;
+}
+
+.cards-container .default-content-wrapper:has(#job-aids) > ul > li {
+  margin: 0 0 16px;
+  list-style-type: none;
+}
+
+.cards-container .default-content-wrapper:has(#job-aids) > ul > li > strong {
+  display: flex;
+}
+
+.cards-container .default-content-wrapper:has(#job-aids) > ul > li a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--text-color);
+}
+
+.default-content-wrapper #rental-job-aids {
+  margin: 0;
+  font-weight: 500;
+  line-height: 25px;
+  font-size: 25.008px;
+  color: var(--dark-gray-color);
 }
