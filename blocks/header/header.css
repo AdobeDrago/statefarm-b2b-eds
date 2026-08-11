@@ -39,9 +39,7 @@ header .nav-wrapper {
     left: 0;
     right: 0;
     height: 32px;
-    background-color: var(--sf-hover-bg);
-
-    /* border-bottom: 1px solid var(--sf-border); */
+    background-color: var(--sf-hover-bg); 
   }
 }
 
