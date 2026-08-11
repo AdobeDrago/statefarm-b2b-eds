@@ -554,12 +554,11 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     grid-template:
       'tools tools tools' 32px
       'search search search' 0fr
-      'brand sections login' 63px /* changed the to match the exact row height*/
+      'brand sections login' minmax(47px, auto) /* changed the to match the exact row height*/
       / auto 1fr auto;
     transition: grid-template-rows 0.3s ease;
     row-gap: 0;
-    padding: 0 24px; 
-    margin-left: calc(inherit - 10px);
+    padding: 0 24px;  
   }
 
   /* opening search grows the middle row from 0fr to 1fr, pushing the
@@ -594,6 +593,10 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     padding-left: 10px;
     border-left: 1px solid var(--sf-border);
   }
+
+    header nav .nav-sections ul {
+      padding-block: 8px;
+    }
 
   /* desktop top-level nav links render as plain text, no dropdown arrow */
   header nav .nav-sections > ul > li.nav-drop > a::after,
