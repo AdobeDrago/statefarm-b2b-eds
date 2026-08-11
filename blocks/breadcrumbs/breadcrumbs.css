@@ -24,7 +24,6 @@ main .breadcrumbs ol {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -33,9 +32,12 @@ main .breadcrumbs ol {
 main .breadcrumbs li {
   display: flex;
   align-items: center;
-  gap: 6px;
   margin: 0;
   font-size: 13px;
+}
+
+main .breadcrumbs li:first-child {
+  padding: 2px;
 }
 
 .breadcrumbs li a,
@@ -45,15 +47,16 @@ main .breadcrumbs li {
   font-weight: 400 !important;
 }
 
-/* right-pointing chevron separator, same border-triangle technique used
-   for the header megamenu's dropdown arrow */
+/* right-pointing chevron separator */
 main .breadcrumbs li:not(:first-child)::before {
   content: '';
   flex: none;
-  width: 0;
-  height: 0;
-  border: 4px solid transparent;
-  border-left-color: var(--dark-color);
+  width: 24px;
+  height: 24px;
+  background-image: url("../../icons/chevron-icons.svg#right_default");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 main .breadcrumbs a {

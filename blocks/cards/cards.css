@@ -49,6 +49,15 @@
   margin: 16px 0;
 }
 
+.cards .cards-card-body p:first-child:not(:has(picture)) {
+  height: 30px;
+  box-sizing: border-box;
+}
+
+.cards .cards-card-body p:first-child:not(:has(picture)) a {
+  vertical-align: -webkit-baseline-middle;
+}
+
 .cards .cards-card-body p:first-child {
   /* reserve room so title text doesn't run under the icon */
   font-weight: 600;
@@ -141,6 +150,11 @@
   color: var(--dark-gray-color);
 }
 
+.columns-wrapper div:has(> #erac),
+.columns-wrapper div:has(> #hertz) {
+  margin: 0 0 24px;
+}
+
 .columns-wrapper #erac,
 .columns-wrapper #hertz {
   font-size: 20px;
@@ -152,8 +166,8 @@
 
 .columns-wrapper #erac + ul,
 .columns-wrapper #hertz + ul {
+  margin: 0;
   padding: 0;
-  margin: 0 0 24px;
 }
 
 .columns-wrapper #erac + ul > li,
@@ -197,7 +211,7 @@
 }
 
 .default-content-wrapper #rental-job-aids {
-  margin: 0;
+  margin: 40px 0 0;
   font-weight: 500;
   line-height: 25px;
   font-size: 25.008px;
