@@ -9,7 +9,7 @@ footer {
   --sf-footer-cream: #f7f0e4;
   --sf-footer-text: rgb(64 60 60);
   --sf-footer-border: rgb(64 60 60 / 20%);
-  --sf-footer-max: 1100px;
+  --sf-footer-max: 1110px;
 
   background-color: var(--sf-footer-cream);
   font-family: MecherleSans, Arial, sans-serif;
@@ -31,7 +31,7 @@ footer .footer .footer-banner {
 }
 
 footer .footer .footer-banner p {
-  max-width: 1100px;
+  max-width: 1110px;
   margin: 0 auto;
   padding: 18px 24px;
   font-size: 16px;
@@ -68,7 +68,7 @@ footer .footer .footer-links {
   gap: 12px 24px;
   list-style: none;
   margin: 20px auto 0;
-  padding: 0 24px 28px;
+  padding: 0 15px 28px;
   border-bottom: 2px solid var(--sf-footer-border);
 }
 
@@ -79,12 +79,12 @@ footer .footer .footer-links li {
 footer .footer .footer-links a {
   color: var(--sf-footer-text);
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: none;
 }
 
 footer .footer .footer-links a:hover {
-  color: var(--sf-footer-red);
+  /* color: var(--sf-footer-red); */
   text-decoration: underline;
 }
 
@@ -93,10 +93,11 @@ footer .footer .footer-notices {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 8px 20px;
+  gap: 8px 26px;
   list-style: none;
   margin: 10px auto 0;
   padding: 0 24px;
+  padding-left: 50px;
 }
 
 footer .footer .footer-notices li {
@@ -106,12 +107,12 @@ footer .footer .footer-notices li {
 footer .footer .footer-notices a {
   color: var(--sf-footer-text);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
 }
 
 footer .footer .footer-notices a:hover {
-  color: var(--sf-footer-red);
+  /* color: var(--sf-footer-red); */
   text-decoration: underline;
 }
 
@@ -133,17 +134,24 @@ footer .footer .footer-copyright {
     footer .footer .footer-copyright { 
       padding-inline: 48px; 
     }  
+
+        footer .footer .footer-notices {
+          padding-left: 60px;
+        }
   }
 
 @media (width <=768px) {
   footer .footer .footer-banner p,
   footer .footer .footer-links,
-  footer .footer .footer-notices,
   footer .footer .footer-copyright {
     padding-inline: 38px;
   }
-}
 
+    footer .footer .footer-notices{
+        padding-left: 51px;
+        margin-top: 18px;
+      }
+}
 
 
 /* ---- mobile ---- */
