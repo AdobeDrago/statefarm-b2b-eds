@@ -348,15 +348,6 @@ main img {
   content: '';
   position: absolute;
   right: 16px;
-
-  /* width: 8px;
-  height: 8px; */
-
-  /* margin-top: -6px; */
-
-  /* border: 8px solid transparent; */
-
-  /* border-top-color: var(--text-color); */
   pointer-events: none;
   border: 2px solid var(--text-color);
   width: 0.7rem;
@@ -415,5 +406,36 @@ main .section.khaki ul:last-child {
 
 /* accent-heading: marks the first heading of a section as the brand-red accent color */
 main .section.accent-heading > div > h3:first-of-type {
+  color: var(--link-color);
+}
+
+main .section .default-content-wrapper #select-service-agreements {
+  font-weight: 600;
+  line-height: 39px;
+  margin: 20px 0 16px;
+  font-size: 39.008px;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper #log-in-to-view-content {
+  font-weight: 500;
+  margin: 0 0 24px;
+  line-height: 31px;
+  font-size: 31.008px;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper #log-in-to-view-content + p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 20px;
+  color: var(--text-color);
+}
+
+main .section .default-content-wrapper #log-in-to-view-content + p > a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
   color: var(--link-color);
 }

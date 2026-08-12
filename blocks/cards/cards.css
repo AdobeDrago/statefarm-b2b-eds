@@ -55,6 +55,14 @@
   margin: 0;
 }
 
+.cards .cards-card-body p:first-child a {
+  padding: 2px;
+  margin: -2px;
+  font-weight: 600;
+  line-height: 22px;
+  padding-right: 15px;
+}
+
 .cards .cards-card-body p:first-child:has(> strong) {
   gap: 15px;
   display: flex;
@@ -73,12 +81,11 @@
   border: 1px solid #D62311;
 }
 
-.cards .cards-card-body p:first-child a {
-  padding: 2px;
-  margin: -2px;
-  font-weight: 600;
-  line-height: 22px;
-  padding-right: 15px;
+.cards .cards-card-body p:first-child:not(:has(picture)) {
+  height: 30px;
+  display: flex;
+  align-items: end;
+  box-sizing: border-box;
 }
 
 .cards .cards-card-image {
@@ -141,6 +148,11 @@
   color: var(--dark-gray-color);
 }
 
+.columns-wrapper div:has(> #erac),
+.columns-wrapper div:has(> #hertz) {
+  margin: 0 0 24px;
+}
+
 .columns-wrapper #erac,
 .columns-wrapper #hertz {
   font-size: 20px;
@@ -152,8 +164,8 @@
 
 .columns-wrapper #erac + ul,
 .columns-wrapper #hertz + ul {
+  margin: 0;
   padding: 0;
-  margin: 0 0 24px;
 }
 
 .columns-wrapper #erac + ul > li,
@@ -197,7 +209,7 @@
 }
 
 .default-content-wrapper #rental-job-aids {
-  margin: 0;
+  margin: 40px 0 0;
   font-weight: 500;
   line-height: 25px;
   font-size: 25.008px;

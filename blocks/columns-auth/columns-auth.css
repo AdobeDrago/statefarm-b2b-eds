@@ -131,18 +131,20 @@
 
 /* spacing matches the source's explicit margins between h1, intro copy,
    Log In button and forgot-help — several are larger than the defaults */
-.columns-auth h1 {
+.columns-auth #select-service {
   color: #403c3c;
   line-height: 48px;
   margin: 0 0 32px;
   font-size: 48px;
   font-weight: 600;
+  position: relative;
 }
 
 .columns-auth h1 .registered {
+  top: 24px;
   line-height: 0;
-  font-size: 24px;
-  vertical-align: super;
+  font-size: 45px;
+  position: absolute;
 }
 
 .columns-auth h1 + p {
