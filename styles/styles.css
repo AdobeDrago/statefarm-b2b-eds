@@ -503,3 +503,60 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs) > #job-aid-
   margin: 10px 0 0;
   color: var(--dark-gray-color);
 }
+
+.section .default-content-wrapper #select-service {
+  margin: 24px 0 0;
+  line-height: 1;
+  font-size: 25px;
+  font-weight: 500;
+  color: var(--dark-gray-color);
+}
+
+.section .default-content-wrapper #help--support {
+  line-height: 1;
+  font-size: 48px;
+  font-weight: 600;
+  margin: 6px 0 32px;
+  color: var(--dark-gray-color);
+}
+
+.section .default-content-wrapper #frequently-asked-questions {
+  line-height: 1;
+  font-size: 31px;
+  font-weight: 500;
+  margin: 0 0 24px;
+  color: var(--dark-gray-color);
+}
+
+.section .default-content-wrapper #who-can-participate-in-state-farms-survey-of-autobody-repair-facilities,
+.section .default-content-wrapper #i-am-opening-a-new-repair-facility-how-can-i-submit-information-about-my-repair-facility,
+.section .default-content-wrapper #will-there-be-further-notice-to-repairers-of-the-survey-process,
+.section .default-content-wrapper #how-will-select-service-repairers-learn-of-changes-in-prevailing-competitive-prices,
+.section .default-content-wrapper #how-can-i-submit-prevailing-competitive-price-information {
+  font-size: 25px;
+  font-weight: 400;
+  margin: 0 0 25px;
+  color: #212121;
+  line-height: 30px;
+}
+
+.section .default-content-wrapper:has(#who-can-participate-in-state-farms-survey-of-autobody-repair-facilities) > p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  color: #212121;
+  line-height: 21px;
+}
+
+.section .default-content-wrapper #contact-us {
+  line-height: 1;
+  font-size: 31px;
+  margin: 0 0 24px;
+  font-weight: 500;
+  padding-top: 30px;
+  color: var(--dark-gray-color);
+}
+
+.section .default-content-wrapper:has(#who-can-participate-in-state-farms-survey-of-autobody-repair-facilities) > p:last-child {
+  margin-bottom: 40px;
+}
