@@ -31,7 +31,7 @@ header .nav-wrapper {
    viewport-math breakout needed) instead of on .nav-tools itself — avoids
    the sub-pixel compositing seam that a left: 50%/width: 100vw/margin-left:
    -50vw breakout can produce right at the edge of nav's own max-width box. */
-@media (width >= 900px) {
+@media (width >=900px) {
   header .nav-wrapper::before {
     content: '';
     position: absolute;
@@ -39,7 +39,7 @@ header .nav-wrapper {
     left: 0;
     right: 0;
     height: 32px;
-    background-color: var(--sf-hover-bg); 
+    background-color: var(--sf-hover-bg);
   }
 }
 
@@ -209,11 +209,11 @@ header .nav-search-form {
 header .nav-search-form input[type='search'] {
   flex: 1;
   height: 48px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   padding: 0 16px;
   font: inherit;
   font-size: 16px;
-  max-width: 270px; 
+  max-width: 270px;
   border: none;
   border: 1px solid var(--light-color);
   border-bottom: 1px solid var(--text-color);
@@ -236,7 +236,7 @@ header .nav-search-submit {
 }
 
 header .nav-search-close {
-  flex: none; 
+  flex: none;
   border: 0;
   background: none;
   color: var(--sf-utility-text);
@@ -285,7 +285,7 @@ header nav .nav-sections {
   position: relative;
 }
 
-header nav .nav-sections > ul {
+header nav .nav-sections>ul {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -295,7 +295,7 @@ header nav .nav-sections > ul {
   padding: 0;
 }
 
-header nav .nav-sections > ul > li {
+header nav .nav-sections>ul>li {
   position: relative;
   margin: 0;
 }
@@ -304,14 +304,14 @@ header nav .nav-sections > ul > li {
    this reset it inherits the global default-content paragraph margin
    (0.8em top / 0.25em bottom), which pushes the trigger link down and
    breaks its vertical centering in the nav row */
-header nav .nav-sections > ul > li > p {
+header nav .nav-sections>ul>li>p {
   margin: 0;
 }
 
 /* the top-level trigger link may be a direct child of the <li> (no dropdown)
    or wrapped in a <p> (DA/EDS-authored items with a megamenu) */
-header nav .nav-sections > ul > li > a,
-header nav .nav-sections > ul > li > p > a {
+header nav .nav-sections>ul>li>a,
+header nav .nav-sections>ul>li>p>a {
   position: relative;
   display: inline-block;
   color: var(--sf-header-text);
@@ -322,8 +322,8 @@ header nav .nav-sections > ul > li > p > a {
 }
 
 /* animated red underline: scales in from the left on hover/open */
-header nav .nav-sections > ul > li > a::before,
-header nav .nav-sections > ul > li > p > a::before {
+header nav .nav-sections>ul>li>a::before,
+header nav .nav-sections>ul>li>p>a::before {
   content: '';
   position: absolute;
   left: 0;
@@ -336,8 +336,8 @@ header nav .nav-sections > ul > li > p > a::before {
   transition: transform 0.25s ease;
 }
 
-header nav .nav-sections > ul > li.nav-drop > a::after,
-header nav .nav-sections > ul > li.nav-drop > p > a::after {
+header nav .nav-sections>ul>li.nav-drop>a::after,
+header nav .nav-sections>ul>li.nav-drop>p>a::after {
   content: '';
   display: inline-block;
   margin-left: 6px;
@@ -347,22 +347,22 @@ header nav .nav-sections > ul > li.nav-drop > p > a::after {
   transition: transform 0.2s ease;
 }
 
-header nav .nav-sections > ul > li[aria-expanded='true'] > a,
-header nav .nav-sections > ul > li[aria-expanded='true'] > p > a,
-header nav .nav-sections > ul > li > a:hover,
-header nav .nav-sections > ul > li > p > a:hover {
+header nav .nav-sections>ul>li[aria-expanded='true']>a,
+header nav .nav-sections>ul>li[aria-expanded='true']>p>a,
+header nav .nav-sections>ul>li>a:hover,
+header nav .nav-sections>ul>li>p>a:hover {
   color: var(--sf-red);
 }
 
-header nav .nav-sections > ul > li[aria-expanded='true'] > a::before,
-header nav .nav-sections > ul > li[aria-expanded='true'] > p > a::before,
-header nav .nav-sections > ul > li > a:hover::before,
-header nav .nav-sections > ul > li > p > a:hover::before {
+header nav .nav-sections>ul>li[aria-expanded='true']>a::before,
+header nav .nav-sections>ul>li[aria-expanded='true']>p>a::before,
+header nav .nav-sections>ul>li>a:hover::before,
+header nav .nav-sections>ul>li>p>a:hover::before {
   transform: scaleX(1);
 }
 
-header nav .nav-sections > ul > li[aria-expanded='true'] > a::after,
-header nav .nav-sections > ul > li[aria-expanded='true'] > p > a::after {
+header nav .nav-sections>ul>li[aria-expanded='true']>a::after,
+header nav .nav-sections>ul>li[aria-expanded='true']>p>a::after {
   transform: rotate(180deg);
 }
 
@@ -378,8 +378,24 @@ header nav .nav-drop-panels {
   pointer-events: none;
 }
 
+header nav .nav-drop-panels.open {
+  pointer-events: auto;
+}
 
-header nav .nav-drop-panels .nav-drop-panel.open {
+header nav .nav-drop-panels .nav-drop-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  background-color: #000a;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+header nav .nav-drop-panels.open .nav-drop-overlay {
+  opacity: 1;
   pointer-events: auto;
 }
 
@@ -390,6 +406,7 @@ header nav .nav-drop-panel {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   display: grid;
   grid-template-rows: 0fr;
   width: 100%;
@@ -401,30 +418,14 @@ header nav .nav-drop-panel {
   opacity: 0;
 
   /* overflow: hidden; */
-  transition: grid-template-rows 0.3s ease ;
+  transition: grid-template-rows 0.3s ease;
 }
-
-
-header nav .nav-drop-panel::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100dvh;
-  background-color: #000a;
-  z-index: -40; 
-}
-
-header nav .nav-drop-panel .open::after {
-  opacity: 1;
-} 
 
 header nav .nav-drop-panel.open {
   grid-template-rows: 1fr;
   opacity: 1;
 }
- 
+
 header nav .nav-drop-panel-inner {
   display: flex;
   gap: 48px;
@@ -547,16 +548,17 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 /* =========================================================
    DESKTOP (>= 900px): two rows — utility bar over main nav
    ========================================================= */
-@media (width >= 900px) {
+@media (width >=900px) {
   header nav {
     grid-template:
       'tools tools tools' 32px
       'search search search' 0fr
-      'brand sections login' minmax(47px, auto) /* changed the to match the exact row height*/
+      'brand sections login' minmax(47px, auto)
+      /* changed the to match the exact row height*/
       / auto 1fr auto;
     transition: grid-template-rows 0.3s ease;
     row-gap: 0;
-    padding: 0 24px;  
+    padding: 0 24px;
   }
 
   /* opening search grows the middle row from 0fr to 1fr, pushing the
@@ -591,14 +593,14 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     padding-block: 10px;
   }
 
-    header nav .nav-sections ul {
-      padding-left: 10px;
-      border-left: 1px solid var(--sf-border);
-    }
+  header nav .nav-sections ul {
+    padding-left: 10px;
+    border-left: 1px solid var(--sf-border);
+  }
 
   /* desktop top-level nav links render as plain text, no dropdown arrow */
-  header nav .nav-sections > ul > li.nav-drop > a::after,
-  header nav .nav-sections > ul > li.nav-drop > p > a::after {
+  header nav .nav-sections>ul>li.nav-drop>a::after,
+  header nav .nav-sections>ul>li.nav-drop>p>a::after {
     display: none;
   }
 }
@@ -648,28 +650,28 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     border-top: 1px solid var(--sf-border);
   }
 
-  header nav .nav-sections > ul {
+  header nav .nav-sections>ul {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
     width: 100%;
   }
 
-  header nav .nav-sections > ul > li {
+  header nav .nav-sections>ul>li {
     width: 100%;
     border-bottom: 1px solid var(--sf-border);
   }
 
-  header nav .nav-sections > ul > li > a,
-  header nav .nav-sections > ul > li > p > a {
+  header nav .nav-sections>ul>li>a,
+  header nav .nav-sections>ul>li>p>a {
     display: block;
     width: 100%;
     padding: 14px 4px;
     font-size: 16px;
   }
 
-  header nav .nav-sections > ul > li.nav-drop > a::after,
-  header nav .nav-sections > ul > li.nav-drop > p > a::after {
+  header nav .nav-sections>ul>li.nav-drop>a::after,
+  header nav .nav-sections>ul>li.nav-drop>p>a::after {
     float: right;
     margin-top: 8px;
   }
