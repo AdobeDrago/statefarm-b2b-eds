@@ -442,6 +442,14 @@ main .section .default-content-wrapper #log-in-to-view-content {
   color: var(--dark-gray-color);
 }
 
+.section .default-content-wrapper:has(#who-can-participate-in-state-farms-survey-of-autobody-repair-facilities) > p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  color: #212121;
+  line-height: 21px;
+}
+
 main .section .default-content-wrapper #log-in-to-view-content+p {
   font-size: 16px;
   font-weight: 400;
@@ -523,6 +531,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   color: var(--dark-gray-color);
 }
 
+/* stylelint-disable-next-line selector-id-pattern */
 .section .default-content-wrapper #help--support {
   line-height: 1;
   font-size: 48px;
@@ -549,14 +558,6 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   margin: 0 0 25px;
   color: #212121;
   line-height: 30px;
-}
-
-.section .default-content-wrapper:has(#who-can-participate-in-state-farms-survey-of-autobody-repair-facilities) > p {
-  font-size: 16px;
-  font-weight: 400;
-  margin: 0 0 16px;
-  color: #212121;
-  line-height: 21px;
 }
 
 .section .default-content-wrapper #contact-us {
