@@ -15,6 +15,7 @@ function closeAllDrops(navSections, panelHost = null) {
     if (drop.megaPanel) drop.megaPanel.classList.remove('open');
   });
   if (panelHost) panelHost.classList.remove('open');
+  if (isDesktop.matches) document.body.style.overflowY = '';
 }
 
 /**
@@ -33,6 +34,7 @@ function openDrop(navSections, li, panelHost = null) {
       const host = li.megaPanel.parentElement;
       const nav = navSections.closest('nav');
       if (host && nav) host.style.top = `${Math.round(nav.getBoundingClientRect().bottom)}px`;
+      document.body.style.overflowY = 'hidden';
     }
   }
 }
@@ -210,7 +212,7 @@ export default async function decorate(block) {
         closeBtn.className = 'nav-drop-close';
         closeBtn.setAttribute('aria-label', 'Close menu');
         closeBtn.innerHTML = '<span aria-hidden="true">&times;</span>';
-        closeBtn.addEventListener('click', () => closeAllDrops(navSections));
+        closeBtn.addEventListener('click', () => closeAllDrops(navSections, panelHost));
         panel.append(panelInner, closeBtn);
         navSection.megaPanel = panel;
 
