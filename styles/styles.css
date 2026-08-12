@@ -349,6 +349,7 @@ main img {
 .dropdown-select-wrapper::after {
   content: '';
   position: absolute;
+
   /* right: 22px; */
 
   /* width: 8px;
