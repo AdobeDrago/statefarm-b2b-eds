@@ -3,6 +3,8 @@
   padding-inline: 0;
 }
 
+
+
 .cards-service>ul {
   list-style: none;
   margin: 0;
@@ -26,7 +28,8 @@
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  padding: 20px 15px;
+  padding-inline: 15px;
+  padding-block: 2px 14px;
 }
 
 .cards-service .cards-service-card-body {
@@ -36,7 +39,19 @@
 .cards-service .cards-service-card-body h4,
 .cards-service .cards-service-card-body p {
   font-size: 16px;
+  margin-left: 4px;
 }
+
+.cards-service .cards-service-card-body h4{
+    margin-top: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.6rem;
+  }
+
+.cards-service .cards-service-card-body p{
+    line-height: 20px;
+  }
+
 
 .cards-service .cards-service-card-image {
   flex: none;
@@ -62,6 +77,10 @@
 /* push the dropdown strip to the bottom of the card, even when card text heights differ */
 .cards-service>ul>li .dropdown-select-wrapper {
   margin-top: auto;
+}
+
+.cards-service>ul>li .dropdown-select-wrapper .dropdown-select{
+  padding-bottom: 8px;
 }
 
 /* photo cards (if any) keep the cover treatment */
