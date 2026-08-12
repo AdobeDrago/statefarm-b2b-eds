@@ -23,7 +23,6 @@ function closeAllDrops(navSections, panelHost = null) {
  * @param {Element} li the trigger list item
  */
 function openDrop(navSections, li, panelHost = null) {
-  console.log('panelhost', panelHost);
   closeAllDrops(navSections, panelHost);
   li.setAttribute('aria-expanded', 'true');
   if (li.megaPanel) {
@@ -216,7 +215,6 @@ export default async function decorate(block) {
         navSection.megaPanel = panel;
 
         navSection.addEventListener('mouseenter', () => {
-          console.log('mouseenter', panelHost);
           if (isDesktop.matches) openDrop(navSections, navSection, panelHost);
         });
         if (topLink) {
