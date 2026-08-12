@@ -99,7 +99,7 @@ function decorateSearch(nav, searchLink) {
   closeBtn.type = 'button';
   closeBtn.className = 'nav-search-close';
   closeBtn.setAttribute('aria-label', 'Close search');
-  closeBtn.innerHTML = '<span aria-hidden="true">&times;</span>';
+  closeBtn.innerHTML = '<span aria-hidden="true">✕</span>';
 
   paneInner.append(form, closeBtn);
   pane.append(paneInner);
@@ -204,7 +204,7 @@ export default async function decorate(block) {
         closeBtn.type = 'button';
         closeBtn.className = 'nav-drop-close';
         closeBtn.setAttribute('aria-label', 'Close menu');
-        closeBtn.innerHTML = '<span aria-hidden="true">&times;</span>';
+        closeBtn.innerHTML = '<span aria-hidden="true">✕</span>';
         closeBtn.addEventListener('click', () => closeAllDrops(navSections));
         panel.append(panelInner, closeBtn);
         navSection.megaPanel = panel;

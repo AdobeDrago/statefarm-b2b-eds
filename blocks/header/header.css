@@ -261,6 +261,8 @@ header nav .nav-login-wrap {
 
 header nav .nav-login-wrap p {
   margin: 0;
+  display: flex;
+  align-items: start;
 }
 
 header nav .nav-login {
@@ -442,7 +444,7 @@ header nav .nav-drop-close {
   border: 0;
   background: none;
   color: var(--sf-utility-text);
-  font-size: 40px;
+  font-size: 22px; 
   line-height: 1;
   cursor: pointer;
 }
@@ -458,6 +460,13 @@ header nav .nav-drop-col h3 {
   margin: 0 0 8px;
   text-transform: none;
 }
+
+#additional-resources,
+#additional-resources-1,
+#additional-resources-2,
+#additional-resources-3{
+    font-size: 14px; 
+  }
 
 header nav .nav-drop-col ul {
   list-style: none;
@@ -592,8 +601,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   }
 
     header nav .nav-sections ul {
-      padding-left: 10px;
-      border-left: 1px solid var(--sf-border);
+      padding-left: 10px; 
     }
 
   /* desktop top-level nav links render as plain text, no dropdown arrow */
