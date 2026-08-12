@@ -67,9 +67,5 @@ export default async function decorate(block) {
     <img src="../../icons/chat.svg" alt="Chat">
     <span>Chat</span>
   `;
-  chatButton.addEventListener('click', () => {
-    // Add your chat functionality here (e.g., open chat widget, redirect to chat page)
-    console.log('Chat button clicked');
-  });
   block.append(chatButton);
 }
