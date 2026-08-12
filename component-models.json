@@ -1,0 +1,483 @@
+[
+  {
+    "id": "page-metadata",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "jcr:title",
+        "label": "Title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "jcr:description",
+        "label": "Description"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "keywords",
+        "multi": true,
+        "label": "Keywords"
+      }
+    ]
+  },
+  {
+    "id": "image",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text"
+      }
+    ]
+  },
+  {
+    "id": "title",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "label": "Title Type",
+        "options": [
+          {
+            "name": "h1",
+            "value": "h1"
+          },
+          {
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "button",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      },
+      {
+        "component": "text",
+        "name": "linkText",
+        "label": "Text"
+      },
+      {
+        "component": "text",
+        "name": "linkTitle",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "linkType",
+        "label": "Type",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "primary",
+            "value": "primary"
+          },
+          {
+            "name": "secondary",
+            "value": "secondary"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "section",
+    "fields": [
+      {
+        "component": "text",
+        "name": "name",
+        "label": "Section Name",
+        "description": "The label shown for this section in the Content Tree"
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Highlight",
+            "value": "highlight"
+          },
+          {
+            "name": "Khaki box",
+            "value": "khaki"
+          },
+          {
+            "name": "Spacious",
+            "value": "spacious"
+          },
+          {
+            "name": "Accent heading",
+            "value": "accent-heading"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "breadcrumbs",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "trail",
+        "value": "",
+        "label": "Trail",
+        "description": "A list of links, in order. The last item is rendered as the current page.",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "cards-service-card",
+    "fields": [
+      {
+        "component": "select",
+        "name": "icon",
+        "value": "",
+        "label": "Icon",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Auto / Car",
+            "value": ":auto-car:"
+          },
+          {
+            "name": "Bank",
+            "value": ":bank:"
+          },
+          {
+            "name": "Document Add",
+            "value": ":document-add:"
+          },
+          {
+            "name": "Documents",
+            "value": ":documents:"
+          },
+          {
+            "name": "Funds Transfer",
+            "value": ":funds-transfer:"
+          },
+          {
+            "name": "Homeowners Insurance",
+            "value": ":homeowners-insurance:"
+          },
+          {
+            "name": "Health Insurance",
+            "value": ":insurance-health:"
+          },
+          {
+            "name": "Loan Quote",
+            "value": ":loan-quote:"
+          },
+          {
+            "name": "Lock",
+            "value": ":lock:"
+          },
+          {
+            "name": "Mobile Home",
+            "value": ":mobile-home:"
+          },
+          {
+            "name": "Post Mail",
+            "value": ":post-mail:"
+          },
+          {
+            "name": "Question",
+            "value": ":question:"
+          },
+          {
+            "name": "Rental Car",
+            "value": ":rental-car:"
+          },
+          {
+            "name": "Suppliers",
+            "value": ":suppliers:"
+          },
+          {
+            "name": "Tablet",
+            "value": ":tablet:"
+          },
+          {
+            "name": "Writing Ink",
+            "value": ":writing-ink:"
+          }
+        ]
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "description": "Heading and description. A list of links added here becomes the card's dropdown.",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "card",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "columns-auth-column",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "1. Image (becomes the left column)",
+        "multi": false,
+        "description": "The promotional photo"
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "2. Content (becomes the right column)",
+        "valueType": "string",
+        "description": "Fill this AND Image above — on this SAME item. Do NOT click + to add a second one of these; add only ONE, with both fields filled."
+      }
+    ]
+  },
+  {
+    "id": "columns-promo-column",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Content",
+        "valueType": "string",
+        "description": "Heading, subheading and a bulleted list of links, which becomes a product selector dropdown."
+      }
+    ]
+  },
+  {
+    "id": "columns",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "columns",
+        "value": "",
+        "label": "Columns"
+      },
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "rows",
+        "value": "",
+        "label": "Rows"
+      }
+    ]
+  },
+  {
+    "id": "fragment",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "reference",
+        "label": "Reference"
+      }
+    ]
+  },
+  {
+    "id": "hero",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "icon-text",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Size",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Small",
+            "value": "small"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "icon-text-row",
+    "fields": [
+      {
+        "component": "select",
+        "name": "icon",
+        "value": "",
+        "label": "Icon",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Auto / Car",
+            "value": ":auto-car:"
+          },
+          {
+            "name": "Bank",
+            "value": ":bank:"
+          },
+          {
+            "name": "Document Add",
+            "value": ":document-add:"
+          },
+          {
+            "name": "Documents",
+            "value": ":documents:"
+          },
+          {
+            "name": "Funds Transfer",
+            "value": ":funds-transfer:"
+          },
+          {
+            "name": "Homeowners Insurance",
+            "value": ":homeowners-insurance:"
+          },
+          {
+            "name": "Health Insurance",
+            "value": ":insurance-health:"
+          },
+          {
+            "name": "Loan Quote",
+            "value": ":loan-quote:"
+          },
+          {
+            "name": "Lock",
+            "value": ":lock:"
+          },
+          {
+            "name": "Mobile Home",
+            "value": ":mobile-home:"
+          },
+          {
+            "name": "Post Mail",
+            "value": ":post-mail:"
+          },
+          {
+            "name": "Question",
+            "value": ":question:"
+          },
+          {
+            "name": "Rental Car",
+            "value": ":rental-car:"
+          },
+          {
+            "name": "Suppliers",
+            "value": ":suppliers:"
+          },
+          {
+            "name": "Tablet",
+            "value": ":tablet:"
+          },
+          {
+            "name": "Writing Ink",
+            "value": ":writing-ink:"
+          }
+        ]
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "widget",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "source",
+        "value": "",
+        "label": "Widget",
+        "description": "Path to the widget under /widgets/, e.g. /widgets/quote/estimator.html?theme=light"
+      }
+    ]
+  }
+]
