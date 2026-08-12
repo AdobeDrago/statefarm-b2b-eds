@@ -11,6 +11,7 @@ footer {
   --sf-footer-border: rgb(64 60 60 / 20%);
   --sf-footer-max: 1110px;
 
+  margin: 30px 0 0;
   background-color: var(--sf-footer-cream);
   font-family: MecherleSans, Arial, sans-serif;
 }
@@ -33,11 +34,25 @@ footer .footer .footer-banner {
 footer .footer .footer-banner p {
   max-width: 1110px;
   margin: 0 auto;
-  padding: 18px 24px;
+  padding: 18px 0px;
   font-size: 16px;
   font-weight: 400;
   color: #fff;
-  text-align: left;
+  display: flex;
+  margin: auto;
+  line-height: 20px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+footer .footer .footer-banner p .registered {
+  height: 19px;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 5px;
+  line-height: 20px;
+  padding-bottom: 9px;
+  color: var(--text-color);
 }
 
 /* ---- cream content area (full-width bg, constrained inner) ---- */
@@ -47,12 +62,13 @@ footer .footer .footer-content {
   color: var(--sf-footer-text);
 }
 
-footer .footer .footer-content > * {
+footer .footer .footer-content>* {
   max-width: var(--sf-footer-max);
   margin-left: auto;
   margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
 }
 
 /* logo is authored but not part of this footer layout — kept in the DOM, hidden visually */
@@ -65,11 +81,15 @@ footer .footer .footer-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 12px 24px;
   list-style: none;
   margin: 20px auto 0;
   padding: 0 15px 28px;
   border-bottom: 2px solid var(--sf-footer-border);
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 20px;
+  padding-bottom: 26px;
+  border-bottom: 0.5px solid var(--text-color);
 }
 
 footer .footer .footer-links li {
@@ -80,6 +100,7 @@ footer .footer .footer-links a {
   color: var(--sf-footer-text);
   font-size: 20px;
   font-weight: 500;
+  line-height: 1;
   text-decoration: none;
 }
 
@@ -93,11 +114,14 @@ footer .footer .footer-notices {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 8px 26px;
+  gap: 8px 0px;
   list-style: none;
   margin: 10px auto 0;
   padding: 0 24px;
-  padding-left: 50px;
+  padding-left: 20px;
+  list-style: none;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 footer .footer .footer-notices li {
@@ -105,9 +129,12 @@ footer .footer .footer-notices li {
 }
 
 footer .footer .footer-notices a {
-  color: var(--sf-footer-text);
+  color: #000;
   font-size: 12px;
   font-weight: 600;
+  padding: 0 15px;
+  font-weight: 600;
+  line-height: 18px;
   text-decoration: none;
 }
 
@@ -118,39 +145,44 @@ footer .footer .footer-notices a:hover {
 
 /* copyright */
 footer .footer .footer-copyright {
-  padding-top: 12px;
-  padding-bottom: 68px;
+  margin-top: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 12px;
+  padding-bottom: 56px;
   font-size: 12px;
-  color: var(--sf-footer-text);
   text-align: left;
+  color: var(--text-color);
 }
 
 /* under 1024p */
 
-@media (width <= 1024px){
-    footer .footer .footer-banner p,
-    footer .footer .footer-links,
-    footer .footer .footer-notices,
-    footer .footer .footer-copyright { 
-      padding-inline: 48px; 
-    }  
+@media (width <=1024px) {
 
-        footer .footer .footer-notices {
-          padding-left: 60px;
-        }
+  footer .footer .footer-banner p,
+  footer .footer .footer-links,
+  footer .footer .footer-notices,
+  footer .footer .footer-copyright {
+    padding-inline: 48px;
   }
 
+  footer .footer .footer-notices {
+    padding-left: 60px;
+  }
+}
+
 @media (width <=768px) {
+
   footer .footer .footer-banner p,
   footer .footer .footer-links,
   footer .footer .footer-copyright {
     padding-inline: 38px;
   }
 
-    footer .footer .footer-notices{
-        padding-left: 51px;
-        margin-top: 18px;
-      }
+  footer .footer .footer-notices {
+    padding-left: 51px;
+    margin-top: 18px;
+  }
 }
 
 
@@ -174,8 +206,46 @@ footer .footer .footer-copyright {
     text-align: left;
   }
 
-  footer .footer .footer-content > * {
+  footer .footer .footer-content>* {
     padding-left: 16px;
     padding-right: 16px;
   }
+}
+
+/* ---- floating chat button ---- */
+footer .footer-chat {
+  bottom: 32px;
+  right: 32px;
+  height: 56px;
+  gap: 12px;
+  border: none;
+  z-index: 100;
+  display: flex;
+  position: fixed;
+  padding: 0 16px;
+  cursor: pointer;
+  overflow: hidden;
+  align-items: center;
+  border-radius: 9999px;
+  transition: box-shadow 0.2s ease;
+  box-shadow: 0 8px 24px 0 #000000bf;
+  background-color: var(--sf-background-brand-default);
+}
+
+footer .footer-chat:hover {
+  background: var(--sf-background-brand-hover);
+}
+
+footer .footer-chat img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+footer .footer-chat span {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  white-space: nowrap;
 }

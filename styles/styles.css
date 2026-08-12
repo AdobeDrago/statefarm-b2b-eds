@@ -21,12 +21,15 @@
   --link-color: #d62311;
   --link-hover-color: #b81c0e;
   --khaki-color: #f7f0e4;
+  --dark-gray-color: #403c3c;
+  --sf-background-brand-default: #ec0c21;
+  --sf-background-brand-hover: #bd0a1a;
 
   /* fonts */
   /* stylelint-disable-next-line value-keyword-case -- MecherleSans is a brand font name, not a CSS keyword */
-  --body-font-family: "MecherleSans", Arial, sans-serif;
+  --body-font-family: MecherleSans, Arial, sans-serif;
   /* stylelint-disable-next-line value-keyword-case -- MecherleSans is a brand font name, not a CSS keyword */
-  --heading-font-family: "MecherleSans", Arial, sans-serif;
+  --heading-font-family: MecherleSans, Arial, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -152,9 +155,6 @@ pre {
   white-space: pre;
 }
 
-main>div {
-  margin: 40px 16px;
-}
 
 input,
 textarea,
@@ -349,7 +349,7 @@ main img {
 .dropdown-select-wrapper::after {
   content: '';
   position: absolute;
-  right: 22px;
+  /* right: 22px; */
 
   /* width: 8px;
   height: 8px; */
@@ -359,6 +359,7 @@ main img {
   /* border: 8px solid transparent; */
 
   /* border-top-color: var(--text-color); */
+  right: 16px;
   pointer-events: none;
   border: 2px solid var(--text-color);
   width: 0.6rem;
@@ -370,14 +371,13 @@ main img {
 
 }
 
-/* sections */
-main>.section {
-  margin: 40px 0;
-}
 
 main>.section>div {
   max-width: 1140px;
   margin: auto;
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 
 main>.section:first-of-type {
@@ -419,4 +419,97 @@ main .section.khaki ul:last-child {
 /* accent-heading: marks the first heading of a section as the brand-red accent color */
 main .section.accent-heading>div>h3:first-of-type {
   color: var(--link-color);
+}
+
+main .section .default-content-wrapper:has(#select-service-agreements) {
+  margin-bottom: 60px;
+}
+
+main .section .default-content-wrapper #select-service-agreements {
+  font-weight: 600;
+  line-height: 39px;
+  margin: 20px 0 16px;
+  font-size: 39.008px;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper #log-in-to-view-content {
+  font-weight: 500;
+  margin: 0 0 24px;
+  line-height: 31px;
+  font-size: 31.008px;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper #log-in-to-view-content+p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 20px;
+  color: var(--text-color);
+}
+
+main .section .default-content-wrapper #log-in-to-view-content+p>a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--link-color);
+}
+
+main .section .default-content-wrapper #agreement-pdfs {
+  font-weight: 500;
+  margin: 0 0 20px;
+  line-height: 1;
+  font-size: 31px;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper:has(#agreement-pdfs)>#select-service-agreement,
+main .section .default-content-wrapper:has(#agreement-pdfs)>#select-service-agreement-1 {
+  line-height: 1;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 20px 0 0;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper:has(#agreement-pdfs)>#job-aid {
+  line-height: 1;
+  font-size: 21px;
+  font-weight: 500;
+  margin: 10px 0 0;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper:has(#agreement-pdfs)>p[data-auth="authenticated"] {
+  line-height: 1;
+  font-size: 21px;
+  font-weight: 500;
+  margin: 10px 0 0;
+  color: var(--light-color);
+}
+
+main .section .default-content-wrapper #agreement-addendum-pdfs {
+  font-weight: 500;
+  line-height: 1;
+  font-size: 31px;
+  margin: 20px 0;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#select-service-agreement-addendum,
+main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#select-service-agreement-addendum-1 {
+  line-height: 1;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 20px 0 0;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 {
+  line-height: 1;
+  font-size: 21px;
+  font-weight: 500;
+  margin: 10px 0 0;
+  color: var(--dark-gray-color);
 }
