@@ -50,4 +50,22 @@ export default async function decorate(block) {
   }
 
   block.append(footer);
+
+  // wrap registered trademark symbol in superscript
+  const footerHeading = block.querySelector('.footer-banner > p');
+  if (footerHeading && footerHeading.textContent.includes('®') && !footerHeading.querySelector('.registered')) {
+    footerHeading.innerHTML = footerHeading.innerHTML.replace(
+      /®/g,
+      '<sup class="registered">®</sup>',
+    );
+  }
+
+  // add floating chat button
+  const chatButton = document.createElement('div');
+  chatButton.className = 'footer-chat';
+  chatButton.innerHTML = `
+    <img src="../../icons/chat.svg" alt="Chat">
+    <span>Chat</span>
+  `;
+  block.append(chatButton);
 }
