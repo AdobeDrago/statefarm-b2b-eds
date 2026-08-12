@@ -35,9 +35,7 @@
   width: 256px;
   height: 48px;
   box-sizing: border-box;
-  margin-top: 16px;
-
-  /* box-shadow: 0 0 3px 0 rgb(33 33 33 / 25%); */
+  margin-top: 16px; 
   margin-inline: unset;
 }
 
