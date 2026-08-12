@@ -52,8 +52,6 @@ header nav {
     'sections sections sections';
   grid-template-columns: auto 1fr auto;
   align-items: center;
-
-  /* gap: 0 16px; */
   max-width: 1170px;
   margin: 0 auto;
   padding: 0 24px;
