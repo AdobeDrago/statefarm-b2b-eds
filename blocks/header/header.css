@@ -52,7 +52,6 @@ header nav {
     'sections sections sections';
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 0 16px;
   max-width: 1170px;
   margin: 0 auto;
   padding: 0 24px;
@@ -65,11 +64,13 @@ header nav[aria-expanded='true'] {
 /* ---- brand / logo ---- */
 header nav .nav-brand {
   grid-area: brand;
+  border-right: 1px solid #ececec;
 }
 
 header nav .nav-brand p {
   margin: 0;
   margin-left: 10px;
+  padding-right: 16px;
 }
 
 header nav .nav-brand .nav-brand-link {
@@ -103,6 +104,7 @@ header nav .nav-tools ul {
 
 header nav .nav-tools ul li {
   margin: 0;
+  display: flex;
 }
 
 header nav .nav-tools a {
@@ -261,6 +263,8 @@ header nav .nav-login-wrap {
 
 header nav .nav-login-wrap p {
   margin: 0;
+  display: flex;
+  align-items: start;
 }
 
 header nav .nav-login {
@@ -272,6 +276,7 @@ header nav .nav-login {
   padding: 2px;
   text-decoration: none;
   white-space: nowrap;
+  margin-top: -4px;
 }
 
 header nav .nav-login:hover {
@@ -431,7 +436,7 @@ header nav .nav-drop-panel-inner {
   gap: 48px;
   min-height: 0;
   overflow: hidden;
-  padding: 24px max(24px, calc((100vw - 1200px) / 2 + 24px));
+  padding: 24px max(24px, calc((100vw - 1160px) / 2 + 24px));
 }
 
 header nav .nav-drop-close {
@@ -443,7 +448,7 @@ header nav .nav-drop-close {
   border: 0;
   background: none;
   color: var(--sf-utility-text);
-  font-size: 40px;
+  font-size: 22px;
   line-height: 1;
   cursor: pointer;
 }
@@ -458,6 +463,10 @@ header nav .nav-drop-col h3 {
   color: var(--sf-utility-text);
   margin: 0 0 8px;
   text-transform: none;
+}
+
+header nav .nav-drop-col:last-child:not(:only-child) h3 {
+  font-size: 14px;
 }
 
 header nav .nav-drop-col ul {
@@ -588,14 +597,14 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     align-self: center;
   }
 
+  header nav .nav-brand+.nav-sections {
+    align-self: center;
+    padding-left: 10px;
+  }
+
   header nav .nav-sections {
     align-self: center;
     padding-block: 10px;
-  }
-
-  header nav .nav-sections ul {
-    padding-left: 10px;
-    border-left: 1px solid var(--sf-border);
   }
 
   /* desktop top-level nav links render as plain text, no dropdown arrow */

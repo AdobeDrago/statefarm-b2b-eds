@@ -63,7 +63,7 @@ footer .footer .footer-content {
   color: var(--sf-footer-text);
 }
 
-footer .footer .footer-content > * {
+footer .footer .footer-content>* {
   max-width: var(--sf-footer-max);
   margin-left: auto;
   margin-right: auto;
@@ -149,14 +149,14 @@ footer .footer .footer-copyright {
 
 /* under 1024p */
 
-@media (width <= 1024px){
-    footer .footer .footer-banner p,
-    footer .footer .footer-links,
-    footer .footer .footer-notices,
-    footer .footer .footer-copyright { 
-      padding-inline: 48px; 
-    }  
+@media (width <=1024px) {
+  footer .footer .footer-banner p,
+  footer .footer .footer-links,
+  footer .footer .footer-notices,
+  footer .footer .footer-copyright {
+    padding-inline: 48px;
   }
+}
 
 @media (width <=768px) {
   footer .footer .footer-banner p,
@@ -189,7 +189,7 @@ footer .footer .footer-copyright {
     text-align: left;
   }
 
-  footer .footer .footer-content > * {
+  footer .footer .footer-content>* {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -213,7 +213,7 @@ footer .footer-chat {
   transition: box-shadow 0.2s ease;
   box-shadow: 0 8px 24px 0 #000000bf;
   background-color: var(--sf-background-brand-default);
-}   
+}
 
 footer .footer-chat:hover {
   background: var(--sf-background-brand-hover);

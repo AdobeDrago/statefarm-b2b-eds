@@ -2,10 +2,9 @@
   width: 100%;
   max-width: 1110px;
   box-sizing: border-box;
-  margin: 64px auto;
+  margin: 95px auto;
   border-radius: 4px;
-  box-shadow: 0 0 3px 0 rgb(33 33 33 / 25%);
-  margin-bottom: 90px;
+  box-shadow: 0 0 3px 0 rgb(33 33 33 / 25%); 
 }
 
 .columns-promo > div {
@@ -26,24 +25,32 @@
 .columns-promo h4 {
   font-size: 25px;
   font-weight: 500;
-  color: var(--text-color);
+
+  /* color: var(--text-color); */
   margin-top: 0.2em; 
+  color: rgb(64 60 60); /* to match with live site */
 }
 
 .columns-promo .dropdown-select-wrapper {
   width: 256px;
   height: 48px;
   box-sizing: border-box;
-  margin-top: 16px;
-  box-shadow: 0 0 3px 0 rgb(33 33 33 / 25%);
+  margin-top: 16px; 
   margin-inline: unset;
 }
 
 .columns-promo .dropdown-select {
   height: 100%;
   font-weight: 600;
-  color: black;
+  color: #212121; /* to match with live site */
+  border-bottom: 2px solid #a8a8a8;
 }
+
+ .columns-promo .dropdown-select:focus,
+ .columns-promo .dropdown-select:hover {
+   background-color: #FFFAF2; /* to match with live site */
+   outline: none;
+ }
 
 .columns-promo img {
   width: 100%;
