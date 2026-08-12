@@ -9,11 +9,12 @@ const isDesktop = window.matchMedia('(min-width: 900px)');
  * Close every open megamenu dropdown (triggers + their panels).
  * @param {Element} navSections the nav sections container
  */
-function closeAllDrops(navSections) {
+function closeAllDrops(navSections, panelHost = null) {
   navSections.querySelectorAll('.nav-drop[aria-expanded="true"]').forEach((drop) => {
     drop.setAttribute('aria-expanded', 'false');
     if (drop.megaPanel) drop.megaPanel.classList.remove('open');
   });
+  if (panelHost) panelHost.classList.remove('open');
 }
 
 /**
@@ -21,11 +22,13 @@ function closeAllDrops(navSections) {
  * @param {Element} navSections the nav sections container
  * @param {Element} li the trigger list item
  */
-function openDrop(navSections, li) {
-  closeAllDrops(navSections);
+function openDrop(navSections, li, panelHost = null) {
+  console.log('panelhost', panelHost);
+  closeAllDrops(navSections, panelHost);
   li.setAttribute('aria-expanded', 'true');
   if (li.megaPanel) {
     li.megaPanel.classList.add('open');
+    if (panelHost) panelHost.classList.add('open');
     // panels host is position:fixed on desktop — align it under the nav bar
     if (isDesktop.matches) {
       const host = li.megaPanel.parentElement;
@@ -165,6 +168,9 @@ export default async function decorate(block) {
   // sections: wire up megamenu dropdowns
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
+    let panelHost = null;
+    panelHost = document.createElement('div');
+    panelHost.className = 'nav-drop-panels';
     navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) {
         navSection.classList.add('nav-drop');
@@ -210,13 +216,14 @@ export default async function decorate(block) {
         navSection.megaPanel = panel;
 
         navSection.addEventListener('mouseenter', () => {
-          if (isDesktop.matches) openDrop(navSections, navSection);
+          console.log('mouseenter', panelHost);
+          if (isDesktop.matches) openDrop(navSections, navSection, panelHost);
         });
         if (topLink) {
           topLink.addEventListener('click', () => {
             const wasOpen = navSection.getAttribute('aria-expanded') === 'true';
-            if (wasOpen) closeAllDrops(navSections);
-            else openDrop(navSections, navSection);
+            if (wasOpen) closeAllDrops(navSections, panelHost);
+            else openDrop(navSections, navSection, panelHost);
           });
         }
       }
@@ -224,24 +231,37 @@ export default async function decorate(block) {
 
     // move every panel into a trailing container so top-level trigger anchors
     // precede panel links in DOM order
-    const panelHost = document.createElement('div');
-    panelHost.className = 'nav-drop-panels';
+    // let panelHost = null;
+    const panelOverlay = document.createElement('div');
+    panelOverlay.className = 'nav-drop-overlay';
+
+    // panelHost = document.createElement('div');
+    // panelHost.className = 'nav-drop-panels';
     navSections.querySelectorAll(':scope > ul > li.nav-drop').forEach((li) => {
       if (li.megaPanel) panelHost.append(li.megaPanel);
     });
+    panelHost.append(panelOverlay);
     navSections.append(panelHost);
+
+    panelOverlay.addEventListener('mouseenter', () => {
+      if (isDesktop.matches) closeAllDrops(navSections, panelHost);
+    });
+    panelOverlay.addEventListener('click', () => {
+      if (isDesktop.matches) closeAllDrops(navSections, panelHost);
+    });
 
     // desktop: close the open panel when the pointer leaves the nav bar
     navSections.addEventListener('mouseleave', () => {
-      if (isDesktop.matches) closeAllDrops(navSections);
+      if (isDesktop.matches) closeAllDrops(navSections, panelHost);
     });
     // close on click outside
     document.addEventListener('click', (e) => {
-      if (isDesktop.matches && !navSections.contains(e.target)) closeAllDrops(navSections);
+      if (isDesktop.matches
+        && !navSections.contains(e.target)) closeAllDrops(navSections, panelHost);
     });
     // close on escape
     document.addEventListener('keydown', (e) => {
-      if (e.code === 'Escape') closeAllDrops(navSections);
+      if (e.code === 'Escape') closeAllDrops(navSections, panelHost);
     });
   }
 
