@@ -597,14 +597,10 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     align-self: center;
   }
 
-  header nav .nav-sections {
-    align-self: center;
-    padding-block: 10px;
-  }
-
-    header nav .nav-sections ul  {
-      padding-left: 10px;  
-    }
+    header nav .nav-brand + .nav-sections {
+    align-self: center; 
+    padding-left: 10px;
+  } 
 
   /* desktop top-level nav links render as plain text, no dropdown arrow */
   header nav .nav-sections > ul > li.nav-drop > a::after,
