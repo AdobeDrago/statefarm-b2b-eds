@@ -52,7 +52,8 @@ header nav {
     'sections sections sections';
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 0 16px;
+
+  /* gap: 0 16px; */
   max-width: 1170px;
   margin: 0 auto;
   padding: 0 24px;
@@ -65,11 +66,13 @@ header nav[aria-expanded='true'] {
 /* ---- brand / logo ---- */
 header nav .nav-brand {
   grid-area: brand;
+  border-right: 1px solid #ececec;
 }
 
 header nav .nav-brand p {
   margin: 0;
   margin-left: 10px;
+  padding-right: 16px;
 }
 
 header nav .nav-brand .nav-brand-link {
@@ -103,6 +106,7 @@ header nav .nav-tools ul {
 
 header nav .nav-tools ul li {
   margin: 0;
+  display: flex;
 }
 
 header nav .nav-tools a {
@@ -274,6 +278,7 @@ header nav .nav-login {
   padding: 2px;
   text-decoration: none;
   white-space: nowrap;
+  margin-top: -4px;
 }
 
 header nav .nav-login:hover {
@@ -461,10 +466,7 @@ header nav .nav-drop-col h3 {
   text-transform: none;
 }
 
-#additional-resources,
-#additional-resources-1,
-#additional-resources-2,
-#additional-resources-3{
+header nav .nav-drop-col:last-child h3 {
     font-size: 14px; 
   }
 
@@ -600,8 +602,8 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     padding-block: 10px;
   }
 
-    header nav .nav-sections ul {
-      padding-left: 10px; 
+    header nav .nav-sections ul  {
+      padding-left: 10px;  
     }
 
   /* desktop top-level nav links render as plain text, no dropdown arrow */
