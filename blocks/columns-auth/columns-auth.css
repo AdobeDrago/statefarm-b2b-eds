@@ -123,6 +123,14 @@
     flex: 3;
   }
 
+  .columns-auth-3-cols > div > div:nth-child(2) > #electronic-payments {
+    line-height: 1;
+    font-size: 48px;
+    font-weight: 600;
+    margin: 0 0 32px;
+    color: var(--dark-gray-color);
+  }
+
   .columns-auth-3-cols > div > div:nth-child(3) {
     flex: 2;
     text-align: right;
