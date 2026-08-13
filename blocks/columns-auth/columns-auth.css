@@ -7,20 +7,22 @@
   margin-bottom: 32px;
 }
 
-.columns-auth > div {
+.columns-auth>div {
   display: flex;
   flex-direction: column;
 }
 
+
+
 .columns-auth img {
-  width: 100%;
+  /* width: 100%; */
 }
 
 /* "No login required" icon + link row: stacked on narrow viewports,
    an even 3-across row once there is enough room */
 .columns-auth-no-login-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
   gap: 16px 24px;
   margin: 0;
   padding: 0;
@@ -34,7 +36,7 @@
 }
 
 /* used .columns-auth>div>div as container */
-@container (width >=600px) {
+@container (width >=768px) {
   .columns-auth-no-login-list {
     display: grid;
     grid-template-columns: auto auto auto;
@@ -58,67 +60,103 @@
   font-weight: 700;
 }
 
-.columns-auth > div > div {
-  order: 1;
+.columns-auth-3-cols>div {
+  min-height: 165px;
 }
 
-.columns-auth > div > .columns-auth-img-col {
+.columns-auth>div>div {
+  padding-inline: 0.7em;
+  flex-grow: 1;
+}
+
+.columns-auth>div>.columns-auth-img-col {
   order: 0;
+  flex-grow: 0;
 
   /* hero icon is tablet/desktop-only on the source (hidden below 768px) */
 
-/*  display: none; */
+  /*  display: none; */
 }
 
-.columns-auth > div > .columns-auth-img-col img {
-  display: block;
+.columns-auth h1 {
+  margin: 0 0 32px;
+  color: #403c3c;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
 }
 
-/* fixed-size pictogram, targeted structurally (nth-child) since
-   .columns-auth-img-col isn't added until the DA pipeline wraps it */
-.columns-auth-3-cols > div > div:first-child img {
-  width: 104px;
-  height: 104px;
-  margin: 0 auto;
+.columns-auth>div>div h1 {
+  margin-top: 0;
+  margin-bottom: 0.2em;
+  line-height: 48px;
+  font-size: 48px;
 }
 
-.columns-auth-no-login-list li:last-child .icon img {
-  translate: 0 -2px;
+.columns-auth h1+p {
+  margin: 0 0 25px;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #212121;
+}
+
+.columns-auth h1+p+p {
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.columns-auth>div>div h1+p {
+  margin-bottom: 0.4em;
 }
 
 @media (width <=560px) {
+  .columns-auth>div>div h1 {
+    margin-top: 0;
+    margin-bottom: 0.2em;
+    line-height: 48px;
+    font-size: 28px;
+  }
+
   .columns-auth-no-login-list li:last-child .icon img {
     translate: 0 -1px;
   }
 }
 
+.columns-auth>div>.columns-auth-img-col img {
+  display: block;
+  max-width: 400px;
+}
 
 /* tablet + desktop share the row layout (icon beside heading, multi-column
    flex split); only font sizes further up scale between the two */
 @media (width >=768px) {
   .columns-auth>div {
-    align-items: flex-start;
-    flex-direction: unset;
+    margin-inline: auto;
+    max-width: 720px;
+    flex-direction: column;
   }
 
   /* min-height, not height, so taller content grows the row instead of
      clipping; 165px matches the source's row height for every hub page that
      has a real Log In column. The one exception (a third column with no
      link — just a spacer, e.g. Suppliers) sizes naturally below. */
-  .columns-auth-3-cols > div {
+  .columns-auth-3-cols>div {
     min-height: 165px;
   }
 
-  .columns-auth > div > div {
-    /* matches the source's 5/12 (image) : 7/12 (text) column split */
-    flex: 7;
-    padding: 0 15px;
-    order: unset;
-    container-type: inline-size;
-    height: stretch;
+  .columns-auth>div>div h1+p {
+    font-size: 23px;
+    line-height: 29px;
   }
 
-  .columns-auth > div > .columns-auth-img-col {
+  .columns-auth>div>.columns-auth-img-col img {
+    max-width: 630px;
+  }
+
+  .columns-auth>div>.columns-auth-img-col {
     display: block;
     flex: 5;
   }
@@ -126,17 +164,17 @@
   /* 3-col layout: icon column is a fixed 2/12 share on the source for every
      page (icon:text:third fractions of 12); only the icon's share is shared
      between variants, so it's the only one set unconditionally */
-  .columns-auth-3-cols > div > div:first-child {
+  .columns-auth-3-cols>div>div:first-child {
     flex: 1;
   }
 
   /* default (most hub pages, e.g. Select Service, Claims, Lenders): a real
      Log In column, icon:text:login = 2:6:4 of 12 */
-  .columns-auth-3-cols > div > div:nth-child(2) {
+  .columns-auth-3-cols>div>div:nth-child(2) {
     flex: 3;
   }
 
-  .columns-auth-3-cols > div > div:nth-child(2) > #electronic-payments {
+  .columns-auth-3-cols>div>div:nth-child(2)>#electronic-payments {
     line-height: 1;
     font-size: 48px;
     font-weight: 600;
@@ -144,7 +182,7 @@
     color: var(--dark-gray-color);
   }
 
-  .columns-auth-3-cols > div > div:nth-child(3) {
+  .columns-auth-3-cols>div>div:nth-child(3) {
     flex: 2;
     text-align: right;
   }
@@ -152,16 +190,35 @@
   /* exception: third column has no link — just a spacer (e.g. Suppliers) —
      so icon:text:spacer = 2:8:2 of 12, giving the text column more room, and
      the row sizes to its own content instead of the 165px Log In row height */
-  .columns-auth-3-cols > div:not(:has(> div:nth-child(3) a)) {
+  .columns-auth-3-cols>div:not(:has(> div:nth-child(3) a)) {
     min-height: 0;
   }
 
-  .columns-auth-3-cols > div:not(:has(> div:nth-child(3) a)) > div:nth-child(2) {
+  .columns-auth-3-cols>div:not(:has(> div:nth-child(3) a))>div:nth-child(2) {
     flex: 4;
   }
 
-  .columns-auth-3-cols > div:not(:has(> div:nth-child(3) a)) > div:nth-child(3) {
+  .columns-auth-3-cols>div:not(:has(> div:nth-child(3) a))>div:nth-child(3) {
     flex: 1;
+  }
+}
+
+/* fixed-size pictogram, targeted structurally (nth-child) since
+   .columns-auth-img-col isn't added until the DA pipeline wraps it */
+
+/* .columns-auth-3-cols > div > div:first-child img {
+  width: 104px;
+  height: 104px;
+  margin: 0 auto;
+} */
+
+.columns-auth-no-login-list li:last-child .icon img {
+  translate: 0 -2px;
+}
+
+@media (width <=600px) {
+  .columns-auth-no-login-list li:last-child .icon img {
+    translate: 0 -1px;
   }
 }
 
@@ -184,13 +241,6 @@
 }
 
 /* mobile default; tablet/desktop scale up further below */
-.columns-auth h1 {
-  margin: 0 0 32px;
-  color: #403c3c;
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 28px;
-}
 
 @media (width >=768px) {
   .columns-auth h1 {
@@ -206,32 +256,18 @@
   }
 }
 
-.columns-auth h1 + p {
-  margin: 0 0 16px;
-  color: #212121;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 21px;
-}
-
-.columns-auth h1 + p + p {
-  margin-top: 0;
-  margin-bottom: 24px;
-  font-size: 16px;
-}
-
 .columns-auth p.button-wrapper {
   margin-top: 0;
 }
 
-.columns-auth p.button-wrapper + p {
+.columns-auth p.button-wrapper+p {
   font-size: 16px;
   font-weight: 400;
   margin: 0 0 16px;
   line-height: 22px;
 }
 
-.columns-auth #select-service + p {
+.columns-auth #select-service+p {
   margin: 0 0 25px;
   font-size: 25px;
   font-weight: 400;
@@ -239,7 +275,7 @@
   color: #212121;
 }
 
-.columns-auth p.button-wrapper + p > a {
+.columns-auth p.button-wrapper+p>a {
   font-size: 16px;
   font-weight: 600;
   line-height: 22px;
@@ -274,7 +310,7 @@
   margin: 37.512px 0 24px !important;
 }
 
-.columns-auth-container .default-content-wrapper #resources ~ p {
+.columns-auth-container .default-content-wrapper #resources~p {
   display: flex;
   margin: 0 0 16px;
 }
@@ -287,7 +323,7 @@
   color: var(--dark-gray-color);
 }
 
-.columns-auth-container .columns-wrapper .columns #erac, 
+.columns-auth-container .columns-wrapper .columns #erac,
 .columns-auth-container .columns-wrapper .columns #hertz {
   margin: 0 0 24px;
   font-size: 20px;
@@ -296,15 +332,15 @@
   color: var(--dark-gray-color);
 }
 
-.columns-auth-container .columns-wrapper .columns #erac ~ p, 
-.columns-auth-container .columns-wrapper .columns #hertz ~ p {
+.columns-auth-container .columns-wrapper .columns #erac~p,
+.columns-auth-container .columns-wrapper .columns #hertz~p {
   display: flex;
   margin: 0 0 16px;
 }
 
-.columns-auth-container .default-content-wrapper #resources ~ p > a,
-.columns-auth-container .columns-wrapper .columns #erac ~ p > a, 
-.columns-auth-container .columns-wrapper .columns #hertz ~ p > a {
+.columns-auth-container .default-content-wrapper #resources~p>a,
+.columns-auth-container .columns-wrapper .columns #erac~p>a,
+.columns-auth-container .columns-wrapper .columns #hertz~p>a {
   padding: 2px;
   font-size: 16px;
   font-weight: 600;
