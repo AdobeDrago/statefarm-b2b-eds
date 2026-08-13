@@ -1,0 +1,130 @@
+{
+  "definitions": [
+    {
+      "title": "Cards Service",
+      "id": "cards-service",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Cards Service",
+              "filter": "cards-service"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Service Card",
+      "id": "cards-service-card",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Service Card",
+              "model": "cards-service-card"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "cards-service-card",
+      "fields": [
+        {
+          "component": "select",
+          "name": "icon",
+          "value": "",
+          "label": "Icon",
+          "valueType": "string",
+          "options": [
+            {
+              "name": "Auto / Car",
+              "value": ":auto-car:"
+            },
+            {
+              "name": "Bank",
+              "value": ":bank:"
+            },
+            {
+              "name": "Document Add",
+              "value": ":document-add:"
+            },
+            {
+              "name": "Documents",
+              "value": ":documents:"
+            },
+            {
+              "name": "Funds Transfer",
+              "value": ":funds-transfer:"
+            },
+            {
+              "name": "Homeowners Insurance",
+              "value": ":homeowners-insurance:"
+            },
+            {
+              "name": "Health Insurance",
+              "value": ":insurance-health:"
+            },
+            {
+              "name": "Loan Quote",
+              "value": ":loan-quote:"
+            },
+            {
+              "name": "Lock",
+              "value": ":lock:"
+            },
+            {
+              "name": "Mobile Home",
+              "value": ":mobile-home:"
+            },
+            {
+              "name": "Post Mail",
+              "value": ":post-mail:"
+            },
+            {
+              "name": "Question",
+              "value": ":question:"
+            },
+            {
+              "name": "Rental Car",
+              "value": ":rental-car:"
+            },
+            {
+              "name": "Suppliers",
+              "value": ":suppliers:"
+            },
+            {
+              "name": "Tablet",
+              "value": ":tablet:"
+            },
+            {
+              "name": "Writing Ink",
+              "value": ":writing-ink:"
+            }
+          ]
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "value": "",
+          "label": "Text",
+          "description": "Heading and description. A list of links added here becomes the card's dropdown.",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "cards-service",
+      "components": [
+        "cards-service-card"
+      ]
+    }
+  ]
+}
