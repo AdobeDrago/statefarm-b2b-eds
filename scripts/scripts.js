@@ -218,6 +218,28 @@ async function loadEager(doc) {
 }
 
 /**
+ * Decorates login gate sections by adding a login button.
+ */
+function decorateLoginButtons() {
+  const heading = document.querySelector('h3#log-in-to-view-content[data-auth="anonymous"]');
+  if (!heading) return;
+
+  const wrapper = document.createElement('p');
+  wrapper.className = 'button-wrapper';
+  wrapper.setAttribute('data-auth', 'anonymous');
+
+  const link = document.createElement('a');
+  link.href = '/b2b-content/select-service/ss-agreement?loggedIn=true';
+  link.title = 'Log In';
+  link.className = 'button accent';
+  link.setAttribute('data-auth-action', 'login');
+  link.textContent = 'Log In';
+
+  wrapper.append(link);
+  heading.after(wrapper);
+}
+
+/**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
@@ -226,6 +248,8 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
+
+  decorateLoginButtons();
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
