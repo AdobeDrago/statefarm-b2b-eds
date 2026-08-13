@@ -143,10 +143,12 @@
     font-size: 28px;
     line-height: 28px;
   }
+
   .columns-auth>div>div h1+p {
     font-size: 20px;
       line-height: 26px;
   }
+
   .columns-auth>div>.columns-auth-img-col img {
     max-width: 100%;
   }

@@ -57,7 +57,8 @@ header nav {
   padding: 0 24px;
 }
 
-header nav[aria-expanded='true'] { 
+header nav[aria-expanded='true'] {
+  /* overflow-y: auto; */
 }
 
 /* ---- brand / logo ---- */

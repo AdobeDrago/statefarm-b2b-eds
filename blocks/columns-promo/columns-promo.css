@@ -89,6 +89,7 @@
     order: unset;
   }
 }
+
 @media (width >=990px) {
   .columns-promo h2 {
       font-size: 2.438rem;
