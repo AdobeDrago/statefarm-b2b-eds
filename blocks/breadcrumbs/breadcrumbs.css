@@ -17,7 +17,21 @@ main .breadcrumbs-container > .breadcrumbs-wrapper {
   display: flex;
   align-items: center;
   height: 56px;
-  padding: 0;
+
+  /* mobile: the same 15px gutter as the body copy, so the trail lines up with
+     it instead of sitting flush against the viewport edge */
+  padding: 0 15px;
+}
+
+/* tablet and up: the source insets the trail ~7px further left than the body
+   copy. It expresses that as a set of centred bands, but those only exist to
+   track oneX's stepped container widths — this project's content container is
+   a fluid 1140px, so keeping the wrapper on the content geometry and easing
+   the gutter by 7px reproduces the same offset without the extra breakpoints. */
+@media (width >= 768px) {
+  main .breadcrumbs-container > .breadcrumbs-wrapper {
+    padding-left: 26px;
+  }
 }
 
 main .breadcrumbs ol {
@@ -34,10 +48,6 @@ main .breadcrumbs li {
   align-items: center;
   margin: 0;
   font-size: 13px;
-}
-
-main .breadcrumbs li:first-child {
-  padding: 2px;
 }
 
 .breadcrumbs li a,
@@ -64,6 +74,13 @@ main .breadcrumbs a {
   text-decoration: none;
 }
 
+/* 2px of breathing room for the focus outline, cancelled by an equal negative
+   margin so the text still starts flush with the container gutter */
+main .breadcrumbs li a {
+  margin: -2px 0 -2px -2px;
+  padding: 2px;
+}
+
 main .breadcrumbs a:hover {
   color: var(--link-color);
   text-decoration: underline;
@@ -74,8 +91,35 @@ main .breadcrumbs span[aria-current] {
   font-weight: 500;
 }
 
-@media (width >= 1200px) {
-  main .breadcrumbs {
-    margin-left: 16px;
+/* mobile: collapse the full trail down to a single "back to parent" link,
+   matching the source — every crumb is hidden except the immediate parent
+   (2nd-to-last item; for a 2-level trail that's also li:first-child) */
+@media (width <= 560px) {
+  main .breadcrumbs li {
+    display: none;
+  }
+
+  main .breadcrumbs li:nth-last-child(2) {
+    display: flex;
+  }
+
+  main .breadcrumbs li:nth-last-child(2) a {
+    color: var(--dark-gray-color);
+    font-weight: 600 !important;
+  }
+
+  /* left-pointing back chevron, replacing any inherited right-pointing
+     separator (the parent item isn't necessarily :first-child on deeper
+     trails, so it may otherwise inherit the separator below) */
+  main .breadcrumbs li:nth-last-child(2)::before {
+    content: '';
+    flex: none;
+    width: 24px;
+    height: 24px;
+    background-image: url("../../icons/chevron-icons.svg#right_default");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: scaleX(-1);
   }
 }
