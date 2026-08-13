@@ -635,7 +635,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     padding: 40px 48px;
   }
 
-  header nav[aria-expanded='true'] .nav-sections:has(.nav-drop-panels.open) {
+  header nav[aria-expanded='true'] .nav-sections:has(.nav-drop[aria-expanded='true']) {
     padding: 0;
   }
 }
@@ -645,7 +645,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     padding: 40px 104px;
   }
 
-  header nav[aria-expanded='true'] .nav-sections:has(.nav-drop-panels.open) {
+  header nav[aria-expanded='true'] .nav-sections:has(.nav-drop[aria-expanded='true']) {
     padding: 0;
   }
 }
