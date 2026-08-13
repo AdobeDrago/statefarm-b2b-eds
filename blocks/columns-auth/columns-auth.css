@@ -64,6 +64,9 @@
 
 .columns-auth > div > .columns-auth-img-col {
   order: 0;
+
+  /* hero icon is tablet/desktop-only on the source (hidden below 768px) */
+  display: none;
 }
 
 .columns-auth > div > .columns-auth-img-col img {
@@ -82,14 +85,16 @@
   translate: 0 -2px;
 }
 
-@media (width <=600px) {
+@media (width <=560px) {
   .columns-auth-no-login-list li:last-child .icon img {
     translate: 0 -1px;
   }
 }
 
 
-@media (width >=900px) {
+/* tablet + desktop share the row layout (icon beside heading, multi-column
+   flex split); only font sizes further up scale between the two */
+@media (width >=768px) {
   .columns-auth>div {
     align-items: flex-start;
     flex-direction: unset;
@@ -113,6 +118,7 @@
   }
 
   .columns-auth > div > .columns-auth-img-col {
+    display: block;
     flex: 5;
   }
 
@@ -176,12 +182,27 @@
   position: absolute;
 }
 
+/* mobile default; tablet/desktop scale up further below */
 .columns-auth h1 {
   margin: 0 0 32px;
   color: #403c3c;
-  font-size: 48px;
+  font-size: 28px;
   font-weight: 600;
-  line-height: 48px;
+  line-height: 28px;
+}
+
+@media (width >=768px) {
+  .columns-auth h1 {
+    font-size: 39px;
+    line-height: 39px;
+  }
+}
+
+@media (width >=1025px) {
+  .columns-auth h1 {
+    font-size: 48px;
+    line-height: 48px;
+  }
 }
 
 .columns-auth h1 + p {
