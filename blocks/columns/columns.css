@@ -19,10 +19,11 @@
   display: block;
 }
 
-/* quarter: image + title intro (e.g. Coupa resource portal) */
+/* quarter: image + title intro (e.g. Coupa resource portal) — mobile first */
 .columns.quarter h1 {
   margin-top: 24px;
-  font-size: 3rem;
+  margin-bottom: 16px;
+  font-size: 1.75rem;
 }
 
 .columns.quarter h1 + p {
@@ -36,12 +37,55 @@
   font-weight: 500;
 }
 
-/* same top offset as the h1 so the icon lines up with the heading */
+/* desktop-only line break after State Farm®; mobile/tablet wrap naturally */
+.columns.quarter .columns-quarter-break {
+  display: none;
+}
+
 .columns.quarter .columns-img-col {
   margin-top: 24px;
 }
 
-@media (width >= 900px) {
+/* tablet: icon left, details right — larger icon, top-aligned with heading */
+@media (width >= 768px) {
+  .columns.quarter > div {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .columns.quarter > div > div {
+    order: unset;
+  }
+
+  .columns.quarter > div > div:first-child {
+    flex: 0 0 140px;
+    max-width: 140px;
+  }
+
+  .columns.quarter > div > div:last-child {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .columns.quarter .columns-img-col {
+    margin-top: 24px;
+  }
+
+  .columns.quarter .columns-img-col img {
+    width: 100%;
+    height: auto;
+  }
+
+  .columns.quarter h1 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-size: 2.438rem;
+  }
+}
+
+/* desktop */
+@media (width >= 1024px) {
   .columns > div {
     align-items: flex-start;
     flex-direction: unset;
@@ -53,7 +97,15 @@
     order: unset;
   }
 
-  /* quarter: larger icon column; text still wide enough for State Farm® on line 1 */
+  .columns.quarter h1 {
+    margin-bottom: 0.25em;
+    font-size: 3rem;
+  }
+
+  .columns.quarter .columns-quarter-break {
+    display: block;
+  }
+
   .columns.quarter > div {
     align-items: flex-start;
     gap: 24px;
@@ -68,5 +120,9 @@
     flex: 1 1 auto;
     min-width: 0;
     max-width: none;
+  }
+
+  .columns.quarter .columns-img-col {
+    margin-top: 24px;
   }
 }
