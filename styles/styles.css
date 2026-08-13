@@ -425,6 +425,41 @@ main .section.accent-heading>div>h3:first-of-type {
   font-weight: 500;
 }
 
+/* Supplier engagement — copy, bullets and headings follow the source page's
+   16px/21px text scale */
+main .section:has(#our-program) p,
+main .section:has(#our-program) ul,
+main .section:has(#our-program) li,
+main .section:has(#how-to-engage-us) p {
+  font-size: 16px;
+  line-height: 21px;
+}
+
+main .section:has(#our-program) p,
+main .section:has(#how-to-engage-us) p {
+  margin: 0 0 16px;
+}
+
+main .section:has(#our-program) ul {
+  margin: 24px 0 16px;
+  padding-left: 24px;
+}
+
+main .section:has(#our-program) li {
+  padding-bottom: 8px;
+}
+
+main .section:has(#our-program) > div > h3:first-of-type,
+main .section:has(#how-to-engage-us) > div > h3:first-of-type {
+  margin-top: 0;
+  line-height: 1;
+}
+
+/* 60px between the program box and the closing section, as on the source page */
+main .section.khaki:has(#our-program) {
+  margin-bottom: 60px;
+}
+
 /* Coupa resource portal — Overview section + body copy */
 main .section.accent-heading:has(#overview) {
   margin-bottom: 40px;
