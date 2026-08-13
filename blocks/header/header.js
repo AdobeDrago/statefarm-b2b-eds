@@ -14,6 +14,8 @@ function closeAllDrops(navSections, panelHost = null) {
     drop.setAttribute('aria-expanded', 'false');
     if (drop.megaPanel) drop.megaPanel.classList.remove('open');
   });
+  // reset any drilled-into column so the section re-opens at its top level next time
+  navSections.querySelectorAll('.nav-drop-col.open').forEach((col) => col.classList.remove('open'));
   if (panelHost) panelHost.classList.remove('open');
   if (isDesktop.matches) document.body.style.overflowY = '';
 }
@@ -213,14 +215,53 @@ export default async function decorate(block) {
         closeBtn.setAttribute('aria-label', 'Close menu');
         closeBtn.innerHTML = '<span aria-hidden="true">✕</span>';
         closeBtn.addEventListener('click', () => closeAllDrops(navSections, panelHost));
-        panel.append(panelInner, closeBtn);
+
+        // mobile drill-down: each column's heading becomes its own trigger —
+        // tapping it reveals that column's real links, collapsing the others
+        panelInner.querySelectorAll(':scope > .nav-drop-col').forEach((col) => {
+          const colHeading = col.querySelector('h3');
+          const colLinks = col.querySelector('ul');
+          if (!colHeading || !colLinks) return;
+          colHeading.setAttribute('role', 'button');
+          colHeading.setAttribute('tabindex', '0');
+          const toggleCol = () => {
+            const wasOpen = col.classList.contains('open');
+            panelInner.querySelectorAll(':scope > .nav-drop-col.open').forEach((openCol) => {
+              if (openCol !== col) openCol.classList.remove('open');
+            });
+            col.classList.toggle('open', !wasOpen);
+          };
+          colHeading.addEventListener('click', toggleCol);
+          colHeading.addEventListener('keydown', (e) => {
+            if (e.code === 'Enter' || e.code === 'Space') {
+              e.preventDefault();
+              toggleCol();
+            }
+          });
+        });
+
+        // mobile drill-down: back control + section title, shown above the
+        // columns once the section's panel replaces the main menu list
+        const drillBack = document.createElement('button');
+        drillBack.type = 'button';
+        drillBack.className = 'nav-drop-back';
+        drillBack.textContent = 'Back';
+        drillBack.addEventListener('click', () => closeAllDrops(navSections, panelHost));
+        const drillTitle = document.createElement('p');
+        drillTitle.className = 'nav-drop-title';
+        drillTitle.textContent = topLink ? topLink.textContent.trim() : '';
+
+        panel.append(drillBack, drillTitle, panelInner, closeBtn);
         navSection.megaPanel = panel;
 
         navSection.addEventListener('mouseenter', () => {
           if (isDesktop.matches) openDrop(navSections, navSection, panelHost);
         });
         if (topLink) {
-          topLink.addEventListener('click', () => {
+          topLink.addEventListener('click', (e) => {
+            // this link's only job is to toggle its megamenu/drill-down panel —
+            // without this it silently navigates to its href instead
+            e.preventDefault();
             const wasOpen = navSection.getAttribute('aria-expanded') === 'true';
             if (wasOpen) closeAllDrops(navSections, panelHost);
             else openDrop(navSections, navSection, panelHost);
