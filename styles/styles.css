@@ -380,14 +380,28 @@ main>.section>div {
   padding: 0 15px;
   box-sizing: border-box;
 }
+main>.section>div:nth-child(2) {
+  padding-inline: 0;
+}
 
 @media (width<=1200px){
   main>.section>div {
       max-width: 960px; 
     }
 
-  main>.section>div:nth-child(2) {
-    padding-inline: 0;
+  
+}
+
+@media (width<=768px) {
+  main>.section>div {
+    max-width: 690px;
+    padding-inline: 0px;
+  } 
+}
+@media (width<=600px) {
+  main>.section>div {
+    max-width: unset;
+    padding: 0 15px;
   }
 }
 

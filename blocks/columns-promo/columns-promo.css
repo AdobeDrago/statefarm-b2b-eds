@@ -17,7 +17,7 @@
 }
 
 .columns-promo h2 {
-  font-size: 1.563rem;
+   font-size: 1.563rem;
   color: var(--link-color);
   margin-top: 0;
   margin-bottom: 16px;
@@ -78,13 +78,25 @@
 }
 
 @media (width >= 768px) {
-  .columns-promo > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: 24px;
-  }
+  .columns-promo h2 {
+      font-size: 2.063rem; 
+      margin-bottom: 16px;
+      line-height: 33px;
+    }
 
   .columns-promo > div > div {
+    flex: 1;
+    order: unset;
+  }
+}
+@media (width >=990px) {
+  .columns-promo h2 {
+      font-size: 2.438rem;
+      margin-bottom: 16px;
+      line-height: 39px;
+    }
+
+  .columns-promo>div>div {
     flex: 1;
     order: unset;
   }
