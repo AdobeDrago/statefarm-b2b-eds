@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+  <g id="icon_24_help" data-name="icon/24/help">
+    <g id="Group" style="opacity: 0">
+      <g id="background">
+        <rect width="24" height="24" style="fill: #fff"/>
+      </g>
+    </g>
+    <g id="parts_colors_icon_colors_charcoal-02" data-name="parts/colors/icon_colors/charcoal-02">
+      <g id="Mask">
+        <path id="path-1" d="M12,0A12,12,0,1,1,0,12,12,12,0,0,1,12,0Zm0,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,13.98a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,12,15.98ZM12.082,5l.228,0c2.49,0,4.12,1.55,4.13,3.78,0,3.61-3.52,3.42-3.45,5.89h-2c-.19-3.42,3.2-3.48,3.2-5.89A1.719,1.719,0,0,0,12.31,7C10.92,7,10,8.1,10.23,9.82h0L8.11,9.7A4.09,4.09,0,0,1,12.31,5Z" style="fill: #403c3c"/>
+      </g>
+    </g>
+  </g>
+</svg>

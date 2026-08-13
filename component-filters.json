@@ -1,0 +1,72 @@
+[
+  {
+    "id": "main",
+    "components": [
+      "section"
+    ]
+  },
+  {
+    "id": "section",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title",
+      "hero",
+      "cards",
+      "cards-service",
+      "columns",
+      "columns-auth",
+      "columns-promo",
+      "breadcrumbs",
+      "icon-text",
+      "widget",
+      "fragment"
+    ]
+  },
+  {
+    "id": "cards-service",
+    "components": [
+      "cards-service-card"
+    ]
+  },
+  {
+    "id": "cards",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "columns-auth",
+    "components": [
+      "columns-auth-column"
+    ]
+  },
+  {
+    "id": "columns-promo",
+    "components": [
+      "columns-promo-column"
+    ]
+  },
+  {
+    "id": "columns",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
+  },
+  {
+    "id": "icon-text",
+    "components": [
+      "icon-text-row"
+    ]
+  }
+]

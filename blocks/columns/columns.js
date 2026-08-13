@@ -1,3 +1,17 @@
+/**
+ * Keep "State Farm®" from splitting mid-name. On desktop, insert a break after
+ * the trademark; on mobile/tablet the break is hidden so text wraps naturally.
+ * @param {Element} block
+ */
+function keepTrademarkTogether(block) {
+  const intro = block.querySelector('h1 + p');
+  if (!intro || !intro.innerHTML.includes('State Farm®')) return;
+  intro.innerHTML = intro.innerHTML.replaceAll(
+    'State Farm®',
+    'State&nbsp;Farm®<span class="columns-quarter-break"></span>',
+  );
+}
+
 export default function decorate(block) {
   if (!block.firstElementChild) return;
 
@@ -17,4 +31,8 @@ export default function decorate(block) {
       }
     });
   });
+
+  if (block.classList.contains('quarter')) {
+    keepTrademarkTogether(block);
+  }
 }
