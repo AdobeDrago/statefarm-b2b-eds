@@ -1,0 +1,57 @@
+{
+  "definitions": [
+    {
+      "title": "Columns Promo",
+      "id": "columns-promo",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Columns Promo",
+              "filter": "columns-promo"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Column",
+      "id": "columns-promo-column",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Column",
+              "model": "columns-promo-column"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "columns-promo-column",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "text",
+          "value": "",
+          "label": "Content",
+          "valueType": "string",
+          "description": "Heading, subheading and a bulleted list of links, which becomes a product selector dropdown."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "columns-promo",
+      "components": [
+        "columns-promo-column"
+      ]
+    }
+  ]
+}
