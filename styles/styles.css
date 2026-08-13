@@ -393,6 +393,25 @@ main .section.highlight {
   padding: 40px 0;
 }
 
+/* khaki: inset from the viewport edges to match body content padding */
+main .section.khaki {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* tablet: body content side inset */
+@media (width >= 768px) and (width < 1024px) {
+  main > .section > div {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  main .section.khaki {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+}
+
 /* khaki: a framed, rounded highlight box inset in the normal content width (not full-bleed) */
 main .section.khaki>div {
   padding: 24px;
@@ -420,6 +439,53 @@ main .section.khaki ul:last-child {
 /* accent-heading: marks the first heading of a section as the brand-red accent color */
 main .section.accent-heading>div>h3:first-of-type {
   color: var(--link-color);
+  font-size: 1.375rem;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+@media (width >= 768px) {
+  main .section.accent-heading>div>h3:first-of-type {
+    font-size: 1.688rem;
+  }
+}
+
+@media (width >= 1024px) {
+  main .section.accent-heading>div>h3:first-of-type {
+    font-size: 1.938rem;
+  }
+}
+
+/* Coupa resource portal — Overview section + body copy */
+main .section.accent-heading:has(#overview) {
+  margin-bottom: 40px;
+}
+
+.section .default-content-wrapper:has(#overview) > p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Coupa resource portal — What's new heading spacing + Benefits/Changes/list type */
+.section .default-content-wrapper #whats-new {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.section .default-content-wrapper:has(#whats-new) > p,
+.section .default-content-wrapper:has(#whats-new) li {
+  font-size: 16px;
+}
+
+/* Coupa resource portal — space above Communications / resources / FAQ */
+main .section:has(#communications) {
+  margin-top: 40px;
+}
+
+/* Coupa resource portal — Contact us khaki box spacing */
+main .section.khaki:has(#contact-us) {
+  margin-top: 80px;
+  margin-bottom: 80px;
 }
 
 main .section .default-content-wrapper:has(#select-service-agreements) {
@@ -434,12 +500,32 @@ main .section .default-content-wrapper #select-service-agreements {
   color: var(--dark-gray-color);
 }
 
+main .section .default-content-wrapper #select-service-agreements-1 {
+  display: none;
+}
+
 main .section .default-content-wrapper #log-in-to-view-content {
   font-weight: 500;
   margin: 0 0 24px;
   line-height: 31px;
   font-size: 31.008px;
   color: var(--dark-gray-color);
+}
+
+.section .default-content-wrapper #additional-resources {
+  line-height: 1;
+  font-size: 25px;
+  margin: 50px 0 25px;
+  font-weight: 500;
+  color: var(--dark-gray-color);
+}
+
+.section .default-content-wrapper #additional-resources ~ p {
+  font-size: 16px;
+  margin: 0 0 16px;
+  font-weight: 600;
+  line-height: 21px;
+  color: var(--link-color);
 }
 
 .section .default-content-wrapper:has(#who-can-participate-in-state-farms-survey-of-autobody-repair-facilities) > p {
@@ -450,7 +536,27 @@ main .section .default-content-wrapper #log-in-to-view-content {
   line-height: 21px;
 }
 
-main .section .default-content-wrapper #log-in-to-view-content+p {
+.section .default-content-wrapper:has(#who-can-participate-in-state-farms-survey-of-autobody-repair-facilities) > p:last-child {
+  margin-bottom: 40px;
+}
+
+main .section .default-content-wrapper #log-in-to-view-content + .button-wrapper {
+  margin: 0;
+  width: max-content;
+}
+
+main .section .default-content-wrapper #log-in-to-view-content + .button-wrapper > a {
+  height: 48px;
+  color: #fff;
+  padding: 0 48px;
+  font-size: 16px;
+  margin: 0 0 24px;
+  font-weight: 600;
+  line-height: 18px;
+  background-color: var(--link-color);
+}
+
+main .section .default-content-wrapper #log-in-to-view-content+ .button-wrapper + p {
   font-size: 16px;
   font-weight: 400;
   margin: 0 0 16px;
@@ -458,11 +564,15 @@ main .section .default-content-wrapper #log-in-to-view-content+p {
   color: var(--text-color);
 }
 
-main .section .default-content-wrapper #log-in-to-view-content+p>a {
+main .section .default-content-wrapper #log-in-to-view-content+ .button-wrapper + p > a {
   font-size: 16px;
   font-weight: 600;
   line-height: 22px;
   color: var(--link-color);
+}
+
+main .section .default-content-wrapper #log-in-to-view-content+ .button-wrapper + p + p[data-auth="anonymous"]:has( > a) {
+  display: none;
 }
 
 main .section .default-content-wrapper #agreement-pdfs {
@@ -523,6 +633,11 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   color: var(--dark-gray-color);
 }
 
+/* stylelint-disable-next-line selector-id-pattern */
+.section .default-content-wrapper #select-service---resources {
+  display: none;
+}
+
 .section .default-content-wrapper #select-service {
   margin: 24px 0 0;
   line-height: 1;
@@ -567,8 +682,4 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   font-weight: 500;
   padding-top: 30px;
   color: var(--dark-gray-color);
-}
-
-.section .default-content-wrapper:has(#who-can-participate-in-state-farms-survey-of-autobody-repair-facilities) > p:last-child {
-  margin-bottom: 40px;
 }
