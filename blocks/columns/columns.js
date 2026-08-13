@@ -1,6 +1,6 @@
 /**
- * Keep "State Farm®" on one line with the preceding copy, then break
- * so "is moving from our…" starts on the next line.
+ * Keep "State Farm®" from splitting mid-name. On desktop, insert a break after
+ * the trademark; on mobile/tablet the break is hidden so text wraps naturally.
  * @param {Element} block
  */
 function keepTrademarkTogether(block) {
@@ -8,7 +8,7 @@ function keepTrademarkTogether(block) {
   if (!intro || !intro.innerHTML.includes('State Farm®')) return;
   intro.innerHTML = intro.innerHTML.replaceAll(
     'State Farm®',
-    'State&nbsp;Farm®<br>',
+    'State&nbsp;Farm®<span class="columns-quarter-break"></span>',
   );
 }
 

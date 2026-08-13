@@ -59,13 +59,4 @@ export default async function decorate(block) {
       '<sup class="registered">®</sup>',
     );
   }
-
-  // add floating chat button
-  const chatButton = document.createElement('div');
-  chatButton.className = 'footer-chat';
-  chatButton.innerHTML = `
-    <img src="../../icons/chat.svg" alt="Chat">
-    <span>Chat</span>
-  `;
-  block.append(chatButton);
 }
