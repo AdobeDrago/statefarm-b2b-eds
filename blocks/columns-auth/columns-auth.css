@@ -119,6 +119,12 @@
     }
 }
 
+@media(width<=601px) {
+  .columns-auth>div>.columns-auth-img-col img {
+    max-width: 315px;
+  }
+}
+
 /* fixed-size pictogram, targeted structurally (nth-child) since
    .columns-auth-img-col isn't added until the DA pipeline wraps it */
 
