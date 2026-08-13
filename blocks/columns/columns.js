@@ -1,3 +1,17 @@
+/**
+ * Keep "State Farm®" on one line with the preceding copy, then break
+ * so "is moving from our…" starts on the next line.
+ * @param {Element} block
+ */
+function keepTrademarkTogether(block) {
+  const intro = block.querySelector('h1 + p');
+  if (!intro || !intro.innerHTML.includes('State Farm®')) return;
+  intro.innerHTML = intro.innerHTML.replaceAll(
+    'State Farm®',
+    'State&nbsp;Farm®<br>',
+  );
+}
+
 export default function decorate(block) {
   if (!block.firstElementChild) return;
 
@@ -17,4 +31,8 @@ export default function decorate(block) {
       }
     });
   });
+
+  if (block.classList.contains('quarter')) {
+    keepTrademarkTogether(block);
+  }
 }
