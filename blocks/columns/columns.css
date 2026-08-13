@@ -51,16 +51,20 @@
   .columns.quarter > div {
     flex-direction: row;
     align-items: flex-start;
-    gap: 24px;
+    gap: 0;
   }
 
   .columns.quarter > div > div {
     order: unset;
   }
 
+  /* the icon takes a quarter of the row and carries the 30px column gutter
+     inside it, so the copy starts exactly on the second grid column */
   .columns.quarter > div > div:first-child {
-    flex: 0 0 140px;
-    max-width: 140px;
+    flex: 0 0 25%;
+    max-width: 25%;
+    box-sizing: border-box;
+    padding-right: 30px;
   }
 
   .columns.quarter > div > div:last-child {
@@ -104,25 +108,5 @@
 
   .columns.quarter .columns-quarter-break {
     display: block;
-  }
-
-  .columns.quarter > div {
-    align-items: flex-start;
-    gap: 24px;
-  }
-
-  .columns.quarter > div > div:first-child {
-    flex: 0 0 200px;
-    max-width: 200px;
-  }
-
-  .columns.quarter > div > div:last-child {
-    flex: 1 1 auto;
-    min-width: 0;
-    max-width: none;
-  }
-
-  .columns.quarter .columns-img-col {
-    margin-top: 24px;
   }
 }

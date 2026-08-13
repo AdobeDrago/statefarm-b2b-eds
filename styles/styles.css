@@ -412,13 +412,26 @@ main .section.khaki {
   }
 }
 
-/* khaki: a framed, rounded highlight box inset in the normal content width (not full-bleed) */
+/* khaki: a framed, rounded highlight box inset in the normal content width (not full-bleed).
+   The box padding replaces the content wrapper's 15px inset, so the max width has to drop
+   by that inset (1140 - 30) to keep the box edges on the same column as body copy in
+   sections without a box. Narrower viewports are already constrained by the section inset. */
 main .section.khaki>div {
+  max-width: 1110px;
   padding: 24px;
   border: 1px solid #acabab;
   border-radius: 4px;
   background-color: var(--khaki-color);
   box-shadow: 0 0 3px 0 rgb(33 33 33 / 25%);
+}
+
+/* the box padding provides the inset above the first element */
+main .section.khaki>div>:first-child {
+  margin-top: 0;
+}
+
+main .section.khaki>div p {
+  margin: 0 0 16px;
 }
 
 main .section.khaki ul {
@@ -682,4 +695,32 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   font-weight: 500;
   padding-top: 30px;
   color: var(--dark-gray-color);
+}
+
+/* Supplier engagement — body copy stays 16px at all widths (source keeps text
+   size fixed regardless of viewport, unlike the default fluid body scale) */
+/* stylelint-disable no-descending-specificity */
+main .section.khaki:has(#our-program) p,
+main .section.khaki:has(#our-program) li,
+main .section:has(#how-to-engage-us) p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #212121;
+}
+/* stylelint-enable no-descending-specificity */
+
+main .section.khaki:has(#our-program) li {
+  padding-bottom: 8px;
+}
+
+/* Supplier engagement — restore the section spacing lost when the khaki box
+   sits flush against the hero and the following section sits flush against it */
+main .section.khaki:has(#our-program) {
+  margin-top: 24px;
+}
+
+main .section:has(#how-to-engage-us) {
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
