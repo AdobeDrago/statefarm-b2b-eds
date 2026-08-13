@@ -640,7 +640,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   }
 }
 
-@media (width > 768px) {
+@media (width > 768px) and (width < 1024px) {
   header nav[aria-expanded='true'] .nav-sections {
     padding: 40px 104px;
   }
