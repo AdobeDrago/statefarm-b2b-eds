@@ -19,6 +19,28 @@
   display: block;
 }
 
+/* quarter: image + title intro (e.g. Coupa resource portal) */
+.columns.quarter h1 {
+  margin-top: 24px;
+  font-size: 3rem;
+}
+
+.columns.quarter h1 + p {
+  margin-bottom: 32px;
+  font-size: 1rem;
+}
+
+.columns.quarter a.button {
+  padding: 13px 48px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* same top offset as the h1 so the icon lines up with the heading */
+.columns.quarter .columns-img-col {
+  margin-top: 24px;
+}
+
 @media (width >= 900px) {
   .columns > div {
     align-items: flex-start;
@@ -31,18 +53,20 @@
     order: unset;
   }
 
-  /* quarter: an image+text header pairing, where the shorter column should be
-     vertically centered against the taller one rather than top-aligned */
+  /* quarter: larger icon column; text still wide enough for State Farm® on line 1 */
   .columns.quarter > div {
-    align-items: center;
+    align-items: flex-start;
+    gap: 24px;
   }
 
-  /* quarter: the image column takes 25% width instead of an even split */
   .columns.quarter > div > div:first-child {
-    flex: 0 0 25%;
+    flex: 0 0 200px;
+    max-width: 200px;
   }
 
   .columns.quarter > div > div:last-child {
-    flex: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
   }
 }
