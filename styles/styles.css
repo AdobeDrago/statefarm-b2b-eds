@@ -797,6 +797,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
     font-size: 22px !important;
   }
 }
+
 /* Supplier engagement — body copy stays 16px at all widths (source keeps text
    size fixed regardless of viewport, unlike the default fluid body scale) */
 /* stylelint-disable no-descending-specificity */
