@@ -701,12 +701,13 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   color: var(--dark-gray-color);
 }
 
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
   .section .default-content-wrapper #select-service {
     line-height: 1;
     font-size: 23px;
   }
 
+  /* stylelint-disable-next-line selector-id-pattern */
   .section .default-content-wrapper #help--support {
     line-height: 1;
     font-size: 39px;
@@ -743,12 +744,13 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   }
 }
 
-@media (max-width: 560px) {
+@media (width <= 560px) {
   .section .default-content-wrapper #select-service {
     line-height: 1;
     font-size: 20px;
   }
 
+  /* stylelint-disable-next-line selector-id-pattern */
   .section .default-content-wrapper #help--support {
     line-height: 1;
     font-size: 28px;

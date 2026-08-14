@@ -244,7 +244,7 @@
   color: var(--dark-gray-color);
 }
 
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
   .default-content-wrapper #create-assignment {
     line-height: 1;
     font-size: 39px;
@@ -266,9 +266,14 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (width <= 560px) {
   .default-content-wrapper #create-assignment {
     font-size: 28px;
+  }
+
+  .create-assignment.columns > div {
+    display: grid !important;
+    grid-template-columns: 1fr;
   }
 
   .cards-wrapper .create-assignment.cards {
@@ -290,10 +295,5 @@
   .columns-wrapper #erac,
   .columns-wrapper #hertz {
     font-size: 18px;
-  }
-
-  .create-assignment.columns > div {
-    display: grid !important;
-    grid-template-columns: 1fr;
   }
 }
