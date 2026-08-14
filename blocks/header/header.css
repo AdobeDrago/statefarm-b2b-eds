@@ -633,7 +633,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 }
 
 /* =========================================================
-   MOBILE / TABLET (< 900px): hamburger + accordion drawer
+   MOBILE / TABLET (< 1024px): hamburger + accordion drawer
    ========================================================= */
 @media (width < 768px) {
   header nav[aria-expanded='true'] .nav-sections {
@@ -645,7 +645,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   }
 }
 
-@media (width > 768px) and (width < 1024px) {
+@media (width >= 768px) and (width < 1024px) {
   header nav[aria-expanded='true'] .nav-sections {
     padding: 40px 104px;
   }
@@ -833,7 +833,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   header nav .nav-drop-panel-inner {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0;
     padding: 0;
   }
 
@@ -853,7 +853,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     gap: 6px;
     width: 100%;
     margin: 0 0 78px;
-    padding: 10px 0;
+    padding: 10px 0 10px 10px;
     border: 0;
     border-bottom: 1px solid var(--sf-border);
     background: none;
@@ -994,30 +994,50 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   header nav[aria-expanded='true'] .nav-search-toggle::after {
     background-image: url("../../icons/search.svg");
   }
+
+  .nav-drop-panel.open .nav-drop-title {
+    padding: 0 99px;
+    margin: 0 46px;
+  }
+  
+  .nav-drop-panel.open .nav-drop-col {
+    padding: 0 99px;
+    margin: 0 46px;
+  }
+
+  .nav-drop-panel.open .nav-drop-col > h3 {
+    margin: 25px 0 0;
+    font-weight: 500;
+    line-height: 24px;
+    font-size: 18px !important;
+  }
+
+  header nav[aria-expanded="true"]:has(.nav-drop[aria-expanded="true"]) .nav-tools {
+    display: none;
+  }
 }
 
-.nav-drop-panel.open .nav-drop-title {
-  margin: 0 0 0 46px;
-}
-
-.nav-drop-panel.open .nav-drop-col > h3 {
-  margin: 0;
-  font-weight: 500;
-  line-height: 24px;
-  font-size: 18px !important;
-}
-
-.nav-drop-panel.open .nav-drop-col {
-  padding: 0 99px;
-  margin: 0 0 0 46px;
-}
 
 @media (width < 560px) {
   .nav-drop-panel.open .nav-drop-title {
-    margin: 0 0 20px 46px;
+    padding: 0;
+    margin: 0 0 0 46px;
+  }
+
+  .nav-drop-panel.open .nav-drop-col > h3 {
+    margin: 20px 0 0;
   }
 
   .nav-drop-panel.open .nav-drop-col {
     padding: 0;
+  }
+
+  header nav[aria-expanded='true'] .nav-sections {
+    padding: 40px 30px;
+  }
+
+  header nav[aria-expanded='true'] .nav-tools ul li {
+    margin: 0;
+    padding: 2px;
   }
 }
