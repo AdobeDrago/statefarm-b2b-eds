@@ -183,10 +183,10 @@
 
 .columns-wrapper #erac,
 .columns-wrapper #hertz {
+  line-height: 1;
   font-size: 20px;
   margin: 0 0 24px;
   font-weight: 500;
-  line-height: 20px;
   color: var(--dark-gray-color);
 }
 
@@ -233,7 +233,7 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 22px;
-  color: var(--text-color);
+  color: var(--link-color);
 }
 
 .default-content-wrapper #rental-job-aids {
@@ -242,4 +242,58 @@
   line-height: 25px;
   font-size: 25.008px;
   color: var(--dark-gray-color);
+}
+
+@media (width <= 1024px) {
+  .default-content-wrapper #create-assignment {
+    line-height: 1;
+    font-size: 39px;
+  }
+
+  .default-content-wrapper #job-aids {
+    line-height: 1;
+    font-size: 23px;
+  }
+
+  .default-content-wrapper #rental-job-aids {
+    line-height: 1;
+    font-size: 23px;
+  }
+
+  .create-assignment.columns > div {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (width <= 560px) {
+  .default-content-wrapper #create-assignment {
+    font-size: 28px;
+  }
+
+  .create-assignment.columns > div {
+    display: grid !important;
+    grid-template-columns: 1fr;
+  }
+
+  .cards-wrapper .create-assignment.cards {
+    padding: 0 15px;
+  }
+
+  .cards-wrapper .create-assignment.cards ul li div {
+    min-height: auto;
+  }
+
+  .default-content-wrapper #job-aids {
+    font-size: 20px;
+  }
+
+  .default-content-wrapper #rental-job-aids {
+    font-size: 20px;
+  }
+
+  .columns-wrapper #erac,
+  .columns-wrapper #hertz {
+    font-size: 18px;
+  }
 }

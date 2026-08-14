@@ -714,6 +714,90 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   color: var(--dark-gray-color);
 }
 
+@media (width <= 1024px) {
+  .section .default-content-wrapper #select-service {
+    line-height: 1;
+    font-size: 23px;
+  }
+
+  /* stylelint-disable-next-line selector-id-pattern */
+  .section .default-content-wrapper #help--support {
+    line-height: 1;
+    font-size: 39px;
+  }
+
+  .section .default-content-wrapper #frequently-asked-questions {
+    line-height: 1;
+    font-size: 27px;
+  }
+
+  .section .default-content-wrapper #who-can-participate-in-state-farms-survey-of-autobody-repair-facilities,
+  .section .default-content-wrapper #i-am-opening-a-new-repair-facility-how-can-i-submit-information-about-my-repair-facility,
+  .section .default-content-wrapper #will-there-be-further-notice-to-repairers-of-the-survey-process,
+  .section .default-content-wrapper #how-will-select-service-repairers-learn-of-changes-in-prevailing-competitive-prices,
+  .section .default-content-wrapper #how-can-i-submit-prevailing-competitive-price-information {
+    font-size: 23px;
+    line-height: 29px;
+    margin: 0 0 23px;
+  }
+
+  .section .default-content-wrapper #contact-us {
+    line-height: 1;
+    font-size: 27px;
+  }
+
+  .section .default-content-wrapper #select-service-agreements {
+    line-height: 1 !important;
+    font-size: 33px !important;
+  }
+
+  .section .default-content-wrapper #log-in-to-view-content {
+    line-height: 1 !important;
+    font-size: 27px !important;
+  }
+}
+
+@media (width <= 560px) {
+  .section .default-content-wrapper #select-service {
+    line-height: 1;
+    font-size: 20px;
+  }
+
+  /* stylelint-disable-next-line selector-id-pattern */
+  .section .default-content-wrapper #help--support {
+    line-height: 1;
+    font-size: 28px;
+  }
+
+  .section .default-content-wrapper #frequently-asked-questions {
+    line-height: 1;
+    font-size: 22px;
+  }
+
+  .section .default-content-wrapper #who-can-participate-in-state-farms-survey-of-autobody-repair-facilities,
+  .section .default-content-wrapper #i-am-opening-a-new-repair-facility-how-can-i-submit-information-about-my-repair-facility,
+  .section .default-content-wrapper #will-there-be-further-notice-to-repairers-of-the-survey-process,
+  .section .default-content-wrapper #how-will-select-service-repairers-learn-of-changes-in-prevailing-competitive-prices,
+  .section .default-content-wrapper #how-can-i-submit-prevailing-competitive-price-information {
+    font-size: 20px;
+    line-height: 26px;
+    margin: 0 0 20px;
+  }
+
+  .section .default-content-wrapper #contact-us {
+    line-height: 1;
+    font-size: 22px;
+  }
+
+  .section .default-content-wrapper #select-service-agreements {
+    font-size: 25px !important;
+  }
+
+  .section .default-content-wrapper #log-in-to-view-content {
+    font-size: 22px !important;
+  }
+}
+
 /* Supplier engagement — body copy stays 16px at all widths (source keeps text
    size fixed regardless of viewport, unlike the default fluid body scale) */
 /* stylelint-disable no-descending-specificity */
