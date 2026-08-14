@@ -530,10 +530,6 @@ main .section .default-content-wrapper #select-service-agreements {
   color: var(--dark-gray-color);
 }
 
-main .section .default-content-wrapper #select-service-agreements-1 {
-  display: none;
-}
-
 main .section .default-content-wrapper #log-in-to-view-content {
   font-weight: 500;
   margin: 0 0 24px;
@@ -601,10 +597,6 @@ main .section .default-content-wrapper #log-in-to-view-content+ .button-wrapper 
   color: var(--link-color);
 }
 
-main .section .default-content-wrapper #log-in-to-view-content+ .button-wrapper + p + p[data-auth="anonymous"]:has( > a) {
-  display: none;
-}
-
 main .section .default-content-wrapper #agreement-pdfs {
   font-weight: 500;
   margin: 0 0 20px;
@@ -661,11 +653,6 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   font-weight: 500;
   margin: 10px 0 0;
   color: var(--dark-gray-color);
-}
-
-/* stylelint-disable-next-line selector-id-pattern */
-.section .default-content-wrapper #select-service---resources {
-  display: none;
 }
 
 .section .default-content-wrapper #select-service {
