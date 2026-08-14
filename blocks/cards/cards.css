@@ -83,10 +83,12 @@
   border: 1px solid #D62311;
 }
 
-/* reserve exactly one title line so cards with and without a lock icon keep a
-   consistent baseline — tracks the title's line-height at each breakpoint */
+/* reserve one title line so cards with and without a lock icon keep a
+   consistent baseline — tracks the title's line-height at each breakpoint.
+   min-height, not height: a title that wraps has to grow the card rather than
+   overflow past its top edge */
 .cards .cards-card-body p:first-child:not(:has(picture)) {
-  height: 26px;
+  min-height: 26px;
   display: flex;
   align-items: end;
   box-sizing: border-box;
@@ -99,7 +101,7 @@
   }
 
   .cards .cards-card-body p:first-child:not(:has(picture)) {
-    height: 29px;
+    min-height: 29px;
   }
 }
 
@@ -110,7 +112,7 @@
   }
 
   .cards .cards-card-body p:first-child:not(:has(picture)) {
-    height: 30px;
+    min-height: 30px;
   }
 }
 
