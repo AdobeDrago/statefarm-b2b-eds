@@ -754,3 +754,55 @@ main .section:has(#how-to-engage-us) {
   margin-top: 60px;
   margin-bottom: 60px;
 }
+
+/* Supplier engagement — tablet (768px–1024px) drops the shared content grid for
+   a 92.5px gutter on both sides, so the khaki border and the body copy start on
+   the same column as they do on desktop */
+@media (width >= 768px) and (width <= 1024px) {
+  main:has(#our-program) > .section:not(.breadcrumbs-container) {
+    padding-inline: 92.5px;
+  }
+
+  main:has(#our-program) > .section:not(.breadcrumbs-container, .khaki) > div {
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  /* the box keeps its own padding, which the gutter must not double up on */
+  main:has(#our-program) > .section.khaki > div {
+    max-width: none;
+    padding: 40px;
+  }
+}
+
+/* Supplier engagement — on desktop every section except the breadcrumbs starts
+   92.5px further right than the shared content grid while its right edge stays
+   put. The section keeps the box centered, so the shift is split: the section
+   gains the full offset as left padding and the content box loses it from its
+   max width. */
+@media (width > 1024px) {
+  main:has(#our-program) > .section:not(.breadcrumbs-container, .khaki) {
+    padding-left: 92.5px;
+  }
+
+  main:has(#our-program) > .section:not(.breadcrumbs-container, .khaki) > div {
+    max-width: calc(1140px - 92.5px);
+  }
+
+  /* the khaki box carries its own 15px section inset */
+  main:has(#our-program) > .section.khaki {
+    padding-left: calc(15px + 92.5px);
+  }
+
+  main:has(#our-program) > .section.khaki > div {
+    max-width: calc(1110px - 92.5px);
+  }
+}
+
+/* the shared content grid narrows to 960px below 1200px — the khaki box keeps
+   its own 1110px width there, so it stays out of this override */
+@media (width > 1024px) and (width <= 1200px) {
+  main:has(#our-program) > .section:not(.breadcrumbs-container, .khaki) > div {
+    max-width: calc(960px - 92.5px);
+  }
+}
