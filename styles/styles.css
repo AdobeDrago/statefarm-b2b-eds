@@ -381,7 +381,10 @@ main>.section>div {
   box-sizing: border-box;
 }
 
-main>.section>div:nth-child(2) {
+/* the suppliers card row keeps the section padding so it lines up with the
+   hub heading above it — wrapped in :where() to keep this selector's
+   specificity unchanged */
+main>.section>div:nth-child(2):not(:where(:has(> .cards.suppliers))) {
   padding-inline: 0;
 }
 
@@ -425,8 +428,9 @@ main .section.khaki {
   padding-left: 15px;
 }
 
-/* tablet: body content side inset */
-@media (width >= 768px) and (width < 1024px) {
+/* tablet: body content side inset — starts above 768px so it doesn't stack on
+   top of the 690px content width that still applies at exactly 768px */
+@media (width > 768px) and (width < 1024px) {
   main > .section > div {
     padding-right: 24px;
     padding-left: 24px;

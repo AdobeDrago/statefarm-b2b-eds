@@ -203,6 +203,69 @@
   }
 }
 
+/* suppliers hub (/b2b-content/suppliers): the icon column holds a 104px
+   pictogram next to the heading rather than the wide hero image the login
+   variants use, and there is no Log In column — so the row keeps its
+   horizontal split at every width instead of stacking. */
+.columns-auth.suppliers > div {
+  min-height: 0;
+}
+
+.columns-auth.suppliers > div > div {
+  box-sizing: border-box;
+  padding-inline: 15px;
+}
+
+/* pictogram is tablet/desktop-only on the source */
+.columns-auth.suppliers > div > .columns-auth-img-col {
+  display: none;
+}
+
+.columns-auth.suppliers h1 {
+  margin: 0 0 32px;
+  font-size: 28px;
+  line-height: 28px;
+}
+
+.columns-auth.suppliers h1 + p {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+@media (width >= 768px) {
+  /* the 2:8:2 column split comes from the shared no-login-column rules above */
+  .columns-auth.suppliers > div {
+    flex-direction: row;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .columns-auth.suppliers > div > .columns-auth-img-col {
+    display: block;
+  }
+
+  .columns-auth.suppliers > div > .columns-auth-img-col img {
+    width: 104px;
+    height: 104px;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  .columns-auth.suppliers h1 {
+    font-size: 39px;
+    line-height: 39px;
+  }
+}
+
+@media (width >= 1025px) {
+  .columns-auth.suppliers h1 {
+    font-size: 48px;
+    line-height: 48px;
+  }
+}
+
 /* fixed-size pictogram, targeted structurally (nth-child) since
    .columns-auth-img-col isn't added until the DA pipeline wraps it */
 
