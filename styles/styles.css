@@ -393,7 +393,7 @@ main>.section>div:nth-child(2) {
   
 }
 
-@media (width<=768px) {
+@media (width<768px) {
   main>.section>div {
     max-width: 690px;
     padding-inline: 0;

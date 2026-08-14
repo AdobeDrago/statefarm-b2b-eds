@@ -2,21 +2,106 @@
   margin: 0 !important;
 }
 
-.columns-auth {
+.home-page {
   margin-top: 32px;
   margin-bottom: 32px;
 }
+ 
+.home-page>div {
+  display: flex; 
+}
 
-.columns-auth>div {
-  display: flex;
-  flex-direction: column;
+.home-page>div>.columns-auth-img-col img {
+  max-width: 420px;
+}
+
+.home-page>div>div h1 {
+  margin-top: 0;
+  margin-bottom: 0.2em;
+  line-height: 48px;
+  font-size: 48px;
+}
+
+.home-page h1+p {
+  margin: 0 0 25px;
+  font-size: 25px;
+  margin-bottom: 0.4em;
+  font-weight: 400;
+  line-height: 30px;
+  color: #212121;
+}
+
+.home-page h1+p+p {
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+@media (width <1200px) { 
+  .home-page>div>.columns-auth-img-col img {
+    display: block;
+    width: 100%;
+    max-width: 345px;
+  } 
 }
 
 
 
-.columns-auth img {
-  /* width: 100%; */
+@media (width <=990px) {
+  .home-page {
+    margin-inline: auto;
+    max-width: 690px; 
+  }
+
+  .home-page>div {
+    flex-direction: column;
+  }
+  
+  .home-page>div>.columns-auth-img-col img {
+    display: block;
+    width: 100%;
+    max-width: 630px;
+  }
+
+  .home-page>div>div h1 {
+    margin-top: 0.1em;
+    margin-bottom: 0.2em;
+    line-height: 39px;
+    font-size: 2.438rem;
+  }
+
+  .home-page h1+p {
+    font-size: 23px;
+      line-height: 29px;
+  } 
 }
+
+@media (width <768px) {
+  .home-page  { 
+    max-width: 480px;
+  }
+ 
+
+  .home-page>div>.columns-auth-img-col img {
+    display: block;
+    width: 100%;
+    max-width: 630px;
+  }
+
+  .home-page>div>div h1 {
+    margin-top: 0.1em;
+    margin-bottom: 0.2em;
+    line-height: 28px;
+    font-size: 1.75rem;
+  }
+
+  .home-page h1+p {
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+ 
 
 /* "No login required" icon + link row: stacked on narrow viewports,
    an even 3-across row once there is enough room */
@@ -50,116 +135,55 @@
   height: 24px;
 }
 
-.columns-auth-no-login-list .icon img {
+/* .columns-auth-no-login-list .icon img {
   width: 100%;
   height: 100%;
-}
+} */
 
 .columns-auth-no-login-list a {
   font-size: 14px;
   font-weight: 700;
 }
 
-.columns-auth-3-cols>div {
+/* .columns-auth-3-cols>div {
   min-height: 165px;
-}
+} */
 
-.columns-auth>div>div {
-  padding-inline: 0.7em;
+.home-page>div>div {
+  /* padding-inline: 0.7em; */
   flex-grow: 1;
-}
+} 
 
-.columns-auth>div>.columns-auth-img-col {
-  order: 0;
-  flex-grow: 0;
-
-  /* hero icon is tablet/desktop-only on the source (hidden below 768px) */
-
-  /*  display: none; */
-}
-
-.columns-auth h1 {
+/* .home-page h1 {
   margin: 0 0 32px;
   color: #403c3c;
   font-size: 28px;
   font-weight: 600;
   line-height: 28px;
-}
+} */
 
-.columns-auth>div>div h1 {
-  margin-top: 0;
-  margin-bottom: 0.2em;
-  line-height: 48px;
-  font-size: 48px;
-}
 
-.columns-auth h1+p {
-  margin: 0 0 25px;
-  font-size: 25px;
-  font-weight: 400;
-  line-height: 30px;
-  color: #212121;
-}
 
-.columns-auth h1+p+p {
-  margin-top: 0;
-  margin-bottom: 24px;
-  font-size: 16px;
-  line-height: 20px;
-}
 
-.columns-auth>div>div h1+p {
-  margin-bottom: 0.4em;
-}
-
-@media (width <=560px) {
-  .columns-auth>div>div h1 {
-    margin-top: 0;
-    margin-bottom: 0.2em;
-    line-height: 48px;
-    font-size: 28px;
-  }
-
+@media (width <=560px) { 
   .columns-auth-no-login-list li:last-child .icon img {
     translate: 0 -1px;
   }
 }
-
-.columns-auth>div>.columns-auth-img-col img {
-  display: block;
-  max-width: 400px;
-}
+ 
 
 /* tablet + desktop share the row layout (icon beside heading, multi-column
    flex split); only font sizes further up scale between the two */
-@media (width >=768px) {
-  .columns-auth>div {
-    margin-inline: auto;
-    max-width: 720px;
-    flex-direction: column;
-  }
+ 
 
   /* min-height, not height, so taller content grows the row instead of
      clipping; 165px matches the source's row height for every hub page that
      has a real Log In column. The one exception (a third column with no
      link — just a spacer, e.g. Suppliers) sizes naturally below. */
-  .columns-auth-3-cols>div {
+
+  /* .columns-auth-3-cols>div {
     min-height: 165px;
-  }
-
-  .columns-auth>div>div h1+p {
-    font-size: 23px;
-    line-height: 29px;
-  }
-
-  .columns-auth>div>.columns-auth-img-col img {
-    max-width: 630px;
-  }
-
-  .columns-auth>div>.columns-auth-img-col {
-    display: block;
-    flex: 5;
-  }
+  }  */
 
   /* 3-col layout: icon column is a fixed 2/12 share on the source for every
      page (icon:text:third fractions of 12); only the icon's share is shared
@@ -200,17 +224,9 @@
 
   .columns-auth-3-cols>div:not(:has(> div:nth-child(3) a))>div:nth-child(3) {
     flex: 1;
-  }
-}
+  } 
 
-/* fixed-size pictogram, targeted structurally (nth-child) since
-   .columns-auth-img-col isn't added until the DA pipeline wraps it */
-
-/* .columns-auth-3-cols > div > div:first-child img {
-  width: 104px;
-  height: 104px;
-  margin: 0 auto;
-} */
+ 
 
 .columns-auth-no-login-list li:last-child .icon img {
   translate: 0 -2px;
@@ -224,7 +240,7 @@
 
 /* spacing matches the source's explicit margins between h1, intro copy,
    Log In button and forgot-help — several are larger than the defaults */
-.columns-auth #select-service {
+.home-page #select-service {
   color: #403c3c;
   line-height: 48px;
   margin: 0 0 32px;
@@ -233,41 +249,25 @@
   position: relative;
 }
 
-.columns-auth h1 .registered {
+.home-page h1 .registered {
   top: 24px;
   line-height: 0;
   font-size: 45px;
   position: absolute;
 }
-
-/* mobile default; tablet/desktop scale up further below */
-
-@media (width >=768px) {
-  .columns-auth h1 {
-    font-size: 39px;
-    line-height: 39px;
-  }
-}
-
-@media (width >=1025px) {
-  .columns-auth h1 {
-    font-size: 48px;
-    line-height: 48px;
-  }
-}
-
-.columns-auth p.button-wrapper {
+ 
+.home-page p.button-wrapper {
   margin-top: 0;
 }
 
-.columns-auth p.button-wrapper+p {
+.home-page p.button-wrapper+p {
   font-size: 16px;
   font-weight: 400;
   margin: 0 0 16px;
   line-height: 22px;
 }
 
-.columns-auth #select-service+p {
+.home-page #select-service+p {
   margin: 0 0 25px;
   font-size: 25px;
   font-weight: 400;
@@ -275,13 +275,13 @@
   color: #212121;
 }
 
-.columns-auth p.button-wrapper+p>a {
+.home-page p.button-wrapper+p>a {
   font-size: 16px;
   font-weight: 600;
   line-height: 22px;
 }
 
-.columns-auth h6 {
+.home-page h6 {
   margin-top: 24px;
   margin-bottom: 8px;
   font-size: 16px;
@@ -289,7 +289,7 @@
 
 /* min-width, not width — a fixed 138px clipped "Log In" and would ellipsize
    "Log Out"; growing it shifts nothing since the cell is right-aligned */
-.columns-auth .button.accent {
+.home-page .button.accent {
   min-width: 138px;
   height: 48px;
   font-size: 16px;
@@ -298,7 +298,7 @@
   padding: 0 48px;
 }
 
-.columns-auth .button-wrapper {
+.home-page .button-wrapper {
   margin: 0;
 }
 
