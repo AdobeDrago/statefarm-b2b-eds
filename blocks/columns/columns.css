@@ -19,17 +19,7 @@
   display: block;
 }
 
-/* quarter: image + title intro (e.g. Coupa resource portal) — mobile first */
-.columns.quarter h1 {
-  margin-top: 24px;
-  margin-bottom: 16px;
-  font-size: 1.75rem;
-}
-
-.columns.quarter h1 + p {
-  margin-bottom: 32px;
-  font-size: 1rem;
-}
+/* Breakpoints: mobile <=560 | tablet >=768 | desktop >1024 */
 
 .columns.quarter a.button {
   padding: 13px 48px;
@@ -37,7 +27,7 @@
   font-weight: 500;
 }
 
-/* desktop-only line break after State Farm®; mobile/tablet wrap naturally */
+/* line break after State Farm® — shown on desktop only */
 .columns.quarter .columns-quarter-break {
   display: none;
 }
@@ -46,21 +36,39 @@
   margin-top: 24px;
 }
 
-/* tablet: icon left, details right — larger icon, top-aligned with heading */
+/* mobile (<=560) — stacked layout + mobile type */
+@media (width <= 560px) {
+  .columns.quarter h1 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-size: 1.75rem;
+  }
+
+  .columns.quarter h1 + p {
+    margin-bottom: 32px;
+    font-size: 1rem;
+  }
+}
+
+/* tablet (>=768; desktop overrides above 1024) */
 @media (width >= 768px) {
   .columns.quarter > div {
     flex-direction: row;
     align-items: flex-start;
-    gap: 24px;
+    gap: 0;
   }
 
   .columns.quarter > div > div {
     order: unset;
   }
 
+  /* the icon takes a quarter of the row and carries the 30px column gutter
+     inside it, so the copy starts exactly on the second grid column */
   .columns.quarter > div > div:first-child {
-    flex: 0 0 140px;
-    max-width: 140px;
+    flex: 0 0 25%;
+    max-width: 25%;
+    box-sizing: border-box;
+    padding-right: 30px;
   }
 
   .columns.quarter > div > div:last-child {
@@ -82,10 +90,15 @@
     margin-bottom: 16px;
     font-size: 2.438rem;
   }
+
+  .columns.quarter h1 + p {
+    margin-bottom: 32px;
+    font-size: 1rem;
+  }
 }
 
-/* desktop */
-@media (width >= 1024px) {
+/* desktop (>1024) */
+@media (width >= 1025px) {
   .columns > div {
     align-items: flex-start;
     flex-direction: unset;
@@ -98,31 +111,17 @@
   }
 
   .columns.quarter h1 {
+    margin-top: 24px;
     margin-bottom: 0.25em;
     font-size: 3rem;
   }
 
+  .columns.quarter h1 + p {
+    margin-bottom: 32px;
+    font-size: 1rem;
+  }
+
   .columns.quarter .columns-quarter-break {
     display: block;
-  }
-
-  .columns.quarter > div {
-    align-items: flex-start;
-    gap: 24px;
-  }
-
-  .columns.quarter > div > div:first-child {
-    flex: 0 0 200px;
-    max-width: 200px;
-  }
-
-  .columns.quarter > div > div:last-child {
-    flex: 1 1 auto;
-    min-width: 0;
-    max-width: none;
-  }
-
-  .columns.quarter .columns-img-col {
-    margin-top: 24px;
   }
 }

@@ -6,9 +6,9 @@
   margin-top: 32px;
   margin-bottom: 32px;
 }
- 
+
 .home-page>div {
-  display: flex; 
+  display: flex;
 }
 
 .home-page>div>.columns-auth-img-col img {
@@ -38,12 +38,12 @@
   line-height: 20px;
 }
 
-@media (width <1200px) { 
+@media (width <1200px) {
   .home-page>div>.columns-auth-img-col img {
     display: block;
     width: 100%;
     max-width: 345px;
-  } 
+  }
 }
 
 
@@ -51,13 +51,13 @@
 @media (width <=990px) {
   .home-page {
     margin-inline: auto;
-    max-width: 690px; 
+    max-width: 690px;
   }
 
   .home-page>div {
     flex-direction: column;
   }
-  
+
   .home-page>div>.columns-auth-img-col img {
     display: block;
     width: 100%;
@@ -73,15 +73,15 @@
 
   .home-page h1+p {
     font-size: 23px;
-      line-height: 29px;
-  } 
+    line-height: 29px;
+  }
 }
 
 @media (width <768px) {
-  .home-page  { 
+  .home-page {
     max-width: 480px;
   }
- 
+
 
   .home-page>div>.columns-auth-img-col img {
     display: block;
@@ -101,7 +101,7 @@
     line-height: 26px;
   }
 }
- 
+
 
 /* "No login required" icon + link row: stacked on narrow viewports,
    an even 3-across row once there is enough room */
@@ -152,7 +152,7 @@
 .home-page>div>div {
   /* padding-inline: 0.7em; */
   flex-grow: 1;
-} 
+}
 
 /* .home-page h1 {
   margin: 0 0 32px;
@@ -165,68 +165,140 @@
 
 
 
-@media (width <=560px) { 
+@media (width <=560px) {
   .columns-auth-no-login-list li:last-child .icon img {
     translate: 0 -1px;
   }
 }
- 
+
 
 /* tablet + desktop share the row layout (icon beside heading, multi-column
    flex split); only font sizes further up scale between the two */
- 
 
-  /* min-height, not height, so taller content grows the row instead of
+
+/* min-height, not height, so taller content grows the row instead of
      clipping; 165px matches the source's row height for every hub page that
      has a real Log In column. The one exception (a third column with no
      link — just a spacer, e.g. Suppliers) sizes naturally below. */
 
-  /* .columns-auth-3-cols>div {
+/* .columns-auth-3-cols>div {
     min-height: 165px;
   }  */
 
-  /* 3-col layout: icon column is a fixed 2/12 share on the source for every
+/* 3-col layout: icon column is a fixed 2/12 share on the source for every
      page (icon:text:third fractions of 12); only the icon's share is shared
      between variants, so it's the only one set unconditionally */
-  .columns-auth-3-cols>div>div:first-child {
-    flex: 1;
-  }
+.columns-auth-3-cols>div>div:first-child {
+  flex: 1;
+}
 
-  /* default (most hub pages, e.g. Select Service, Claims, Lenders): a real
+/* default (most hub pages, e.g. Select Service, Claims, Lenders): a real
      Log In column, icon:text:login = 2:6:4 of 12 */
-  .columns-auth-3-cols>div>div:nth-child(2) {
-    flex: 3;
-  }
+.columns-auth-3-cols>div>div:nth-child(2) {
+  flex: 3;
+}
 
-  .columns-auth-3-cols>div>div:nth-child(2)>#electronic-payments {
-    line-height: 1;
-    font-size: 48px;
-    font-weight: 600;
-    margin: 0 0 32px;
-    color: var(--dark-gray-color);
-  }
+.columns-auth-3-cols>div>div:nth-child(2)>#electronic-payments {
+  line-height: 1;
+  font-size: 48px;
+  font-weight: 600;
+  margin: 0 0 32px;
+  color: var(--dark-gray-color);
+}
 
-  .columns-auth-3-cols>div>div:nth-child(3) {
-    flex: 2;
-    text-align: right;
-  }
+.columns-auth-3-cols>div>div:nth-child(3) {
+  flex: 2;
+  text-align: right;
+}
 
-  /* exception: third column has no link — just a spacer (e.g. Suppliers) —
+/* exception: third column has no link — just a spacer (e.g. Suppliers) —
      so icon:text:spacer = 2:8:2 of 12, giving the text column more room, and
      the row sizes to its own content instead of the 165px Log In row height */
-  .columns-auth-3-cols>div:not(:has(> div:nth-child(3) a)) {
-    min-height: 0;
+.columns-auth-3-cols>div:not(:has(> div:nth-child(3) a)) {
+  min-height: 0;
+}
+
+.columns-auth-3-cols>div:not(:has(> div:nth-child(3) a))>div:nth-child(2) {
+  flex: 4;
+}
+
+.columns-auth-3-cols>div:not(:has(> div:nth-child(3) a))>div:nth-child(3) {
+  flex: 1;
+}
+
+
+/* suppliers hub (/b2b-content/suppliers): the icon column holds a 104px
+   pictogram next to the heading rather than the wide hero image the login
+   variants use, and there is no Log In column — so the row keeps its
+   horizontal split at every width instead of stacking. */
+.columns-auth.suppliers>div {
+  min-height: 0;
+}
+
+.columns-auth.suppliers>div>div {
+  box-sizing: border-box;
+  padding-inline: 15px;
+}
+
+/* pictogram is tablet/desktop-only on the source */
+.columns-auth.suppliers>div>.columns-auth-img-col {
+  display: none;
+}
+
+.columns-auth.suppliers h1 {
+  margin: 0 0 32px;
+  font-size: 28px;
+  line-height: 28px;
+}
+
+.columns-auth.suppliers h1+p {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+@media (width >=768px) {
+
+  /* the 2:8:2 column split comes from the shared no-login-column rules above */
+  .columns-auth.suppliers>div {
+    flex-direction: row;
+    max-width: none;
+    margin-inline: 0;
   }
 
-  .columns-auth-3-cols>div:not(:has(> div:nth-child(3) a))>div:nth-child(2) {
-    flex: 4;
+  .columns-auth.suppliers>div>.columns-auth-img-col {
+    display: block;
   }
 
-  .columns-auth-3-cols>div:not(:has(> div:nth-child(3) a))>div:nth-child(3) {
-    flex: 1;
-  } 
+  .columns-auth.suppliers>div>.columns-auth-img-col img {
+    width: 104px;
+    height: 104px;
+    max-width: none;
+    margin-inline: auto;
+  }
 
- 
+  .columns-auth.suppliers h1 {
+    font-size: 39px;
+    line-height: 39px;
+  }
+}
+
+@media (width >=1025px) {
+  .columns-auth.suppliers h1 {
+    font-size: 48px;
+    line-height: 48px;
+  }
+}
+
+/* fixed-size pictogram, targeted structurally (nth-child) since
+   .columns-auth-img-col isn't added until the DA pipeline wraps it */
+
+/* .columns-auth-3-cols > div > div:first-child img {
+  width: 104px;
+  height: 104px;
+  margin: 0 auto;
+} */
 
 .columns-auth-no-login-list li:last-child .icon img {
   translate: 0 -2px;
@@ -255,7 +327,7 @@
   font-size: 45px;
   position: absolute;
 }
- 
+
 .home-page p.button-wrapper {
   margin-top: 0;
 }

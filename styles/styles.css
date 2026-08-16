@@ -381,7 +381,10 @@ main>.section>div {
   box-sizing: border-box;
 }
 
-main>.section>div:nth-child(2) {
+/* the suppliers card row keeps the section padding so it lines up with the
+   hub heading above it — wrapped in :where() to keep this selector's
+   specificity unchanged */
+main>.section>div:nth-child(2):not(:where(:has(> .cards.suppliers))) {
   padding-inline: 0;
 }
 
@@ -425,8 +428,9 @@ main .section.khaki {
   padding-left: 15px;
 }
 
-/* tablet: body content side inset */
-@media (width >= 768px) and (width < 1024px) {
+/* tablet: body content side inset — starts above 768px so it doesn't stack on
+   top of the 690px content width that still applies at exactly 768px */
+@media (width > 768px) and (width < 1024px) {
   main > .section > div {
     padding-right: 24px;
     padding-left: 24px;
@@ -438,13 +442,26 @@ main .section.khaki {
   }
 }
 
-/* khaki: a framed, rounded highlight box inset in the normal content width (not full-bleed) */
+/* khaki: a framed, rounded highlight box inset in the normal content width (not full-bleed).
+   The box padding replaces the content wrapper's 15px inset, so the max width has to drop
+   by that inset (1140 - 30) to keep the box edges on the same column as body copy in
+   sections without a box. Narrower viewports are already constrained by the section inset. */
 main .section.khaki>div {
+  max-width: 1110px;
   padding: 24px;
   border: 1px solid #acabab;
   border-radius: 4px;
   background-color: var(--khaki-color);
   box-shadow: 0 0 3px 0 rgb(33 33 33 / 25%);
+}
+
+/* the box padding provides the inset above the first element */
+main .section.khaki>div>:first-child {
+  margin-top: 0;
+}
+
+main .section.khaki>div p {
+  margin: 0 0 16px;
 }
 
 main .section.khaki ul {
@@ -526,10 +543,6 @@ main .section .default-content-wrapper #select-service-agreements {
   color: var(--dark-gray-color);
 }
 
-main .section .default-content-wrapper #select-service-agreements-1 {
-  display: none;
-}
-
 main .section .default-content-wrapper #log-in-to-view-content {
   font-weight: 500;
   margin: 0 0 24px;
@@ -597,10 +610,6 @@ main .section .default-content-wrapper #log-in-to-view-content+ .button-wrapper 
   color: var(--link-color);
 }
 
-main .section .default-content-wrapper #log-in-to-view-content+ .button-wrapper + p + p[data-auth="anonymous"]:has( > a) {
-  display: none;
-}
-
 main .section .default-content-wrapper #agreement-pdfs {
   font-weight: 500;
   margin: 0 0 20px;
@@ -659,11 +668,6 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   color: var(--dark-gray-color);
 }
 
-/* stylelint-disable-next-line selector-id-pattern */
-.section .default-content-wrapper #select-service---resources {
-  display: none;
-}
-
 .section .default-content-wrapper #select-service {
   margin: 24px 0 0;
   line-height: 1;
@@ -708,4 +712,168 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   font-weight: 500;
   padding-top: 30px;
   color: var(--dark-gray-color);
+}
+
+@media (width <= 1024px) {
+  .section .default-content-wrapper #select-service {
+    line-height: 1;
+    font-size: 23px;
+  }
+
+  /* stylelint-disable-next-line selector-id-pattern */
+  .section .default-content-wrapper #help--support {
+    line-height: 1;
+    font-size: 39px;
+  }
+
+  .section .default-content-wrapper #frequently-asked-questions {
+    line-height: 1;
+    font-size: 27px;
+  }
+
+  .section .default-content-wrapper #who-can-participate-in-state-farms-survey-of-autobody-repair-facilities,
+  .section .default-content-wrapper #i-am-opening-a-new-repair-facility-how-can-i-submit-information-about-my-repair-facility,
+  .section .default-content-wrapper #will-there-be-further-notice-to-repairers-of-the-survey-process,
+  .section .default-content-wrapper #how-will-select-service-repairers-learn-of-changes-in-prevailing-competitive-prices,
+  .section .default-content-wrapper #how-can-i-submit-prevailing-competitive-price-information {
+    font-size: 23px;
+    line-height: 29px;
+    margin: 0 0 23px;
+  }
+
+  .section .default-content-wrapper #contact-us {
+    line-height: 1;
+    font-size: 27px;
+  }
+
+  .section .default-content-wrapper #select-service-agreements {
+    line-height: 1 !important;
+    font-size: 33px !important;
+  }
+
+  .section .default-content-wrapper #log-in-to-view-content {
+    line-height: 1 !important;
+    font-size: 27px !important;
+  }
+}
+
+@media (width <= 560px) {
+  .section .default-content-wrapper #select-service {
+    line-height: 1;
+    font-size: 20px;
+  }
+
+  /* stylelint-disable-next-line selector-id-pattern */
+  .section .default-content-wrapper #help--support {
+    line-height: 1;
+    font-size: 28px;
+  }
+
+  .section .default-content-wrapper #frequently-asked-questions {
+    line-height: 1;
+    font-size: 22px;
+  }
+
+  .section .default-content-wrapper #who-can-participate-in-state-farms-survey-of-autobody-repair-facilities,
+  .section .default-content-wrapper #i-am-opening-a-new-repair-facility-how-can-i-submit-information-about-my-repair-facility,
+  .section .default-content-wrapper #will-there-be-further-notice-to-repairers-of-the-survey-process,
+  .section .default-content-wrapper #how-will-select-service-repairers-learn-of-changes-in-prevailing-competitive-prices,
+  .section .default-content-wrapper #how-can-i-submit-prevailing-competitive-price-information {
+    font-size: 20px;
+    line-height: 26px;
+    margin: 0 0 20px;
+  }
+
+  .section .default-content-wrapper #contact-us {
+    line-height: 1;
+    font-size: 22px;
+  }
+
+  .section .default-content-wrapper #select-service-agreements {
+    font-size: 25px !important;
+  }
+
+  .section .default-content-wrapper #log-in-to-view-content {
+    font-size: 22px !important;
+  }
+}
+
+/* Supplier engagement — body copy stays 16px at all widths (source keeps text
+   size fixed regardless of viewport, unlike the default fluid body scale) */
+/* stylelint-disable no-descending-specificity */
+main .section.khaki:has(#our-program) p,
+main .section.khaki:has(#our-program) li,
+main .section:has(#how-to-engage-us) p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #212121;
+}
+/* stylelint-enable no-descending-specificity */
+
+main .section.khaki:has(#our-program) li {
+  padding-bottom: 8px;
+}
+
+/* Supplier engagement — restore the section spacing lost when the khaki box
+   sits flush against the hero and the following section sits flush against it */
+main .section.khaki:has(#our-program) {
+  margin-top: 24px;
+}
+
+main .section:has(#how-to-engage-us) {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+/* Supplier engagement — tablet (768px–1024px) drops the shared content grid for
+   a 92.5px gutter on both sides, so the khaki border and the body copy start on
+   the same column as they do on desktop */
+@media (width >= 768px) and (width <= 1024px) {
+  main:has(#our-program) > .section:not(.breadcrumbs-container) {
+    padding-inline: 92.5px;
+  }
+
+  main:has(#our-program) > .section:not(.breadcrumbs-container, .khaki) > div {
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  /* the box keeps its own padding, which the gutter must not double up on */
+  main:has(#our-program) > .section.khaki > div {
+    max-width: none;
+    padding: 40px;
+  }
+}
+
+/* Supplier engagement — on desktop every section except the breadcrumbs starts
+   92.5px further right than the shared content grid while its right edge stays
+   put. The section keeps the box centered, so the shift is split: the section
+   gains the full offset as left padding and the content box loses it from its
+   max width. */
+@media (width > 1024px) {
+  main:has(#our-program) > .section:not(.breadcrumbs-container, .khaki) {
+    padding-left: 92.5px;
+  }
+
+  main:has(#our-program) > .section:not(.breadcrumbs-container, .khaki) > div {
+    max-width: calc(1140px - 92.5px);
+  }
+
+  /* the khaki box carries its own 15px section inset */
+  main:has(#our-program) > .section.khaki {
+    padding-left: calc(15px + 92.5px);
+  }
+
+  main:has(#our-program) > .section.khaki > div {
+    max-width: calc(1110px - 92.5px);
+  }
+}
+
+/* the shared content grid narrows to 960px below 1200px — the khaki box keeps
+   its own 1110px width there, so it stays out of this override */
+@media (width > 1024px) and (width <= 1200px) {
+  main:has(#our-program) > .section:not(.breadcrumbs-container, .khaki) > div {
+    max-width: calc(960px - 92.5px);
+  }
 }
