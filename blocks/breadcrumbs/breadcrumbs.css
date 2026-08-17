@@ -50,10 +50,14 @@ main .breadcrumbs li {
   font-size: 13px;
 }
 
+main .breadcrumbs ol > li:not(:last-child) > a {
+  font-weight: 600 !important;
+}
+
 .breadcrumbs li a,
 .breadcrumbs li span {
   font-size: 14px;
-  line-height: 20px;
+  line-height: 24px;
   font-weight: 400 !important;
 }
 
