@@ -2,6 +2,68 @@
   margin: 0 !important;
 }
 
+/* Baseline hero row for hub pages authored without a variant class (Other Auto
+   Insurance Carriers, Claim Services, Electronic Payments, …): icon, copy and
+   the Log In panel sit on one line from tablet up. Declared first so the
+   .home-page / .select-service / .suppliers variants below still override it.
+   The row margin is 32px rather than the source's 2em, which would resolve
+   against the inherited 22px body size. */
+.columns-auth-3-cols {
+  margin: 32px 0;
+}
+
+.columns-auth-3-cols>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-auth-3-cols h1 {
+  margin: 0 0 32px;
+  color: var(--dark-gray-color);
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.columns-auth-3-cols h1+p {
+  margin: 0 0 25px;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+@media (width >=768px) {
+  /* .columns-auth doubles up here only to outrank the select-service variant's
+     align-items: center — every hub hero is top-aligned on the source, that one
+     included */
+  .columns-auth.columns-auth-3-cols>div {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .columns-auth-3-cols h1 {
+    font-size: 2.438rem;
+  }
+
+  .columns-auth-3-cols h1+p {
+    font-size: 23px;
+    line-height: 29px;
+  }
+}
+
+@media (width >=991px) {
+  .columns-auth-3-cols h1 {
+    font-size: 3rem;
+  }
+
+  .columns-auth-3-cols h1+p {
+    font-size: 25px;
+    line-height: 30px;
+  }
+}
+
 .home-page {
   margin-top: 32px;
   margin-bottom: 32px;
@@ -119,11 +181,11 @@
   gap: 8px;
 }
 
+/* no gap — the columns carry the grid's own 15px gutters */
 .select-service>div {
   display: flex;
   align-items: center;
   flex-direction: unset;
-  gap: 24px;
 }
 
 /* used .columns-auth>div>div as container */
@@ -228,6 +290,38 @@
   text-align: right;
 }
 
+/* Once the row is horizontal it follows the source's 12-column grid rather
+   than free flex ratios: the row is 30px narrower than the card grid below it
+   (the source's hero sits in a 1110px container while the cards break out to
+   1140px) and every column carries a 15px gutter. That puts the heading and
+   the Log In panel on the same columns as the source, with the panel's right
+   edge landing just inside the header's own Log In link. */
+@media (width >=768px) {
+  .columns-auth-3-cols:not(.suppliers)>div {
+    padding-right: 30px;
+  }
+
+  .columns-auth-3-cols:not(.suppliers)>div>div {
+    box-sizing: border-box;
+    padding-inline: 15px;
+  }
+
+  .columns-auth-3-cols:not(.suppliers)>div>div:first-child {
+    flex-grow: 0;
+    flex-basis: 16.667%;
+  }
+
+  .columns-auth-3-cols:not(.suppliers)>div>div:nth-child(2) {
+    flex-grow: 0;
+    flex-basis: 50%;
+  }
+
+  .columns-auth-3-cols:not(.suppliers)>div>div:nth-child(3) {
+    flex-grow: 0;
+    flex-basis: 33.333%;
+  }
+}
+
 /* exception: third column has no link — just a spacer (e.g. Suppliers) —
      so icon:text:spacer = 2:8:2 of 12, giving the text column more room, and
      the row sizes to its own content instead of the 165px Log In row height */
@@ -248,6 +342,41 @@
   flex: 1;
 }
 
+/* Log In panel of the baseline hero row — the pill and the forgot/register
+   help text below it */
+.columns-auth-3-cols .button-wrapper {
+  margin: 0;
+}
+
+/* min-width, not width — a fixed width clips "Log In"/"Log Out"; growing it
+   shifts nothing since the cell is right-aligned */
+.columns-auth-3-cols .button.accent {
+  min-width: 138px;
+  height: 48px;
+  margin: 0 0 24px;
+  padding: 0 48px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.columns-auth-3-cols .button-wrapper+p {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.columns-auth-3-cols .button-wrapper+p a {
+  font-weight: 600;
+}
+
+/* the source left-aligns the forgot/register help at tablet and below, while
+   the pill above it stays right-aligned in its column */
+@media (width <=768px) {
+  .columns-auth-3-cols .button-wrapper+p {
+    text-align: left;
+  }
+}
 
 /* suppliers hub (/b2b-content/suppliers): the icon column holds a 104px
    pictogram next to the heading rather than the wide hero image the login
@@ -310,7 +439,19 @@
 .columns-auth-3-cols>div>div:first-child img {
   width: 104px;
   height: 104px;
-  margin: 0 auto;
+  margin: auto;
+}
+
+/* line the pictogram up with the brand divider in the header: nav caps at
+   1170px with a 24px inset and its divider sits 54px past that (10px brand
+   margin + 28px logo + 16px padding), which lands 48px right of the 1140px
+   content box's own 15px inset — 33px of that is already covered by the
+   column's gutter. Only holds above 1200px, where the content box stops
+   narrowing to 960px. */
+@media (width >1200px) {
+  .columns-auth-3-cols>div>div:first-child img {
+    margin-left: 33px;
+  }
 }
 
 .columns-auth-no-login-list li:last-child .icon img {

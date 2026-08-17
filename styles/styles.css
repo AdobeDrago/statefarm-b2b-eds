@@ -349,17 +349,6 @@ main img {
 .dropdown-select-wrapper::after {
   content: '';
   position: absolute;
-
-  /* right: 22px; */
-
-  /* width: 8px;
-  height: 8px; */
-
-  /* margin-top: -6px; */
-
-  /* border: 8px solid transparent; */
-
-  /* border-top-color: var(--text-color); */
   right: 16px;
   pointer-events: none;
   border: 2px solid var(--text-color);
@@ -381,11 +370,23 @@ main>.section>div {
   box-sizing: border-box;
 }
 
-/* the suppliers card row keeps the section padding so it lines up with the
-   hub heading above it — wrapped in :where() to keep this selector's
-   specificity unchanged */
-main>.section>div:nth-child(2):not(:where(:has(> .cards.suppliers))) {
-  padding-inline: 0;
+/* the card row breaks out of the section inset once the viewport is wider than
+   the 960px content cap, where the section already has room on both sides. Below
+   that — phones and tablets — it keeps the 15px so the cards line up with the
+   copy above them instead of touching the viewport edge, as on the source. The
+   suppliers card row keeps the inset at every width so it lines up with its hub
+   heading — wrapped in :where() to keep this selector's specificity unchanged */
+@media (width >=990px) {
+  main>.section>div:nth-child(2):not(:where(:has(> .cards.suppliers))) {
+    padding-inline: 0;
+  }
+}
+
+
+@media (width <768px) {
+  main>.section>div:nth-child(2):has(> .cards.select-service) {
+    padding-inline: 0;
+  }
 }
 
 @media (width<=1200px){
