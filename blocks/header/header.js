@@ -234,7 +234,6 @@ export default async function decorate(block) {
           colHeading.addEventListener('click', toggleCol);
           colHeading.addEventListener('keydown', (e) => {
             if (e.code === 'Enter' || e.code === 'Space') {
-              e.preventDefault();
               toggleCol();
             }
           });
@@ -258,10 +257,9 @@ export default async function decorate(block) {
           if (isDesktop.matches) openDrop(navSections, navSection, panelHost);
         });
         if (topLink) {
-          topLink.addEventListener('click', (e) => {
+          topLink.addEventListener('click', () => {
             // this link's only job is to toggle its megamenu/drill-down panel —
             // without this it silently navigates to its href instead
-            e.preventDefault();
             const wasOpen = navSection.getAttribute('aria-expanded') === 'true';
             if (wasOpen) closeAllDrops(navSections, panelHost);
             else openDrop(navSections, navSection, panelHost);

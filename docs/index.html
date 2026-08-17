@@ -250,6 +250,37 @@
   .url-card-url { font-size: 12px; font-family: var(--mono); color: var(--brand-blue); word-break: break-all; }
   .url-card-desc { font-size: 12px; color: var(--gray-600); margin-top: 2px; }
 
+  /* ── LIGHTHOUSE COMPARISON ── */
+  .lighthouse-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 16px 0 24px;
+  }
+  .lighthouse-card { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; background: var(--gray-50); }
+  .lighthouse-card img { display: block; width: 100%; height: auto; }
+  .lighthouse-card-label {
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-700);
+    border-top: 1px solid var(--gray-200);
+  }
+  .score-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .score-good { background: #eaf6f1; color: #268e6c; }
+  .score-mid  { background: #fff4e5; color: #da7b11; }
+
   /* ── STEPS ── */
   .steps { counter-reset: step; list-style: none; display: flex; flex-direction: column; gap: 0; position: relative; }
   .steps::before {
@@ -508,6 +539,10 @@
       <a class="sidebar-link" href="#supporting-modules">
         <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M4.5 2A2.5 2.5 0 002 4.5v7A2.5 2.5 0 004.5 14h7a2.5 2.5 0 002.5-2.5v-7A2.5 2.5 0 0011.5 2h-7zM5 5.5A.5.5 0 015.5 5h5a.5.5 0 010 1h-5A.5.5 0 015 5.5zm0 2.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5A.5.5 0 015 8zm.5 2a.5.5 0 000 1h3a.5.5 0 000-1h-3z"/></svg>
         Supporting modules
+      </a>
+      <a class="sidebar-link" href="#lighthouse-comparison">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1 14.5a.5.5 0 01.5-.5h13a.5.5 0 010 1h-13a.5.5 0 01-.5-.5zM3 12a1 1 0 011-1 1 1 0 011 1v.5H3V12zm4-3.5A1 1 0 018 7.5a1 1 0 011 1V12.5H7V8.5zm4-3A1 1 0 0112 4.5a1 1 0 011 1v7H11v-7z"/></svg>
+        Lighthouse comparison
       </a>
       <a class="sidebar-link" href="#ue-status">
         <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zM4.5 7.25a.75.75 0 000 1.5h5.25l-2.22 2.22a.75.75 0 001.06 1.06l3.5-3.5a.75.75 0 000-1.06l-3.5-3.5a.75.75 0 10-1.06 1.06l2.22 2.22H4.5z"/></svg>
@@ -891,6 +926,42 @@ npm run lint:fix   <span class="cmt"># auto-fix variants of the above</span></di
             <tr><td>scripts/delayed.js</td><td>Delayed/martech-style loading, run after the lazy phase.</td></tr>
           </tbody>
         </table>
+      </section>
+
+      <!-- ARCHITECTURE: LIGHTHOUSE COMPARISON -->
+      <section class="doc-section" id="lighthouse-comparison">
+        <h2>
+          <span class="section-icon icon-green">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1 14.5a.5.5 0 01.5-.5h13a.5.5 0 010 1h-13a.5.5 0 01-.5-.5zM3 12a1 1 0 011-1 1 1 0 011 1v.5H3V12zm4-3.5A1 1 0 018 7.5a1 1 0 011 1V12.5H7V8.5zm4-3A1 1 0 0112 4.5a1 1 0 011 1v7H11v-7z"/></svg>
+          </span>
+          Lighthouse comparison — Live vs EDS
+        </h2>
+        <div class="section-rule"></div>
+        <p>Chrome DevTools Lighthouse audits of the <code class="code-inline">/b2b-content</code> landing page, captured against the production live site (<code class="code-inline">b2b.statefarm.com</code>) and the EDS preview (<code class="code-inline">main--statefarm-b2b-eds--adobedrago.aem.page</code>).</p>
+        <table class="spec-table">
+          <thead>
+            <tr><th>Metric</th><th>Live</th><th>EDS</th><th>Delta</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Performance</td><td><span class="score-pill score-mid">53</span></td><td><span class="score-pill score-good">100</span></td><td>+47</td></tr>
+            <tr><td>Accessibility</td><td><span class="score-pill score-good">95</span></td><td><span class="score-pill score-good">90</span></td><td>&minus;5</td></tr>
+            <tr><td>Best Practices</td><td><span class="score-pill score-mid">73</span></td><td><span class="score-pill score-good">96</span></td><td>+23</td></tr>
+          </tbody>
+        </table>
+        <div class="lighthouse-grid">
+          <figure class="lighthouse-card">
+            <img src="images/live-site.png" alt="Lighthouse audit of the live b2b.statefarm.com site scoring 53 Performance, 95 Accessibility, 73 Best Practices">
+            <figcaption class="lighthouse-card-label">Live &mdash; b2b.statefarm.com</figcaption>
+          </figure>
+          <figure class="lighthouse-card">
+            <img src="images/eds-site.png" alt="Lighthouse audit of the EDS preview scoring 100 Performance, 90 Accessibility, 96 Best Practices">
+            <figcaption class="lighthouse-card-label">EDS &mdash; aem.page preview</figcaption>
+          </figure>
+        </div>
+        <div class="notice tip">
+          <svg class="notice-icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"/></svg>
+          <span>The EDS rebuild nearly doubles Performance (53 → 100) and improves Best Practices (73 → 96). Accessibility dips slightly (95 → 90) and is worth a follow-up pass.</span>
+        </div>
       </section>
 
       <!-- ARCHITECTURE: UNIVERSAL EDITOR -->
