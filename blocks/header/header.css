@@ -1015,6 +1015,14 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   header nav[aria-expanded="true"]:has(.nav-drop[aria-expanded="true"]) .nav-tools {
     display: none;
   }
+
+  /* the chat widget's own button lives inside its shadow root
+     (<sf-chat><template shadowrootmode="open">...</template></sf-chat>), so
+     page CSS can't reach .traditional-chat-button directly — hiding the
+     shadow host itself achieves the same result without piercing it */
+  body:has(header nav[aria-expanded="true"]) sf-chat {
+    display: none;
+  }
 }
 
 
