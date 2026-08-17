@@ -349,17 +349,6 @@ main img {
 .dropdown-select-wrapper::after {
   content: '';
   position: absolute;
-
-  /* right: 22px; */
-
-  /* width: 8px;
-  height: 8px; */
-
-  /* margin-top: -6px; */
-
-  /* border: 8px solid transparent; */
-
-  /* border-top-color: var(--text-color); */
   right: 16px;
   pointer-events: none;
   border: 2px solid var(--text-color);
@@ -393,8 +382,7 @@ main>.section>div {
   }
 }
 
-/* the select-service card row insets itself on phones, so the wrapper must not
-   add a second 15px on top of it */
+
 @media (width <768px) {
   main>.section>div:nth-child(2):has(> .cards.select-service) {
     padding-inline: 0;
