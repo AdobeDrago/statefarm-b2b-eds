@@ -78,7 +78,6 @@
 }
 
 @media (width <=768px) {
-
   .home-page>div>.columns-auth-img-col img {
     display: block;
     width: 100%;
@@ -156,6 +155,13 @@
   min-height: 165px;
 } */
 
+.suppliers>div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px
+}
+
 .home-page>div>div {
   /* padding-inline: 0.7em; */
   flex-grow: 1;
@@ -195,6 +201,10 @@
 /* 3-col layout: icon column is a fixed 2/12 share on the source for every
      page (icon:text:third fractions of 12); only the icon's share is shared
      between variants, so it's the only one set unconditionally */
+.columns-auth.suppliers>div {
+  min-height: 0;
+}
+
 .columns-auth-3-cols>div>div:first-child {
   flex: 1;
 }
@@ -221,6 +231,11 @@
 /* exception: third column has no link — just a spacer (e.g. Suppliers) —
      so icon:text:spacer = 2:8:2 of 12, giving the text column more room, and
      the row sizes to its own content instead of the 165px Log In row height */
+.columns-auth.suppliers>div>div {
+  box-sizing: border-box;
+  padding-inline: 15px;
+}
+
 .columns-auth-3-cols>div:not(:has(> div:nth-child(3) a)) {
   min-height: 0;
 }
@@ -238,14 +253,6 @@
    pictogram next to the heading rather than the wide hero image the login
    variants use, and there is no Log In column — so the row keeps its
    horizontal split at every width instead of stacking. */
-.columns-auth.suppliers>div {
-  min-height: 0;
-}
-
-.columns-auth.suppliers>div>div {
-  box-sizing: border-box;
-  padding-inline: 15px;
-}
 
 /* pictogram is tablet/desktop-only on the source */
 .columns-auth.suppliers>div>.columns-auth-img-col {
@@ -265,15 +272,7 @@
   line-height: 21px;
 }
 
-.suppliers>div {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 24px
-}
-
 @media (width >=768px) {
-
   /* the 2:8:2 column split comes from the shared no-login-column rules above */
   .columns-auth.suppliers>div {
     flex-direction: row;
@@ -319,16 +318,16 @@
 }
 
 @media (width <=600px) {
+  .select-service>div>div>picture img {
+    display: none;
+  }
+
   .columns-auth-no-login-list li:last-child .icon img {
     translate: 0 -1px;
   }
 
   .select-service>div {
     display: block;
-  }
-
-  .select-service>div>div>picture img {
-    display: none;
   }
 
   .select-service>div>div:nth-child(3) {
@@ -352,8 +351,10 @@
    Log In button and forgot-help — several are larger than the defaults */
 .home-page #select-service {
   color: #403c3c;
+
   /* line-height: 48px;
   margin: 0 0 32px; */
+
   /* font-size: 48px;
   font-weight: 600; */
   position: relative;
@@ -379,8 +380,10 @@
 
 .home-page #select-service+p {
   margin: 0 0 25px;
+
   /* font-size: 25px;
   font-weight: 400; */
+
   /* line-height: 30px; */
   color: #212121;
 }
