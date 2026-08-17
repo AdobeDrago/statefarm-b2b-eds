@@ -521,8 +521,9 @@ main .section.accent-heading>div>h3:first-of-type {
   margin-right: 30px;
 }
 
-.columns-wrapper .personal-property.columns > div > div:last-child {
-  overflow-wrap: break-word;
+.columns-wrapper .personal-property.columns > div > div:last-child * {
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .columns-wrapper .personal-property.columns > div > div:last-child > h3 {
