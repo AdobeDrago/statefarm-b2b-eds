@@ -1114,6 +1114,26 @@ main .section:has(#how-to-engage-us) {
   }
 }
 
+/* medical billing — hero and card rows sit one gutter further in below desktop */
+@media (width <1024px) {
+  main:has(#medical-billing) > .section:not(.breadcrumbs-container) {
+    padding-inline: 15px;
+  }
+}
+
+/* tablet adds a 24px margin on each wrapper, over its own 15px padding */
+@media (width >=768px) and (width <1024px) {
+  main:has(#medical-billing) > .section:not(.breadcrumbs-container) > div {
+    width: auto;
+    margin-inline: 24px;
+    padding-inline: 15px;
+  }
+}
+
+main:has(#medical-billing) .cards .cards-card-body p:not(:first-child) a {
+  font-weight: 600;
+}
+
 /* Is State Farm taking new vendors? */
 /* stylelint-disable no-descending-specificity */
 .section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) {
