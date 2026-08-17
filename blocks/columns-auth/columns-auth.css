@@ -77,11 +77,7 @@
   }
 }
 
-@media (width <768px) {
-  .home-page {
-    max-width: 480px;
-  }
-
+@media (width <=768px) {
 
   .home-page>div>.columns-auth-img-col img {
     display: block;
@@ -99,6 +95,10 @@
   .home-page h1+p {
     font-size: 20px;
     line-height: 26px;
+  }
+
+  .select-service>ul {
+    padding: 15px !important;
   }
 }
 
@@ -118,6 +118,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.select-service>div {
+  display: flex;
+  align-items: center;
+  flex-direction: unset;
+  gap: 24px;
 }
 
 /* used .columns-auth>div>div as container */
@@ -258,6 +265,13 @@
   line-height: 21px;
 }
 
+.suppliers>div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px
+}
+
 @media (width >=768px) {
 
   /* the 2:8:2 column split comes from the shared no-login-column rules above */
@@ -294,11 +308,11 @@
 /* fixed-size pictogram, targeted structurally (nth-child) since
    .columns-auth-img-col isn't added until the DA pipeline wraps it */
 
-/* .columns-auth-3-cols > div > div:first-child img {
+.columns-auth-3-cols>div>div:first-child img {
   width: 104px;
   height: 104px;
   margin: 0 auto;
-} */
+}
 
 .columns-auth-no-login-list li:last-child .icon img {
   translate: 0 -2px;
@@ -308,16 +322,40 @@
   .columns-auth-no-login-list li:last-child .icon img {
     translate: 0 -1px;
   }
+
+  .select-service>div {
+    display: block;
+  }
+
+  .select-service>div>div>picture img {
+    display: none;
+  }
+
+  .select-service>div>div:nth-child(3) {
+    text-align: left;
+  }
+
+  .select-service>ul {
+    padding: 15px !important;
+  }
+
+  .select-service .cards-card-body p:first-child a {
+    max-width: 300px;
+  }
+
+  .select-service .cards-card-body p {
+    max-width: 300px;
+  }
 }
 
 /* spacing matches the source's explicit margins between h1, intro copy,
    Log In button and forgot-help — several are larger than the defaults */
 .home-page #select-service {
   color: #403c3c;
-  line-height: 48px;
-  margin: 0 0 32px;
-  font-size: 48px;
-  font-weight: 600;
+  /* line-height: 48px;
+  margin: 0 0 32px; */
+  /* font-size: 48px;
+  font-weight: 600; */
   position: relative;
 }
 
@@ -341,9 +379,9 @@
 
 .home-page #select-service+p {
   margin: 0 0 25px;
-  font-size: 25px;
-  font-weight: 400;
-  line-height: 30px;
+  /* font-size: 25px;
+  font-weight: 400; */
+  /* line-height: 30px; */
   color: #212121;
 }
 
