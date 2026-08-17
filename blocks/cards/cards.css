@@ -2,6 +2,19 @@
   margin-bottom: 20px !important;
 }
 
+/* a card grid that ends the page (Other Auto Insurance Carriers, Suppliers)
+   clears 110px before the footer banner on the source, tightening to 78px on
+   phones; the footer's own 30px top margin collapses into this */
+.cards-wrapper:last-child {
+  margin-bottom: 110px !important;
+}
+
+@media (width <768px) {
+  .cards-wrapper:last-child {
+    margin-bottom: 78px !important;
+  }
+}
+
 .cards > ul {
   list-style: none;
   margin: 0;
