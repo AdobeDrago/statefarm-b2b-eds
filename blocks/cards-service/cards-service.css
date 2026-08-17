@@ -73,6 +73,11 @@
   aspect-ratio: auto;
   object-fit: contain;
 }
+@media (width <=768px) {
+  .select-service>ul {
+    padding: 15px;
+  }
+}
 
 /* push the dropdown strip to the bottom of the card, even when card text heights differ */
 .cards-service>ul>li .dropdown-select-wrapper {
