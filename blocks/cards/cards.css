@@ -16,6 +16,7 @@
     /* 2 per row, each sharing 50% of the row (minus the gap) */
     grid-template-columns: repeat(2, 1fr);
   }
+
   .select-service >ul{
       max-width: 690px;
       margin-inline: auto; 

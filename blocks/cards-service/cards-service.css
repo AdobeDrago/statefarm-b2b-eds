@@ -73,6 +73,7 @@
   aspect-ratio: auto;
   object-fit: contain;
 }
+
 @media (width <=768px) {
   .select-service>ul {
     padding: 15px;

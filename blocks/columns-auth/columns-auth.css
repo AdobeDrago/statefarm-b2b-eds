@@ -2,7 +2,9 @@
   margin: 0 !important;
 }
 
-/* -----------------------.home-page------------------------ */
+
+
+
 
 .home-page {
   margin-top: 32px;
@@ -13,8 +15,24 @@
   display: flex;
 }
 
+.select-service>div {
+  display: flex;
+  align-items: start;
+  gap: 30px;
+  padding-inline: 15px;
+  margin-top: 18px;
+  margin-bottom: 1.2em;
+}
+
 .home-page>div>.columns-auth-img-col img {
   max-width: 420px;
+}
+
+.suppliers>div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px
 }
 
 .home-page>div>div {
@@ -35,6 +53,13 @@
   font-weight: 400;
   line-height: 30px;
   color: #212121;
+}
+
+.select-service h1+p {
+  font-size: 25px;
+  line-height: 30px;
+  margin-top: 0;
+  margin-bottom: 32px;
 }
 
 .home-page h1+p+p {
@@ -73,6 +98,18 @@
   line-height: 22px;
 }
 
+.columns-auth.suppliers h1+p {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.select-service>div>div:nth-child(3) p {
+  font-size: 16px;
+  line-height: 21px;
+}
+ 
 .home-page #select-service+p {
   margin: 0 0 25px;
 
@@ -81,6 +118,22 @@
 
   /* line-height: 30px; */
   color: #212121;
+}
+
+/* "No login required" icon + link row: stacked on narrow viewports,
+   an even 3-across row once there is enough room */
+.columns-auth-no-login-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  gap: 16px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns-auth-no-login-list a {
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .home-page p.button-wrapper+p>a {
@@ -169,41 +222,29 @@
 }
 
 
-
-
-/* ------------------end of .home-page------------------------- */
-
+ 
 
 
 
-/* -------------------.select-service-------------------------- */
-.select-service>div {
-  display: flex;
-  align-items: start; 
-  gap: 30px;
-  padding-inline: 15px;
-  margin-top: 18px;
-  margin-bottom: 1.2em;
-}
 .select-service div div h1{
-  margin-top: 0px;
+  margin-top: 0;
   font-size: 48px;
   line-height: 48px;
   margin-bottom: 32px;
 }
 
-.select-service h1 + p {
-  font-size: 25px;
-  line-height: 30px;
-  margin-top: 0px;
-  margin-bottom: 32px;
-}
+
 
 .select-service>div>.columns-auth-img-col img { 
   /* padding-top: 15px; */
   min-width: 150px;
   padding-top: 13px;
 } 
+
+.columns-auth.suppliers>div {
+  min-height: 0;
+}
+
 .select-service>div>div:nth-child(3)  {
   padding-right: 30px;
 }
@@ -214,16 +255,14 @@
   margin-bottom: 12px;
 }
 
-.select-service>div>div:nth-child(3) p {
-  font-size: 16px;
-  line-height: 21px;
-}
+
  
 @media (width <1201px) {
   .select-service>div { 
-      padding-inline: 0px; 
+      padding-inline: 0; 
       gap: 14px;
     }
+
     .select-service>div>div:nth-child(3) {
       padding-right: 45px;
     }
@@ -276,26 +315,27 @@
     text-align: left;
   }
 
- 
+  .select-service .cards-card-body p {
+    max-width: 300px;
+  }
 
   .select-service>div>div:nth-child(3) p {
     text-align: left;
   }
-    .select-service>div>div:nth-child(3) .button-wrapper { 
-      margim: 0px;
-    }
+
+  .select-service>div>div:nth-child(3) .button-wrapper { 
+    margin: 0;
+  }
 
   .select-service .cards-card-body p:first-child a {
     max-width: 300px;
   }
 
-  .select-service .cards-card-body p {
-    max-width: 300px;
-  }
+ 
 
 }
 
-/* ------------------end of .select-service --------------------*/
+/* ------------------end of .select-service -------------------- */
 
 
 
@@ -308,16 +348,7 @@
 
 
 
-/* "No login required" icon + link row: stacked on narrow viewports,
-   an even 3-across row once there is enough room */
-.columns-auth-no-login-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
-  gap: 16px 24px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+
 
 .columns-auth-no-login-list li {
   display: flex;
@@ -342,18 +373,10 @@
   height: 24px;
 } 
 
-.columns-auth-no-login-list a {
-  font-size: 14px;
-  font-weight: 700;
-}
+
  
 
-.suppliers>div {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 24px
-} 
+
 
 
 
@@ -381,9 +404,7 @@
 /* 3-col layout: icon column is a fixed 2/12 share on the source for every
      page (icon:text:third fractions of 12); only the icon's share is shared
      between variants, so it's the only one set unconditionally */
-.columns-auth.suppliers>div {
-  min-height: 0;
-}
+
 
 /* .columns-auth-3-cols>div>div:first-child {
   flex: 1;
@@ -445,12 +466,7 @@
   line-height: 28px;
 }
 
-.columns-auth.suppliers h1+p {
-  margin: 0 0 16px;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 21px;
-}
+
 
 @media (width >=768px) {
   /* the 2:8:2 column split comes from the shared no-login-column rules above */
@@ -500,7 +516,6 @@
 
 
 @media (width <=600px) { 
-
   .columns-auth-no-login-list li:last-child .icon img {
     translate: 0 -1px;
   } 
