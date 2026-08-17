@@ -50,10 +50,6 @@ main .breadcrumbs li {
   font-size: 13px;
 }
 
-main .breadcrumbs ol > li:not(:last-child) > a {
-  font-weight: 600 !important;
-}
-
 .breadcrumbs li a,
 .breadcrumbs li span {
   font-size: 14px;
@@ -88,6 +84,10 @@ main .breadcrumbs li a {
 main .breadcrumbs a:hover {
   color: var(--link-color);
   text-decoration: underline;
+}
+
+main .breadcrumbs ol > li:not(:last-child) > a {
+  font-weight: 600 !important;
 }
 
 main .breadcrumbs span[aria-current] {
