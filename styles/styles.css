@@ -24,6 +24,7 @@
   --dark-gray-color: #403c3c;
   --sf-background-brand-default: #ec0c21;
   --sf-background-brand-hover: #bd0a1a;
+  --text-dark-color: #212121;
 
   /* fonts */
   /* stylelint-disable-next-line value-keyword-case -- MecherleSans is a brand font name, not a CSS keyword */
@@ -577,7 +578,7 @@ main .section.accent-heading>div>h3:first-of-type {
   font-weight: 400;
   margin: 0 0 16px;
   line-height: 21px;
-  color: #212121;
+  color: var(--text-dark-color);
 }
 
 .columns-wrapper .auto-glass.columns > div > div:last-child > ol,
@@ -616,7 +617,7 @@ main .section.accent-heading>div>h3:first-of-type {
   font-size: 16px;
   font-weight: 400;
   line-height: 21px;
-  color: #212121;
+  color: var(--text-dark-color);
 }
 
 .columns-wrapper .auto-glass.columns > div > div:last-child > ul > li > a,
@@ -765,7 +766,7 @@ main .section .default-content-wrapper #log-in-to-view-content {
   font-size: 16px;
   font-weight: 400;
   margin: 0 0 16px;
-  color: #212121;
+  color: var(--text-dark-color);
   line-height: 21px;
 }
 
@@ -895,7 +896,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   font-size: 25px;
   font-weight: 400;
   margin: 0 0 25px;
-  color: #212121;
+  color: var(--text-dark-color);
   line-height: 30px;
 }
 
@@ -970,6 +971,14 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   .columns-wrapper .personal-property.columns > div > div:last-child > h4 {
     font-size: 23px;
   }
+
+  .default-content-wrapper #electronic-payments {
+    font-size: 23px !important;
+  }
+
+  .default-content-wrapper #eftremittance-faqs {
+    font-size: 39px !important;
+  }
 }
 
 @media (width <= 560px) {
@@ -1032,6 +1041,14 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   .columns-wrapper .personal-property.columns > div > div:last-child > h4 {
     font-size: 20px;
   }
+
+  .default-content-wrapper #electronic-payments {
+    font-size: 20px !important;
+  }
+
+  .default-content-wrapper #eftremittance-faqs {
+    font-size: 28px !important;
+  }
 }
 
 /* Supplier engagement — body copy stays 16px at all widths (source keeps text
@@ -1043,7 +1060,7 @@ main .section:has(#how-to-engage-us) p {
   font-size: 16px;
   font-weight: 400;
   line-height: 21px;
-  color: #212121;
+  color: var(--text-dark-color);
 }
 /* stylelint-enable no-descending-specificity */
 
@@ -1217,3 +1234,26 @@ main .section:has(#how-to-engage-us) {
   }
 }
 /* stylelint-enable no-descending-specificity */
+
+.default-content-wrapper #electronic-payments {
+  line-height: 1;
+  font-size: 25px;
+  margin: 24px 0 0;
+  font-weight: 500;
+  color: var(--dark-gray-color);
+}
+
+.default-content-wrapper #eftremittance-faqs {
+  line-height: 1;
+  font-size: 48px;
+  font-weight: 600;
+  margin: 6px 0 32px;
+  color: var(--dark-gray-color);
+}
+
+.default-content-wrapper #eftremittance-faqs ~ h3 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
