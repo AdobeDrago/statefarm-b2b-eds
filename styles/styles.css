@@ -499,6 +499,121 @@ main .section.accent-heading>div>h3:first-of-type {
   }
 }
 
+.default-content-wrapper #personal-property-replacement {
+  line-height: 1;
+  font-size: 39px;
+  font-weight: 600;
+  margin: 24px 8.333% 20px;
+  color: var(--dark-gray-color);
+}
+
+.columns-wrapper .personal-property.columns {
+  margin: 0 8.333%;
+}
+
+.columns-wrapper .personal-property.columns > div {
+  gap: 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.columns-wrapper .personal-property.columns > div > div:first-child {
+  margin-right: 30px;
+}
+
+.columns-wrapper .personal-property.columns > div > div:last-child {
+  overflow-wrap: break-word;
+}
+
+.columns-wrapper .personal-property.columns > div > div:last-child > h3 {
+  line-height: 1;
+  font-size: 31px;
+  font-weight: 500;
+  margin: 0 0 24px;
+  color: var(--dark-gray-color);
+}
+
+.columns-wrapper .personal-property.columns > div > div:last-child > h3:not(:first-child) {
+  margin-top: 50px;
+}
+
+.columns-wrapper .personal-property.columns > div > div:last-child > p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 21px;
+  color: #212121;
+}
+
+.columns-wrapper .personal-property.columns > div > div:last-child > ol {
+  padding-left: 30px;
+  margin: 24px 0 16px;
+}
+
+.columns-wrapper .personal-property.columns > div > div:last-child > ol > li {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  padding-bottom: 8px;
+}
+
+.columns-wrapper .personal-property.columns > div > div:last-child > p > a {
+  font-weight: 600;
+}
+
+.columns-wrapper .personal-property.columns > div > div:last-child > p > a[title="State Farm replacement program jewelry invoice"]::after,
+.columns-wrapper .personal-property.columns > div > div:last-child > p > a[title="Jewelry replacement agreement"]::after {
+  gap: 0;
+  content: "";
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-image: url("../icons/lock-2.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  vertical-align: bottom;
+}
+
+.columns-wrapper .personal-property.columns > div > div:first-child > ul {
+  margin: 0 0 20px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.columns-wrapper .personal-property.columns > div > div:first-child > ul > li {
+  display: flex;
+  padding: 0 0 6px;
+}
+
+.columns-wrapper .personal-property.columns > div > div:first-child > ul > li > a {
+  line-height: 1;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.66px;
+}
+
+.columns-wrapper .personal-property.columns > div > div:first-child > p.button-wrapper {
+  margin: 0;
+}
+
+.columns-wrapper .personal-property.columns > div > div:first-child > p.button-wrapper > a {
+  border: none;
+  margin: -2px;
+  font-size: 18px;
+  border-radius: 0;
+  font-weight: 600;
+  line-height: 21px;
+  white-space: normal;
+  padding: 2px 2px 10px;
+  color: var(--link-color);
+  background-color: transparent;
+}
+
+.columns-wrapper .personal-property.columns > div > div:first-child > p.button-wrapper > a:hover {
+  text-decoration: underline;
+}
+
 /* Coupa resource portal — Overview section + body copy */
 main .section.accent-heading:has(#overview) {
   margin-bottom: 40px;
@@ -755,6 +870,14 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
     line-height: 1 !important;
     font-size: 27px !important;
   }
+
+  .default-content-wrapper #personal-property-replacement {
+    font-size: 33px;
+  }
+
+  .columns-wrapper .personal-property.columns > div > div:last-child > h3 {
+    font-size: 27px;
+  }
 }
 
 @media (width <= 560px) {
@@ -795,6 +918,14 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
 
   .section .default-content-wrapper #log-in-to-view-content {
     font-size: 22px !important;
+  }
+
+  .default-content-wrapper #personal-property-replacement {
+    font-size: 25px;
+  }
+
+  .columns-wrapper .personal-property.columns > div > div:last-child > h3 {
+    font-size: 22px;
   }
 }
 
