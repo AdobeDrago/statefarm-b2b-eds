@@ -448,9 +448,9 @@
    content box's own 15px inset — 33px of that is already covered by the
    column's gutter. Only holds above 1200px, where the content box stops
    narrowing to 960px. */
-@media (width >1200px) {
-  .columns-auth-3-cols>div>div:first-child img {
-    margin-left: 33px;
+@media (width > 1024px) {
+  .columns-auth-3-cols > div > div:first-child img {
+    margin: 0 23px;
   }
 }
 
@@ -599,4 +599,18 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 22px;
+}
+
+@media (width <= 560px) {
+  .columns-auth-wrapper > .home-auto-lenders {
+    padding: 0 15px;
+  }
+
+  .columns-auth-3-cols>div>div:first-child img {
+    display: none;
+  }
+
+  .columns-auth-3-cols>div>div:nth-child(3) {
+    text-align: left;
+  }
 }

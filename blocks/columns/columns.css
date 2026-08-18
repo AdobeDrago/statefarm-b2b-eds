@@ -1,6 +1,7 @@
 .columns > div {
-  display: flex;
-  flex-direction: column;
+  gap: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .columns img {
@@ -99,12 +100,6 @@
 
 /* desktop (>1024) */
 @media (width >= 1025px) {
-  .columns > div {
-    align-items: flex-start;
-    flex-direction: unset;
-    gap: 30px;
-  }
-
   .columns > div > div {
     flex: 1;
     order: unset;
@@ -123,5 +118,51 @@
 
   .columns.quarter .columns-quarter-break {
     display: block;
+  }
+}
+
+.columns.columns-2-cols:has(#resources) {
+  margin: 0 0 50px;
+}
+
+.columns.columns-2-cols #resources,
+/* stylelint-disable-next-line selector-id-pattern */
+.columns.columns-2-cols #help--support {
+  line-height: 1;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 37.512px 0 24px;
+  color: var(--dark-gray-color);
+}
+
+.columns.columns-2-cols #resources ~ p,
+/* stylelint-disable-next-line selector-id-pattern */
+.columns.columns-2-cols #help--support ~ p {
+  padding: 0;
+  font-size: 16px;
+  margin: 0 0 16px;
+  font-weight: 600;
+  line-height: 21px;
+  color: var(--link-color);
+}
+
+@media (width <= 1024px) {
+  .columns.columns-2-cols #resources,
+  /* stylelint-disable-next-line selector-id-pattern */
+  .columns.columns-2-cols #help--support {
+    font-size: 23px;
+  }
+}
+
+@media (width <= 560px) {
+  .columns > div {
+    grid-template-columns: 1fr;
+  }
+
+  .columns.columns-2-cols #resources,
+  /* stylelint-disable-next-line selector-id-pattern */
+  .columns.columns-2-cols #help--support {
+    font-size: 20px;
+    margin: 30px 0 24px;
   }
 }
