@@ -387,7 +387,7 @@ main>.section>div {
    suppliers card row keeps the inset at every width so it lines up with its hub
    heading — wrapped in :where() to keep this selector's specificity unchanged */
 @media (width >=990px) {
-  main>.section>div:nth-child(2):not(:where(:has(> .cards.suppliers))) {
+  main>.section>div:nth-child(2):not(:where(:has(> .cards.suppliers), :has(> .side-nav))) {
     padding-inline: 0;
   }
 }
