@@ -50,20 +50,27 @@ test.describe('B2B Home Page', () => {
   });
 
   test('TC03 - Verify Log In button is displayed', async ({ page }) => {
-    await expect(page.locator('header').getByTitle('Log In')).toBeVisible();
+    await expect(page.locator('header').getByTitle('Log In', { exact: true })).toBeVisible();
   });
 
   test('TC04 - Verify "No login required" links are displayed', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: 'No login required:' })).toBeVisible();
+    // scoped to the hero block — several names here (e.g. "Request supplement")
+    // are case-insensitive substrings of unrelated mega-menu panel links
+    // (e.g. "Request Supplement & Shop Claim"), which are always present in
+    // the DOM even while visually collapsed
+    const hero = page.locator('.columns-auth');
+    await expect(hero.getByRole('heading', { name: 'No login required:' })).toBeVisible();
     await Promise.all(NO_LOGIN_LINKS.map(async ({ name, href }) => {
-      const link = page.getByRole('link', { name });
+      const link = hero.getByRole('link', { name, exact: true });
       await expect(link).toBeVisible();
       await expect(link).toHaveAttribute('href', href);
     }));
   });
 
   test('TC05 - Verify main navigation items are displayed', async ({ page }) => {
-    await Promise.all(NAV_ITEMS.map((name) => expect(page.getByTitle(name)).toBeVisible()));
+    await Promise.all(
+      NAV_ITEMS.map((name) => expect(page.getByTitle(name, { exact: true })).toBeVisible()),
+    );
   });
 
   test('TC06 - Verify all service cards render with correct headings and links', async ({ page }) => {
@@ -90,7 +97,7 @@ test.describe('B2B Home Page', () => {
   test('TC08 - Verify hovering a nav item opens its mega-menu panel', async ({ page }) => {
     await expect(page.locator('.nav-drop-panel.open')).toHaveCount(0);
 
-    const claimsDrop = page.locator('.nav-drop', { has: page.getByTitle('Claims') });
+    const claimsDrop = page.locator('.nav-drop', { has: page.getByTitle('Claims', { exact: true }) });
     await claimsDrop.hover();
 
     const openPanel = page.locator('.nav-drop-panel.open');
@@ -100,7 +107,7 @@ test.describe('B2B Home Page', () => {
   });
 
   test('TC09 - Verify mega-menu closes on Escape', async ({ page }) => {
-    const claimsDrop = page.locator('.nav-drop', { has: page.getByTitle('Claims') });
+    const claimsDrop = page.locator('.nav-drop', { has: page.getByTitle('Claims', { exact: true }) });
     await claimsDrop.hover();
     await expect(page.locator('.nav-drop-panel.open')).toHaveCount(1);
 
@@ -111,27 +118,27 @@ test.describe('B2B Home Page', () => {
 
   test('TC10 - Verify simulated login updates the header and hides anonymous-only content', async ({ page }) => {
     const header = page.locator('header');
-    await expect(header.getByTitle('Log In')).toBeVisible();
+    await expect(header.getByTitle('Log In', { exact: true })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'No login required:' })).toBeVisible();
 
-    await header.getByTitle('Log In').click();
+    await header.getByTitle('Log In', { exact: true }).click();
 
     await expect(page).toHaveURL(/loggedIn=true/);
     await expect(page.locator('body')).toHaveClass(/auth-authenticated/);
-    await expect(header.getByTitle('Log Out')).toBeVisible();
+    await expect(header.getByTitle('Log Out', { exact: true })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'No login required:' })).toBeHidden();
   });
 
   test('TC11 - Verify simulated logout reverts to the anonymous state', async ({ page }) => {
     const header = page.locator('header');
-    await header.getByTitle('Log In').click();
-    await expect(header.getByTitle('Log Out')).toBeVisible();
+    await header.getByTitle('Log In', { exact: true }).click();
+    await expect(header.getByTitle('Log Out', { exact: true })).toBeVisible();
 
-    await header.getByTitle('Log Out').click();
+    await header.getByTitle('Log Out', { exact: true }).click();
 
     await expect(page).not.toHaveURL(/loggedIn=true/);
     await expect(page.locator('body')).toHaveClass(/auth-anonymous/);
-    await expect(header.getByTitle('Log In')).toBeVisible();
+    await expect(header.getByTitle('Log In', { exact: true })).toBeVisible();
   });
 });
 
