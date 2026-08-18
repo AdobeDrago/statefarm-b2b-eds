@@ -1147,6 +1147,14 @@ main .section:has(#how-to-engage-us) {
   }
 }
 
+/* Additional Resources lines up with the card row, which breaks out of the
+   section inset at desktop */
+@media (width >=1024px) {
+  main:has(#medical-billing) > .section > .default-content-wrapper {
+    padding-inline: 0;
+  }
+}
+
 main:has(#medical-billing) .cards .cards-card-body p:not(:first-child) a {
   font-weight: 600;
 }
