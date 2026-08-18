@@ -1040,6 +1040,10 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   .default-content-wrapper #eftremittance-faqs {
     font-size: 39px !important;
   }
+
+  .default-content-wrapper #electronic-data-interchange-edi-transactions {
+    font-size: 33px !important;
+  }
 }
 
 @media (width <= 560px) {
@@ -1120,6 +1124,10 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
 
   .default-content-wrapper #eftremittance-faqs {
     font-size: 28px !important;
+  }
+
+  .default-content-wrapper #electronic-data-interchange-edi-transactions {
+    font-size: 25px !important;
   }
 }
 
@@ -1403,4 +1411,12 @@ main:has(#medical-provider-portal--claim-view) > .section > .default-content-wra
   font-weight: 500;
   line-height: 21px;
   color: var(--text-dark-color);
+}
+
+.default-content-wrapper #electronic-data-interchange-edi-transactions {
+  margin: 24px 0;
+  line-height: 1;
+  font-size: 39px;
+  font-weight: 600;
+  color: var(--dark-gray-color);
 }
