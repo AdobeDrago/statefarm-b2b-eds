@@ -59,7 +59,7 @@ footer .footer .footer-banner p .registered {
   margin-left: 5px;
   line-height: 20px;
   padding-bottom: 9px;
-  color: var(--text-color);
+  color: #fff;
 }
 
 /* ---- cream content area (full-width bg, constrained inner) ---- */
@@ -143,12 +143,14 @@ footer .footer .footer-notices a:hover {
 
 /* copyright */
 footer .footer .footer-copyright {
+  /* font-family: "MecherleLegal";
+  this font is used in live site. it is not MecherleSans */
   margin-top: 12px;
   font-weight: 400;
   line-height: 20px;
 
   /* margin-bottom: 12px; */
-  padding-bottom: 78px;
+  padding-bottom: 68px;
   font-size: 12px;
   text-align: left;
   color: var(--text-color);
@@ -171,6 +173,18 @@ footer .footer .footer-copyright {
   footer .footer .footer-notices,
   footer .footer .footer-copyright {
     padding-inline: 38px;
+  } 
+  footer .footer .footer-links  {
+    padding-bottom: 30px;
+    padding-top: 28px;
+  }
+  footer .footer .footer-notices { 
+    margin-top: 20px; 
+  }
+
+  footer .footer .footer-copyright {
+    margin-top: 8px; 
+    padding-bottom: 66px;
   }
 }
 
@@ -200,5 +214,9 @@ footer .footer .footer-copyright {
   footer .footer .footer-content>* {
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  footer .footer .footer-copyright { 
+    padding-bottom: 78px; 
   }
 }
