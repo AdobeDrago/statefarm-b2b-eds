@@ -69,6 +69,58 @@ function buildWidgetAutoBlocks(main) {
 }
 
 /**
+ * A page menu heading: a paragraph holding nothing but a bold link.
+ * @param {Element} el candidate element
+ * @returns {boolean} true when the element opens a menu group
+ */
+function isMenuHeading(el) {
+  if (!el || el.tagName !== 'P' || el.children.length !== 1) return false;
+  const strong = el.firstElementChild;
+  const link = strong.tagName === 'STRONG' && strong.querySelector(':scope > a');
+  return !!link && el.textContent.trim() === link.textContent.trim();
+}
+
+/**
+ * Turns a page that opens with a heading followed by bold-link menu groups into
+ * a side-nav block: the menu groups become the left column, everything below
+ * them the right column.
+ * @param {Element} main The container element
+ */
+function buildSideNavAutoBlock(main) {
+  const heading = main.querySelector('h1');
+  if (!heading || main.querySelector('.side-nav')) return;
+
+  const menuItems = [];
+  let el = heading.nextElementSibling;
+  while (isMenuHeading(el)) {
+    menuItems.push(el);
+    el = el.nextElementSibling;
+    if (el && el.tagName === 'UL') {
+      menuItems.push(el);
+      el = el.nextElementSibling;
+    }
+  }
+  if (menuItems.filter((item) => item.tagName === 'UL').length < 2) return;
+
+  const bodyItems = [];
+  while (el) {
+    bodyItems.push(el);
+    el = el.nextElementSibling;
+  }
+  if (!bodyItems.length) return;
+
+  const menu = document.createElement('nav');
+  menu.append(...menuItems);
+  // unwrap the bold so decorateButtons leaves the menu links alone
+  menu.querySelectorAll('p > strong > a').forEach((link) => link.parentElement.replaceWith(link));
+
+  const body = document.createElement('div');
+  body.append(...bodyItems);
+
+  heading.after(buildBlock('side-nav', [[menu, body]]));
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
@@ -92,6 +144,7 @@ function buildAutoBlocks(main) {
       });
     }
     buildWidgetAutoBlocks(main);
+    buildSideNavAutoBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

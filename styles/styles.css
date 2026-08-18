@@ -380,18 +380,6 @@ main>.section>div {
   box-sizing: border-box;
 }
 
-/* the card row breaks out of the section inset once the viewport is wider than
-   the 960px content cap, where the section already has room on both sides. Below
-   that — phones and tablets — it keeps the 15px so the cards line up with the
-   copy above them instead of touching the viewport edge, as on the source. The
-   suppliers card row keeps the inset at every width so it lines up with its hub
-   heading — wrapped in :where() to keep this selector's specificity unchanged */
-@media (width >=990px) {
-  main>.section>div:nth-child(2):not(:where(:has(> .cards.suppliers))) {
-    padding-inline: 0;
-  }
-}
-
 
 @media (width <768px) {
   main>.section>div:nth-child(2):has(> .cards.select-service) {
@@ -1149,14 +1137,6 @@ main .section:has(#how-to-engage-us) {
     width: auto;
     margin-inline: 24px;
     padding-inline: 15px;
-  }
-}
-
-/* Additional Resources lines up with the card row, which breaks out of the
-   section inset at desktop */
-@media (width >=1024px) {
-  main:has(#medical-billing) > .section > .default-content-wrapper {
-    padding-inline: 0;
   }
 }
 
