@@ -36,13 +36,13 @@
   margin: 0;
 }
 
-.cards-service .cards-service-card-body h4,
-.cards-service .cards-service-card-body p {
+.home-page .cards-service-card-body h4,
+.home-page .cards-service-card-body p {
   font-size: 16px;
   margin-left: 4px;
 }
 
-.cards-service .cards-service-card-body h4{
+.home-page .cards-service-card-body h4{
     font-size: 20px;
     margin-top: 1.4rem;
     font-weight: 600;
@@ -94,7 +94,7 @@
 
 
 @media (width >=768px) {
-  .cards-service .cards-service-card-body h4 {
+  .home-page .cards-service-card-body h4 {
     font-size: 1.438rem;
     line-height: 23px;
   }
@@ -102,7 +102,7 @@
 }
 
 @media (width >=990px) {
-  .cards-service .cards-service-card-body h4 {
+  .home-page .cards-service-card-body h4 {
     font-size: 1.563rem;
     line-height: 25px;
   }
