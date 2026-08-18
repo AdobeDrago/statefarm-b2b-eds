@@ -319,7 +319,6 @@ main img {
 .dropdown-select-wrapper {
   display: block;
   width: 100%;
-  max-width: calc(100% - 30px);
   position: relative;
   background-color: #fff;
   margin-inline: auto;

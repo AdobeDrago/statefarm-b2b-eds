@@ -17,7 +17,10 @@ function closeAllDrops(navSections, panelHost = null) {
   // reset any drilled-into column so the section re-opens at its top level next time
   navSections.querySelectorAll('.nav-drop-col.open').forEach((col) => col.classList.remove('open'));
   if (panelHost) panelHost.classList.remove('open');
-  if (isDesktop.matches) document.body.style.overflowY = '';
+  if (isDesktop.matches) {
+    document.body.style.overflowY = 'scroll';
+    document.body.style.position = '';
+  }
 }
 
 /**
@@ -36,7 +39,9 @@ function openDrop(navSections, li, panelHost = null) {
       const host = li.megaPanel.parentElement;
       const nav = navSections.closest('nav');
       if (host && nav) host.style.top = `${Math.round(nav.getBoundingClientRect().bottom)}px`;
-      document.body.style.overflowY = 'hidden';
+      document.body.style.overflowY = 'scroll';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
     }
   }
 }
