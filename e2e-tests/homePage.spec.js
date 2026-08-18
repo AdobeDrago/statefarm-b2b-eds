@@ -8,7 +8,6 @@ import { test, expect } from '@playwright/test';
 
 const HOME_PATH = '/b2b-content';
 
-// service cards authored in the cards-service block, in document order
 const SERVICE_CARDS = [
   { name: 'Select Service', href: '/b2b-content/select-service' },
   { name: 'Claim services', href: '/b2b-content/claim-services' },
@@ -20,14 +19,12 @@ const SERVICE_CARDS = [
   { name: 'Rental provider portal', href: 'https://apps.b2b.statefarm.com/RentalPortalWeb' },
 ];
 
-// "No login required" links authored in the columns-auth hero block
 const NO_LOGIN_LINKS = [
   { name: 'Request supplement', href: 'https://apps.b2b.statefarm.com/req-supp/' },
   { name: 'Create assignment', href: 'https://apps.b2b.statefarm.com/ss-assign' },
   { name: 'Fire service provider tool', href: 'https://fire-vendor.b2b.statefarm.com/validate-claim' },
 ];
 
-// top-level nav triggers authored in nav.plain.html
 const NAV_ITEMS = ['Select Service', 'Claims', 'Payments', 'Lenders', 'Suppliers', 'Insurance Carriers', 'Medical Billing'];
 
 test.describe('B2B Home Page', () => {
@@ -54,10 +51,6 @@ test.describe('B2B Home Page', () => {
   });
 
   test('TC04 - Verify "No login required" links are displayed', async ({ page }) => {
-    // scoped to the hero block — several names here (e.g. "Request supplement")
-    // are case-insensitive substrings of unrelated mega-menu panel links
-    // (e.g. "Request Supplement & Shop Claim"), which are always present in
-    // the DOM even while visually collapsed
     const hero = page.locator('.columns-auth');
     await expect(hero.getByRole('heading', { name: 'No login required:' })).toBeVisible();
     await Promise.all(NO_LOGIN_LINKS.map(async ({ name, href }) => {
@@ -88,7 +81,6 @@ test.describe('B2B Home Page', () => {
       page.getByRole('heading', { name: 'State Farm can help protect you and your business' }),
     ).toBeVisible();
 
-    // the authored link list is decorated into a native <select> dropdown
     const promoOption = page.locator('.columns-promo select option', { hasText: 'Car insurance' });
     await expect(promoOption).toHaveCount(1);
     await expect(promoOption).toHaveAttribute('value', 'https://www.statefarm.com/insurance/auto');
@@ -161,9 +153,6 @@ test.describe('B2B Home Page - mobile navigation', () => {
   });
 });
 
-// 768px is this project's own tablet breakpoint (see header.css, columns-auth.css,
-// columns-promo.css) and stays below the header's 900px isDesktop check, so the
-// nav should still behave like mobile (hamburger/accordion), not hover mega-menus
 test.describe('B2B Home Page - tablet', () => {
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 1024 });
