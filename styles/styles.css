@@ -390,14 +390,6 @@ main>.section>div {
   }
 }
 
-@media (width<=1200px){
-  main>.section>div {
-      max-width: 960px; 
-    }
-
-  
-}
-
 @media (width<768px) {
   main>.section>div {
     max-width: 690px;
@@ -910,6 +902,10 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
 }
 
 @media (width <= 1024px) {
+  main > .section > div {
+    max-width: 720px; 
+  }
+  
   .section .default-content-wrapper #select-service {
     line-height: 1;
     font-size: 23px;
