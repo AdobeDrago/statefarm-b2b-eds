@@ -903,7 +903,6 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
 
 @media (width <= 1024px) {
   main > .section > div {
-    width: 100%;
     max-width: 720px; 
   }
 
