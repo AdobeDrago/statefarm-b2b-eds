@@ -1,6 +1,5 @@
 .columns > div {
   display: flex;
-  flex-direction: column;
 }
 
 .columns > div > div {
