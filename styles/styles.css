@@ -380,13 +380,6 @@ main>.section>div {
   box-sizing: border-box;
 }
 
-
-@media (width <768px) {
-  main>.section>div:nth-child(2):has(> .cards.select-service) {
-    padding-inline: 0;
-  }
-}
-
 @media (width<768px) {
   main>.section>div {
     max-width: 690px;
