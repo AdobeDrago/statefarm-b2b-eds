@@ -257,6 +257,10 @@
   color: var(--dark-gray-color);
 }
 
+.cards-wrapper:has( > .create-assignment) {
+  padding: 0 15px !important;
+}
+
 @media (width <= 1024px) {
   .default-content-wrapper #create-assignment {
     line-height: 1;
@@ -287,10 +291,6 @@
   .create-assignment.columns > div {
     display: grid !important;
     grid-template-columns: 1fr;
-  }
-
-  .cards-wrapper .create-assignment.cards {
-    padding: 0 15px;
   }
 
   .cards-wrapper .create-assignment.cards ul li div {
