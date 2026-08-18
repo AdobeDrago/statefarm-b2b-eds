@@ -433,8 +433,10 @@ header nav .nav-drop-panel {
   box-shadow: 0 6px 20px rgb(0 0 0 / 12%);
   opacity: 0;
 
-  /* overflow: hidden; */
-  transition: grid-template-rows 0.3s ease;
+  overflow: hidden;
+  transition:
+    grid-template-rows 0.7s ease,
+    opacity 0.25s ease;
 }
 
 header nav .nav-drop-panel.open {

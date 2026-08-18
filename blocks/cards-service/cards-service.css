@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-content: center;
-  gap: 1rem 0;
+  gap: 1rem 1rem;
 }
 
 .cards-service>ul>li {
@@ -28,7 +28,6 @@
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  padding-inline: 15px;
   padding-block: 2px 14px;
 }
 
