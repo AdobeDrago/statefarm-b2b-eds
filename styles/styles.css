@@ -75,6 +75,15 @@ body {
 
 body.appear {
   display: block;
+  min-height: 100vh;
+}
+
+/* on a page too short to fill the viewport the footer slides down to the bottom
+   edge instead of leaving white space under it. Sticky rather than a flex column
+   so main stays a block box and section margins keep collapsing as before */
+body.appear > footer {
+  position: sticky;
+  top: 100vh;
 }
 
 /* simulated auth state (scripts/auth.js) — `html body` (0,2,2) outranks a
@@ -1124,17 +1133,64 @@ main .section:has(#how-to-engage-us) {
   }
 }
 
-/* Additional Resources lines up with the card row, which breaks out of the
-   section inset at desktop */
-@media (width >=1024px) {
-  main:has(#medical-billing) > .section > .default-content-wrapper {
-    padding-inline: 0;
-  }
-}
-
 main:has(#medical-billing) .cards .cards-card-body p:not(:first-child) a {
   font-weight: 600;
 }
+
+/* Medical provider portal / Claim view */
+/* stylelint-disable selector-id-pattern -- the slash in the heading text produces a double hyphen */
+/* stylelint-disable no-descending-specificity */
+main .section .default-content-wrapper #medical-provider-portal--claim-view {
+  margin: 48px 0 60px;
+  font-size: 1.563rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--dark-gray-color);
+}
+
+@media (width >=768px) {
+  main .section .default-content-wrapper #medical-provider-portal--claim-view {
+    margin-top: 56px;
+    font-size: 2.063rem;
+  }
+}
+
+@media (width >=1024px) {
+  main .section .default-content-wrapper #medical-provider-portal--claim-view {
+    margin-top: 64px;
+    font-size: 2.438rem;
+  }
+}
+
+/* the card row keeps the section gutter here instead of breaking out of it, so
+   it lines up with the heading above */
+main:has(#medical-provider-portal--claim-view) > .section > .cards-wrapper {
+  padding-inline: 30px;
+}
+
+main:has(#medical-provider-portal--claim-view) .cards li {
+  margin-bottom: 20px;
+}
+
+/* 20px card margin + this = the 80px the source leaves above Job aids */
+main:has(#medical-provider-portal--claim-view) > .section > .default-content-wrapper:has(#job-aids) {
+  margin-top: 60px;
+  margin-bottom: 85px;
+}
+
+@media (width >=768px) and (width <1024px) {
+  main:has(#medical-provider-portal--claim-view) > .section:not(.breadcrumbs-container) > div {
+    width: auto;
+    margin-inline: 24px;
+  }
+
+  main:has(#medical-provider-portal--claim-view) .cards .cards-card-body p:first-child {
+    max-width: 240px;
+  }
+}
+/* stylelint-enable no-descending-specificity */
+/* stylelint-enable selector-id-pattern */
 
 /* Is State Farm taking new vendors? */
 /* stylelint-disable no-descending-specificity */
