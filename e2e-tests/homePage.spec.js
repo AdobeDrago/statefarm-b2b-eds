@@ -160,3 +160,37 @@ test.describe('B2B Home Page - mobile navigation', () => {
     await expect(hamburger).toHaveAttribute('aria-expanded', initialState);
   });
 });
+
+// 768px is this project's own tablet breakpoint (see header.css, columns-auth.css,
+// columns-promo.css) and stays below the header's 900px isDesktop check, so the
+// nav should still behave like mobile (hamburger/accordion), not hover mega-menus
+test.describe('B2B Home Page - tablet', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await page.goto(HOME_PATH);
+  });
+
+  test('TC13 - Verify hamburger menu toggles the tablet nav', async ({ page }) => {
+    const hamburger = page.locator('.nav-hamburger button');
+    await expect(hamburger).toBeVisible();
+    const initialState = await hamburger.getAttribute('aria-expanded');
+
+    await hamburger.click();
+    await expect(hamburger).not.toHaveAttribute('aria-expanded', initialState);
+
+    await hamburger.click();
+    await expect(hamburger).toHaveAttribute('aria-expanded', initialState);
+  });
+
+  test('TC14 - Verify hero and service card content render at the tablet breakpoint', async ({ page }) => {
+    await expect(
+      page.getByRole('heading', { name: 'Business to business portal' }),
+    ).toBeVisible();
+
+    const cardsService = page.locator('.cards-service');
+    await expect(cardsService.locator('li')).toHaveCount(SERVICE_CARDS.length);
+    const suppliersCard = cardsService.getByRole('link', { name: 'Suppliers', exact: true });
+    await expect(suppliersCard).toBeVisible();
+    await expect(suppliersCard).toHaveAttribute('href', '/b2b-content/suppliers');
+  });
+});
