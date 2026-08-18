@@ -63,7 +63,7 @@ main .breadcrumbs li:not(:first-child)::before {
   flex: none;
   width: 24px;
   height: 24px;
-  background-image: url("../../icons/chevron-icons.svg#right_default");
+  background-image: url("../../icons/chevron_24.svg#right_default");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -120,7 +120,7 @@ main .breadcrumbs span[aria-current] {
     flex: none;
     width: 24px;
     height: 24px;
-    background-image: url("../../icons/chevron-icons.svg#right_default");
+    background-image: url("../../icons/chevron_24.svg#right_default");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

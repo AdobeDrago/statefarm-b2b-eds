@@ -355,10 +355,11 @@ header nav .nav-sections>ul>li.nav-drop>p>a::after {
   flex-shrink: 0;
   width: 32px;
   height: 32px;
-  background-image: url("../../icons/chevron-icons.svg#right_default");
+  background-image: url("../../icons/chevron_32.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  transform: rotate(-90deg);
   transition: transform 0.2s ease;
 }
 
@@ -378,7 +379,7 @@ header nav .nav-sections>ul>li>p>a:hover::before {
 
 header nav .nav-sections>ul>li[aria-expanded='true']>a::after,
 header nav .nav-sections>ul>li[aria-expanded='true']>p>a::after {
-  transform: rotate(90deg);
+  transform: rotate(0deg);
 }
 
 /* dropdown panels: full-width mega-panel below the nav bar (matches source).
@@ -872,10 +873,11 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     width: 24px;
     height: 24px;
     background-color: var(--sf-red);
-    mask-image: url("../../icons/chevron-icons.svg#left_default");
+    mask-image: url("../../icons/chevron_32.svg");
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
+    transform: rotate(90deg);
   }
 
   header nav .nav-drop-title {
@@ -908,10 +910,11 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     flex-shrink: 0;
     width: 32px;
     height: 32px;
-    background-image: url("../../icons/chevron-icons.svg#right_default");
+    background-image: url("../../icons/chevron_32.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    transform: rotate(-90deg);
     transition: transform 0.2s ease;
   }
 
@@ -920,7 +923,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   }
 
   header nav .nav-drop-col.open h3::after {
-    transform: rotate(90deg);
+    transform: rotate(0deg);
   }
 
   header nav .nav-drop-col ul {
