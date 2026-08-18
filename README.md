@@ -40,3 +40,27 @@ npm run lint
 2. Start AEM Proxy: `aem up` (opens your browser at `http://localhost:3000`)
 3. Open this directory in your favorite IDE and start coding :)
 
+## Testing (Playwright)
+
+End-to-end tests live in `e2e-tests/` and run against the local dev server at `http://localhost:3000`.
+
+1. Install browsers (first time only):
+   ```sh
+   npx playwright install --with-deps
+   ```
+2. Start the local dev server in a separate terminal:
+   ```sh
+   aem up
+   ```
+3. Run the tests:
+   ```sh
+   npm run test:e2e
+   ```
+   Or with the interactive UI runner:
+   ```sh
+   npm run test:e2e:ui
+   ```
+4. View the HTML report after a run at `playwright-report/index.html`.
+
+Tests run on `chromium`, `firefox`, and `webkit` by default (see `playwright.config.js`). CI runs the same suite on every push/PR to `main`/`master` via `.github/workflows/playwright.yml`.
+
