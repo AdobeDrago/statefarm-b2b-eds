@@ -1,15 +1,20 @@
 .columns > div {
-  gap: 30px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+}
+
+.columns > div > div {
+  order: 1;
 }
 
 .columns img {
   width: 100%;
 }
 
-.columns > div > div {
-  order: 1;
+.columns-wrapper .columns.home-auto-lenders > div {
+  gap: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .columns > div > .columns-img-col {
@@ -155,7 +160,7 @@
 }
 
 @media (width <= 560px) {
-  .columns > div {
+  .columns-wrapper .columns.home-auto-lenders > div {
     grid-template-columns: 1fr;
   }
 
