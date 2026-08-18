@@ -96,6 +96,7 @@
       margin-bottom: 16px;
       line-height: 39px;
     }
+
     .columns-promo h4 {
       font-size: 1.563rem;
       font-weight: 500;
@@ -111,8 +112,6 @@
 }
 
 @media (width >=768px) { 
-
-  
   .columns-promo h4 {
     font-size: 1.438rem;
     font-weight: 500;
