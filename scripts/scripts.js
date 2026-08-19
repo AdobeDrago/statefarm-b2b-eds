@@ -69,16 +69,42 @@ function buildWidgetAutoBlocks(main) {
 }
 
 /**
- * A page menu heading: a paragraph holding nothing but a bold link.
+ * A page menu heading: a paragraph holding nothing but a link.
  * @param {Element} el candidate element
  * @returns {boolean} true when the element opens a menu group
  */
 function isMenuHeading(el) {
-  if (!el || el.tagName !== 'P' || el.children.length !== 1) return false;
-  const strong = el.firstElementChild;
-  const link = strong.tagName === 'STRONG' && strong.querySelector(':scope > a');
+  if (!el || el.tagName !== 'P') return false;
+  const link = el.querySelector(':scope > a, :scope > strong > a');
   return !!link && el.textContent.trim() === link.textContent.trim();
 }
+
+const helpSupportNav = [
+  {
+    label: 'Help & support',
+    href: '/b2b-content/home-auto-lenders/help-support',
+  },
+  {
+    label: 'Lender relations',
+    href: '/b2b-content/home-auto-lenders/help-support/lender-relations',
+  },
+  {
+    label: 'Auto operations',
+    href: '/b2b-content/home-auto-lenders/help-support/auto-ops',
+  },
+  {
+    label: 'Auto operations FAQ',
+    href: '/b2b-content/home-auto-lenders/help-support/auto-ops-faq',
+  },
+  {
+    label: 'Fire operations',
+    href: '/b2b-content/home-auto-lenders/help-support/fire-ops',
+  },
+  {
+    label: 'Fire operations FAQ',
+    href: '/b2b-content/home-auto-lenders/help-support/fire-ops-faq',
+  },
+];
 
 const sideNavMenus = {
   '/b2b-content/medical-ebilling/health-insurance': [
@@ -128,32 +154,12 @@ const sideNavMenus = {
       href: '/b2b-content/medical-ebilling/health-insurance',
     },
   ],
-  '/b2b-content/home-auto-lenders/help-support': [
-    {
-      label: 'Help & support',
-      href: '/b2b-content/home-auto-lenders/help-support',
-    },
-    {
-      label: 'Lender relations',
-      href: '/b2b-content/home-auto-lenders/help-support/lender-relations',
-    },
-    {
-      label: 'Auto operations',
-      href: '/b2b-content/home-auto-lenders/help-support/auto-ops',
-    },
-    {
-      label: 'Auto operations FAQ',
-      href: '/b2b-content/home-auto-lenders/help-support/auto-ops-faq',
-    },
-    {
-      label: 'Fire operations',
-      href: '/b2b-content/home-auto-lenders/help-support/fire-ops',
-    },
-    {
-      label: 'Fire operations FAQ',
-      href: '/b2b-content/home-auto-lenders/help-support/fire-ops-faq',
-    },
-  ],
+  '/b2b-content/home-auto-lenders/help-support': helpSupportNav,
+  '/b2b-content/home-auto-lenders/help-support/lender-relations': helpSupportNav,
+  '/b2b-content/home-auto-lenders/help-support/auto-ops': helpSupportNav,
+  '/b2b-content/home-auto-lenders/help-support/auto-ops-faq': helpSupportNav,
+  '/b2b-content/home-auto-lenders/help-support/fire-ops': helpSupportNav,
+  '/b2b-content/home-auto-lenders/help-support/fire-ops-faq': helpSupportNav,
 };
 
 function buildPageSideNav(pathname) {
@@ -204,6 +210,7 @@ function buildSideNavAutoBlock(main) {
   if (menuItems.filter(isMenuHeading).length < 2) {
     menuItems = buildPageSideNav(window.location.pathname);
     el = heading.nextElementSibling;
+    while (isMenuHeading(el)) el = el.nextElementSibling;
   }
   if (!menuItems.length) return;
 
