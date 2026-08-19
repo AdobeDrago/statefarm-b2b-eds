@@ -829,8 +829,6 @@ main .section.accent-heading>div>h3:first-of-type {
   color: var(--dark-gray-color);
 }
 
-<<<<<<< HEAD
-=======
 .columns-wrapper .mbps.columns > div > div:last-child > p,
 .columns-wrapper .edi-faq.columns > div > div:last-child > p,
 .columns-wrapper .auto-glass.columns > div > div:last-child > p,
@@ -847,7 +845,6 @@ main .section.accent-heading>div>h3:first-of-type {
   color: var(--text-dark-color);
 }
 
->>>>>>> develop
 .columns-wrapper .mbps.columns > div > div:last-child > ol,
 .columns-wrapper .edi-faq.columns > div > div:last-child > ol,
 .columns-wrapper .auto-glass.columns > div > div:last-child > ol,
@@ -861,8 +858,6 @@ main .section.accent-heading>div>h3:first-of-type {
   margin: 24px 0 16px;
 }
 
-<<<<<<< HEAD
-=======
 .columns-wrapper .mbps.columns > div > div:last-child > ol > li,
 .columns-wrapper .edi-faq.columns > div > div:last-child > ol > li,
 .columns-wrapper .auto-glass.columns > div > div:last-child > ol > li,
@@ -878,7 +873,6 @@ main .section.accent-heading>div>h3:first-of-type {
   padding-bottom: 8px;
 }
 
->>>>>>> develop
 .columns-wrapper .mbps.columns > div > div:last-child > p > a,
 .columns-wrapper .edi-faq.columns > div > div:last-child > p > a,
 .columns-wrapper .auto-glass.columns > div > div:last-child > p > a,
@@ -891,8 +885,6 @@ main .section.accent-heading>div>h3:first-of-type {
   font-weight: 600;
 }
 
-<<<<<<< HEAD
-=======
 .columns-wrapper .mbps.columns > div > div:last-child > ul,
 .columns-wrapper .edi-faq.columns > div > div:last-child > ul,
 .columns-wrapper .auto-glass.columns > div > div:last-child > ul,
@@ -923,7 +915,6 @@ main .section.accent-heading>div>h3:first-of-type {
   color: var(--text-dark-color);
 }
 
->>>>>>> develop
 .columns-wrapper .mbps.columns > div > div:last-child > ul > li > a,
 .columns-wrapper .edi-faq.columns > div > div:last-child > ul > li > a,
 .columns-wrapper .auto-glass.columns > div > div:last-child > ul > li > a,
