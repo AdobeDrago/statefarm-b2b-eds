@@ -280,9 +280,11 @@ export default function decorate(block) {
     ? body.firstElementChild
     : body;
   const isAutoOpsFaq = !!block.closest('main')?.querySelector('#auto-operations-faq');
+  const isFireOpsFaq = !!block.closest('main')?.querySelector('#fire-operations-faq');
+  const isFaqPage = isAutoOpsFaq || isFireOpsFaq;
   // a heading that reads as a sentence opens the page rather than a section
   const lead = content.firstElementChild;
-  if (!isAutoOpsFaq && menu.classList.contains('side-nav-menu-flat') && lead?.tagName === 'H3' && /[.!?]$/.test(lead.textContent.trim())) {
+  if (!isFaqPage && menu.classList.contains('side-nav-menu-flat') && lead?.tagName === 'H3' && /[.!?]$/.test(lead.textContent.trim())) {
     const paragraph = document.createElement('p');
     paragraph.append(...lead.childNodes);
     lead.replaceWith(paragraph);
@@ -297,7 +299,7 @@ export default function decorate(block) {
   body.querySelectorAll('h3').forEach((heading, i) => {
     if (isLenderRelations && heading.id === 'contacts-and-responsibilities') return;
     if (isAutoOps) return;
-    if (isAutoOpsFaq) return;
+    if (isFaqPage) return;
     if (isFireOps && heading.id !== 'payment-addressmailing-addresscontact-detailspersonal-lines-fire-questionsbusiness-lines-fire-questions') return;
     if (!separated || i === 0 || isBackToTop(heading.previousElementSibling)) heading.classList.add('side-nav-section-heading');
   });
@@ -315,7 +317,7 @@ export default function decorate(block) {
     }
   }
 
-  if (isAutoOpsFaq) decorateFaq(content);
+  if (isFaqPage) decorateFaq(content);
   decorateTables(body);
   decorateBackToTop(body);
 }
