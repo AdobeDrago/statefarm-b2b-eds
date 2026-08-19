@@ -178,6 +178,28 @@ main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
   font-weight: 600;
 }
 
+.side-nav-menu .side-nav-menu-list {
+  margin: 0;
+}
+
+.side-nav-menu .side-nav-menu-list > li {
+  margin: 0;
+  padding: 2px;
+  padding-bottom: 10px;
+  line-height: 21px;
+}
+
+.side-nav-menu .side-nav-menu-list > li:not(:last-child) {
+  padding-bottom: 25px;
+}
+
+.side-nav-menu .side-nav-menu-list > li > a {
+  font-size: 18px;
+  font-weight: 600 !important;
+  line-height: 21px;
+  letter-spacing: 0;
+}
+
 .side-nav-body .side-nav-back-to-top:last-child {
   margin-bottom: 76px;
 }

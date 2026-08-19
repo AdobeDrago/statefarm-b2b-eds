@@ -267,12 +267,17 @@ export default function decorate(block) {
   if (!menu || !body) return;
   menu.className = 'side-nav-menu';
   body.className = 'side-nav-body';
-  if (!menu.querySelector('ul')) menu.classList.add('side-nav-menu-flat');
+  if (!(menu.querySelector('p') && menu.querySelector('ul'))) {
+    menu.classList.add('side-nav-menu-flat');
+  }
   if (window.location.pathname.startsWith('/b2b-content/home-auto-lenders/help-support')) {
     block.classList.add('side-nav-help-support');
   }
   unwrapColumn(menu);
   unwrapColumn(body);
+
+  const flatList = menu.querySelector(':scope > nav > ul') || menu.querySelector(':scope > ul');
+  if (flatList && !menu.querySelector('p')) flatList.classList.add('side-nav-menu-list');
 
   unnestSections(body);
 
@@ -313,7 +318,9 @@ export default function decorate(block) {
     const inquiry = menu.querySelector('a[title="Insurance inquiry tool"]');
     if (inquiry) {
       inquiry.classList.add('button', 'primary', 'side-nav-inquiry-tool');
-      inquiry.closest('p')?.classList.add('button-wrapper', 'side-nav-inquiry-tool-wrapper');
+      const wrapper = inquiry.closest('p, li');
+      if (wrapper?.tagName === 'P') wrapper.classList.add('button-wrapper', 'side-nav-inquiry-tool-wrapper');
+      else if (wrapper?.tagName === 'LI') wrapper.classList.add('side-nav-inquiry-tool-wrapper');
     }
   }
 
