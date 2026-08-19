@@ -156,10 +156,6 @@
     font-size: 23px;
     line-height: 26px;
   }
-
-  .select-service>ul {
-    padding: 15px !important;
-  }
 }
 
 @media (width <=560px) {
@@ -552,10 +548,6 @@
 
   .select-service>div>div:nth-child(3) {
     text-align: left;
-  }
-
-  .select-service>ul {
-    padding: 15px !important;
   }
 
   .select-service .cards-card-body p:first-child a {
