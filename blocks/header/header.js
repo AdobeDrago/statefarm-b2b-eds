@@ -258,9 +258,11 @@ export default async function decorate(block) {
         panel.append(drillBack, drillTitle, panelInner, closeBtn);
         navSection.megaPanel = panel;
 
-        navSection.addEventListener('mouseenter', () => {
-          if (isDesktop.matches) openDrop(navSections, navSection, panelHost);
-        });
+        setTimeout(() => {
+          navSection.addEventListener('mouseenter', () => {
+            if (isDesktop.matches) openDrop(navSections, navSection, panelHost);
+          });
+        }, 100);
         if (topLink) {
           topLink.addEventListener('click', () => {
             // this link's only job is to toggle its megamenu/drill-down panel —
