@@ -14,6 +14,11 @@
   display: block;
 }
 
+.columns:not(.quarter) > div {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Breakpoints: mobile <=560 | tablet >=768 | desktop >1024 */
 
 .columns.quarter > div {
@@ -99,16 +104,15 @@
 
 /* desktop (>1024) */
 @media (width >= 1025px) {
-  .columns > div {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: unset;
-    gap: 30px;
-  }
-
   .columns > div > div {
     flex: 1;
     order: unset;
+  }
+
+  .columns:not(.quarter) > div {
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 30px;
   }
 
   .columns.quarter h1 {
