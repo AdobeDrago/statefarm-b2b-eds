@@ -215,6 +215,37 @@ function isHoursList(paragraph) {
   return /^Pacific Time:/i.test(paragraph.textContent.trim());
 }
 
+function decorateFaq(container) {
+  const questions = [...container.querySelectorAll(':scope > h3')];
+  if (!questions.length) return;
+
+  const accordion = document.createElement('div');
+  accordion.className = 'side-nav-faq';
+
+  questions.forEach((heading, i) => {
+    let node = heading.nextElementSibling;
+    const summary = document.createElement('summary');
+    summary.className = 'side-nav-faq-label';
+    summary.append(heading);
+
+    const answer = document.createElement('div');
+    answer.className = 'side-nav-faq-body';
+    while (node && node.tagName !== 'H3') {
+      const next = node.nextElementSibling;
+      answer.append(node);
+      node = next;
+    }
+
+    const details = document.createElement('details');
+    details.className = 'side-nav-faq-item';
+    if (!i) details.open = true;
+    details.append(summary, answer);
+    accordion.append(details);
+  });
+
+  container.replaceChildren(accordion);
+}
+
 /**
  * Drops the paragraph the block decoration wraps a column in when its content
  * opens with an element it does not recognise as a wrapper.
@@ -248,9 +279,10 @@ export default function decorate(block) {
   const content = body.children.length === 1 && body.firstElementChild.tagName === 'DIV'
     ? body.firstElementChild
     : body;
+  const isAutoOpsFaq = !!block.closest('main')?.querySelector('#auto-operations-faq');
   // a heading that reads as a sentence opens the page rather than a section
   const lead = content.firstElementChild;
-  if (menu.classList.contains('side-nav-menu-flat') && lead?.tagName === 'H3' && /[.!?]$/.test(lead.textContent.trim())) {
+  if (!isAutoOpsFaq && menu.classList.contains('side-nav-menu-flat') && lead?.tagName === 'H3' && /[.!?]$/.test(lead.textContent.trim())) {
     const paragraph = document.createElement('p');
     paragraph.append(...lead.childNodes);
     lead.replaceWith(paragraph);
@@ -264,6 +296,7 @@ export default function decorate(block) {
   body.querySelectorAll('h3').forEach((heading, i) => {
     if (isLenderRelations && heading.id === 'contacts-and-responsibilities') return;
     if (isAutoOps) return;
+    if (isAutoOpsFaq) return;
     if (!separated || i === 0 || isBackToTop(heading.previousElementSibling)) heading.classList.add('side-nav-section-heading');
   });
 
@@ -272,6 +305,7 @@ export default function decorate(block) {
     if (isLenderRelations && isHoursList(paragraph)) paragraph.classList.add('side-nav-indent');
   });
 
+  if (isAutoOpsFaq) decorateFaq(content);
   decorateTables(body);
   decorateBackToTop(body);
 }
