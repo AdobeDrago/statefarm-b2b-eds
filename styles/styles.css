@@ -1592,6 +1592,7 @@ main:has(#medical-provider-portal--claim-view) > .section > .default-content-wra
     line-height: 20px;
   }
 }
+
 .default-content-wrapper #electronic-data-interchange-edi-transactions {
   margin: 24px 0;
   line-height: 1;
