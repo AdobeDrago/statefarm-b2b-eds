@@ -942,7 +942,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
 }
 
 /* stylelint-disable-next-line selector-id-pattern */
-.section .default-content-wrapper #help--support {
+.section:not(:has(> .side-nav-wrapper)) .default-content-wrapper #help--support {
   line-height: 1;
   font-size: 48px;
   font-weight: 600;
@@ -990,7 +990,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   }
 
   /* stylelint-disable-next-line selector-id-pattern */
-  .section .default-content-wrapper #help--support {
+  .section:not(:has(> .side-nav-wrapper)) .default-content-wrapper #help--support {
     line-height: 1;
     font-size: 39px;
   }
@@ -1076,7 +1076,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   }
 
   /* stylelint-disable-next-line selector-id-pattern */
-  .section .default-content-wrapper #help--support {
+  .section:not(:has(> .side-nav-wrapper)) .default-content-wrapper #help--support {
     line-height: 1;
     font-size: 28px;
   }

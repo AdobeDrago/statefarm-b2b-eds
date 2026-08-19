@@ -241,8 +241,9 @@ export default function decorate(block) {
   const content = body.children.length === 1 && body.firstElementChild.tagName === 'DIV'
     ? body.firstElementChild
     : body;
+  // a heading that reads as a sentence opens the page rather than a section
   let lead = content.firstElementChild;
-  if (menu.classList.contains('side-nav-menu-flat') && lead?.tagName === 'H3') {
+  if (menu.classList.contains('side-nav-menu-flat') && lead?.tagName === 'H3' && /[.!?]$/.test(lead.textContent.trim())) {
     const paragraph = document.createElement('p');
     paragraph.append(...lead.childNodes);
     lead.replaceWith(paragraph);
