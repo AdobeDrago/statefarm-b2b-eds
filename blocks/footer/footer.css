@@ -167,6 +167,14 @@ footer .footer .footer-copyright {
   }
 }
 
+@media (width <=990px) {
+
+  footer {
+    margin-top: 46px;
+  }
+ }
+
+
 @media (width <=768px) {
   footer .footer .footer-banner p,
   footer .footer .footer-links,

@@ -892,9 +892,9 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
 }
 
 @media (width <= 1024px) {
-  main > .section > div {
+  /* main > .section > div {
     max-width: 720px; 
-  }
+  } */
 
   .section .default-content-wrapper #select-service {
     line-height: 1;
@@ -1317,4 +1317,27 @@ main:has(#medical-provider-portal--claim-view) > .section > .default-content-wra
   font-weight: 500;
   line-height: 21px;
   color: var(--text-dark-color);
+}
+
+
+
+@media (width <=990px) {
+  .default-content-wrapper  {
+    max-width: 720px !important;
+    margin-inline: auto;
+  }
+  .default-content-wrapper h4 {
+    margin-top: 30px !important;
+    font-size: 1.438rem !important;
+    line-height: 23px;
+  }
+}
+
+@media (width <=600px) { 
+
+  .default-content-wrapper h4 {
+    margin-top: 20px !important;
+    font-size: 1.25rem !important;
+    line-height: 20px;
+  }
 }
