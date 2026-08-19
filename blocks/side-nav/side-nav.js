@@ -211,6 +211,41 @@ function isCodeSample(paragraph) {
   return text.startsWith('<') && text.endsWith('>');
 }
 
+function isHoursList(paragraph) {
+  return /^Pacific Time:/i.test(paragraph.textContent.trim());
+}
+
+function decorateFaq(container) {
+  const questions = [...container.querySelectorAll(':scope > h3')];
+  if (!questions.length) return;
+
+  const accordion = document.createElement('div');
+  accordion.className = 'side-nav-faq';
+
+  questions.forEach((heading, i) => {
+    let node = heading.nextElementSibling;
+    const summary = document.createElement('summary');
+    summary.className = 'side-nav-faq-label';
+    summary.append(heading);
+
+    const answer = document.createElement('div');
+    answer.className = 'side-nav-faq-body';
+    while (node && node.tagName !== 'H3') {
+      const next = node.nextElementSibling;
+      answer.append(node);
+      node = next;
+    }
+
+    const details = document.createElement('details');
+    details.className = 'side-nav-faq-item';
+    if (!i) details.open = true;
+    details.append(summary, answer);
+    accordion.append(details);
+  });
+
+  container.replaceChildren(accordion);
+}
+
 /**
  * Drops the paragraph the block decoration wraps a column in when its content
  * opens with an element it does not recognise as a wrapper.
@@ -233,6 +268,9 @@ export default function decorate(block) {
   menu.className = 'side-nav-menu';
   body.className = 'side-nav-body';
   if (!menu.querySelector('ul')) menu.classList.add('side-nav-menu-flat');
+  if (window.location.pathname.startsWith('/b2b-content/home-auto-lenders/help-support')) {
+    block.classList.add('side-nav-help-support');
+  }
   unwrapColumn(menu);
   unwrapColumn(body);
 
@@ -241,26 +279,33 @@ export default function decorate(block) {
   const content = body.children.length === 1 && body.firstElementChild.tagName === 'DIV'
     ? body.firstElementChild
     : body;
+  const isAutoOpsFaq = !!block.closest('main')?.querySelector('#auto-operations-faq');
   // a heading that reads as a sentence opens the page rather than a section
-  let lead = content.firstElementChild;
-  if (menu.classList.contains('side-nav-menu-flat') && lead?.tagName === 'H3' && /[.!?]$/.test(lead.textContent.trim())) {
+  const lead = content.firstElementChild;
+  if (!isAutoOpsFaq && menu.classList.contains('side-nav-menu-flat') && lead?.tagName === 'H3' && /[.!?]$/.test(lead.textContent.trim())) {
     const paragraph = document.createElement('p');
     paragraph.append(...lead.childNodes);
     lead.replaceWith(paragraph);
-    lead = paragraph;
+    paragraph.classList.add('side-nav-lead');
   }
-  if (lead && lead.tagName === 'P') lead.classList.add('side-nav-lead');
 
   // without back to top separators every heading opens a section of its own
   const separated = [...body.querySelectorAll('p')].some(isBackToTop);
+  const isLenderRelations = !!block.closest('main')?.querySelector('#lender-relations-contacts');
+  const isAutoOps = !!block.closest('main')?.querySelector('#auto-operations-directory');
   body.querySelectorAll('h3').forEach((heading, i) => {
+    if (isLenderRelations && heading.id === 'contacts-and-responsibilities') return;
+    if (isAutoOps) return;
+    if (isAutoOpsFaq) return;
     if (!separated || i === 0 || isBackToTop(heading.previousElementSibling)) heading.classList.add('side-nav-section-heading');
   });
 
   body.querySelectorAll('p').forEach((paragraph) => {
     if (isCodeSample(paragraph)) paragraph.classList.add('side-nav-code');
+    if (isLenderRelations && isHoursList(paragraph)) paragraph.classList.add('side-nav-indent');
   });
 
+  if (isAutoOpsFaq) decorateFaq(content);
   decorateTables(body);
   decorateBackToTop(body);
 }
