@@ -576,7 +576,7 @@
       <a class="sidebar-link" href="#j-testing">
         <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm8-3.25a.75.75 0 01.75.75v2.69l1.78 1.78a.75.75 0 11-1.06 1.06l-2-2A.75.75 0 017.25 8.5v-3a.75.75 0 01.75-.75z"/></svg>
         Testing (Playwright)
-        <span class="nav-status ns-planned">Planned</span>
+        <span class="nav-status ns-done">Complete</span>
       </a>
       <a class="sidebar-link" href="#other-workstreams">
         <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M4.5 2A2.5 2.5 0 002 4.5v7A2.5 2.5 0 004.5 14h7a2.5 2.5 0 002.5-2.5v-7A2.5 2.5 0 0011.5 2h-7z"/></svg>
@@ -1089,6 +1089,29 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
             </div>
           </li>
         </ul>
+        <h3>B2B homepage &mdash; anonymous vs. simulated login</h3>
+        <div class="lighthouse-grid">
+          <figure class="lighthouse-card">
+            <img src="images/auth-homepage-logged-out.png" alt="B2B homepage in the anonymous state, showing a red &quot;Log In&quot; link in the nav, a Log In CTA button, and a &quot;No login required&quot; section listing Request supplement, Create assignment, and Fire service provider tool">
+            <figcaption class="lighthouse-card-label">Anonymous &mdash; Log In CTA + "No login required" links</figcaption>
+          </figure>
+          <figure class="lighthouse-card">
+            <img src="images/auth-homepage-logged-in.png" alt="B2B homepage in the simulated authenticated state (?loggedIn=true), showing a red &quot;Log Out&quot; link in the nav in place of the Log In CTA and hero copy, with the icon-link row now unlabeled">
+            <figcaption class="lighthouse-card-label">Simulated login &mdash; Log Out link, gated content revealed (<code class="code-inline">?loggedIn=true</code>)</figcaption>
+          </figure>
+        </div>
+
+        <h3>Premier Service Program &mdash; gated content vs. simulated login</h3>
+        <div class="lighthouse-grid">
+          <figure class="lighthouse-card">
+            <img src="images/auth-premier-service-logged-out.png" alt="Premier Service Program page in the anonymous state, showing only a &quot;Log in to view content&quot; message and a red &quot;Log In&quot; link in the nav in place of the gated page content">
+            <figcaption class="lighthouse-card-label">Anonymous &mdash; "Log in to view content" placeholder</figcaption>
+          </figure>
+          <figure class="lighthouse-card">
+            <img src="images/auth-premier-service-logged-in.png" alt="Premier Service Program page in the simulated authenticated state (?loggedIn=true), showing the full gated content (Contractor Manage Zip Codes, Submit Water Mitigation Summary Report, Resources list) and a red &quot;Log Out&quot; link in the nav">
+            <figcaption class="lighthouse-card-label">Simulated login &mdash; gated content revealed (<code class="code-inline">?loggedIn=true</code>)</figcaption>
+          </figure>
+        </div>
       </section>
 
       <!-- JOURNEY: SERVICE HUB PAGES -->
@@ -1184,12 +1207,43 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
         </h2>
         <div class="section-rule"></div>
         <p><code class="code-inline">homepage-playwright-e2e</code> (PR #69) added the homepage e2e suite (<code class="code-inline">c98d4da</code>), followed by locator and tablet-viewport hardening (<code class="code-inline">2345912</code>, <code class="code-inline">7d59d0e</code>), excluding the test files from production delivery (<code class="code-inline">5097293</code>), and a beginner-friendly README rewrite (<code class="code-inline">0f405b5</code>) documenting how to run the suite locally.</p>
+
+        <h3>Test cases — <code class="code-inline">e2e-tests/homePage.spec.js</code> (14)</h3>
+        <table class="spec-table">
+          <thead>
+            <tr><th>ID</th><th>Verifies</th><th>Viewport</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>TC01</td><td>Page loads at <code class="code-inline">/b2b-content</code> with the correct title</td><td>Desktop</td></tr>
+            <tr><td>TC02</td><td>Hero heading and intro copy are displayed</td><td>Desktop</td></tr>
+            <tr><td>TC03</td><td>Log In button is displayed in the header</td><td>Desktop</td></tr>
+            <tr><td>TC04</td><td>"No login required" heading and its 3 links (name + href) are displayed</td><td>Desktop</td></tr>
+            <tr><td>TC05</td><td>All 7 main navigation items are displayed</td><td>Desktop</td></tr>
+            <tr><td>TC06</td><td>All 8 service cards render with the correct heading and href</td><td>Desktop</td></tr>
+            <tr><td>TC07</td><td>Promotional section and its "Car insurance" dropdown option render</td><td>Desktop</td></tr>
+            <tr><td>TC08</td><td>Hovering a nav item opens its mega-menu panel with the correct title and links</td><td>Desktop</td></tr>
+            <tr><td>TC09</td><td>Mega-menu closes on Escape</td><td>Desktop</td></tr>
+            <tr><td>TC10</td><td>Simulated login updates the header to "Log Out" and hides anonymous-only content</td><td>Desktop</td></tr>
+            <tr><td>TC11</td><td>Simulated logout reverts the header and URL to the anonymous state</td><td>Desktop</td></tr>
+            <tr><td>TC12</td><td>Hamburger button toggles the mobile nav (<code class="code-inline">aria-expanded</code>)</td><td>Mobile 390&times;844</td></tr>
+            <tr><td>TC13</td><td>Hamburger button toggles the tablet nav (<code class="code-inline">aria-expanded</code>)</td><td>Tablet 768&times;1024</td></tr>
+            <tr><td>TC14</td><td>Hero heading and all 8 service cards render correctly at the tablet breakpoint</td><td>Tablet 768&times;1024</td></tr>
+          </tbody>
+        </table>
+
         <ul class="checklist">
           <li class="check-item">
             <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
             <div class="check-body">
               <div class="check-title">Homepage e2e suite merged</div>
-              <div class="check-note"><code class="code-inline">e2e-tests/homePage.spec.js</code> covers content rendering, megamenu hover/Escape, simulated login/logout, and mobile/tablet breakpoints, across chromium/firefox/webkit.</div>
+              <div class="check-note">14 test cases across three <code class="code-inline">test.describe</code> blocks — desktop content/nav/cards + mega-menu + login-state (TC01&ndash;TC11), mobile hamburger at 390&times;844 (TC12), and tablet hamburger + breakpoint content at 768&times;1024 (TC13&ndash;TC14).</div>
+            </div>
+          </li>
+          <li class="check-item">
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title">Suite configuration</div>
+              <div class="check-note"><code class="code-inline">playwright.config.js</code> — <code class="code-inline">baseURL: http://localhost:3000</code>, runs fully parallel across three projects (chromium/firefox/webkit, Desktop device profiles), HTML reporter, trace on first retry; CI runs with <code class="code-inline">retries: 2</code> and <code class="code-inline">workers: 1</code>.</div>
             </div>
           </li>
           <li class="check-item">
