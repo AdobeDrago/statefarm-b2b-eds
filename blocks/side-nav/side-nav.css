@@ -188,7 +188,7 @@ main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
   }
 }
 
-main:has(#lender-relations-contacts) .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
+main:has(.side-nav-help-support) .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
   margin-bottom: 32px;
 }
 
@@ -199,6 +199,15 @@ main:has(#lender-relations-contacts) .side-nav-body {
 main:has(#lender-relations-contacts) .side-nav-body #contacts-and-responsibilities {
   font-size: 1.25rem;
   font-weight: 500;
+}
+
+main:has(#auto-operations-directory) .side-nav-body h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+main:has(#auto-operations-directory) .side-nav-body #to-help-expedite-your-call-review-the-hints-and-tips-below {
+  margin-top: 26px;
 }
 
 .side-nav-body .side-nav-indent {

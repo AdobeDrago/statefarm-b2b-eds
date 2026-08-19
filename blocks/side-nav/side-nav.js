@@ -237,6 +237,9 @@ export default function decorate(block) {
   menu.className = 'side-nav-menu';
   body.className = 'side-nav-body';
   if (!menu.querySelector('ul')) menu.classList.add('side-nav-menu-flat');
+  if (window.location.pathname.startsWith('/b2b-content/home-auto-lenders/help-support')) {
+    block.classList.add('side-nav-help-support');
+  }
   unwrapColumn(menu);
   unwrapColumn(body);
 
@@ -257,8 +260,10 @@ export default function decorate(block) {
   // without back to top separators every heading opens a section of its own
   const separated = [...body.querySelectorAll('p')].some(isBackToTop);
   const isLenderRelations = !!block.closest('main')?.querySelector('#lender-relations-contacts');
+  const isAutoOps = !!block.closest('main')?.querySelector('#auto-operations-directory');
   body.querySelectorAll('h3').forEach((heading, i) => {
     if (isLenderRelations && heading.id === 'contacts-and-responsibilities') return;
+    if (isAutoOps) return;
     if (!separated || i === 0 || isBackToTop(heading.previousElementSibling)) heading.classList.add('side-nav-section-heading');
   });
 
