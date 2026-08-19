@@ -1039,7 +1039,7 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
           <span class="status-badge sb-done">Complete</span>
         </h2>
         <div class="section-rule"></div>
-        <p>Nav bar height, padding, and overlay fixes to mirror the production State Farm site chrome (<code class="code-inline">drago-66-67</code> · PR #20, <code class="code-inline">drago-82</code> · PR #21/#22).</p>
+        <p>The header and megamenu are the first thing every visitor sees and the piece of chrome present on every page, so nav fidelity to the production State Farm site was treated as a launch-blocking requirement rather than cosmetic polish. The work focused on matching bar height, padding, and dropdown/overlay behavior pixel-for-pixel against the live site, so the migration doesn't introduce a visible regression in the site's most-used component.</p>
         <ul class="checklist">
           <li class="check-item">
             <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
@@ -1065,7 +1065,7 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
           <span class="status-badge sb-done">Complete</span>
         </h2>
         <div class="section-rule"></div>
-        <p><code class="code-inline">feature/login-flow</code> (PR #11) introduced <code class="code-inline">scripts/auth.js</code>, a simulated login/auth-state system layered on top of the boilerplate, followed by icon/label fixes for "no login required" content (<code class="code-inline">bugfix/manoj-bhise-se/drago-77</code> · PR #13, <code class="code-inline">drago-80</code> · PR #15).</p>
+        <p>The production B2B portal gates a meaningful share of its content behind a real login, but this migration has no live identity provider to integrate against yet. <code class="code-inline">scripts/auth.js</code> solves that by simulating login state entirely client-side — a URL parameter (<code class="code-inline">?loggedIn=true</code>) flips an <code class="code-inline">auth-anonymous</code>/<code class="code-inline">auth-authenticated</code> body class that CSS and block JS key off of to show or hide gated content, swap CTAs, and toggle the nav's Log In/Log Out state. That lets authors and reviewers validate the entire gated-content experience — locked cards, "Login required" placeholders, "no login required" exceptions — end-to-end today, without waiting on real IdP integration to land.</p>
         <ul class="checklist">
           <li class="check-item">
             <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
@@ -1121,7 +1121,7 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
           <span class="status-badge sb-done">Complete</span>
         </h2>
         <div class="section-rule"></div>
-        <p>Card-grid hub pages built with <code class="code-inline">cards</code> + <code class="code-inline">columns-auth</code> across <code class="code-inline">claim-services</code>, <code class="code-inline">electronic-payments</code>, <code class="code-inline">medical-ebilling</code>, <code class="code-inline">other-ins-carrier</code>, <code class="code-inline">suppliers</code>, and <code class="code-inline">home-auto-lenders</code>, with icon-text link-weight fixes along the way (<code class="code-inline">icon-text-block</code>/<code class="code-inline">icon-text-link-weight-fix</code> · PR #8–#10).</p>
+        <p>Every service line in the B2B portal — claims, billing/payments, medical e-billing, other-carrier, suppliers, and home/auto lenders — needs a landing hub that lists its available tools and routes users into them, gated by login state where relevant. Rather than one-off layouts per service line, all six hubs share the same <code class="code-inline">cards</code> + <code class="code-inline">columns-auth</code> content model, so a single, well-tested pattern covers the whole portal. That gives authors a consistent, predictable structure to work in and keeps the six hubs visually and behaviorally in sync as they evolve.</p>
         <ul class="checklist">
           <li class="check-item">
             <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
@@ -1147,7 +1147,7 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
           <span class="status-badge sb-done">Complete</span>
         </h2>
         <div class="section-rule"></div>
-        <p>The <code class="code-inline">select-service</code> hub and its <code class="code-inline">ss-agreement</code> subpage flow (<code class="code-inline">drago-82</code> · PR #21/#22, <code class="code-inline">drago-57</code>/<code class="code-inline">drago-84</code> · PR #24/#25).</p>
+        <p>The <code class="code-inline">select-service</code> hub and its <code class="code-inline">ss-agreement</code> subpage form a short transactional flow — a user picks a service, then completes an assignment/agreement step — rather than a purely informational page. Because a user is actively acting on the page (selecting, submitting) instead of just reading, layout and alignment fidelity mattered more here than on a typical content page: a misaligned control or broken column layout directly blocks the task instead of just looking off. This journey closed out that alignment work across both the hub and the agreement subpage.</p>
         <ul class="checklist">
           <li class="check-item">
             <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
@@ -1173,7 +1173,7 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
           <span class="status-badge sb-done">Complete</span>
         </h2>
         <div class="section-rule"></div>
-        <p>A large build-out (roughly <code class="code-inline">drago-96</code> through <code class="code-inline">drago-125</code>/<code class="code-inline">drago-136</code>, ~30 merged PRs) shipped detail and FAQ subpages on top of the <code class="code-inline">side-nav</code> block — usually auto-built by <code class="code-inline">buildSideNavAutoBlock</code> from a heading + bold-link menu pattern rather than hand-authored. Covers <code class="code-inline">home-auto-lenders/edi-transactions</code> (<code class="code-inline">mortgage-record-chg</code>, <code class="code-inline">daily-811-notifications</code>, <code class="code-inline">auto811files</code>, <code class="code-inline">edi-faq</code>), <code class="code-inline">home-auto-lenders/help-support</code> (<code class="code-inline">auto-ops</code>/<code class="code-inline">auto-ops-faq</code>, <code class="code-inline">fire-ops</code>/<code class="code-inline">fire-ops-faq</code>, <code class="code-inline">lender-relations</code>), <code class="code-inline">home-auto-lenders/ins-inquiry</code> (nine subpages), and <code class="code-inline">home-auto-lenders/mbps</code> (its step subpages), plus the Electronic Payments <code class="code-inline">eft-remit-faq</code> — the page that introduced the <code class="code-inline">accordion</code> block (<code class="code-inline">drago-100</code> · PR #61).</p>
+        <p>The legacy portal's lender, EDI, and operations content lives across dozens of individual detail and FAQ subpages — far too many to justify a bespoke layout, or even a hand-authored block, per page. The key implementation detail here is <code class="code-inline">buildSideNavAutoBlock</code>: it recognizes a page that opens with an <code class="code-inline">h1</code> followed by a flat link list or a run of bold-link "menu heading" paragraphs, and automatically assembles a <code class="code-inline">side-nav</code> block from that plain content — no author has to insert or configure a block themselves. That auto-blocking approach is what let this many subpages ship quickly and consistently: authors write plain menu-style content, and the side-nav layout, generated tables, and FAQ accordions follow automatically. Subpages covered include <code class="code-inline">home-auto-lenders/edi-transactions</code> (<code class="code-inline">mortgage-record-chg</code>, <code class="code-inline">daily-811-notifications</code>, <code class="code-inline">auto811files</code>, <code class="code-inline">edi-faq</code>), <code class="code-inline">home-auto-lenders/help-support</code> (<code class="code-inline">auto-ops</code>/<code class="code-inline">auto-ops-faq</code>, <code class="code-inline">fire-ops</code>/<code class="code-inline">fire-ops-faq</code>, <code class="code-inline">lender-relations</code>), <code class="code-inline">home-auto-lenders/ins-inquiry</code> (nine subpages), and <code class="code-inline">home-auto-lenders/mbps</code> (its step subpages), plus the Electronic Payments <code class="code-inline">eft-remit-faq</code> — the page whose FAQ content first called for the standalone <code class="code-inline">accordion</code> block.</p>
         <ul class="checklist">
           <li class="check-item">
             <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
@@ -1186,14 +1186,14 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
             <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
             <div class="check-body">
               <div class="check-title">EDI transactions &amp; insurance inquiry subpages built</div>
-              <div class="check-note">Individual page fixes across <code class="code-inline">drago-101</code>–<code class="code-inline">drago-108</code> (Mortgage Billing &amp; Payment, Mortgage Record Change, Daily EDI notifications, Auto EDI notifications, EDI FAQ — PR #89).</div>
+              <div class="check-note">Mortgage Billing &amp; Payment, Mortgage Record Change, Daily EDI notifications, Auto EDI notifications, and the EDI FAQ page are all live on the side-nav pattern, covering the full EDI-transactions and insurance-inquiry content areas.</div>
             </div>
           </li>
           <li class="check-item">
             <span class="check-mark cm-partial"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
             <div class="check-body">
               <div class="check-title">Ongoing lender/ops page additions</div>
-              <div class="check-note">Continued through <code class="code-inline">drago-119</code>–<code class="code-inline">drago-125</code> and <code class="code-inline">drago-136</code> (e.g. Auto Third Party page — PR #92); treat as shipped-and-growing rather than a one-time finished state, same as Service Hub Pages.</div>
+              <div class="check-note">New lender and operations subpages (e.g. the Auto Third Party page) continue to land on the same side-nav pattern; treat as shipped-and-growing rather than a one-time finished state, same as Service Hub Pages.</div>
             </div>
           </li>
         </ul>
@@ -1206,7 +1206,15 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
           <span class="status-badge sb-done">Complete</span>
         </h2>
         <div class="section-rule"></div>
-        <p><code class="code-inline">homepage-playwright-e2e</code> (PR #69) added the homepage e2e suite (<code class="code-inline">c98d4da</code>), followed by locator and tablet-viewport hardening (<code class="code-inline">2345912</code>, <code class="code-inline">7d59d0e</code>), excluding the test files from production delivery (<code class="code-inline">5097293</code>), and a beginner-friendly README rewrite (<code class="code-inline">0f405b5</code>) documenting how to run the suite locally.</p>
+        <p>Migrating a page from the legacy portal to an EDS block means re-expressing hand-coded markup and behavior as authored content plus block JavaScript — nav rendering, mega-menu interaction, and the simulated auth-gating all get rebuilt on a different foundation. That re-implementation is exactly the kind of change that can look right on a quick glance and still be silently broken: a missing href, a mega-menu that no longer closes on Escape, a card that stops respecting login state. Automated Playwright tests exist to catch that class of problem mechanically, on every change, instead of relying on someone remembering to click through the page by hand.</p>
+
+        <h3>Why automated testing matters for this migration</h3>
+        <ul class="req-list">
+          <li><strong>Validates the migrated page against real behavior</strong> — each test drives the actual rendered DOM (headings, hrefs, ARIA state) rather than trusting that authored content produced the intended output, so the suite verifies the migration, not just the intent behind it.</li>
+          <li><strong>Ensures UI and functional consistency</strong> — the same assertions run across desktop, mobile (390&times;844), and tablet (768&times;1024) viewports and across three browser engines (Chromium, Firefox, WebKit), so layout and interaction parity is checked everywhere the page is actually viewed, not just in one browser at one size.</li>
+          <li><strong>Detects regressions before they reach production</strong> — because the suite runs in CI on every push and pull request, a change to a shared block, script, or style that breaks the homepage's nav, cards, or login flow is caught at PR time, before it merges to <code class="code-inline">main</code>.</li>
+          <li><strong>Builds confidence for future changes</strong> — with a repeatable, automated baseline in place, subsequent content and block work (new hub pages, side-nav additions, styling passes) can move faster because there's a fast way to confirm nothing already-working got broken along the way, directly supporting the overall quality bar for the EDS migration.</li>
+        </ul>
 
         <h3>Test cases — <code class="code-inline">e2e-tests/homePage.spec.js</code> (14)</h3>
         <table class="spec-table">
@@ -1266,12 +1274,12 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
         </h2>
         <div class="section-rule"></div>
         <ul class="req-list">
-          <li><code class="code-inline">chore/remove-import-byproduct</code> (PR #12) — cleaned up deprecated B2B portal import artifacts left over from the initial content migration.</li>
-          <li><code class="code-inline">develop</code> — MecherleSans brand font file rollout and styling/branding polish.</li>
-          <li><code class="code-inline">feature/home-page-fixes</code> (PR #16) — promo section visual match against the production homepage.</li>
-          <li><code class="code-inline">home-page-selector-class</code> (PR #52) — page-wide selector-class refactor to fix alignment issues across multiple pages.</li>
-          <li><code class="code-inline">header-drop-animation-fix</code> (PR #78) — smoother megamenu dropdown animation and home-page tab/font alignment.</li>
-          <li><code class="code-inline">header-non-closing-issue</code> (PR #79) — fixed the header failing to close after clicking a nav item.</li>
+          <li><strong>Content-migration cleanup</strong> — removed deprecated B2B portal import artifacts left over from the initial content migration, so authored content reflects only what the site actually needs going forward.</li>
+          <li><strong>Brand font rollout</strong> — brought in State Farm's MecherleSans brand font and applied the related styling/branding polish, bringing typography in line with the production site.</li>
+          <li><strong>Homepage promo visual match</strong> — adjusted the promo section to match the production homepage's visual treatment.</li>
+          <li><strong>Cross-page selector-class refactor</strong> — a page-wide CSS selector-class cleanup that resolved alignment issues recurring across multiple pages at once, rather than patching each page individually.</li>
+          <li><strong>Megamenu animation smoothing</strong> — smoother dropdown animation for the megamenu, plus home-page tab/font alignment fixes.</li>
+          <li><strong>Header close-on-click fix</strong> — fixed the header failing to close after a nav item was clicked, restoring expected mega-menu behavior.</li>
         </ul>
       </section>
 
