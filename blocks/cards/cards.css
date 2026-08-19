@@ -318,6 +318,12 @@
   }
 }
 
+@media (width <=600px) {
+  .claims-services .cards-card-body p:last-child { 
+      margin: 14px 0;
+    }
+}
+
 @media (width <= 560px) {
   .default-content-wrapper #create-assignment {
     font-size: 28px;
