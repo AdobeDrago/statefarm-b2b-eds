@@ -211,6 +211,10 @@ function isCodeSample(paragraph) {
   return text.startsWith('<') && text.endsWith('>');
 }
 
+function isHoursList(paragraph) {
+  return /^Pacific Time:/i.test(paragraph.textContent.trim());
+}
+
 /**
  * Drops the paragraph the block decoration wraps a column in when its content
  * opens with an element it does not recognise as a wrapper.
@@ -242,23 +246,25 @@ export default function decorate(block) {
     ? body.firstElementChild
     : body;
   // a heading that reads as a sentence opens the page rather than a section
-  let lead = content.firstElementChild;
+  const lead = content.firstElementChild;
   if (menu.classList.contains('side-nav-menu-flat') && lead?.tagName === 'H3' && /[.!?]$/.test(lead.textContent.trim())) {
     const paragraph = document.createElement('p');
     paragraph.append(...lead.childNodes);
     lead.replaceWith(paragraph);
-    lead = paragraph;
+    paragraph.classList.add('side-nav-lead');
   }
-  if (lead && lead.tagName === 'P') lead.classList.add('side-nav-lead');
 
   // without back to top separators every heading opens a section of its own
   const separated = [...body.querySelectorAll('p')].some(isBackToTop);
+  const isLenderRelations = !!block.closest('main')?.querySelector('#lender-relations-contacts');
   body.querySelectorAll('h3').forEach((heading, i) => {
+    if (isLenderRelations && heading.id === 'contacts-and-responsibilities') return;
     if (!separated || i === 0 || isBackToTop(heading.previousElementSibling)) heading.classList.add('side-nav-section-heading');
   });
 
   body.querySelectorAll('p').forEach((paragraph) => {
     if (isCodeSample(paragraph)) paragraph.classList.add('side-nav-code');
+    if (isLenderRelations && isHoursList(paragraph)) paragraph.classList.add('side-nav-indent');
   });
 
   decorateTables(body);
