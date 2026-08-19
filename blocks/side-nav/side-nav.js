@@ -222,7 +222,7 @@ function decorateFaq(container) {
   const accordion = document.createElement('div');
   accordion.className = 'side-nav-faq';
 
-  questions.forEach((heading, i) => {
+  questions.forEach((heading) => {
     let node = heading.nextElementSibling;
     const summary = document.createElement('summary');
     summary.className = 'side-nav-faq-label';
@@ -238,7 +238,6 @@ function decorateFaq(container) {
 
     const details = document.createElement('details');
     details.className = 'side-nav-faq-item';
-    if (!i) details.open = true;
     details.append(summary, answer);
     accordion.append(details);
   });
@@ -287,9 +286,10 @@ export default function decorate(block) {
   const isAutoOpsFaq = !!block.closest('main')?.querySelector('#auto-operations-faq');
   const isFireOpsFaq = !!block.closest('main')?.querySelector('#fire-operations-faq');
   const isFaqPage = isAutoOpsFaq || isFireOpsFaq;
+  const hasFlatNav = menu.classList.contains('side-nav-menu-flat') || menu.querySelector('.side-nav-menu-list');
   // a heading that reads as a sentence opens the page rather than a section
   const lead = content.firstElementChild;
-  if (!isFaqPage && menu.classList.contains('side-nav-menu-flat') && lead?.tagName === 'H3' && /[.!?]$/.test(lead.textContent.trim())) {
+  if (!isFaqPage && hasFlatNav && lead?.tagName === 'H3' && /[.!?]$/.test(lead.textContent.trim())) {
     const paragraph = document.createElement('p');
     paragraph.append(...lead.childNodes);
     lead.replaceWith(paragraph);
@@ -306,6 +306,7 @@ export default function decorate(block) {
     if (isAutoOps) return;
     if (isFaqPage) return;
     if (isFireOps && heading.id !== 'payment-addressmailing-addresscontact-detailspersonal-lines-fire-questionsbusiness-lines-fire-questions') return;
+    if (i === 0 && /[.!?]$/.test(heading.textContent.trim()) && hasFlatNav) return;
     if (!separated || i === 0 || isBackToTop(heading.previousElementSibling)) heading.classList.add('side-nav-section-heading');
   });
 
