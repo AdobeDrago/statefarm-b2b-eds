@@ -544,11 +544,6 @@
         <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1 14.5a.5.5 0 01.5-.5h13a.5.5 0 010 1h-13a.5.5 0 01-.5-.5zM3 12a1 1 0 011-1 1 1 0 011 1v.5H3V12zm4-3.5A1 1 0 018 7.5a1 1 0 011 1V12.5H7V8.5zm4-3A1 1 0 0112 4.5a1 1 0 011 1v7H11v-7z"/></svg>
         Lighthouse comparison
       </a>
-      <a class="sidebar-link" href="#ue-status">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zM4.5 7.25a.75.75 0 000 1.5h5.25l-2.22 2.22a.75.75 0 001.06 1.06l3.5-3.5a.75.75 0 000-1.06l-3.5-3.5a.75.75 0 10-1.06 1.06l2.22 2.22H4.5z"/></svg>
-        Universal Editor enablement
-        <span class="nav-status ns-progress">Progress</span>
-      </a>
     </div>
 
     <div class="sidebar-section">
@@ -573,10 +568,10 @@
         Select Service &amp; Agreement
         <span class="nav-status ns-done">Complete</span>
       </a>
-      <a class="sidebar-link" href="#j-ue">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zM4.5 7.25a.75.75 0 000 1.5h5.25l-2.22 2.22a.75.75 0 001.06 1.06l3.5-3.5a.75.75 0 000-1.06l-3.5-3.5a.75.75 0 10-1.06 1.06l2.22 2.22H4.5z"/></svg>
-        Universal Editor Enablement
-        <span class="nav-status ns-progress">Progress</span>
+      <a class="sidebar-link" href="#j-detail-pages">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 1A1.5 1.5 0 001 2.5v11A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-11A1.5 1.5 0 0013.5 1h-11zm8.4 1.3l-.1 1.6a.2.2 0 00.32.17l.55-.42.47.36a.2.2 0 00.32-.17l-.13-2.03h.8v11.4H4.4V2.3h6.5z"/></svg>
+        Detail &amp; FAQ Pages
+        <span class="nav-status ns-done">Complete</span>
       </a>
       <a class="sidebar-link" href="#j-testing">
         <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm8-3.25a.75.75 0 01.75.75v2.69l1.78 1.78a.75.75 0 11-1.06 1.06l-2-2A.75.75 0 017.25 8.5v-3a.75.75 0 01.75-.75z"/></svg>
@@ -599,7 +594,7 @@
       <div class="page-hero" id="overview">
         <div class="page-hero-eyebrow">State Farm B2B · EDS</div>
         <h1>State Farm B2B — Edge Delivery Services Documentation</h1>
-        <p class="page-hero-sub">A Document Authoring (DA)-backed Edge Delivery Services site for State Farm's B2B portal — claims, billing, supplier, and lender-facing service hub pages migrated from a legacy portal. Built on <code class="code-inline">@adobe/aem-boilerplate</code>, with fragment-based header/footer, a simulated login/auth-state system for gating "Login required" content, and Universal Editor authoring currently being wired up alongside classic DA editing.</p>
+        <p class="page-hero-sub">A Document Authoring (DA)-backed Edge Delivery Services site for State Farm's B2B portal — claims, billing, supplier, and lender-facing service hub pages migrated from a legacy portal. Built on <code class="code-inline">@adobe/aem-boilerplate</code>, with fragment-based header/footer, a simulated login/auth-state system for gating "Login required" content, and a side-nav-driven detail/FAQ page pattern used across dozens of lender and EDI subpages.</p>
         <div class="url-grid" style="margin-top:20px;">
           <a class="url-card" href="https://github.com/AdobeDrago/statefarm-b2b-eds" target="_blank" rel="noopener">
             <span class="url-card-label"><span class="dot dot-navy"></span>GitHub</span>
@@ -637,7 +632,6 @@
           <li>Migrate the legacy State Farm B2B portal to Edge Delivery Services, authored in Document Authoring.</li>
           <li>Support role-based service hub navigation — claims, billing/payments, medical e-billing, suppliers, other-carrier, and home/auto lender pages.</li>
           <li>Ship a simulated auth/login-state system (no live IdP) that gates "Login required" content and swaps CTAs by auth state.</li>
-          <li>Enable Universal Editor authoring alongside classic DA editing.</li>
         </ul>
 
         <h3>Core engineering constraints</h3>
@@ -688,20 +682,20 @@
               <td><a href="#j-agreement" style="color:var(--brand-blue);">Journey detail</a></td>
             </tr>
             <tr>
-              <td>Universal Editor Enablement</td>
-              <td>UE component models/filters/definitions, runtime wiring</td>
-              <td><span class="nav-status ns-progress">In progress</span></td>
-              <td><a href="#j-ue" style="color:var(--brand-blue);">Journey detail</a></td>
+              <td>Detail &amp; FAQ Pages</td>
+              <td>side-nav-driven lender, EDI, and operations detail/FAQ subpages under Home &amp; Auto Lenders and Electronic Payments</td>
+              <td><span class="nav-status ns-done">Complete</span></td>
+              <td><a href="#j-detail-pages" style="color:var(--brand-blue);">Journey detail</a></td>
             </tr>
             <tr>
               <td>Testing (Playwright)</td>
-              <td>Automated test coverage</td>
-              <td><span class="nav-status ns-planned">Planned</span></td>
+              <td>Automated homepage test coverage, wired into CI</td>
+              <td><span class="nav-status ns-done">Complete</span></td>
               <td><a href="#j-testing" style="color:var(--brand-blue);">Journey detail</a></td>
             </tr>
           </tbody>
         </table>
-        <p>Service Hub Pages are shipped, with ongoing visual polish as new hub pages are added. Universal Editor and Testing are called out separately below because their completion status is not yet confirmed end to end — see their sections for the specific gaps.</p>
+        <p>Service Hub Pages and Detail &amp; FAQ Pages are shipped, with ongoing visual polish and new subpages added regularly — treat both as shipped-and-growing rather than a one-time finished state.</p>
       </section>
 
       <!-- REPOSITORY -->
@@ -719,7 +713,7 @@
             <tr><td>Branch flow</td><td>Ticket branches (<code class="code-inline">drago-NN</code>) → <code class="code-inline">develop</code> → <code class="code-inline">main</code></td></tr>
             <tr><td>Base</td><td><code class="code-inline">@adobe/aem-boilerplate</code> — <code class="code-inline">package.json</code> name/version are still literally <code class="code-inline">@adobe/aem-boilerplate</code> v1.3.0</td></tr>
             <tr><td>Project type</td><td><code class="code-inline">doc</code> (DA-backed) — <code class="code-inline">previewOrg</code>/<code class="code-inline">previewSite</code> = <code class="code-inline">adobedrago</code>/<code class="code-inline">statefarm-b2b-eds</code> (<code class="code-inline">.migration/project.json</code>)</td></tr>
-            <tr><td>Testing</td><td>No confirmed automated test suite merged yet; see <a href="#j-testing" style="color:var(--brand-blue);">Testing journey</a></td></tr>
+            <tr><td>Testing</td><td>Playwright e2e suite in <code class="code-inline">e2e-tests/</code>, wired into CI; see <a href="#j-testing" style="color:var(--brand-blue);">Testing journey</a></td></tr>
             <tr><td>Guides</td><td><code class="code-inline">project-guides/</code> — admin, author, and developer PDF guides (see <a href="#references" style="color:var(--brand-blue);">Key references</a>)</td></tr>
           </tbody>
         </table>
@@ -833,10 +827,12 @@ aem up</div>
         <div class="code-block">npm run lint       <span class="cmt"># runs lint:js + lint:css</span>
 npm run lint:js    <span class="cmt"># ESLint (airbnb-base)</span>
 npm run lint:css   <span class="cmt"># Stylelint (blocks/**/*.css, styles/*.css)</span>
-npm run lint:fix   <span class="cmt"># auto-fix variants of the above</span></div>
+npm run lint:fix   <span class="cmt"># auto-fix variants of the above</span>
+npm run test:e2e    <span class="cmt"># Playwright e2e suite (chromium/firefox/webkit)</span>
+npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></div>
         <div class="notice info">
           <svg class="notice-icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"/></svg>
-          <span>There is no confirmed automated test suite in this repo yet. A <code class="code-inline">feature/playwright-tests</code> branch exists; its merge status into <code class="code-inline">develop</code>/<code class="code-inline">main</code> is unconfirmed — see the <a href="#j-testing" style="color:#0d51b5;">Testing journey</a>.</span>
+          <span>Two CI workflows run on every push/PR: <code class="code-inline">.github/workflows/main.yaml</code> runs <code class="code-inline">npm run lint</code>, and <code class="code-inline">.github/workflows/playwright.yml</code> runs the full Playwright suite against <code class="code-inline">main</code>/<code class="code-inline">master</code> and uploads the HTML report as a build artifact. See the <a href="#j-testing" style="color:#0d51b5;">Testing journey</a>.</span>
         </div>
       </section>
 
@@ -869,6 +865,7 @@ npm run lint:fix   <span class="cmt"># auto-fix variants of the above</span></di
             <tr><td>Trusted Types CSP policy</td><td>Strips <code class="code-inline">&lt;script&gt;</code> tags and <code class="code-inline">iframe[srcdoc]</code> from HTML sink content — required because <code class="code-inline">widget.js</code> assigns third-party markup via <code class="code-inline">innerHTML</code> under a strict-dynamic CSP.</td></tr>
             <tr><td><code class="code-inline">buildAutoBlocks(main)</code></td><td>Auto-loads <code class="code-inline">a[href*="/fragments/"]</code> links as fragments.</td></tr>
             <tr><td><code class="code-inline">buildWidgetAutoBlocks</code></td><td>Auto-converts <code class="code-inline">a[href*="/widgets/"]</code> links into <code class="code-inline">widget</code> blocks.</td></tr>
+            <tr><td><code class="code-inline">buildSideNavAutoBlock</code></td><td>Detects a page opening with an <code class="code-inline">h1</code> followed by a flat link list or a run of bold-link "menu heading" paragraphs, and auto-builds a <code class="code-inline">side-nav</code> block from it — the mechanism behind most Home &amp; Auto Lenders detail/FAQ pages (see <a href="#j-detail-pages" style="color:var(--brand-blue);">Detail &amp; FAQ Pages journey</a>).</td></tr>
             <tr><td><code class="code-inline">decorateAuthLinks</code> / <code class="code-inline">decorateAuthGate</code></td><td>From <code class="code-inline">scripts/auth.js</code> — wires the simulated login/auth-gating system into <code class="code-inline">decorateMain</code>.</td></tr>
             <tr><td><code class="code-inline">initAuthState()</code></td><td>Called first in <code class="code-inline">loadEager</code>, before decoration, to set the <code class="code-inline">auth-anonymous</code> / <code class="code-inline">auth-authenticated</code> body class.</td></tr>
             <tr><td><code class="code-inline">decorateDropdown(ul, placeholder)</code></td><td>Exported utility — converts an authored link list into a native <code class="code-inline">&lt;select&gt;</code> jump menu; reused by <code class="code-inline">columns-promo</code> and <code class="code-inline">cards-service</code>.</td></tr>
@@ -890,6 +887,7 @@ npm run lint:fix   <span class="cmt"># auto-fix variants of the above</span></di
             <tr><th>Block</th><th>Purpose</th><th class="mark-col">JS decoration?</th></tr>
           </thead>
           <tbody>
+            <tr><td>accordion</td><td>Generic <code class="code-inline">&lt;details&gt;/&lt;summary&gt;</code> wrapper per authored row. No confirmed authored usage found in current <code class="code-inline">b2b-content</code> pages — FAQ pages currently render through <code class="code-inline">side-nav.js</code>'s own <code class="code-inline">decorateFaq</code> instead.</td><td class="mark-col mark-yes">✓</td></tr>
             <tr><td>breadcrumbs</td><td>Wraps an authored <code class="code-inline">&lt;ul&gt;</code> link list into <code class="code-inline">&lt;nav aria-label="Breadcrumb"&gt;&lt;ol&gt;</code>; the last item's link is stripped and replaced with an <code class="code-inline">aria-current="page"</code> span.</td><td class="mark-col mark-yes">✓</td></tr>
             <tr><td>cards</td><td>Standard card grid; adds a "Login required" lock badge (<code class="code-inline">data-auth="anonymous"</code>) via <code class="code-inline">auth.js</code>, hiding soft login prompts when auth is simulated.</td><td class="mark-col mark-yes">✓</td></tr>
             <tr><td>cards-service</td><td>Icon + body service card list; detects icon cell (picture / <code class="code-inline">span.icon</code> / <code class="code-inline">:icon-name:</code> token) vs. body; a nested link list becomes a dropdown.</td><td class="mark-col mark-yes">✓</td></tr>
@@ -901,6 +899,7 @@ npm run lint:fix   <span class="cmt"># auto-fix variants of the above</span></di
             <tr><td>header</td><td>Full nav/megamenu block; builds desktop/mobile nav from a fragment, manages dropdown open/close, integrates the auth system, responsive at 900px.</td><td class="mark-col mark-yes">✓</td></tr>
             <tr><td>hero</td><td>CSS-only — <code class="code-inline">hero.js</code> is an empty file; no JS decoration is needed for this block.</td><td class="mark-col mark-no">✗</td></tr>
             <tr><td>icon-text</td><td>Two-cell row (icon + body) repeated per authored row; converts <code class="code-inline">:icon-name:</code> token paragraphs to <code class="code-inline">span.icon</code> as a fallback.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>side-nav</td><td>Menu + body detail-page layout; usually auto-built by <code class="code-inline">buildSideNavAutoBlock</code>. Parses <code class="code-inline">&lt;strong&gt;Label&lt;/strong&gt;—value</code> bullet rows into real <code class="code-inline">&lt;table&gt;</code>s with weighted column widths, groups <code class="code-inline">h3</code> runs into a FAQ accordion, and carries several page-specific special cases (lender relations, auto/fire operations) keyed off page path or heading id.</td><td class="mark-col mark-yes">✓</td></tr>
             <tr><td>widget</td><td>Loads third-party/internal widget bundles referenced by <code class="code-inline">/widgets/...</code> links (auto-blocked); injects the widget's CSS/JS and guards against path traversal.</td><td class="mark-col mark-yes">✓</td></tr>
           </tbody>
         </table>
@@ -923,7 +922,7 @@ npm run lint:fix   <span class="cmt"># auto-fix variants of the above</span></di
             <tr><td>scripts/aem.js</td><td>Core AEM Edge Delivery library (page decoration primitives) — never modified per project convention.</td></tr>
             <tr><td>scripts/scripts.js</td><td>Global decoration entry point — three-phase loading, auto-blocking, <code class="code-inline">decorateDropdown</code> export, Trusted Types CSP setup (see <a href="#page-decoration" style="color:var(--brand-blue);">Page decoration</a>).</td></tr>
             <tr><td>scripts/auth.js</td><td>Simulated login/auth-state system — not present in stock aem-boilerplate; drives <code class="code-inline">auth-anonymous</code>/<code class="code-inline">auth-authenticated</code> body classes and gated content across cards, cards-service, columns-auth, and header.</td></tr>
-            <tr><td>scripts/delayed.js</td><td>Delayed/martech-style loading, run after the lazy phase.</td></tr>
+            <tr><td>scripts/delayed.js</td><td>Loads the State Farm chat widget (<code class="code-inline">sf-chat</code> custom element) after the lazy phase; forces its <code class="code-inline">external=true</code> asset flag on non-production hosts (localhost, <code class="code-inline">aem.page</code>/<code class="code-inline">aem.live</code>) since the widget's default asset host is unreachable there.</td></tr>
           </tbody>
         </table>
       </section>
@@ -937,7 +936,9 @@ npm run lint:fix   <span class="cmt"># auto-fix variants of the above</span></di
           Lighthouse comparison — Live vs EDS
         </h2>
         <div class="section-rule"></div>
-        <p>Chrome DevTools Lighthouse audits of the <code class="code-inline">/b2b-content</code> landing page, captured against the production live site (<code class="code-inline">b2b.statefarm.com</code>) and the EDS preview (<code class="code-inline">main--statefarm-b2b-eds--adobedrago.aem.page</code>).</p>
+        <p>Chrome DevTools Lighthouse audits across four representative <code class="code-inline">/b2b-content</code> pages, captured against the production live site (<code class="code-inline">b2b.statefarm.com</code>) and the EDS preview (<code class="code-inline">develop--statefarm-b2b-eds--adobedrago.aem.page</code>).</p>
+
+        <h3>Homepage</h3>
         <table class="spec-table">
           <thead>
             <tr><th>Metric</th><th>Live</th><th>EDS</th><th>Delta</th></tr>
@@ -958,26 +959,76 @@ npm run lint:fix   <span class="cmt"># auto-fix variants of the above</span></di
             <figcaption class="lighthouse-card-label">EDS &mdash; aem.page preview</figcaption>
           </figure>
         </div>
+
+        <h3>Select Service</h3>
+        <table class="spec-table">
+          <thead>
+            <tr><th>Metric</th><th>Live</th><th>EDS</th><th>Delta</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Performance</td><td><span class="score-pill score-mid">57</span></td><td><span class="score-pill score-good">100</span></td><td>+43</td></tr>
+            <tr><td>Accessibility</td><td><span class="score-pill score-good">99</span></td><td><span class="score-pill score-good">99</span></td><td>0</td></tr>
+            <tr><td>Best Practices</td><td><span class="score-pill score-mid">73</span></td><td><span class="score-pill score-good">96</span></td><td>+23</td></tr>
+          </tbody>
+        </table>
+        <div class="lighthouse-grid">
+          <figure class="lighthouse-card">
+            <img src="images/select-service-live.png" alt="Lighthouse audit of the live Select Service page scoring 57 Performance, 99 Accessibility, 73 Best Practices">
+            <figcaption class="lighthouse-card-label">Live &mdash; b2b.statefarm.com/b2b-content/select-service</figcaption>
+          </figure>
+          <figure class="lighthouse-card">
+            <img src="images/select-service-eds.png" alt="Lighthouse audit of the EDS preview of Select Service scoring 100 Performance, 99 Accessibility, 96 Best Practices">
+            <figcaption class="lighthouse-card-label">EDS &mdash; aem.page preview</figcaption>
+          </figure>
+        </div>
+
+        <h3>Create Assignment</h3>
+        <table class="spec-table">
+          <thead>
+            <tr><th>Metric</th><th>Live</th><th>EDS</th><th>Delta</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Performance</td><td><span class="score-pill score-mid">77</span></td><td><span class="score-pill score-good">99</span></td><td>+22</td></tr>
+            <tr><td>Accessibility</td><td><span class="score-pill score-good">98</span></td><td><span class="score-pill score-good">98</span></td><td>0</td></tr>
+            <tr><td>Best Practices</td><td><span class="score-pill score-mid">73</span></td><td><span class="score-pill score-good">96</span></td><td>+23</td></tr>
+          </tbody>
+        </table>
+        <div class="lighthouse-grid">
+          <figure class="lighthouse-card">
+            <img src="images/create-assignment-live.png" alt="Lighthouse audit of the live Create Assignment page scoring 77 Performance, 98 Accessibility, 73 Best Practices">
+            <figcaption class="lighthouse-card-label">Live &mdash; b2b.statefarm.com/b2b-content/select-service/create-assignment</figcaption>
+          </figure>
+          <figure class="lighthouse-card">
+            <img src="images/create-assignment-eds.png" alt="Lighthouse audit of the EDS preview of Create Assignment scoring 99 Performance, 98 Accessibility, 96 Best Practices">
+            <figcaption class="lighthouse-card-label">EDS &mdash; aem.page preview</figcaption>
+          </figure>
+        </div>
+
+        <h3>Suppliers</h3>
+        <table class="spec-table">
+          <thead>
+            <tr><th>Metric</th><th>Live</th><th>EDS</th><th>Delta</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Performance</td><td><span class="score-pill score-mid">71</span></td><td><span class="score-pill score-good">99</span></td><td>+28</td></tr>
+            <tr><td>Accessibility</td><td><span class="score-pill score-good">98</span></td><td><span class="score-pill score-good">100</span></td><td>+2</td></tr>
+            <tr><td>Best Practices</td><td><span class="score-pill score-mid">73</span></td><td><span class="score-pill score-good">96</span></td><td>+23</td></tr>
+          </tbody>
+        </table>
+        <div class="lighthouse-grid">
+          <figure class="lighthouse-card">
+            <img src="images/suppliers-live.png" alt="Lighthouse audit of the live Suppliers page scoring 71 Performance, 98 Accessibility, 73 Best Practices">
+            <figcaption class="lighthouse-card-label">Live &mdash; b2b.statefarm.com/b2b-content/suppliers</figcaption>
+          </figure>
+          <figure class="lighthouse-card">
+            <img src="images/suppliers-eds.png" alt="Lighthouse audit of the EDS preview of Suppliers scoring 99 Performance, 100 Accessibility, 96 Best Practices">
+            <figcaption class="lighthouse-card-label">EDS &mdash; aem.page preview</figcaption>
+          </figure>
+        </div>
+
         <div class="notice tip">
           <svg class="notice-icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"/></svg>
-          <span>The EDS rebuild nearly doubles Performance (53 → 100) and improves Best Practices (73 → 96). Accessibility dips slightly (95 → 90) and is worth a follow-up pass.</span>
-        </div>
-      </section>
-
-      <!-- ARCHITECTURE: UNIVERSAL EDITOR -->
-      <section class="doc-section" id="ue-status">
-        <h2>
-          <span class="section-icon icon-orange">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zM4.5 7.25a.75.75 0 000 1.5h5.25l-2.22 2.22a.75.75 0 001.06 1.06l3.5-3.5a.75.75 0 000-1.06l-3.5-3.5a.75.75 0 10-1.06 1.06l2.22 2.22H4.5z"/></svg>
-          </span>
-          Universal Editor enablement
-          <span class="status-badge sb-progress">In Progress</span>
-        </h2>
-        <div class="section-rule"></div>
-        <p>Commit <code class="code-inline">b71bfb0</code> ("Add the required files for Universal Editor") added the root <code class="code-inline">component-definition.json</code>, <code class="code-inline">component-models.json</code>, and <code class="code-inline">component-filters.json</code> — generated from source partials under <code class="code-inline">ue/models/</code> (<code class="code-inline">page.json</code>, <code class="code-inline">section.json</code>, <code class="code-inline">text.json</code>, <code class="code-inline">title.json</code>, <code class="code-inline">image.json</code>, <code class="code-inline">button.json</code>, plus one <code class="code-inline">ue/models/blocks/{blockname}.json</code> per block) via <code class="code-inline">npm run build:json</code>, per <code class="code-inline">ue/README.md</code>. <code class="code-inline">ue/scripts/ue-utils.js</code> and <code class="code-inline">ue/scripts/ue.js</code> provide <code class="code-inline">moveInstrumentation</code> helpers and DOM-mutation observers to keep <code class="code-inline">data-aue-*</code> authoring attributes attached when blocks rewrite the DOM.</p>
-        <div class="notice warning">
-          <svg class="notice-icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M7.56 1.22a.5.5 0 01.88 0l6.5 12.5A.5.5 0 0114.5 14.5h-13a.5.5 0 01-.44-.78l6.5-12.5zM8 5.5a.5.5 0 00-.5.5v3a.5.5 0 001 0V6a.5.5 0 00-.5-.5zM8 11.5a.75.75 0 100 1.5.75.75 0 000-1.5z"/></svg>
-          <span>Wiring is not complete: <code class="code-inline">package.json</code> has no <code class="code-inline">build:json</code> script defined (only <code class="code-inline">lint</code>/<code class="code-inline">lint:fix</code>) despite <code class="code-inline">ue/README.md</code> requiring it; <code class="code-inline">ue/README.md</code> also references a runtime file <code class="code-inline">scripts/editor-support.js</code> for XWalk live-patch/richtext support that does not exist (<code class="code-inline">scripts/</code> only has <code class="code-inline">aem.js</code>, <code class="code-inline">auth.js</code>, <code class="code-inline">delayed.js</code>, <code class="code-inline">scripts.js</code>); and <code class="code-inline">head.html</code> has no Universal Editor script reference yet. UE is scaffolded but not fully wired end to end.</span>
+          <span>The pattern holds across all four pages: Performance jumps by +22 to +47 points, and Best Practices lands at exactly 96 every time (from 73 live) — both driven by the same EDS platform behavior regardless of page content. Accessibility is flat or improved on three of the four pages, with a single 5-point dip on the homepage (95 → 90) worth a follow-up pass.</span>
         </div>
       </section>
 
@@ -1092,41 +1143,34 @@ npm run lint:fix   <span class="cmt"># auto-fix variants of the above</span></di
         </ul>
       </section>
 
-      <!-- JOURNEY: UNIVERSAL EDITOR ENABLEMENT -->
-      <section class="doc-section" id="j-ue">
+      <!-- JOURNEY: DETAIL & FAQ PAGES (SIDE-NAV) -->
+      <section class="doc-section" id="j-detail-pages">
         <h2>
-          Journey — Universal Editor Enablement
-          <span class="status-badge sb-progress">In Progress</span>
+          Journey — Detail &amp; FAQ Pages (side-nav)
+          <span class="status-badge sb-done">Complete</span>
         </h2>
         <div class="section-rule"></div>
-        <p>Scaffolding from <code class="code-inline">feature/enable-ue-capabilities</code> landed in commit <code class="code-inline">b71bfb0</code>; runtime wiring is not yet complete. See <a href="#ue-status" style="color:var(--brand-blue);">Universal Editor enablement</a> for the full gap detail.</p>
+        <p>A large build-out (roughly <code class="code-inline">drago-96</code> through <code class="code-inline">drago-125</code>/<code class="code-inline">drago-136</code>, ~30 merged PRs) shipped detail and FAQ subpages on top of the <code class="code-inline">side-nav</code> block — usually auto-built by <code class="code-inline">buildSideNavAutoBlock</code> from a heading + bold-link menu pattern rather than hand-authored. Covers <code class="code-inline">home-auto-lenders/edi-transactions</code> (<code class="code-inline">mortgage-record-chg</code>, <code class="code-inline">daily-811-notifications</code>, <code class="code-inline">auto811files</code>, <code class="code-inline">edi-faq</code>), <code class="code-inline">home-auto-lenders/help-support</code> (<code class="code-inline">auto-ops</code>/<code class="code-inline">auto-ops-faq</code>, <code class="code-inline">fire-ops</code>/<code class="code-inline">fire-ops-faq</code>, <code class="code-inline">lender-relations</code>), <code class="code-inline">home-auto-lenders/ins-inquiry</code> (nine subpages), and <code class="code-inline">home-auto-lenders/mbps</code> (its step subpages), plus the Electronic Payments <code class="code-inline">eft-remit-faq</code> — the page that introduced the <code class="code-inline">accordion</code> block (<code class="code-inline">drago-100</code> · PR #61).</p>
         <ul class="checklist">
           <li class="check-item">
             <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
             <div class="check-body">
-              <div class="check-title">Component definitions/models/filters generated &amp; committed</div>
-              <div class="check-note"><code class="code-inline">component-definition.json</code>, <code class="code-inline">component-models.json</code>, <code class="code-inline">component-filters.json</code> plus <code class="code-inline">ue/models/*</code> source partials.</div>
+              <div class="check-title"><code class="code-inline">side-nav</code> block + auto-blocking shipped</div>
+              <div class="check-note">Table generation from labelled bullet rows, FAQ-accordion grouping from <code class="code-inline">h3</code> runs, and per-page special cases (lender relations, auto/fire operations) all live in <code class="code-inline">blocks/side-nav/side-nav.js</code>.</div>
             </div>
           </li>
           <li class="check-item">
-            <span class="check-mark cm-todo"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
             <div class="check-body">
-              <div class="check-title"><code class="code-inline">build:json</code> npm script</div>
-              <div class="check-note">Not yet defined in <code class="code-inline">package.json</code>, despite <code class="code-inline">ue/README.md</code> requiring it as the generation step.</div>
+              <div class="check-title">EDI transactions &amp; insurance inquiry subpages built</div>
+              <div class="check-note">Individual page fixes across <code class="code-inline">drago-101</code>–<code class="code-inline">drago-108</code> (Mortgage Billing &amp; Payment, Mortgage Record Change, Daily EDI notifications, Auto EDI notifications, EDI FAQ — PR #89).</div>
             </div>
           </li>
           <li class="check-item">
-            <span class="check-mark cm-todo"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
+            <span class="check-mark cm-partial"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
             <div class="check-body">
-              <div class="check-title"><code class="code-inline">scripts/editor-support.js</code> runtime file</div>
-              <div class="check-note">Referenced by <code class="code-inline">ue/README.md</code> for XWalk live-patch/richtext support, but does not exist yet.</div>
-            </div>
-          </li>
-          <li class="check-item">
-            <span class="check-mark cm-todo"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
-            <div class="check-body">
-              <div class="check-title"><code class="code-inline">head.html</code> Universal Editor reference</div>
-              <div class="check-note">No UE-related script reference present yet.</div>
+              <div class="check-title">Ongoing lender/ops page additions</div>
+              <div class="check-note">Continued through <code class="code-inline">drago-119</code>–<code class="code-inline">drago-125</code> and <code class="code-inline">drago-136</code> (e.g. Auto Third Party page — PR #92); treat as shipped-and-growing rather than a one-time finished state, same as Service Hub Pages.</div>
             </div>
           </li>
         </ul>
@@ -1136,23 +1180,23 @@ npm run lint:fix   <span class="cmt"># auto-fix variants of the above</span></di
       <section class="doc-section" id="j-testing">
         <h2>
           Journey — Testing (Playwright)
-          <span class="status-badge sb-planned">Planned</span>
+          <span class="status-badge sb-done">Complete</span>
         </h2>
         <div class="section-rule"></div>
-        <p>A <code class="code-inline">feature/playwright-tests</code> branch exists in the repo. Its merge status into <code class="code-inline">develop</code>/<code class="code-inline">main</code> is not confirmed by the visible git history, so this is tracked as planned/in-progress rather than complete.</p>
+        <p><code class="code-inline">homepage-playwright-e2e</code> (PR #69) added the homepage e2e suite (<code class="code-inline">c98d4da</code>), followed by locator and tablet-viewport hardening (<code class="code-inline">2345912</code>, <code class="code-inline">7d59d0e</code>), excluding the test files from production delivery (<code class="code-inline">5097293</code>), and a beginner-friendly README rewrite (<code class="code-inline">0f405b5</code>) documenting how to run the suite locally.</p>
         <ul class="checklist">
           <li class="check-item">
-            <span class="check-mark cm-partial"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
             <div class="check-body">
-              <div class="check-title"><code class="code-inline">feature/playwright-tests</code> branch exists</div>
-              <div class="check-note">Not confirmed merged into <code class="code-inline">develop</code> or <code class="code-inline">main</code> — verify current status before relying on it.</div>
+              <div class="check-title">Homepage e2e suite merged</div>
+              <div class="check-note"><code class="code-inline">e2e-tests/homePage.spec.js</code> covers content rendering, megamenu hover/Escape, simulated login/logout, and mobile/tablet breakpoints, across chromium/firefox/webkit.</div>
             </div>
           </li>
           <li class="check-item">
-            <span class="check-mark cm-todo"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
             <div class="check-body">
-              <div class="check-title">CI test step</div>
-              <div class="check-note"><code class="code-inline">.github/workflows</code> currently runs lint only — no automated test execution wired into CI yet.</div>
+              <div class="check-title">CI test step wired up</div>
+              <div class="check-note"><code class="code-inline">.github/workflows/playwright.yml</code> runs the full suite on every push/PR to <code class="code-inline">main</code>/<code class="code-inline">master</code> and uploads the HTML report as a build artifact.</div>
             </div>
           </li>
         </ul>
@@ -1171,6 +1215,9 @@ npm run lint:fix   <span class="cmt"># auto-fix variants of the above</span></di
           <li><code class="code-inline">chore/remove-import-byproduct</code> (PR #12) — cleaned up deprecated B2B portal import artifacts left over from the initial content migration.</li>
           <li><code class="code-inline">develop</code> — MecherleSans brand font file rollout and styling/branding polish.</li>
           <li><code class="code-inline">feature/home-page-fixes</code> (PR #16) — promo section visual match against the production homepage.</li>
+          <li><code class="code-inline">home-page-selector-class</code> (PR #52) — page-wide selector-class refactor to fix alignment issues across multiple pages.</li>
+          <li><code class="code-inline">header-drop-animation-fix</code> (PR #78) — smoother megamenu dropdown animation and home-page tab/font alignment.</li>
+          <li><code class="code-inline">header-non-closing-issue</code> (PR #79) — fixed the header failing to close after clicking a nav item.</li>
         </ul>
       </section>
 
