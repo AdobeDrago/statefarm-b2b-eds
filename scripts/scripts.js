@@ -69,6 +69,28 @@ function buildWidgetAutoBlocks(main) {
 }
 
 /**
+ * A list item holding nothing but a link.
+ * @param {Element} li candidate list item
+ * @returns {boolean} true when the item is a flat nav entry
+ */
+function isLinkListItem(li) {
+  if (!li || li.tagName !== 'LI') return false;
+  const link = li.querySelector(':scope > a, :scope > strong > a');
+  return !!link && li.textContent.trim() === link.textContent.trim();
+}
+
+/**
+ * A flat nav menu authored as a single list of links.
+ * @param {Element} el candidate element
+ * @returns {boolean} true when the list is a side-nav menu
+ */
+function isMenuList(el) {
+  if (!el || el.tagName !== 'UL') return false;
+  const items = [...el.children].filter((child) => child.tagName === 'LI');
+  return items.length >= 2 && items.every(isLinkListItem);
+}
+
+/**
  * A page menu heading: a paragraph holding nothing but a link.
  * @param {Element} el candidate element
  * @returns {boolean} true when the element opens a menu group
@@ -91,15 +113,21 @@ function buildSideNavAutoBlock(main) {
 
   const menuItems = [];
   let el = heading.nextElementSibling;
-  while (isMenuHeading(el)) {
+
+  if (isMenuList(el)) {
     menuItems.push(el);
     el = el.nextElementSibling;
-    if (el && el.tagName === 'UL') {
+  } else {
+    while (isMenuHeading(el)) {
       menuItems.push(el);
       el = el.nextElementSibling;
+      if (el && el.tagName === 'UL') {
+        menuItems.push(el);
+        el = el.nextElementSibling;
+      }
     }
+    if (menuItems.filter(isMenuHeading).length < 2) return;
   }
-  if (menuItems.filter(isMenuHeading).length < 2) return;
 
   const bodyItems = [];
   while (el) {
@@ -111,7 +139,7 @@ function buildSideNavAutoBlock(main) {
   const menu = document.createElement('nav');
   menu.append(...menuItems);
   // unwrap the bold so decorateButtons leaves the menu links alone
-  menu.querySelectorAll('p > strong > a').forEach((link) => link.parentElement.replaceWith(link));
+  menu.querySelectorAll('p > strong > a, li > strong > a').forEach((link) => link.parentElement.replaceWith(link));
 
   const body = document.createElement('div');
   body.append(...bodyItems);
