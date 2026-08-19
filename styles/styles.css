@@ -298,6 +298,232 @@ button.button.accent:disabled:focus-visible {
   color: var(--dark-color);
 }
 
+#terms-of-use{
+    font-size: 3rem;
+      font-weight: 600;
+      line-height: 48px;
+      margin-top: 24px;
+      margin-bottom: 32px;
+  }
+
+#terms-of-use-1{
+    display: none;
+  }
+  
+  #other-agreements, 
+  #collaboration-site-users, 
+  #privacy,
+  #prohibitions-in-your-use-of-this-collaboration-site,
+  #secured-areaspasswords,
+  #changes-to-this-document,
+  #waiver, 
+  #assignment, 
+  #limitation-of-liability,
+  #warranty-disclaimer, 
+  #general, 
+  #your-obligations, 
+  #additional-terms, 
+  #state-farm-intellectual-property-rights
+  {
+      margin-block: 64px 24px;
+        font-size: 2.438rem;
+        line-height: 39px;
+   }
+
+   #additional-terms + ul a {
+      font-weight: 600 !important;
+    }
+
+   main .section.khaki>div p {
+  margin: 0 0 16px;
+}
+
+main .section.khaki ul {
+  margin-bottom: 24px;
+}
+
+main .section.khaki ul:last-child {
+  margin-bottom: 0;
+}
+
+ /* stylelint-disable no-descending-specificity */
+
+.columns-wrapper .mbps.columns > div > div:last-child > p,
+.columns-wrapper .auto-glass.columns > div > div:last-child > p,
+.columns-wrapper .ins-inquiry.columns > div > div:last-child > p,
+.columns-wrapper .auto811files.columns > div > div:last-child > p,
+.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > p,
+.columns-wrapper .calibration-program.columns > div > div:last-child > p,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > p,
+.columns-wrapper .personal-property.columns > div > div:last-child > p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+.columns-wrapper .mbps.columns > div > div:last-child > ul,
+.columns-wrapper .auto-glass.columns > div > div:last-child > ul,
+.columns-wrapper .ins-inquiry.columns > div > div:last-child > ul,
+.columns-wrapper .auto811files.columns > div > div:last-child > ul,
+.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ul,
+.columns-wrapper .calibration-program.columns > div > div:last-child > ul,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ul,
+.columns-wrapper .personal-property.columns > div > div:last-child > ul {
+  margin: 24px 0 16px;
+  padding: 0 0 0 24px;
+
+}
+
+.columns-wrapper .mbps.columns > div > div:first-child > ul,
+.columns-wrapper .auto-glass.columns > div > div:first-child > ul,
+.columns-wrapper .ins-inquiry.columns > div > div:first-child > ul,
+.columns-wrapper .auto811files.columns > div > div:first-child > ul,
+.columns-wrapper .mortgage-record-chg.columns > div > div:first-child > ul,
+.columns-wrapper .calibration-program.columns > div > div:first-child > ul,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul,
+.columns-wrapper .personal-property.columns > div > div:first-child > ul {
+  margin: 0 0 20px;
+  padding: 0;
+  list-style-type: none;
+}
+
+#other-agreements + p,
+#collaboration-site-users + p,
+#privacy + p,
+#prohibitions-in-your-use-of-this-collaboration-site + p,
+#prohibitions-in-your-use-of-this-collaboration-site ~ ul ,
+#changes-to-this-document + p,
+#waiver + p,
+#assignment + p,
+#limitation-of-liability + p,
+#warranty-disclaimer + p,
+#general + p,
+#your-obligations + p,
+#your-obligations + p + ul + p,
+#additional-terms + p,
+#state-farm-intellectual-property-rights + p,
+#terms-of-use-1 + p,
+#secured-areaspasswords + p,
+#state-farm-intellectual-property-rights+p+p,
+#assignment+p+p,
+#secured-areaspasswords+p+p,
+#secured-areaspasswords+p+p+p,
+#state-farm-intellectual-property-rights+p+p+p
+{
+    margin-block: 0;
+    margin-bottom: 16px;
+    font-size: 16px; 
+    font-weight: 400;
+    line-height: 21px;
+  }
+
+#prohibitions-in-your-use-of-this-collaboration-site~ul{
+    margin-top: 24px;
+    padding-left: 24px;
+  }
+
+.columns-wrapper .personal-property.columns > div > div:last-child > ol > li {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  padding-bottom: 8px;
+}
+
+.columns-wrapper .mbps.columns > div > div:last-child > ul > li,
+.columns-wrapper .auto-glass.columns > div > div:last-child > ul > li,
+.columns-wrapper .ins-inquiry.columns > div > div:last-child > ul > li,
+.columns-wrapper .auto811files.columns > div > div:last-child > ul > li,
+.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ul > li,
+.columns-wrapper .calibration-program.columns > div > div:last-child > ul > li,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ul > li,
+.columns-wrapper .personal-property.columns > div > div:last-child > ul > li {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  padding: 0 0 8px;
+  color: var(--text-dark-color);
+}
+
+.columns-wrapper .mbps.columns > div > div:first-child > ul > li,
+.columns-wrapper .auto-glass.columns > div > div:first-child > ul > li,
+.columns-wrapper .ins-inquiry.columns > div > div:first-child > ul > li,
+.columns-wrapper .auto811files.columns > div > div:first-child > ul > li,
+.columns-wrapper .mortgage-record-chg.columns > div > div:first-child > ul > li,
+.columns-wrapper .calibration-program.columns > div > div:first-child > ul > li,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li,
+.columns-wrapper .personal-property.columns > div > div:first-child > ul > li {
+  display: flex;
+  padding: 0 0 6px;
+}
+
+.columns-wrapper .auto811files.columns > div > div:first-child > ul > li,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li,
+.columns-wrapper .mbps.columns > div > div:last-child > ol > li,
+.columns-wrapper .auto-glass.columns > div > div:last-child > ol > li,
+.columns-wrapper .ins-inquiry.columns > div > div:last-child > ol > li,
+.columns-wrapper .auto811files.columns > div > div:last-child > ol > li,
+.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ol > li,
+.columns-wrapper .calibration-program.columns > div > div:last-child > ol > li,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ol > li,  
+
+#prohibitions-in-your-use-of-this-collaboration-site~ul li{
+    padding-bottom: 8px;
+  }
+
+@media(width <=990px){
+    #terms-of-use {
+        font-size: 2.438rem; 
+        line-height: 39px;  
+      }
+
+    #other-agreements,
+    #collaboration-site-users,
+    #privacy,
+    #prohibitions-in-your-use-of-this-collaboration-site,
+    #secured-areaspasswords,
+    #changes-to-this-document,
+    #waiver,
+    #assignment,
+    #limitation-of-liability,
+    #warranty-disclaimer,
+    #general,
+    #your-obligations,
+    #additional-terms,
+    #state-farm-intellectual-property-rights { 
+      font-size: 2.063rem;
+      line-height: 33px;
+      margin-top: 56px;
+    }
+  }
+
+@media(width <=768px) {
+  #terms-of-use {
+    font-size: 1.75rem;
+    line-height: 28px;
+  }
+
+  #other-agreements,
+  #collaboration-site-users,
+  #privacy,
+  #prohibitions-in-your-use-of-this-collaboration-site,
+  #secured-areaspasswords,
+  #changes-to-this-document,
+  #waiver,
+  #assignment,
+  #limitation-of-liability,
+  #warranty-disclaimer,
+  #general,
+  #your-obligations,
+  #additional-terms,
+  #state-farm-intellectual-property-rights {
+    font-size: 1.563rem;
+    line-height: 25px;
+    margin-top: 48px;
+  }
+}
+
 main img {
   max-width: 100%;
   width: auto;
@@ -441,18 +667,6 @@ main .section.khaki>div {
 /* the box padding provides the inset above the first element */
 main .section.khaki>div>:first-child {
   margin-top: 0;
-}
-
-main .section.khaki>div p {
-  margin: 0 0 16px;
-}
-
-main .section.khaki ul {
-  margin-bottom: 24px;
-}
-
-main .section.khaki ul:last-child {
-  margin-bottom: 0;
 }
 
 /* spacious: a khaki box with more content (e.g. multiple lists) uses more padding */
@@ -915,6 +1129,8 @@ main .section.accent-heading>div>h3:first-of-type {
 main .section.accent-heading:has(#overview) {
   margin-bottom: 40px;
 }
+
+/* stylelint-enable no-descending-specificity */
 
 .section .default-content-wrapper:has(#overview) > p {
   font-size: 16px;
