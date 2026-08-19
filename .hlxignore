@@ -5,3 +5,5 @@ LICENSE
 package.json
 package-lock.json
 test/*
+e2e-tests/*
+playwright.config.js

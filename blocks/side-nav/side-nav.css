@@ -64,7 +64,7 @@ main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
   font-size: 1.375rem;
 }
 
-.side-nav-body .side-nav-section-heading:not(:first-child) {
+.side-nav-body .side-nav-back-to-top + .side-nav-section-heading {
   margin-top: 60px;
 }
 
@@ -76,8 +76,97 @@ main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
   color: var(--text-dark-color);
 }
 
+.side-nav-body ul {
+  margin: 24px 0 16px;
+  padding-left: 24px;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.side-nav-body li {
+  padding-bottom: 8px;
+}
+
 .side-nav-body p {
   margin: 0 0 16px;
+}
+
+.side-nav-body .side-nav-lead {
+  margin-bottom: 19px;
+  font-size: 19px;
+  line-height: 26px;
+}
+
+.side-nav-body .side-nav-faq-item {
+  border-top: 1px solid #e4e3e3;
+  interpolate-size: allow-keywords;
+}
+
+.side-nav-body .side-nav-faq-item:last-child {
+  border-bottom: 1px solid #e4e3e3;
+}
+
+.side-nav-body .side-nav-faq-item::details-content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease, content-visibility 0.3s ease allow-discrete;
+}
+
+.side-nav-body .side-nav-faq-item[open]::details-content {
+  height: auto;
+}
+
+.side-nav-body .side-nav-faq-label {
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  overflow: auto;
+  padding: 13.5px 2px;
+}
+
+.side-nav-body .side-nav-faq-label::-webkit-details-marker {
+  display: none;
+}
+
+.side-nav-body .side-nav-faq-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background-image: url("../../icons/chevron_32.svg#down_default");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+}
+
+.side-nav-body .side-nav-faq-item[open] > .side-nav-faq-label::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.side-nav-body .side-nav-faq-label > h3 {
+  margin: 0;
+  padding: 0 32px 0 0;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: left;
+  color: var(--text-dark-color);
+}
+
+.side-nav-body .side-nav-faq-body > p {
+  margin: 8px 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+.side-nav-menu-flat p:not(:last-child) {
+  padding-bottom: 25px;
 }
 
 .side-nav-body :is(h3, p, li, td) a {
@@ -93,6 +182,13 @@ main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
   margin-bottom: 24px;
   border-collapse: collapse;
   table-layout: fixed;
+}
+
+/* set one level in from the prose, like the list it was authored as */
+.side-nav-body .side-nav-code,
+.side-nav-body #core-required-minimum-ccd-data-and-corresponding-v5010-x12-835-data-elements + table {
+  width: calc(100% - 24px);
+  margin-left: 24px;
 }
 
 .side-nav-body th {
@@ -114,6 +210,22 @@ main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
   line-height: 21px;
   vertical-align: middle;
   color: #767676;
+}
+
+/* a row's name, kept bold like its column headings */
+.side-nav-body tbody th {
+  padding: 19px 20px 18px 10px;
+  border-bottom: 1px solid #acabab;
+}
+
+.side-nav-body :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+/* past four columns the cells are too narrow to spare the gutters */
+.side-nav-body .side-nav-table-dense :is(th, td) {
+  padding-right: 10px;
+  padding-left: 0;
 }
 
 @media (width >= 768px) {
@@ -142,4 +254,39 @@ main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
   .side-nav-body .side-nav-section-heading {
     font-size: 1.938rem;
   }
+}
+
+main:has(.side-nav-help-support) .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
+  margin-bottom: 32px;
+}
+
+main:has(#auto-operations-faq) > .breadcrumbs-container {
+  display: none;
+}
+
+main:has(#lender-relations-contacts) .side-nav-body {
+  margin-bottom: 48px;
+}
+
+main:has(#lender-relations-contacts) .side-nav-body #contacts-and-responsibilities {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+main:has(#auto-operations-directory) .side-nav-body h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+main:has(#auto-operations-directory) .side-nav-body #to-help-expedite-your-call-review-the-hints-and-tips-below {
+  margin-top: 26px;
+}
+
+main:has(#auto-operations-faq) .side-nav-body .side-nav-faq {
+  margin-top: 23px;
+}
+
+.side-nav-body .side-nav-indent {
+  width: calc(100% - 24px);
+  margin-left: 24px;
 }

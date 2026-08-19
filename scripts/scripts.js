@@ -69,15 +69,122 @@ function buildWidgetAutoBlocks(main) {
 }
 
 /**
- * A page menu heading: a paragraph holding nothing but a bold link.
+ * A page menu heading: a paragraph holding nothing but a link.
  * @param {Element} el candidate element
  * @returns {boolean} true when the element opens a menu group
  */
 function isMenuHeading(el) {
-  if (!el || el.tagName !== 'P' || el.children.length !== 1) return false;
-  const strong = el.firstElementChild;
-  const link = strong.tagName === 'STRONG' && strong.querySelector(':scope > a');
+  if (!el || el.tagName !== 'P') return false;
+  const link = el.querySelector(':scope > a, :scope > strong > a');
   return !!link && el.textContent.trim() === link.textContent.trim();
+}
+
+const helpSupportNav = [
+  {
+    label: 'Help & support',
+    href: '/b2b-content/home-auto-lenders/help-support',
+  },
+  {
+    label: 'Lender relations',
+    href: '/b2b-content/home-auto-lenders/help-support/lender-relations',
+  },
+  {
+    label: 'Auto operations',
+    href: '/b2b-content/home-auto-lenders/help-support/auto-ops',
+  },
+  {
+    label: 'Auto operations FAQ',
+    href: '/b2b-content/home-auto-lenders/help-support/auto-ops-faq',
+  },
+  {
+    label: 'Fire operations',
+    href: '/b2b-content/home-auto-lenders/help-support/fire-ops',
+  },
+  {
+    label: 'Fire operations FAQ',
+    href: '/b2b-content/home-auto-lenders/help-support/fire-ops-faq',
+  },
+];
+
+const sideNavMenus = {
+  '/b2b-content/medical-ebilling/health-insurance': [
+    {
+      label: 'Health Insurance',
+      href: '/b2b-content/medical-ebilling/health-insurance',
+      links: [
+        ['Legislative overview', '#hc-leg-overview'],
+        ['ACA eligibility rules', '#hc-aca-eligibility'],
+        ['ACA EFT/ERA operating rules', '#hc-aca-eft_era-rules'],
+        ['Medicare supplement policies', '#hc-medicare-supp'],
+        ['System availability', '#hc-sys-available'],
+      ],
+    },
+    {
+      label: 'HIPAA EDI transactions',
+      href: '/b2b-content/medical-ebilling/health-insurance/hipaa-edi-trans',
+      links: [
+        ['Eligibility 270/271', '/b2b-content/medical-ebilling/health-insurance/hipaa-edi-trans#hc-hippa-240_271'],
+        ['Professional/institutional/dental 837', '/b2b-content/medical-ebilling/health-insurance/hipaa-edi-trans#hc-hippa-837'],
+        ['Claim Status Request 276/277', '/b2b-content/medical-ebilling/health-insurance/hipaa-edi-trans#hc-hippa-276_277'],
+        ['Claim Payment/Advice 835', '/b2b-content/medical-ebilling/health-insurance/hipaa-edi-trans#hc-hippa-835'],
+        ['ICD10', '/b2b-content/medical-ebilling/health-insurance/hipaa-edi-trans#hc-hippa-icd10'],
+      ],
+    },
+    {
+      label: 'Help & support',
+      href: '/b2b-content/medical-ebilling/health-insurance/hc-help-support',
+      links: [
+        ['FAQ', '/b2b-content/medical-ebilling/health-insurance/hc-help-support#hc-help-faq'],
+        ['ERA / EFT instructions', '/b2b-content/medical-ebilling/health-insurance/hc-help-support#hc-help-era_eft'],
+        ['Safe Harbor', '/b2b-content/medical-ebilling/health-insurance/safe-harbor'],
+      ],
+    },
+  ],
+  '/b2b-content/medical-ebilling/what-is-edi-eft': [
+    {
+      label: 'What is EDI and EFT?',
+      href: '/b2b-content/medical-ebilling/what-is-edi-eft',
+    },
+    {
+      label: 'Property & casualty claims',
+      href: '/b2b-content/medical-ebilling/auto-work-comp',
+    },
+    {
+      label: 'Health Claims',
+      href: '/b2b-content/medical-ebilling/health-insurance',
+    },
+  ],
+  '/b2b-content/home-auto-lenders/help-support': helpSupportNav,
+  '/b2b-content/home-auto-lenders/help-support/lender-relations': helpSupportNav,
+  '/b2b-content/home-auto-lenders/help-support/auto-ops': helpSupportNav,
+  '/b2b-content/home-auto-lenders/help-support/auto-ops-faq': helpSupportNav,
+  '/b2b-content/home-auto-lenders/help-support/fire-ops': helpSupportNav,
+  '/b2b-content/home-auto-lenders/help-support/fire-ops-faq': helpSupportNav,
+};
+
+function buildPageSideNav(pathname) {
+  const groups = sideNavMenus[pathname.replace(/\/$/, '')];
+  if (!groups) return [];
+
+  return groups.flatMap(({ label, href, links = [] }) => {
+    const heading = document.createElement('p');
+    const link = document.createElement('a');
+    link.href = href;
+    link.textContent = label;
+    heading.append(link);
+    if (!links.length) return [heading];
+
+    const list = document.createElement('ul');
+    links.forEach(([text, url]) => {
+      const item = document.createElement('li');
+      const itemLink = document.createElement('a');
+      itemLink.href = url;
+      itemLink.textContent = text;
+      item.append(itemLink);
+      list.append(item);
+    });
+    return [heading, list];
+  });
 }
 
 /**
@@ -90,7 +197,7 @@ function buildSideNavAutoBlock(main) {
   const heading = main.querySelector('h1');
   if (!heading || main.querySelector('.side-nav')) return;
 
-  const menuItems = [];
+  let menuItems = [];
   let el = heading.nextElementSibling;
   while (isMenuHeading(el)) {
     menuItems.push(el);
@@ -100,7 +207,12 @@ function buildSideNavAutoBlock(main) {
       el = el.nextElementSibling;
     }
   }
-  if (menuItems.filter((item) => item.tagName === 'UL').length < 2) return;
+  if (menuItems.filter(isMenuHeading).length < 2) {
+    menuItems = buildPageSideNav(window.location.pathname);
+    el = heading.nextElementSibling;
+    while (isMenuHeading(el)) el = el.nextElementSibling;
+  }
+  if (!menuItems.length) return;
 
   const bodyItems = [];
   while (el) {

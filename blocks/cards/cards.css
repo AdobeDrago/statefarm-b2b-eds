@@ -9,9 +9,17 @@
   margin-bottom: 110px !important;
 }
 
+.cards-wrapper:has(.edi-transactions) {
+  margin-bottom: 50px !important;
+}
+
 @media (width <768px) {
   .cards-wrapper:last-child {
     margin-bottom: 78px !important;
+  }
+
+  .cards-wrapper:has(.edi-transactions) {
+    margin-bottom: 50px !important;
   }
 }
 
@@ -126,6 +134,10 @@
 
   .cards .cards-card-body p:first-child:not(:has(picture)) {
     min-height: 30px;
+  }
+
+  .cards.edi-transactions > ul > li {
+    min-height: 220px;
   }
 }
 
@@ -299,6 +311,10 @@
   .create-assignment.columns > div {
     display: grid !important;
     grid-template-columns: 1fr 1fr;
+  }
+
+  .cards.edi-transactions > ul > li {
+    height: max-content;
   }
 }
 

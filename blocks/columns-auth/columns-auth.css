@@ -113,7 +113,6 @@
 @media (width <=990px) {
   .home-page {
     margin-inline: auto;
-    max-width: 690px;
   }
 
   .home-page>div {
@@ -150,16 +149,36 @@
     margin-top: 0.23em;
     margin-bottom: 0.2em;
     line-height: 28px;
+    font-size: 39.008px;
+  }
+
+  .home-page h1+p {
+    font-size: 23px;
+    line-height: 26px;
+  }
+
+  .select-service>ul {
+    padding: 15px !important;
+  }
+}
+
+@media (width <=560px) {
+  .home-page>div>.columns-auth-img-col img {
+    display: block;
+    width: 100%;
+    max-width: 345px;
+  }
+
+  .home-page>div>div h1 {
+    margin-top: 0.23em;
+    margin-bottom: 0.2em;
+    line-height: 28px;
     font-size: 1.75rem;
   }
 
   .home-page h1+p {
     font-size: 20px;
     line-height: 26px;
-  }
-
-  .select-service>ul {
-    padding: 15px !important;
   }
 }
 
