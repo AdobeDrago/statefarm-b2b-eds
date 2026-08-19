@@ -116,6 +116,13 @@ main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
   table-layout: fixed;
 }
 
+/* set one level in from the prose, like the list it was authored as */
+.side-nav-body .side-nav-code,
+.side-nav-body #core-required-minimum-ccd-data-and-corresponding-v5010-x12-835-data-elements + table {
+  width: calc(100% - 24px);
+  margin-left: 24px;
+}
+
 .side-nav-body th {
   padding: 17px 10px 20px;
   border-bottom: 1px solid #e4e3e3;
