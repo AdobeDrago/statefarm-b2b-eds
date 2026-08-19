@@ -689,6 +689,7 @@ main .section.accent-heading>div>h3:first-of-type {
   }
 }
 
+.default-content-wrapper #edi-frequently-asked-questions,
 .default-content-wrapper #auto-glass {
   line-height: 1;
   font-size: 48px;
@@ -714,6 +715,7 @@ main .section.accent-heading>div>h3:first-of-type {
 }
 
 .columns-wrapper .mbps.columns,
+.columns-wrapper .edi-faq.columns,
 .columns-wrapper .auto-glass.columns,
 .columns-wrapper .ins-inquiry.columns,
 .columns-wrapper .auto811files.columns,
@@ -725,6 +727,7 @@ main .section.accent-heading>div>h3:first-of-type {
 }
 
 .columns-wrapper .mbps.columns > div,
+.columns-wrapper .edi-faq.columns > div,
 .columns-wrapper .auto-glass.columns > div,
 .columns-wrapper .ins-inquiry.columns > div,
 .columns-wrapper .auto811files.columns > div,
@@ -738,6 +741,7 @@ main .section.accent-heading>div>h3:first-of-type {
 }
 
 .columns-wrapper .mbps.columns > div > div:first-child,
+.columns-wrapper .edi-faq.columns > div > div:first-child,
 .columns-wrapper .auto-glass.columns > div > div:first-child,
 .columns-wrapper .ins-inquiry.columns > div > div:first-child,
 .columns-wrapper .auto811files.columns > div > div:first-child,
@@ -749,6 +753,7 @@ main .section.accent-heading>div>h3:first-of-type {
 }
 
 .columns-wrapper .mbps.columns > div > div:last-child *,
+.columns-wrapper .edi-faq.columns > div > div:last-child *,
 .columns-wrapper .auto-glass.columns > div > div:last-child *,
 .columns-wrapper .ins-inquiry.columns > div > div:last-child *,
 .columns-wrapper .auto811files.columns > div > div:last-child *,
@@ -761,6 +766,7 @@ main .section.accent-heading>div>h3:first-of-type {
 }
 
 .columns-wrapper .mbps.columns > div > div:last-child > h3,
+.columns-wrapper .edi-faq.columns > div > div:last-child > h3,
 .columns-wrapper .auto-glass.columns > div > div:last-child > h3,
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > h3,
 .columns-wrapper .auto811files.columns > div > div:last-child > h3,
@@ -776,6 +782,7 @@ main .section.accent-heading>div>h3:first-of-type {
 }
 
 .columns-wrapper .mbps.columns > div > div:last-child > h3:not(:first-child),
+.columns-wrapper .edi-faq.columns > div > div:last-child > h3:not(:first-child),
 .columns-wrapper .auto-glass.columns > div > div:last-child > h3:not(:first-child),
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > h3:not(:first-child),
 .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h3:not(:first-child),
@@ -785,7 +792,13 @@ main .section.accent-heading>div>h3:first-of-type {
   margin-top: 50px;
 }
 
+.columns-wrapper .edi-faq.columns > div > div:last-child > h4 {
+  font-weight: 400 !important;
+  margin: 0 0 25px !important;
+}
+
 .columns-wrapper .mbps.columns > div > div:last-child > h4,
+.columns-wrapper .edi-faq.columns > div > div:last-child > h4,
 .columns-wrapper .auto-glass.columns > div > div:last-child > h4,
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > h4,
 .columns-wrapper .auto811files.columns > div > div:last-child > h4,
@@ -801,6 +814,7 @@ main .section.accent-heading>div>h3:first-of-type {
 }
 
 .columns-wrapper .mbps.columns > div > div:last-child > h5,
+.columns-wrapper .edi-faq.columns > div > div:last-child > h5,
 .columns-wrapper .auto-glass.columns > div > div:last-child > h5,
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > h5,
 .columns-wrapper .auto811files.columns > div > div:last-child > h5,
@@ -815,7 +829,27 @@ main .section.accent-heading>div>h3:first-of-type {
   color: var(--dark-gray-color);
 }
 
+<<<<<<< HEAD
+=======
+.columns-wrapper .mbps.columns > div > div:last-child > p,
+.columns-wrapper .edi-faq.columns > div > div:last-child > p,
+.columns-wrapper .auto-glass.columns > div > div:last-child > p,
+.columns-wrapper .ins-inquiry.columns > div > div:last-child > p,
+.columns-wrapper .auto811files.columns > div > div:last-child > p,
+.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > p,
+.columns-wrapper .calibration-program.columns > div > div:last-child > p,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > p,
+.columns-wrapper .personal-property.columns > div > div:last-child > p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+>>>>>>> develop
 .columns-wrapper .mbps.columns > div > div:last-child > ol,
+.columns-wrapper .edi-faq.columns > div > div:last-child > ol,
 .columns-wrapper .auto-glass.columns > div > div:last-child > ol,
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > ol,
 .columns-wrapper .auto811files.columns > div > div:last-child > ol,
@@ -827,7 +861,26 @@ main .section.accent-heading>div>h3:first-of-type {
   margin: 24px 0 16px;
 }
 
+<<<<<<< HEAD
+=======
+.columns-wrapper .mbps.columns > div > div:last-child > ol > li,
+.columns-wrapper .edi-faq.columns > div > div:last-child > ol > li,
+.columns-wrapper .auto-glass.columns > div > div:last-child > ol > li,
+.columns-wrapper .ins-inquiry.columns > div > div:last-child > ol > li,
+.columns-wrapper .auto811files.columns > div > div:last-child > ol > li,
+.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ol > li,
+.columns-wrapper .calibration-program.columns > div > div:last-child > ol > li,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ol > li,
+.columns-wrapper .personal-property.columns > div > div:last-child > ol > li {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  padding-bottom: 8px;
+}
+
+>>>>>>> develop
 .columns-wrapper .mbps.columns > div > div:last-child > p > a,
+.columns-wrapper .edi-faq.columns > div > div:last-child > p > a,
 .columns-wrapper .auto-glass.columns > div > div:last-child > p > a,
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > p > a,
 .columns-wrapper .auto811files.columns > div > div:last-child > p > a,
@@ -838,7 +891,41 @@ main .section.accent-heading>div>h3:first-of-type {
   font-weight: 600;
 }
 
+<<<<<<< HEAD
+=======
+.columns-wrapper .mbps.columns > div > div:last-child > ul,
+.columns-wrapper .edi-faq.columns > div > div:last-child > ul,
+.columns-wrapper .auto-glass.columns > div > div:last-child > ul,
+.columns-wrapper .ins-inquiry.columns > div > div:last-child > ul,
+.columns-wrapper .auto811files.columns > div > div:last-child > ul,
+.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ul,
+.columns-wrapper .calibration-program.columns > div > div:last-child > ul,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ul,
+.columns-wrapper .personal-property.columns > div > div:last-child > ul {
+  margin: 24px 0 16px;
+  padding: 0 0 0 24px;
+
+}
+
+.columns-wrapper .mbps.columns > div > div:last-child > ul > li,
+.columns-wrapper .edi-faq.columns > div > div:last-child > ul > li,
+.columns-wrapper .auto-glass.columns > div > div:last-child > ul > li,
+.columns-wrapper .ins-inquiry.columns > div > div:last-child > ul > li,
+.columns-wrapper .auto811files.columns > div > div:last-child > ul > li,
+.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ul > li,
+.columns-wrapper .calibration-program.columns > div > div:last-child > ul > li,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ul > li,
+.columns-wrapper .personal-property.columns > div > div:last-child > ul > li {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  padding: 0 0 8px;
+  color: var(--text-dark-color);
+}
+
+>>>>>>> develop
 .columns-wrapper .mbps.columns > div > div:last-child > ul > li > a,
+.columns-wrapper .edi-faq.columns > div > div:last-child > ul > li > a,
 .columns-wrapper .auto-glass.columns > div > div:last-child > ul > li > a,
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > ul > li > a,
 .columns-wrapper .auto811files.columns > div > div:last-child > ul > li > a,
@@ -866,7 +953,35 @@ main .section.accent-heading>div>h3:first-of-type {
   vertical-align: bottom;
 }
 
+.columns-wrapper .mbps.columns > div > div:first-child > ul,
+.columns-wrapper .edi-faq.columns > div > div:first-child > ul,
+.columns-wrapper .auto-glass.columns > div > div:first-child > ul,
+.columns-wrapper .ins-inquiry.columns > div > div:first-child > ul,
+.columns-wrapper .auto811files.columns > div > div:first-child > ul,
+.columns-wrapper .mortgage-record-chg.columns > div > div:first-child > ul,
+.columns-wrapper .calibration-program.columns > div > div:first-child > ul,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul,
+.columns-wrapper .personal-property.columns > div > div:first-child > ul {
+  margin: 0 0 20px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.columns-wrapper .mbps.columns > div > div:first-child > ul > li,
+.columns-wrapper .edi-faq.columns > div > div:first-child > ul > li,
+.columns-wrapper .auto-glass.columns > div > div:first-child > ul > li,
+.columns-wrapper .ins-inquiry.columns > div > div:first-child > ul > li,
+.columns-wrapper .auto811files.columns > div > div:first-child > ul > li,
+.columns-wrapper .mortgage-record-chg.columns > div > div:first-child > ul > li,
+.columns-wrapper .calibration-program.columns > div > div:first-child > ul > li,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li,
+.columns-wrapper .personal-property.columns > div > div:first-child > ul > li {
+  display: flex;
+  padding: 0 0 6px;
+}
+
 .columns-wrapper .mbps.columns > div > div:first-child > ul > li > a,
+.columns-wrapper .edi-faq.columns > div > div:first-child > ul > li > a,
 .columns-wrapper .auto-glass.columns > div > div:first-child > ul > li > a,
 .columns-wrapper .ins-inquiry.columns > div > div:first-child > ul > li > a,
 .columns-wrapper .auto811files.columns > div > div:first-child > ul > li > a,
@@ -881,6 +996,7 @@ main .section.accent-heading>div>h3:first-of-type {
 }
 
 .columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper,
+.columns-wrapper .edi-faq.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .auto-glass.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .auto811files.columns > div > div:first-child > p.button-wrapper,
@@ -889,6 +1005,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .personal-property.columns > div > div:first-child > p.button-wrapper {
   margin: 0;
+  display: flex;
 }
 
 .columns-wrapper .auto811files.columns > div > div:first-child > p.button-wrapper,
@@ -897,6 +1014,7 @@ main .section.accent-heading>div>h3:first-of-type {
 }
 
 .columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a,
+.columns-wrapper .edi-faq.columns > div > div:first-child > p.button-wrapper > a,
 .columns-wrapper .auto-glass.columns > div > div:first-child > p.button-wrapper > a,
 .columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper > a,
 .columns-wrapper .auto811files.columns > div > div:first-child > p.button-wrapper > a,
@@ -914,6 +1032,19 @@ main .section.accent-heading>div>h3:first-of-type {
   padding: 2px 2px 10px;
   color: var(--link-color);
   background-color: transparent;
+}
+
+.columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
+.columns-wrapper .edi-faq.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
+.columns-wrapper .auto-glass.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
+.columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
+.columns-wrapper .auto811files.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
+.columns-wrapper .mortgage-record-chg.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
+.columns-wrapper .calibration-program.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
+.columns-wrapper .personal-property.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a {
+  padding-bottom: 0;
+  margin-bottom: 24px;
 }
 
 .columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper:has( > a[title="Certificate of insurance overview"]) {
@@ -941,6 +1072,7 @@ main .section.accent-heading>div>h3:first-of-type {
 }
 
 .columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a:hover,
+.columns-wrapper .edi-faq.columns > div > div:first-child > p.button-wrapper > a:hover,
 .columns-wrapper .auto-glass.columns > div > div:first-child > p.button-wrapper > a:hover,
 .columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper > a:hover,
 .columns-wrapper .auto811files.columns > div > div:first-child > p.button-wrapper > a:hover,
@@ -1212,6 +1344,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
     font-size: 27px !important;
   }
 
+  .default-content-wrapper #edi-frequently-asked-questions,
   .default-content-wrapper #auto-glass {
     font-size: 39px;
   }
@@ -1230,6 +1363,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   }
 
   .columns-wrapper .mbps.columns > div > div:first-child,
+  .columns-wrapper .edi-faq.columns > div > div:first-child,
   .columns-wrapper .auto-glass.columns > div > div:first-child,
   .columns-wrapper .ins-inquiry.columns > div > div:first-child,
   .columns-wrapper .auto811files.columns > div > div:first-child,
@@ -1241,6 +1375,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   }
 
   .columns-wrapper .mbps.columns > div > div:last-child > h3,
+  .columns-wrapper .edi-faq.columns > div > div:last-child > h3,
   .columns-wrapper .auto-glass.columns > div > div:last-child > h3,
   .columns-wrapper .ins-inquiry.columns > div > div:last-child > h3,
   .columns-wrapper .auto811files.columns > div > div:last-child > h3,
@@ -1252,6 +1387,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   }
 
   .columns-wrapper .mbps.columns > div > div:last-child > h4,
+  .columns-wrapper .edi-faq.columns > div > div:last-child > h4,
   .columns-wrapper .auto-glass.columns > div > div:last-child > h4,
   .columns-wrapper .ins-inquiry.columns > div > div:last-child > h4,
   .columns-wrapper .auto811files.columns > div > div:last-child > h4,
@@ -1263,6 +1399,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   }
 
   .columns-wrapper .mbps.columns > div > div:last-child > h5,
+  .columns-wrapper .edi-faq.columns > div > div:last-child > h5,
   .columns-wrapper .auto-glass.columns > div > div:last-child > h5,
   .columns-wrapper .ins-inquiry.columns > div > div:last-child > h5,
   .columns-wrapper .auto811files.columns > div > div:last-child > h5,
@@ -1273,6 +1410,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
     font-size: 19px;
   }
 
+  .columns-wrapper .edi-faq.columns > div > div:first-child > ul > li,
   .columns-wrapper .auto811files.columns > div > div:first-child > ul > li,
   .columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li,
   .columns-wrapper .auto811files.columns > div > div:first-child > p.button-wrapper,
@@ -1333,6 +1471,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
     font-size: 22px !important;
   }
 
+  .default-content-wrapper #edi-frequently-asked-questions,
   .default-content-wrapper #auto-glass {
     font-size: 28px;
   }
@@ -1349,19 +1488,8 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
     font-size: 25px;
   }
 
-  .columns-wrapper .auto811files.columns > div,
-  .columns-wrapper .daily-811-notifications.columns > div {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  }
-
-  .columns-wrapper .auto811files.columns > div > div:first-child > ul > li,
-  .columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li,
-  .columns-wrapper .auto811files.columns > div > div:first-child > p.button-wrapper,
-  .columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper {
-    width: min-content;
-  }
-
   .columns-wrapper .mbps.columns > div > div:last-child > h3,
+  .columns-wrapper .edi-faq.columns > div > div:last-child > h3,
   .columns-wrapper .auto-glass.columns > div > div:last-child > h3,
   .columns-wrapper .ins-inquiry.columns > div > div:last-child > h3,
   .columns-wrapper .auto811files.columns > div > div:last-child > h3,
@@ -1373,6 +1501,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   }
 
   .columns-wrapper .mbps.columns > div > div:last-child > h4,
+  .columns-wrapper .edi-faq.columns > div > div:last-child > h4,
   .columns-wrapper .auto-glass.columns > div > div:last-child > h4,
   .columns-wrapper .ins-inquiry.columns > div > div:last-child > h4,
   .columns-wrapper .auto811files.columns > div > div:last-child > h4,
@@ -1384,6 +1513,7 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   }
 
   .columns-wrapper .mbps.columns > div > div:last-child > h5,
+  .columns-wrapper .edi-faq.columns > div > div:last-child > h5,
   .columns-wrapper .auto-glass.columns > div > div:last-child > h5,
   .columns-wrapper .ins-inquiry.columns > div > div:last-child > h5,
   .columns-wrapper .auto811files.columns > div > div:last-child > h5,
