@@ -157,12 +157,17 @@ main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
   color: var(--text-dark-color);
 }
 
-.side-nav-body .side-nav-faq-body > p {
+.side-nav-body .side-nav-faq-body > :is(p, ol, ul) {
   margin: 8px 0;
   font-size: 16px;
   font-weight: 400;
   line-height: 21px;
   color: var(--text-dark-color);
+}
+
+.side-nav-body .side-nav-faq-body > ol,
+.side-nav-body .side-nav-faq-body > ul {
+  padding-left: 24px;
 }
 
 .side-nav-menu-flat p:not(:last-child) {
@@ -260,7 +265,7 @@ main:has(.side-nav-help-support) .section:has(> .side-nav-wrapper) > .default-co
   margin-bottom: 32px;
 }
 
-main:has(#auto-operations-faq) > .breadcrumbs-container {
+main:has(#auto-operations-faq, #fire-operations-faq) > .breadcrumbs-container {
   display: none;
 }
 
@@ -311,7 +316,7 @@ main:has(#fire-operations-directory) .side-nav-body h3:not(#payment-addressmaili
   letter-spacing: 0;
 }
 
-main:has(#auto-operations-faq) .side-nav-body .side-nav-faq {
+main:has(#auto-operations-faq, #fire-operations-faq) .side-nav-body .side-nav-faq {
   margin-top: 23px;
 }
 
