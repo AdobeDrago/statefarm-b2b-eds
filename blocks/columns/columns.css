@@ -305,6 +305,7 @@
   color: var(--dark-gray-color);
 }
 
+/* stylelint-disable no-descending-specificity */
 .columns-wrapper .mbps.columns > div > div:last-child > p,
 .columns-wrapper .edi-faq.columns > div > div:last-child > p,
 .columns-wrapper .auto-glass.columns > div > div:last-child > p,
@@ -321,6 +322,7 @@
   line-height: 21px;
   color: var(--text-dark-color);
 }
+/* stylelint-enable no-descending-specificity */
 
 .columns-wrapper .mbps.columns > div > div:last-child > ol,
 .columns-wrapper .edi-faq.columns > div > div:last-child > ol,
@@ -352,6 +354,7 @@
   padding-bottom: 8px;
 }
 
+/* stylelint-disable no-descending-specificity */
 .columns-wrapper .auto-3rd-party.columns > div > div:last-child > p:nth-child(5) {
   border: 1px solid black;
 }
@@ -367,6 +370,7 @@
   border: 1px solid black;
   border-top: none !important;
 }
+/* stylelint-enable no-descending-specificity */
 
 .columns-wrapper .mbps.columns > div > div:last-child > p > a,
 .columns-wrapper .edi-faq.columns > div > div:last-child > p > a,
