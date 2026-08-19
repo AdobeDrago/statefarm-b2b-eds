@@ -366,6 +366,10 @@
   line-height: 22px;
 }
 
+.claims-services div div p a{
+  width: 138px;
+ } 
+
 .columns-auth-3-cols .button-wrapper+p a {
   font-weight: 600;
 }
@@ -442,14 +446,19 @@
   margin: auto;
 }
 
-.claims-services div div p a{
-  width: 138px;
- } 
- .claims-services ul li .cards-card-body p:first-child:has(picture){
-  padding-top: 2px; 
- }
+.home-page p.button-wrapper+p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 22px;
+}
+
  .claims-services ul li .cards-card-body p + p {
    padding-top: 2px;
+ }
+
+ .claims-services ul li .cards-card-body p:first-child:has(picture){
+  padding-top: 2px; 
  }
 
  .section .default-content-wrapper #additional-resources { 
@@ -462,18 +471,20 @@
      margin-inline: auto;
    }
  }
+
  @media (width <=990px) {
    .claims-services {
      max-width: 690px;
      margin-inline: auto;
    }
+
   .claims-services ul li .cards-card-body p:first-child>picture{
     right: 10px;
   }
 
    .claims-services:not(.suppliers)>div>div:first-child {
     box-sizing: border-box;
-    padding-inline: 0px;
+    padding-inline: 0;
     translate: 15px;
   }
 
@@ -503,6 +514,7 @@
   .claims-services>div> div h1 +p{
       margin-bottom: 20px;
     }
+
   .select-service>div>div>picture img {
     display: none;
   }
@@ -510,9 +522,11 @@
   .columns-auth-no-login-list li:last-child .icon img {
     translate: 0 -1px;
   }
+
 .claims-services ul li .cards-card-body p:first-child>picture {
   right: 16px;
 }
+
   .select-service>div {
     display: block;
   }
@@ -556,13 +570,6 @@
 
 .home-page p.button-wrapper {
   margin-top: 0;
-}
-
-.home-page p.button-wrapper+p {
-  font-size: 16px;
-  font-weight: 400;
-  margin: 0 0 16px;
-  line-height: 22px;
 }
 
 .home-page #select-service+p {

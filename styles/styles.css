@@ -1326,6 +1326,7 @@ main:has(#medical-provider-portal--claim-view) > .section > .default-content-wra
     max-width: 720px !important;
     margin-inline: auto;
   }
+
   .default-content-wrapper h4 {
     margin-top: 30px !important;
     font-size: 1.438rem !important;
@@ -1334,7 +1335,6 @@ main:has(#medical-provider-portal--claim-view) > .section > .default-content-wra
 }
 
 @media (width <=600px) { 
-
   .default-content-wrapper h4 {
     margin-top: 20px !important;
     font-size: 1.25rem !important;
