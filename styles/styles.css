@@ -298,6 +298,125 @@ button.button.accent:disabled:focus-visible {
   color: var(--dark-color);
 }
 
+#terms-of-use{
+    font-size: 3rem;
+      font-weight: 600;
+      line-height: 48px;
+      margin-top: 24px;
+      margin-bottom: 32px;
+  }
+#terms-of-use-1{
+    display: none;
+  }
+  
+  #other-agreements, 
+  #collaboration-site-users, 
+  #privacy,
+  #prohibitions-in-your-use-of-this-collaboration-site,
+  #secured-areaspasswords,
+  #changes-to-this-document,
+  #waiver, 
+  #assignment, 
+  #limitation-of-liability,
+  #warranty-disclaimer, 
+  #general, 
+  #your-obligations, 
+  #additional-terms, 
+  #state-farm-intellectual-property-rights
+  {
+      margin-block-start: 64px;
+        margin-block-end: 24px;
+        font-size: 2.438rem;
+        line-height: 39px;
+   }
+
+#terms-of-use-1 + p,
+#other-agreements + p,
+#collaboration-site-users + p,
+#privacy + p,
+#prohibitions-in-your-use-of-this-collaboration-site + p,
+#prohibitions-in-your-use-of-this-collaboration-site ~ ul ,
+#secured-areaspasswords + p,
+#secured-areaspasswords+p+p,
+#secured-areaspasswords+p+p+p,
+#changes-to-this-document + p,
+#waiver + p,
+#assignment + p,
+#assignment+p+p,
+#limitation-of-liability + p,
+#warranty-disclaimer + p,
+#general + p,
+#your-obligations + p,
+#additional-terms + p,
+#state-farm-intellectual-property-rights + p,
+#state-farm-intellectual-property-rights+p+p,
+#state-farm-intellectual-property-rights+p+p+p
+{
+    margin-block: 0px;
+    margin-bottom: 16px;
+    font-size: 16px;
+    font-weight: 400; 
+    font-weight: 400;
+    line-height: 21px;
+  }
+#prohibitions-in-your-use-of-this-collaboration-site~ul{
+    margin-top: 24px;
+    padding-left: 24px;
+  }
+
+#prohibitions-in-your-use-of-this-collaboration-site~ul li{
+    padding-bottom: 8px;
+  }
+
+@media(width <=990px){
+    #terms-of-use {
+        font-size: 2.438rem; 
+        line-height: 39px;  
+      }
+    #other-agreements,
+    #collaboration-site-users,
+    #privacy,
+    #prohibitions-in-your-use-of-this-collaboration-site,
+    #secured-areaspasswords,
+    #changes-to-this-document,
+    #waiver,
+    #assignment,
+    #limitation-of-liability,
+    #warranty-disclaimer,
+    #general,
+    #your-obligations,
+    #additional-terms,
+    #state-farm-intellectual-property-rights { 
+      font-size: 2.063rem;
+      line-height: 33px;
+      margin-top: 56px;
+    }
+  }
+@media(width <=768px) {
+  #terms-of-use {
+    font-size: 1.75rem;
+    line-height: 28px;
+  }
+
+  #other-agreements,
+  #collaboration-site-users,
+  #privacy,
+  #prohibitions-in-your-use-of-this-collaboration-site,
+  #secured-areaspasswords,
+  #changes-to-this-document,
+  #waiver,
+  #assignment,
+  #limitation-of-liability,
+  #warranty-disclaimer,
+  #general,
+  #your-obligations,
+  #additional-terms,
+  #state-farm-intellectual-property-rights {
+    font-size: 1.563rem;
+    line-height: 25px;
+    margin-top: 48px;
+  }
+}
 main img {
   max-width: 100%;
   width: auto;
