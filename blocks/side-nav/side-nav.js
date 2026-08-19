@@ -293,10 +293,12 @@ export default function decorate(block) {
   const separated = [...body.querySelectorAll('p')].some(isBackToTop);
   const isLenderRelations = !!block.closest('main')?.querySelector('#lender-relations-contacts');
   const isAutoOps = !!block.closest('main')?.querySelector('#auto-operations-directory');
+  const isFireOps = !!block.closest('main')?.querySelector('#fire-operations-directory');
   body.querySelectorAll('h3').forEach((heading, i) => {
     if (isLenderRelations && heading.id === 'contacts-and-responsibilities') return;
     if (isAutoOps) return;
     if (isAutoOpsFaq) return;
+    if (isFireOps && heading.id !== 'payment-addressmailing-addresscontact-detailspersonal-lines-fire-questionsbusiness-lines-fire-questions') return;
     if (!separated || i === 0 || isBackToTop(heading.previousElementSibling)) heading.classList.add('side-nav-section-heading');
   });
 
@@ -304,6 +306,14 @@ export default function decorate(block) {
     if (isCodeSample(paragraph)) paragraph.classList.add('side-nav-code');
     if (isLenderRelations && isHoursList(paragraph)) paragraph.classList.add('side-nav-indent');
   });
+
+  if (isFireOps) {
+    const inquiry = menu.querySelector('a[title="Insurance inquiry tool"]');
+    if (inquiry) {
+      inquiry.classList.add('button', 'primary', 'side-nav-inquiry-tool');
+      inquiry.closest('p')?.classList.add('button-wrapper', 'side-nav-inquiry-tool-wrapper');
+    }
+  }
 
   if (isAutoOpsFaq) decorateFaq(content);
   decorateTables(body);
