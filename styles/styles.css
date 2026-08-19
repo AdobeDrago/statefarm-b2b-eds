@@ -330,6 +330,10 @@ button.button.accent:disabled:focus-visible {
         line-height: 39px;
    }
 
+   #additional-terms + ul a {
+      font-weight: 600 !important;
+    }
+
    main .section.khaki>div p {
   margin: 0 0 16px;
 }
@@ -341,6 +345,8 @@ main .section.khaki ul {
 main .section.khaki ul:last-child {
   margin-bottom: 0;
 }
+
+ /* stylelint-disable no-descending-specificity */
 
 .columns-wrapper .mbps.columns > div > div:last-child > p,
 .columns-wrapper .auto-glass.columns > div > div:last-child > p,
@@ -395,6 +401,7 @@ main .section.khaki ul:last-child {
 #warranty-disclaimer + p,
 #general + p,
 #your-obligations + p,
+#your-obligations + p + ul + p,
 #additional-terms + p,
 #state-farm-intellectual-property-rights + p,
 #terms-of-use-1 + p,
@@ -1078,6 +1085,8 @@ main .section.accent-heading>div>h3:first-of-type {
 main .section.accent-heading:has(#overview) {
   margin-bottom: 40px;
 }
+
+/* stylelint-enable no-descending-specificity */
 
 .section .default-content-wrapper:has(#overview) > p {
   font-size: 16px;
