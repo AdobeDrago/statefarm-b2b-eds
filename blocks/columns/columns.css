@@ -21,7 +21,6 @@
 /* Breakpoints: mobile <=560 | tablet >=768 | desktop >1024 */
 
 .columns.quarter > div {
-  display: flex;
   flex-direction: column;
 }
 
