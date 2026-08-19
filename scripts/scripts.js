@@ -128,6 +128,32 @@ const sideNavMenus = {
       href: '/b2b-content/medical-ebilling/health-insurance',
     },
   ],
+  '/b2b-content/home-auto-lenders/help-support': [
+    {
+      label: 'Help & support',
+      href: '/b2b-content/home-auto-lenders/help-support',
+    },
+    {
+      label: 'Lender relations',
+      href: '/b2b-content/home-auto-lenders/help-support/lender-relations',
+    },
+    {
+      label: 'Auto operations',
+      href: '/b2b-content/home-auto-lenders/help-support/auto-ops',
+    },
+    {
+      label: 'Auto operations FAQ',
+      href: '/b2b-content/home-auto-lenders/help-support/auto-ops-faq',
+    },
+    {
+      label: 'Fire operations',
+      href: '/b2b-content/home-auto-lenders/help-support/fire-ops',
+    },
+    {
+      label: 'Fire operations FAQ',
+      href: '/b2b-content/home-auto-lenders/help-support/fire-ops-faq',
+    },
+  ],
 };
 
 function buildPageSideNav(pathname) {

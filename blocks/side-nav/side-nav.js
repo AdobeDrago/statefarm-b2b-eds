@@ -95,7 +95,43 @@ function columnWidths(rows) {
   return weights.map((weight) => `${((weight / total) * 100).toFixed(1)}%`);
 }
 
-function buildTable(rows) {
+/**
+ * The headings authored directly above a tabular list, naming the groups its
+ * columns fall into. Prose is left alone: a group heading is a short phrase,
+ * so anything closing like a sentence ends the run.
+ * @param {Element} ul the tabular list
+ * @returns {Element[]} the group headings in document order
+ */
+function groupHeadings(ul) {
+  const headings = [];
+  let el = ul.previousElementSibling;
+  while (el && el.tagName === 'P' && !/[.:!?]$/.test(el.textContent.trim())) {
+    headings.unshift(el);
+    el = el.previousElementSibling;
+  }
+  return headings.length > 1 ? headings : [];
+}
+
+/**
+ * The header row naming the column groups. Every group past the first names a
+ * single column and the opening one covers the rest.
+ * @param {Element[]} headings the group headings
+ * @param {number} columns how many columns the table has
+ * @returns {Element} the header row
+ */
+function buildGroupRow(headings, columns) {
+  const row = document.createElement('tr');
+  row.className = 'side-nav-table-groups';
+  headings.forEach((heading, i) => {
+    const th = document.createElement('th');
+    th.colSpan = i ? 1 : columns - headings.length + 1;
+    th.append(...heading.childNodes);
+    row.append(th);
+  });
+  return row;
+}
+
+function buildTable(rows, headings = []) {
   const table = document.createElement('table');
   if (rows[0].length > 4) table.classList.add('side-nav-table-dense');
   const colgroup = document.createElement('colgroup');
@@ -116,6 +152,7 @@ function buildTable(rows) {
     head.append(th);
   });
   const thead = document.createElement('thead');
+  if (headings.length) thead.append(buildGroupRow(headings, rows[0].length));
   thead.append(head);
 
   // an unlabelled opening column holds the row's name rather than a value
@@ -144,7 +181,9 @@ function decorateTables(body) {
     const rows = [...ul.children].map(readCells);
     const columns = rows[0].length;
     if (columns < 2 || rows.some((row) => row.length !== columns)) return;
-    ul.replaceWith(buildTable(rows));
+    const headings = groupHeadings(ul).filter((_, i, all) => all.length < columns);
+    ul.replaceWith(buildTable(rows, headings));
+    headings.forEach((heading) => heading.remove());
   });
 }
 
@@ -160,6 +199,16 @@ function decorateBackToTop(body) {
   const last = links[links.length - 1];
   const container = last.parentElement;
   if (container.lastElementChild !== last) container.append(last.cloneNode(true));
+}
+
+/**
+ * A paragraph carrying a markup sample rather than prose.
+ * @param {Element} paragraph candidate paragraph
+ * @returns {boolean} true when the paragraph is a sample to set apart
+ */
+function isCodeSample(paragraph) {
+  const text = paragraph.textContent.trim();
+  return text.startsWith('<') && text.endsWith('>');
 }
 
 /**
@@ -192,8 +241,9 @@ export default function decorate(block) {
   const content = body.children.length === 1 && body.firstElementChild.tagName === 'DIV'
     ? body.firstElementChild
     : body;
+  // a heading that reads as a sentence opens the page rather than a section
   let lead = content.firstElementChild;
-  if (menu.classList.contains('side-nav-menu-flat') && lead?.tagName === 'H3') {
+  if (menu.classList.contains('side-nav-menu-flat') && lead?.tagName === 'H3' && /[.!?]$/.test(lead.textContent.trim())) {
     const paragraph = document.createElement('p');
     paragraph.append(...lead.childNodes);
     lead.replaceWith(paragraph);
@@ -205,6 +255,10 @@ export default function decorate(block) {
   const separated = [...body.querySelectorAll('p')].some(isBackToTop);
   body.querySelectorAll('h3').forEach((heading, i) => {
     if (!separated || i === 0 || isBackToTop(heading.previousElementSibling)) heading.classList.add('side-nav-section-heading');
+  });
+
+  body.querySelectorAll('p').forEach((paragraph) => {
+    if (isCodeSample(paragraph)) paragraph.classList.add('side-nav-code');
   });
 
   decorateTables(body);
