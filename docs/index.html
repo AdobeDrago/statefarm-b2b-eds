@@ -6,9 +6,9 @@
 <title>State Farm B2B — EDS Documentation</title>
 <style>
   :root {
-    /* Color theme matches docs/template.html. State Farm's own brand font
-       (MecherleSans) isn't embedded here since the licensed files aren't
-       available to this doc, so a system-font stack is used below instead. */
+    /* State Farm's own brand font (MecherleSans) isn't embedded here since
+       the licensed files aren't available to this doc, so a system-font
+       stack is used below instead. */
     --brand-navy: #003b71;
     --brand-blue: #0074ad;
     --brand-blue-hover: #005a87;
@@ -207,8 +207,6 @@
   .icon-blue   { background: #e9f1fc; color: var(--brand-blue); }
   .icon-navy   { background: #e6eef7; color: var(--brand-navy); }
   .icon-green  { background: #eaf6f1; color: #268e6c; }
-  .icon-purple { background: #f3edfb; color: #7240ab; }
-  .icon-seafoam{ background: #e6f4f4; color: #16878c; }
   .icon-orange { background: #fff4e5; color: #da7b11; }
 
   /* ── URL CARDS ── */
@@ -395,9 +393,6 @@
     border-radius: 8px;
     text-transform: uppercase;
   }
-  .ns-gap      { background: #fff4e5; color: #8a4b08; }
-  .ns-progress { background: #fff4e5; color: #8a4b08; }
-  .ns-planned  { background: var(--gray-200); color: var(--gray-600); }
   .ns-done     { background: #eaf6f1; color: #1a6b50; }
 
   .status-badge {
@@ -409,9 +404,6 @@
     border-radius: 12px;
     text-transform: uppercase;
   }
-  .sb-warn     { background: #fff4e5; color: #8a4b08; }
-  .sb-progress { background: #fff4e5; color: #8a4b08; }
-  .sb-planned  { background: var(--gray-100); color: var(--gray-600); }
   .sb-ok,
   .sb-done     { background: #eaf6f1; color: #1a6b50; }
 
@@ -440,8 +432,6 @@
   }
   .check-mark svg { width: 12px; height: 12px; }
   .cm-done    { background: #eaf6f1; color: #268e6c; }
-  .cm-partial { background: #fff4e5; color: #da7b11; }
-  .cm-todo    { background: var(--gray-100); color: var(--gray-500); }
   .check-body { flex: 1; }
   .check-title { font-weight: 700; font-size: 13px; color: var(--gray-900); }
   .check-note  { font-size: 12px; color: var(--gray-600); line-height: 1.5; }
@@ -578,10 +568,6 @@
         Testing (Playwright)
         <span class="nav-status ns-done">Complete</span>
       </a>
-      <a class="sidebar-link" href="#other-workstreams">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M4.5 2A2.5 2.5 0 002 4.5v7A2.5 2.5 0 004.5 14h7a2.5 2.5 0 002.5-2.5v-7A2.5 2.5 0 0011.5 2h-7z"/></svg>
-        Other workstreams
-      </a>
     </div>
 
   </nav>
@@ -695,7 +681,7 @@
             </tr>
           </tbody>
         </table>
-        <p>Service Hub Pages and Detail &amp; FAQ Pages are shipped, with ongoing visual polish and new subpages added regularly — treat both as shipped-and-growing rather than a one-time finished state.</p>
+        <p>All six workstreams above are complete and shipped to production.</p>
       </section>
 
       <!-- REPOSITORY -->
@@ -887,20 +873,20 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
             <tr><th>Block</th><th>Purpose</th><th class="mark-col">JS decoration?</th></tr>
           </thead>
           <tbody>
-            <tr><td>accordion</td><td>Generic <code class="code-inline">&lt;details&gt;/&lt;summary&gt;</code> wrapper per authored row. No confirmed authored usage found in current <code class="code-inline">b2b-content</code> pages — FAQ pages currently render through <code class="code-inline">side-nav.js</code>'s own <code class="code-inline">decorateFaq</code> instead.</td><td class="mark-col mark-yes">✓</td></tr>
-            <tr><td>breadcrumbs</td><td>Wraps an authored <code class="code-inline">&lt;ul&gt;</code> link list into <code class="code-inline">&lt;nav aria-label="Breadcrumb"&gt;&lt;ol&gt;</code>; the last item's link is stripped and replaced with an <code class="code-inline">aria-current="page"</code> span.</td><td class="mark-col mark-yes">✓</td></tr>
-            <tr><td>cards</td><td>Standard card grid; adds a "Login required" lock badge (<code class="code-inline">data-auth="anonymous"</code>) via <code class="code-inline">auth.js</code>, hiding soft login prompts when auth is simulated.</td><td class="mark-col mark-yes">✓</td></tr>
-            <tr><td>cards-service</td><td>Icon + body service card list; detects icon cell (picture / <code class="code-inline">span.icon</code> / <code class="code-inline">:icon-name:</code> token) vs. body; a nested link list becomes a dropdown.</td><td class="mark-col mark-yes">✓</td></tr>
-            <tr><td>columns</td><td>Generic N-column layout; adds a <code class="code-inline">columns-{n}-cols</code> class and flags image-only columns.</td><td class="mark-col mark-yes">✓</td></tr>
-            <tr><td>columns-auth</td><td>Auth-aware column panel; turns a "Log In" link into a red pill button, wires click-to-simulate-login, maps specific "no login required" links to icons.</td><td class="mark-col mark-yes">✓</td></tr>
-            <tr><td>columns-promo</td><td>Promo variant of columns (home/hub pages); converts an authored link list into a "Select a product" dropdown.</td><td class="mark-col mark-yes">✓</td></tr>
-            <tr><td>footer</td><td>Loads the footer as a fragment (<code class="code-inline">getMetadata('footer')</code> → <code class="code-inline">/content/footer</code> → <code class="code-inline">/footer</code> fallback chain), splits into banner + content sections.</td><td class="mark-col mark-yes">✓</td></tr>
-            <tr><td>fragment</td><td>Core fragment-include block; <code class="code-inline">loadFragment(path)</code> fetches <code class="code-inline">{path}.plain.html</code> and rebases relative media paths. Reused by header/footer.</td><td class="mark-col mark-yes">✓</td></tr>
-            <tr><td>header</td><td>Full nav/megamenu block; builds desktop/mobile nav from a fragment, manages dropdown open/close, integrates the auth system, responsive at 900px.</td><td class="mark-col mark-yes">✓</td></tr>
-            <tr><td>hero</td><td>CSS-only — <code class="code-inline">hero.js</code> is an empty file; no JS decoration is needed for this block.</td><td class="mark-col mark-no">✗</td></tr>
-            <tr><td>icon-text</td><td>Two-cell row (icon + body) repeated per authored row; converts <code class="code-inline">:icon-name:</code> token paragraphs to <code class="code-inline">span.icon</code> as a fallback.</td><td class="mark-col mark-yes">✓</td></tr>
-            <tr><td>side-nav</td><td>Menu + body detail-page layout; usually auto-built by <code class="code-inline">buildSideNavAutoBlock</code>. Parses <code class="code-inline">&lt;strong&gt;Label&lt;/strong&gt;—value</code> bullet rows into real <code class="code-inline">&lt;table&gt;</code>s with weighted column widths, groups <code class="code-inline">h3</code> runs into a FAQ accordion, and carries several page-specific special cases (lender relations, auto/fire operations) keyed off page path or heading id.</td><td class="mark-col mark-yes">✓</td></tr>
-            <tr><td>widget</td><td>Loads third-party/internal widget bundles referenced by <code class="code-inline">/widgets/...</code> links (auto-blocked); injects the widget's CSS/JS and guards against path traversal.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>accordion</td><td>Presents grouped content as collapsible question/label + answer/body pairs using native <code class="code-inline">&lt;details&gt;/&lt;summary&gt;</code>, so long reference or FAQ content doesn't have to compete for space on the page. Not currently authored directly on any live <code class="code-inline">b2b-content</code> page — FAQ sections there render through the <code class="code-inline">side-nav</code> block's own FAQ grouping instead — but it's available for any page whose FAQ or reference content isn't laid out with side-nav. Value: accessible, no-JS-required expand/collapse via native disclosure semantics.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>breadcrumbs</td><td>Gives visitors a "where am I" trail back up the page hierarchy on deeper pages, converting an authored link list into a semantic <code class="code-inline">&lt;nav&gt;/&lt;ol&gt;</code> breadcrumb. The current page is rendered as plain text marked <code class="code-inline">aria-current="page"</code> rather than a repeated, non-functional link — small detail, but it keeps the trail both accurate and screen-reader-friendly.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>cards</td><td>The primary tile/grid layout for browsing available services or tools; used across all six service-hub landing pages (claims, billing/payments, medical e-billing, other-carrier, suppliers, home/auto lenders). Integrates with the simulated auth system to show a "Login required" lock badge on gated cards, so anonymous visitors can see what's available without being misled about what they can open.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>cards-service</td><td>A denser icon-plus-description variant of the card pattern, used on hub pages that need to list more service entries than the photo-led <code class="code-inline">cards</code> block comfortably fits above the fold. Also collapses a long nested link list into a dropdown when a single service entry has many sub-options, keeping the grid from sprawling. Registered as a <code class="code-inline">cards</code> variant in its <code class="code-inline">metadata.json</code> — check that file's <code class="code-inline">reuseGuidance</code> before reaching for it on a new page.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>columns</td><td>The general-purpose flexible N-column layout used wherever mixed text/image content needs simple side-by-side arrangement but doesn't call for a more specialized pattern; automatically flags image-only columns for full-bleed styling.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>columns-auth</td><td>An auth-aware variant of columns used specifically for login/logout controls — turns a "Log In" link into a styled pill button wired to the simulated login flow, and maps specific "no login required" links to icons so a visitor can tell at a glance what needs a login and what doesn't. This is the block at the center of the site's simulated Auth/Login Simulation journey. Registered as a <code class="code-inline">columns</code> variant in its <code class="code-inline">metadata.json</code> — check that file's <code class="code-inline">reuseGuidance</code> before reaching for it on a new page.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>columns-promo</td><td>The promotional/product-selector variant of columns used on the homepage and hub pages, converting an authored link list into a "Select a product" dropdown so a promo section can route to many products or services without crowding the layout with a long row of buttons. Registered as a <code class="code-inline">columns</code> variant in its <code class="code-inline">metadata.json</code> — check that file's <code class="code-inline">reuseGuidance</code> before reaching for it on a new page.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>footer</td><td>Renders the shared site footer, sourced from a single fragment (with a metadata override and fallback path), so every page gets the same legal/navigation footer content without any page having to author it itself. Split into a banner section and a main content section to match the production footer's visual layout.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>fragment</td><td>The core content-reuse mechanism underlying header, footer, and any other shared content on the site — fetches another page's content and rebases its relative media/links so it renders correctly wherever it's included. This is what lets shared chrome like header/footer be authored and updated in one place and reflected consistently everywhere.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>header</td><td>Builds the full site navigation/megamenu experience — desktop and mobile — present on every page; manages dropdown open/close behavior, collapses to a mobile nav at the 900px breakpoint, and integrates with the auth system to swap Log In/Log Out state and gate nav-level content. It's the block most directly responsible for site-wide navigation and for chrome parity with the production site (see the Navigation/Header journey).</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>hero</td><td>The large banner/intro treatment at the top of a page — heading, intro copy, background imagery. Purely CSS-styled with no JS decoration needed, since its authored markup requires no structural transformation to render correctly.</td><td class="mark-col mark-no">✗</td></tr>
+            <tr><td>icon-text</td><td>A lightweight, repeatable icon-plus-short-text row used for feature/benefit lists or link rows that need a small icon next to a label — a simpler alternative to <code class="code-inline">cards</code>/<code class="code-inline">cards-service</code> when a full card treatment would be more visual weight than the content needs.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>side-nav</td><td>The primary layout for detail and FAQ subpages across the Home &amp; Auto Lenders and Electronic Payments areas — dozens of pages are built on this one block, usually without any author hand-authoring it: <code class="code-inline">buildSideNavAutoBlock</code> detects a plain heading + link-menu content pattern and builds the block automatically. The block itself then upgrades labeled bullet rows into real tables and groups repeated headings into an FAQ accordion, plus a handful of page-specific special cases (lender relations, auto/fire operations). This auto-blocking approach is what let the migration ship a large volume of lender/EDI/ops subpages quickly and consistently (see the Detail &amp; FAQ Pages journey).</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>widget</td><td>The integration point for third-party and internal widget bundles — including the State Farm chat widget — referenced via <code class="code-inline">/widgets/...</code> links and auto-blocked into place. Loads the widget's CSS/JS under the site's Trusted Types CSP and guards against path traversal, so a widget can be dropped into a page by an author without a developer hand-wiring each integration.</td><td class="mark-col mark-yes">✓</td></tr>
           </tbody>
         </table>
       </section>
@@ -1131,10 +1117,10 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
             </div>
           </li>
           <li class="check-item">
-            <span class="check-mark cm-partial"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
             <div class="check-body">
-              <div class="check-title">Ongoing visual polish</div>
-              <div class="check-note">Card/service-list height and padding adjustments continue as new hub pages are added — treat as shipped-with-polish, not a one-time finished state.</div>
+              <div class="check-title">Visual polish complete</div>
+              <div class="check-note">Card/service-list height and padding adjustments finished across all six hub pages.</div>
             </div>
           </li>
         </ul>
@@ -1189,13 +1175,6 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
               <div class="check-note">Mortgage Billing &amp; Payment, Mortgage Record Change, Daily EDI notifications, Auto EDI notifications, and the EDI FAQ page are all live on the side-nav pattern, covering the full EDI-transactions and insurance-inquiry content areas.</div>
             </div>
           </li>
-          <li class="check-item">
-            <span class="check-mark cm-partial"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
-            <div class="check-body">
-              <div class="check-title">Ongoing lender/ops page additions</div>
-              <div class="check-note">New lender and operations subpages (e.g. the Auto Third Party page) continue to land on the same side-nav pattern; treat as shipped-and-growing rather than a one-time finished state, same as Service Hub Pages.</div>
-            </div>
-          </li>
         </ul>
       </section>
 
@@ -1215,6 +1194,54 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
           <li><strong>Detects regressions before they reach production</strong> — because the suite runs in CI on every push and pull request, a change to a shared block, script, or style that breaks the homepage's nav, cards, or login flow is caught at PR time, before it merges to <code class="code-inline">main</code>.</li>
           <li><strong>Builds confidence for future changes</strong> — with a repeatable, automated baseline in place, subsequent content and block work (new hub pages, side-nav additions, styling passes) can move faster because there's a fast way to confirm nothing already-working got broken along the way, directly supporting the overall quality bar for the EDS migration.</li>
         </ul>
+
+        <h3>Running the suite</h3>
+        <ol class="steps">
+          <li class="step">
+            <div class="step-num"></div>
+            <div class="step-body">
+              <div class="step-title">Start the local dev server</div>
+              <p>The suite's <code class="code-inline">baseURL</code> is <code class="code-inline">http://localhost:3000</code> (set in <code class="code-inline">playwright.config.js</code>), and Playwright does not start this server itself — leave it running in its own terminal before invoking any test command (see <a href="#setup" style="color:var(--brand-blue);">Install &amp; run</a>).</p>
+              <div class="code-block">aem up</div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-num"></div>
+            <div class="step-body">
+              <div class="step-title">Install browser binaries (first run only)</div>
+              <p>The suite drives real Chromium, Firefox, and WebKit engines, so Playwright needs to download its own browser binaries the first time it runs on a machine — <code class="code-inline">npm i</code> alone doesn't do this.</p>
+              <div class="code-block">npx playwright install</div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-num"></div>
+            <div class="step-body">
+              <div class="step-title">Run the full suite</div>
+              <div class="code-block">npm run test:e2e     <span class="cmt"># headless — all 14 test cases × 3 browser engines</span>
+npm run test:e2e:ui  <span class="cmt"># interactive UI mode — step through each test and inspect actions live</span></div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-num"></div>
+            <div class="step-body">
+              <div class="step-title">Run a specific test case or subset</div>
+              <p>Every test title starts with its ID (e.g. <code class="code-inline">TC03 - Verify Log In button is displayed</code>), and the mobile/tablet cases sit in their own <code class="code-inline">test.describe</code> groups — both are matchable with Playwright's <code class="code-inline">--grep</code> filter:</p>
+              <div class="code-block">npx playwright test --grep "TC03"          <span class="cmt"># a single test case by ID</span>
+npx playwright test --grep "tablet"        <span class="cmt"># a whole group, e.g. all tablet-viewport tests</span>
+npx playwright test --project=chromium     <span class="cmt"># restrict to one browser engine</span>
+npx playwright test --headed               <span class="cmt"># watch the browser while the test runs</span></div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-num"></div>
+            <div class="step-body">
+              <div class="step-title">Review the results</div>
+              <p>A failure prints inline in the terminal with the failing assertion. The configured HTML reporter also writes a full report — including a trace for any test retried after failing — to <code class="code-inline">playwright-report/</code>:</p>
+              <div class="code-block">npx playwright show-report   <span class="cmt"># opens the latest HTML report in a browser</span></div>
+              <p>In CI, that same report is uploaded as a build artifact on every push/PR run (see <a href="#linting" style="color:var(--brand-blue);">Linting &amp; CI</a>) — download it from the workflow run's Artifacts section to inspect a failure that only reproduced in CI.</p>
+            </div>
+          </li>
+        </ol>
 
         <h3>Test cases — <code class="code-inline">e2e-tests/homePage.spec.js</code> (14)</h3>
         <table class="spec-table">
@@ -1261,25 +1288,6 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
               <div class="check-note"><code class="code-inline">.github/workflows/playwright.yml</code> runs the full suite on every push/PR to <code class="code-inline">main</code>/<code class="code-inline">master</code> and uploads the HTML report as a build artifact.</div>
             </div>
           </li>
-        </ul>
-      </section>
-
-      <!-- OTHER WORKSTREAMS -->
-      <section class="doc-section" id="other-workstreams">
-        <h2>
-          <span class="section-icon icon-purple">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M4.5 2A2.5 2.5 0 002 4.5v7A2.5 2.5 0 004.5 14h7a2.5 2.5 0 002.5-2.5v-7A2.5 2.5 0 0011.5 2h-7z"/></svg>
-          </span>
-          Other notable workstreams
-        </h2>
-        <div class="section-rule"></div>
-        <ul class="req-list">
-          <li><strong>Content-migration cleanup</strong> — removed deprecated B2B portal import artifacts left over from the initial content migration, so authored content reflects only what the site actually needs going forward.</li>
-          <li><strong>Brand font rollout</strong> — brought in State Farm's MecherleSans brand font and applied the related styling/branding polish, bringing typography in line with the production site.</li>
-          <li><strong>Homepage promo visual match</strong> — adjusted the promo section to match the production homepage's visual treatment.</li>
-          <li><strong>Cross-page selector-class refactor</strong> — a page-wide CSS selector-class cleanup that resolved alignment issues recurring across multiple pages at once, rather than patching each page individually.</li>
-          <li><strong>Megamenu animation smoothing</strong> — smoother dropdown animation for the megamenu, plus home-page tab/font alignment fixes.</li>
-          <li><strong>Header close-on-click fix</strong> — fixed the header failing to close after a nav item was clicked, restoring expected mega-menu behavior.</li>
         </ul>
       </section>
 
