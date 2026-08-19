@@ -452,6 +452,10 @@
    padding-top: 2px;
  }
 
+ .section .default-content-wrapper #additional-resources { 
+   margin: 20px 0 24px; 
+ }
+
  @media (width <=1200px) {
   .claims-services {
      max-width: 930px;
@@ -496,9 +500,9 @@
       padding-inline: 15px;
     }
 
-        .claims-services>div> div h1 +p{
-            margin-bottom: 20px;
-          }
+  .claims-services>div> div h1 +p{
+      margin-bottom: 20px;
+    }
   .select-service>div>div>picture img {
     display: none;
   }
@@ -506,7 +510,9 @@
   .columns-auth-no-login-list li:last-child .icon img {
     translate: 0 -1px;
   }
-
+.claims-services ul li .cards-card-body p:first-child>picture {
+  right: 16px;
+}
   .select-service>div {
     display: block;
   }
