@@ -892,9 +892,9 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
 }
 
 @media (width <= 1024px) {
-  /* main > .section > div {
+  main > .section > div {
     max-width: 720px; 
-  } */
+  }
 
   .section .default-content-wrapper #select-service {
     line-height: 1;
