@@ -282,6 +282,35 @@ main:has(#auto-operations-directory) .side-nav-body #to-help-expedite-your-call-
   margin-top: 26px;
 }
 
+
+
+main:has(#fire-operations-directory) .side-nav-menu .side-nav-inquiry-tool {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  margin-top: 0;
+  padding: 0 32px;
+  border: none;
+  border-radius: 28px;
+  font-size: 12px;
+  font-weight: 600 !important;
+  line-height: 14px;
+  color: #fff;
+  background-color: var(--link-color);
+}
+
+main:has(#fire-operations-directory) .side-nav-menu .side-nav-inquiry-tool:hover {
+  text-decoration: none;
+  background-color: #a11b13;
+}
+
+main:has(#fire-operations-directory) .side-nav-body h3:not(#payment-addressmailing-addresscontact-detailspersonal-lines-fire-questionsbusiness-lines-fire-questions) {
+  margin-bottom: 24px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
 main:has(#auto-operations-faq) .side-nav-body .side-nav-faq {
   margin-top: 23px;
 }
