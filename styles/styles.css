@@ -491,6 +491,8 @@ main .section.accent-heading>div>h3:first-of-type {
 }
 
 /* stylelint-disable-next-line selector-id-pattern */
+.default-content-wrapper #daily-edi-mortgagee-notification-billing--payment,
+/* stylelint-disable-next-line selector-id-pattern */
 .default-content-wrapper #mortgage-billing--payment-system,
 .default-content-wrapper #insurance-inquiry,
 .default-content-wrapper #mortgage-record-change,
@@ -508,6 +510,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns,
 .columns-wrapper .mortgage-record-chg.columns,
 .columns-wrapper .calibration-program.columns,
+.columns-wrapper .daily-811-notifications.columns,
 .columns-wrapper .personal-property.columns {
   margin: 0 8.333% 60px;
 }
@@ -517,6 +520,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div,
 .columns-wrapper .mortgage-record-chg.columns > div,
 .columns-wrapper .calibration-program.columns > div,
+.columns-wrapper .daily-811-notifications.columns > div,
 .columns-wrapper .personal-property.columns > div {
   gap: 0;
   display: grid;
@@ -528,6 +532,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:first-child,
 .columns-wrapper .mortgage-record-chg.columns > div > div:first-child,
 .columns-wrapper .calibration-program.columns > div > div:first-child,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child,
 .columns-wrapper .personal-property.columns > div > div:first-child {
   margin-right: 30px;
 }
@@ -537,6 +542,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:last-child *,
 .columns-wrapper .mortgage-record-chg.columns > div > div:last-child *,
 .columns-wrapper .calibration-program.columns > div > div:last-child *,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child *,
 .columns-wrapper .personal-property.columns > div > div:last-child * {
   white-space: normal;
   overflow-wrap: anywhere;
@@ -547,6 +553,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > h3,
 .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h3,
 .columns-wrapper .calibration-program.columns > div > div:last-child > h3,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > h3,
 .columns-wrapper .personal-property.columns > div > div:last-child > h3 {
   line-height: 1;
   font-size: 31px;
@@ -560,6 +567,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > h3:not(:first-child),
 .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h3:not(:first-child),
 .columns-wrapper .calibration-program.columns > div > div:last-child > h3:not(:first-child),
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > h3:not(:first-child),
 .columns-wrapper .personal-property.columns > div > div:last-child > h3:not(:first-child) {
   margin-top: 50px;
 }
@@ -569,8 +577,23 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > h4,
 .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h4,
 .columns-wrapper .calibration-program.columns > div > div:last-child > h4,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > h4,
 .columns-wrapper .personal-property.columns > div > div:last-child > h4 {
   font-size: 25px;
+  line-height: 1;
+  font-weight: 500;
+  margin: 0 0 24px;
+  color: var(--dark-gray-color);
+}
+
+.columns-wrapper .mbps.columns > div > div:last-child > h5,
+.columns-wrapper .auto-glass.columns > div > div:last-child > h5,
+.columns-wrapper .ins-inquiry.columns > div > div:last-child > h5,
+.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h5,
+.columns-wrapper .calibration-program.columns > div > div:last-child > h5,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > h5,
+.columns-wrapper .personal-property.columns > div > div:last-child > h5 {
+  font-size: 20px;
   line-height: 1;
   font-weight: 500;
   margin: 0 0 24px;
@@ -582,6 +605,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > p,
 .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > p,
 .columns-wrapper .calibration-program.columns > div > div:last-child > p,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > p,
 .columns-wrapper .personal-property.columns > div > div:last-child > p {
   font-size: 16px;
   font-weight: 400;
@@ -595,6 +619,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > ol,
 .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ol,
 .columns-wrapper .calibration-program.columns > div > div:last-child > ol,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ol,
 .columns-wrapper .personal-property.columns > div > div:last-child > ol {
   padding-left: 30px;
   margin: 24px 0 16px;
@@ -605,6 +630,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > ol > li,
 .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ol > li,
 .columns-wrapper .calibration-program.columns > div > div:last-child > ol > li,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ol > li,
 .columns-wrapper .personal-property.columns > div > div:last-child > ol > li {
   font-size: 16px;
   font-weight: 400;
@@ -617,6 +643,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > p > a,
 .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > p > a,
 .columns-wrapper .calibration-program.columns > div > div:last-child > p > a,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > p > a,
 .columns-wrapper .personal-property.columns > div > div:last-child > p > a {
   font-weight: 600;
 }
@@ -626,6 +653,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > ul,
 .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ul,
 .columns-wrapper .calibration-program.columns > div > div:last-child > ul,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ul,
 .columns-wrapper .personal-property.columns > div > div:last-child > ul {
   margin: 24px 0 16px;
   padding: 0 0 0 24px;
@@ -637,6 +665,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > ul > li,
 .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ul > li,
 .columns-wrapper .calibration-program.columns > div > div:last-child > ul > li,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ul > li,
 .columns-wrapper .personal-property.columns > div > div:last-child > ul > li {
   font-size: 16px;
   font-weight: 400;
@@ -650,6 +679,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:last-child > ul > li > a,
 .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ul > li > a,
 .columns-wrapper .calibration-program.columns > div > div:last-child > ul > li > a,
+.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ul > li > a,
 .columns-wrapper .personal-property.columns > div > div:last-child > ul > li > a {
   font-size: 16px;
   font-weight: 600;
@@ -676,6 +706,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:first-child > ul,
 .columns-wrapper .mortgage-record-chg.columns > div > div:first-child > ul,
 .columns-wrapper .calibration-program.columns > div > div:first-child > ul,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul,
 .columns-wrapper .personal-property.columns > div > div:first-child > ul {
   margin: 0 0 20px;
   padding: 0;
@@ -687,6 +718,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:first-child > ul > li,
 .columns-wrapper .mortgage-record-chg.columns > div > div:first-child > ul > li,
 .columns-wrapper .calibration-program.columns > div > div:first-child > ul > li,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li,
 .columns-wrapper .personal-property.columns > div > div:first-child > ul > li {
   display: flex;
   padding: 0 0 6px;
@@ -697,6 +729,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:first-child > ul > li > a,
 .columns-wrapper .mortgage-record-chg.columns > div > div:first-child > ul > li > a,
 .columns-wrapper .calibration-program.columns > div > div:first-child > ul > li > a,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li > a,
 .columns-wrapper .personal-property.columns > div > div:first-child > ul > li > a {
   line-height: 1;
   font-size: 16px;
@@ -709,8 +742,14 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .mortgage-record-chg.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .calibration-program.columns > div > div:first-child > p.button-wrapper,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .personal-property.columns > div > div:first-child > p.button-wrapper {
   margin: 0;
+}
+
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper {
+  width: 76%;
 }
 
 .columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a,
@@ -718,6 +757,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper > a,
 .columns-wrapper .mortgage-record-chg.columns > div > div:first-child > p.button-wrapper > a,
 .columns-wrapper .calibration-program.columns > div > div:first-child > p.button-wrapper > a,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper > a,
 .columns-wrapper .personal-property.columns > div > div:first-child > p.button-wrapper > a {
   border: none;
   margin: -2px;
@@ -760,6 +800,7 @@ main .section.accent-heading>div>h3:first-of-type {
 .columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper > a:hover,
 .columns-wrapper .mortgage-record-chg.columns > div > div:first-child > p.button-wrapper > a:hover,
 .columns-wrapper .calibration-program.columns > div > div:first-child > p.button-wrapper > a:hover,
+.columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper > a:hover,
 .columns-wrapper .personal-property.columns > div > div:first-child > p.button-wrapper > a:hover {
   text-decoration: underline;
 }
@@ -1029,6 +1070,9 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
     font-size: 39px;
   }
 
+
+  /* stylelint-disable-next-line selector-id-pattern */
+  .default-content-wrapper #daily-edi-mortgagee-notification-billing--payment,
   /* stylelint-disable-next-line selector-id-pattern */
   .default-content-wrapper #mortgage-billing--payment-system,
   .default-content-wrapper #insurance-inquiry,
@@ -1038,11 +1082,22 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
     font-size: 33px;
   }
 
+  .columns-wrapper .mbps.columns > div > div:first-child,
+  .columns-wrapper .auto-glass.columns > div > div:first-child,
+  .columns-wrapper .ins-inquiry.columns > div > div:first-child,
+  .columns-wrapper .mortgage-record-chg.columns > div > div:first-child,
+  .columns-wrapper .calibration-program.columns > div > div:first-child,
+  .columns-wrapper .daily-811-notifications.columns > div > div:first-child,
+  .columns-wrapper .personal-property.columns > div > div:first-child {
+    margin-right: 15px;
+  }
+
   .columns-wrapper .mbps.columns > div > div:last-child > h3,
   .columns-wrapper .auto-glass.columns > div > div:last-child > h3,
   .columns-wrapper .ins-inquiry.columns > div > div:last-child > h3,
   .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h3,
   .columns-wrapper .calibration-program.columns > div > div:last-child > h3,
+  .columns-wrapper .daily-811-notifications.columns > div > div:last-child > h3,
   .columns-wrapper .personal-property.columns > div > div:last-child > h3 {
     font-size: 27px;
   }
@@ -1052,8 +1107,24 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   .columns-wrapper .ins-inquiry.columns > div > div:last-child > h4,
   .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h4,
   .columns-wrapper .calibration-program.columns > div > div:last-child > h4,
+  .columns-wrapper .daily-811-notifications.columns > div > div:last-child > h4,
   .columns-wrapper .personal-property.columns > div > div:last-child > h4 {
     font-size: 23px;
+  }
+
+  .columns-wrapper .mbps.columns > div > div:last-child > h5,
+  .columns-wrapper .auto-glass.columns > div > div:last-child > h5,
+  .columns-wrapper .ins-inquiry.columns > div > div:last-child > h5,
+  .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h5,
+  .columns-wrapper .calibration-program.columns > div > div:last-child > h5,
+  .columns-wrapper .daily-811-notifications.columns > div > div:last-child > h5,
+  .columns-wrapper .personal-property.columns > div > div:last-child > h5 {
+    font-size: 19px;
+  }
+
+  .columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li,
+  .columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper {
+    width: 100%;
   }
 
   .default-content-wrapper #electronic-payments {
@@ -1114,6 +1185,8 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   }
 
   /* stylelint-disable-next-line selector-id-pattern */
+  .default-content-wrapper #daily-edi-mortgagee-notification-billing--payment,
+  /* stylelint-disable-next-line selector-id-pattern */
   .default-content-wrapper #mortgage-billing--payment-system,
   .default-content-wrapper #insurance-inquiry,
   .default-content-wrapper #mortgage-record-change,
@@ -1122,11 +1195,21 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
     font-size: 25px;
   }
 
+  .columns-wrapper .daily-811-notifications.columns > div {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+
+  .columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li,
+  .columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper {
+    width: min-content;
+  }
+
   .columns-wrapper .mbps.columns > div > div:last-child > h3,
   .columns-wrapper .auto-glass.columns > div > div:last-child > h3,
   .columns-wrapper .ins-inquiry.columns > div > div:last-child > h3,
   .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h3,
   .columns-wrapper .calibration-program.columns > div > div:last-child > h3,
+  .columns-wrapper .daily-811-notifications.columns > div > div:last-child > h3,
   .columns-wrapper .personal-property.columns > div > div:last-child > h3 {
     font-size: 22px;
   }
@@ -1136,8 +1219,19 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   .columns-wrapper .ins-inquiry.columns > div > div:last-child > h4,
   .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h4,
   .columns-wrapper .calibration-program.columns > div > div:last-child > h4,
+  .columns-wrapper .daily-811-notifications.columns > div > div:last-child > h4,
   .columns-wrapper .personal-property.columns > div > div:last-child > h4 {
     font-size: 20px;
+  }
+
+  .columns-wrapper .mbps.columns > div > div:last-child > h5,
+  .columns-wrapper .auto-glass.columns > div > div:last-child > h5,
+  .columns-wrapper .ins-inquiry.columns > div > div:last-child > h5,
+  .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h5,
+  .columns-wrapper .calibration-program.columns > div > div:last-child > h5,
+  .columns-wrapper .daily-811-notifications.columns > div > div:last-child > h5,
+  .columns-wrapper .personal-property.columns > div > div:last-child > h5 {
+    font-size: 18px;
   }
 
   .columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"] {
