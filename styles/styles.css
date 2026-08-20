@@ -440,7 +440,7 @@ main .section.khaki ul:last-child {
   }
 }
 /* stylelint-disable selector-id-pattern */
-#claim-services,#instructions--guides{
+#instructions--guides{
     font-size: 1.563rem;
     line-height: 25px;
     margin-block: 0;
@@ -546,7 +546,6 @@ main .section.khaki ul:last-child {
 }
 
 @media(width < 768px) {
-  #claim-services,
   #instructions--guides {
     font-size: 1.25rem;
     line-height: 20px; 
