@@ -307,6 +307,16 @@ main:has(#auto-operations-directory) .side-nav-body h3 {
   font-weight: 500;
 }
 
+main:has(#what-is-edi-and-eft) .side-nav-body .side-nav-lead,
+main:has(#what-is-edi-and-eft) .side-nav-body > h3:first-child {
+  margin-top: 0;
+  margin-bottom: 19px;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0;
+}
+
 main:has(#replacement-program-faqs) .side-nav-body h3:not(#replacement-program-faqs) {
   margin-bottom: 24px;
   font-size: 1.25rem;
@@ -316,8 +326,6 @@ main:has(#replacement-program-faqs) .side-nav-body h3:not(#replacement-program-f
 main:has(#auto-operations-directory) .side-nav-body #to-help-expedite-your-call-review-the-hints-and-tips-below {
   margin-top: 26px;
 }
-
-
 
 main:has(#fire-operations-directory) .side-nav-menu .side-nav-inquiry-tool {
   display: inline-flex;
@@ -337,16 +345,6 @@ main:has(#fire-operations-directory) .side-nav-menu .side-nav-inquiry-tool {
 main:has(#fire-operations-directory) .side-nav-menu .side-nav-inquiry-tool:hover {
   text-decoration: none;
   background-color: #a11b13;
-}
-
-main:has(#what-is-edi-and-eft) .side-nav-body .side-nav-lead,
-main:has(#what-is-edi-and-eft) .side-nav-body > h3:first-child {
-  margin-top: 0;
-  margin-bottom: 19px;
-  font-size: 19px;
-  font-weight: 400;
-  line-height: 26px;
-  letter-spacing: 0;
 }
 
 main:has(#fire-operations-directory) .side-nav-body h3:not(#payment-addressmailing-addresscontact-detailspersonal-lines-fire-questionsbusiness-lines-fire-questions) {
