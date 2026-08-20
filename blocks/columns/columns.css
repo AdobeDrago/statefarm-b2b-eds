@@ -164,6 +164,7 @@
   color: var(--dark-gray-color);
 }
 
+.columns-container:has( > div:last-child > .two-columns-layout) > div:first-child > h1,
 /* stylelint-disable-next-line selector-id-pattern */
 .default-content-wrapper #certificate-holder--error,
 /* stylelint-disable-next-line selector-id-pattern */
@@ -273,6 +274,10 @@
   margin-top: 50px;
 }
 
+.columns-wrapper .two-columns-layout.columns > div > div:last-child > #verification-screen {
+  margin-top: 0;
+}
+
 .columns-wrapper .edi-faq.columns > div > div:last-child > h4 {
   font-weight: 400 !important;
   margin: 0 0 25px !important;
@@ -367,6 +372,7 @@
 }
 
 /* stylelint-disable no-descending-specificity */
+.columns-wrapper .two-columns-layout.columns > div > div:last-child > p:has( > picture > img),
 .columns-wrapper .cert-holder-error.columns > div > div:last-child > p:has( > picture > img),
 .columns-wrapper .auto-3rd-party.columns > div > div:last-child > p:nth-child(5) {
   border: 1px solid black;
@@ -528,6 +534,7 @@
 }
 
 .columns-wrapper .two-columns-layout.columns > div > div:first-child > ul > li,
+.columns-wrapper .two-columns-layout.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .auto811files.columns > div > div:first-child > ul > li,
 .columns-wrapper .auto-3rd-party.columns > div > div:first-child > ul > li,
 .columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li,
@@ -579,6 +586,7 @@
   width: 75%;
 }
 
+.columns-wrapper .two-columns-layout.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"],
 .columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a[title="MBPS tool"],
 .columns-wrapper .cert-of-ins.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"],
 .columns-wrapper .auto-3rd-party.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"],
@@ -596,6 +604,7 @@
   background-color: var(--link-color);
 }
 
+.columns-wrapper .two-columns-layout.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"]:hover,
 .columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a[title="MBPS tool"]:hover,
 .columns-wrapper .cert-of-ins.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"]:hover,
 .columns-wrapper .auto-3rd-party.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"]:hover,
@@ -631,6 +640,7 @@
     font-size: 39px;
   }
 
+  .columns-container:has( > div:last-child > .two-columns-layout) > div:first-child > h1,
   /* stylelint-disable-next-line selector-id-pattern */
   .default-content-wrapper #certificate-holder--error,
   /* stylelint-disable-next-line selector-id-pattern */
@@ -704,6 +714,7 @@
   }
 
   .columns-wrapper .two-columns-layout.columns > div > div:first-child > ul > li,
+  .columns-wrapper .two-columns-layout.columns > div > div:first-child > p.button-wrapper,
   .columns-wrapper .edi-faq.columns > div > div:first-child > ul > li,
   .columns-wrapper .auto811files.columns > div > div:first-child > ul > li,
   .columns-wrapper .auto-3rd-party.columns > div > div:first-child > ul > li,
@@ -732,6 +743,7 @@
     font-size: 28px;
   }
 
+  .columns-container:has( > div:last-child > .two-columns-layout) > div:first-child > h1,
   /* stylelint-disable-next-line selector-id-pattern */
   .default-content-wrapper #certificate-holder--error,
   /* stylelint-disable-next-line selector-id-pattern */
@@ -790,6 +802,7 @@
     font-size: 18px;
   }
 
+  .columns-wrapper .two-columns-layout.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"],
   .columns-wrapper .cert-of-ins.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"],
   .columns-wrapper .cert-holder-error.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"],
   .columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a[title="MBPS tool"],
