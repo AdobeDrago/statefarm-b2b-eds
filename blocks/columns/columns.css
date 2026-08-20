@@ -563,6 +563,10 @@
   display: flex;
 }
 
+.columns-wrapper .step-one.columns > div > div:first-child > ul > li,
+.columns-wrapper .step-one.columns > div > div:first-child > p.button-wrapper,
+.columns-wrapper .add-options.columns > div > div:first-child > ul > li,
+.columns-wrapper .add-options.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .standard-address.columns > div > div:first-child > ul > li,
 .columns-wrapper .standard-address.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .sample-cert.columns > div > div:first-child > ul > li,
@@ -627,6 +631,7 @@
   width: 75%;
 }
 
+.columns-wrapper .two-columns-layout.columns > div > div:first-child > p.button-wrapper > a[title="MBPS tool"],
 .columns-wrapper .two-columns-layout.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"],
 .columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a[title="MBPS tool"],
 .columns-wrapper .cert-of-ins.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"],
@@ -645,6 +650,7 @@
   background-color: var(--link-color);
 }
 
+.columns-wrapper .two-columns-layout.columns > div > div:first-child > p.button-wrapper > a[title="MBPS tool"]:hover,
 .columns-wrapper .two-columns-layout.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"]:hover,
 .columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a[title="MBPS tool"]:hover,
 .columns-wrapper .cert-of-ins.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"]:hover,
@@ -855,6 +861,7 @@
     font-size: 18px;
   }
 
+  .columns-wrapper .two-columns-layout.columns > div > div:first-child > p.button-wrapper > a[title="MBPS tool"],
   .columns-wrapper .two-columns-layout.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"],
   .columns-wrapper .cert-of-ins.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"],
   .columns-wrapper .cert-holder-error.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"],
