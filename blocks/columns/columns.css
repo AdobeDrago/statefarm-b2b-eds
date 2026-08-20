@@ -185,6 +185,17 @@
   color: var(--dark-gray-color);
 }
 
+/* mbps step-two: H1 sits above columns(mbps) and lines up with the sidebar
+   (MBPS tool) — same 8.333% inset as the columns block */
+.default-content-wrapper #step-2-selecting-bills-to-pay {
+  margin: 24px 8.333% 20px;
+  font-size: 2.438rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--dark-gray-color);
+}
+
 .columns-wrapper .two-columns-layout.columns,
 .columns-wrapper .mbps.columns,
 .columns-wrapper .edi-faq.columns,
@@ -379,6 +390,7 @@
 /* stylelint-disable no-descending-specificity */
 .columns-wrapper .two-columns-layout.columns > div > div:last-child > p:has( > picture > img),
 .columns-wrapper .cert-holder-error.columns > div > div:last-child > p:has( > picture > img),
+.columns-wrapper .mbps.columns > div > div:last-child > p:has( > picture > img),
 .columns-wrapper .auto-3rd-party.columns > div > div:last-child > p:nth-child(5) {
   border: 1px solid black;
 }
@@ -663,7 +675,8 @@
   .default-content-wrapper #mortgage-record-change,
   .default-content-wrapper #certificate-of-insurance,
   .default-content-wrapper #adas-calibration-program,
-  .default-content-wrapper #personal-property-replacement {
+  .default-content-wrapper #personal-property-replacement,
+  .default-content-wrapper #step-2-selecting-bills-to-pay {
     font-size: 33px;
   }
 
@@ -768,6 +781,11 @@
   .default-content-wrapper #adas-calibration-program,
   .default-content-wrapper #personal-property-replacement {
     font-size: 25px;
+  }
+
+  .default-content-wrapper #step-2-selecting-bills-to-pay {
+    font-size: 1.563rem;
+    font-weight: 600;
   }
 
   .columns-wrapper .two-columns-layout.columns > div > div:last-child > h3,
