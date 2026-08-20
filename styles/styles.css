@@ -1368,6 +1368,26 @@ main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #conta
   color: var(--dark-gray-color);
 }
 
+@media (width >= 768px) and (width <= 1024px) {
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #contact-us-frequently-asked-questions {
+    margin-top: 56px;
+    margin-bottom: 24px;
+    font-size: 2.063rem;
+    font-weight: 600;
+    line-height: 33px;
+  }
+}
+
+@media (width < 768px) {
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #contact-us-frequently-asked-questions {
+    margin-top: 48px;
+    margin-bottom: 24px;
+    font-size: 1.563rem;
+    font-weight: 600;
+    line-height: 25px;
+  }
+}
+
 main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #log-in--registration,
 main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #working-with-us {
   margin: 32px 0 16px;
@@ -1376,6 +1396,22 @@ main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #worki
   line-height: 31px;
   letter-spacing: 0;
   color: var(--dark-gray-color);
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #log-in--registration,
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #working-with-us {
+    font-size: 1.688rem;
+    font-weight: 500;
+  }
+}
+
+@media (width < 768px) {
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #log-in--registration,
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #working-with-us {
+    font-size: 1.375rem;
+    font-weight: 500;
+  }
 }
 
 main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-item {
@@ -1450,7 +1486,74 @@ main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .conta
   padding-left: 24px;
 }
 
-main:has(#contact-us-frequently-asked-questions) .default-content-wrapper > p.contact-us-closing {
+/* Accordion on Contact Us — prefer DA variant `accordion (contact-us)`.
+   Page-scoped rules also cover pages still authored as request-supplement. */
+main:has(#contact-us-frequently-asked-questions) .accordion,
+.accordion.contact-us {
+  margin-bottom: 0;
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body,
+.accordion.contact-us .accordion-item-body {
+  padding: 6px 0 8px 2px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body > p,
+.accordion.contact-us .accordion-item-body > p {
+  margin: 8px 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+/* Bold copy should read as emphasis (600), not heavy black (700) */
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body :is(strong, b),
+.accordion.contact-us .accordion-item-body :is(strong, b),
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p :is(strong, b) {
+  font-weight: 600;
+}
+
+/* Links in answers — including Forgot ID / Forgot Password list links */
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body a,
+.accordion.contact-us .accordion-item-body a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  color: var(--link-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body ul,
+.accordion.contact-us .accordion-item-body ul {
+  margin: 24px 0 16px;
+  padding-left: 24px;
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body ul li,
+.accordion.contact-us .accordion-item-body ul li {
+  padding: 0 0 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body > h3,
+.accordion.contact-us .accordion-item-body > h3 {
+  margin: 16px 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+/* Closing copy authored outside the accordion — after decoration those
+   paragraphs land in their own .default-content-wrapper (not beside .accordion). */
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p {
   margin-top: 0;
   margin-bottom: 16px;
   font-size: 16px;
@@ -1459,8 +1562,12 @@ main:has(#contact-us-frequently-asked-questions) .default-content-wrapper > p.co
   color: var(--text-dark-color);
 }
 
-main:has(#contact-us-frequently-asked-questions) .default-content-wrapper > p.contact-us-closing:first-of-type {
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p:first-child {
   margin-top: 16px;
+}
+
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p a {
+  font-weight: 600;
 }
 
 body:has(#contact-us-frequently-asked-questions) > footer {
