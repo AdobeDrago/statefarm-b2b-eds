@@ -440,11 +440,16 @@ main .section.khaki ul:last-child {
   }
 }
 /* stylelint-disable selector-id-pattern */
-#instructions--guides{
+.default-content-wrapper:has(#request-supplement--shop-claim-view)  #claim-services,
+ #instructions--guides{
     font-size: 1.563rem;
     line-height: 25px;
     margin-block: 0;
     margin-top: 24px  !important;
+  }
+
+  #instructions--guides { 
+    margin-top: 36px !important;
   }
 
 #request-supplement--shop-claim-view{
@@ -452,11 +457,7 @@ main .section.khaki ul:last-child {
     line-height: 48px;
     font-weight: 600;
     margin: 6px 0 32px;
-  } 
-
-#instructions--guides{ 
-  margin-top: 20px;
-  }
+  }  
 
 #instructions--guides + ul {
   list-style-type: none;
@@ -546,6 +547,7 @@ main .section.khaki ul:last-child {
 }
 
 @media(width < 768px) {
+  .default-content-wrapper:has(#request-supplement--shop-claim-view) #claim-services,
   #instructions--guides {
     font-size: 1.25rem;
     line-height: 20px; 
