@@ -578,6 +578,7 @@ main .section.khaki ul:last-child {
     font-weight: 600;
     margin: 24px 0 64px;
   }
+
 #need-help{
     font-size: 1.563rem;
       font-weight: 500;
@@ -585,14 +586,16 @@ main .section.khaki ul:last-child {
       margin-top: 78px;
       margin-bottom: 24px;
   }
+
 #need-help + ul {
   list-style-type: none;
-  padding-left: 0px;
+  padding-left: 0;
   font-size: 16px; 
     line-height: 21px;
     font-weight: 400;
   margin-bottom: 105px;
 }
+
 #need-help+ul li {
   margin-bottom: 18px;
 }
@@ -612,6 +615,7 @@ main .section.khaki ul:last-child {
       margin-top: 54px;
       margin-bottom: 24px;
     }
+
         #need-help+ul { 
           margin-bottom: 72px;
         }
@@ -640,6 +644,7 @@ main .section.khaki ul:last-child {
 #need-help+ul { 
   margin-bottom: 72px;
 }
+
   #need-help+ul li {
     margin-bottom: 18px;
   }
