@@ -199,6 +199,16 @@
   color: var(--dark-gray-color);
 }
 
+/* auto811files child pages: H1 above columns(auto811files), flush with sidebar */
+.default-content-wrapper #auto-test-file-example {
+  margin: 24px 8.333%;
+  font-size: 2.438rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--dark-gray-color);
+}
+
 .columns-wrapper .two-columns-layout.columns,
 .columns-wrapper .mbps.columns,
 .columns-wrapper .edi-faq.columns,
@@ -698,7 +708,8 @@
   .default-content-wrapper #step-2-selecting-bills-to-pay,
   .default-content-wrapper #step-3-paying-bills,
   /* stylelint-disable-next-line selector-id-pattern */
-  .default-content-wrapper #step-4-payment-history--payment-details {
+  .default-content-wrapper #step-4-payment-history--payment-details,
+  .default-content-wrapper #auto-test-file-example {
     font-size: 33px;
   }
 
@@ -808,7 +819,8 @@
   .default-content-wrapper #step-2-selecting-bills-to-pay,
   .default-content-wrapper #step-3-paying-bills,
   /* stylelint-disable-next-line selector-id-pattern */
-  .default-content-wrapper #step-4-payment-history--payment-details {
+  .default-content-wrapper #step-4-payment-history--payment-details,
+  .default-content-wrapper #auto-test-file-example {
     font-size: 1.563rem;
     font-weight: 600;
   }
