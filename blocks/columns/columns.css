@@ -181,7 +181,7 @@
   line-height: 1;
   font-size: 39px;
   font-weight: 600;
-  margin: 24px 8.333% 20px;
+  margin: 24px 8.333%;
   color: var(--dark-gray-color);
 }
 
@@ -533,6 +533,11 @@
 .columns-wrapper .personal-property.columns > div > div:first-child > p.button-wrapper {
   margin: 0;
   display: flex;
+}
+
+.columns-wrapper .owners-name.columns > div > div:first-child > ul > li,
+.columns-wrapper .owners-name.columns > div > div:first-child > p.button-wrapper {
+  width: auto !important;
 }
 
 .columns-wrapper .two-columns-layout.columns > div > div:first-child > ul > li,
