@@ -143,10 +143,6 @@
   color: var(--dark-gray-color);
 }
 
-.columns-wrapper .policy-search.columns > div > div:last-child > p:has( > picture > img) {
-  margin-top: 50px;
-}
-
 .columns.columns-2-cols #resources ~ p,
 /* stylelint-disable-next-line selector-id-pattern */
 .columns.columns-2-cols #help--support ~ p {
@@ -392,6 +388,15 @@
 }
 
 /* stylelint-disable no-descending-specificity */
+
+.columns-wrapper .policy-search.columns > div > div:last-child > p:has( > picture > img) {
+  margin-top: 50px;
+}
+
+.columns-wrapper .renewal-cert.columns > div > div:last-child > p:has( > picture > img) {
+  margin-bottom: 50px;
+}
+
 .columns-wrapper .two-columns-layout.columns > div > div:last-child > p:has( > picture > img),
 .columns-wrapper .cert-holder-error.columns > div > div:last-child > p:has( > picture > img),
 .columns-wrapper .mbps.columns > div > div:last-child > p:has( > picture > img),
@@ -554,6 +559,8 @@
   display: flex;
 }
 
+.columns-wrapper .renewal-cert.columns > div > div:first-child > ul > li,
+.columns-wrapper .renewal-cert.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .owners-name.columns > div > div:first-child > ul > li,
 .columns-wrapper .owners-name.columns > div > div:first-child > p.button-wrapper {
   width: auto !important;
