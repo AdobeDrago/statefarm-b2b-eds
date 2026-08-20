@@ -274,6 +274,8 @@
   margin-top: 50px;
 }
 
+.columns-wrapper .two-columns-layout.columns > div > div:last-child > #additional-information-screen,
+.columns-wrapper .two-columns-layout.columns > div > div:last-child > #fire-selection-screen,
 .columns-wrapper .two-columns-layout.columns > div > div:last-child > #verification-screen {
   margin-top: 0;
 }
