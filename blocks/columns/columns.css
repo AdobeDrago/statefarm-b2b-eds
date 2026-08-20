@@ -188,7 +188,9 @@
 /* mbps step pages: H1 sits above columns(mbps) and lines up with the sidebar
    (MBPS tool) — same 8.333% inset as the columns block */
 .default-content-wrapper #step-2-selecting-bills-to-pay,
-.default-content-wrapper #step-3-paying-bills {
+.default-content-wrapper #step-3-paying-bills,
+/* stylelint-disable-next-line selector-id-pattern */
+.default-content-wrapper #step-4-payment-history--payment-details {
   margin: 24px 8.333% 20px;
   font-size: 2.438rem;
   font-weight: 600;
@@ -689,7 +691,9 @@
   .default-content-wrapper #adas-calibration-program,
   .default-content-wrapper #personal-property-replacement,
   .default-content-wrapper #step-2-selecting-bills-to-pay,
-  .default-content-wrapper #step-3-paying-bills {
+  .default-content-wrapper #step-3-paying-bills,
+  /* stylelint-disable-next-line selector-id-pattern */
+  .default-content-wrapper #step-4-payment-history--payment-details {
     font-size: 33px;
   }
 
@@ -797,7 +801,9 @@
   }
 
   .default-content-wrapper #step-2-selecting-bills-to-pay,
-  .default-content-wrapper #step-3-paying-bills {
+  .default-content-wrapper #step-3-paying-bills,
+  /* stylelint-disable-next-line selector-id-pattern */
+  .default-content-wrapper #step-4-payment-history--payment-details {
     font-size: 1.563rem;
     font-weight: 600;
   }
