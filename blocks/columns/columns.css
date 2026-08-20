@@ -396,6 +396,7 @@
   margin-top: 50px;
 }
 
+.columns-wrapper .sample-cert.columns > div > div:last-child > p:has( > picture > img),
 .columns-wrapper .renewal-cert.columns > div > div:last-child > p:has( > picture > img) {
   margin-bottom: 50px;
 }
@@ -562,6 +563,8 @@
   display: flex;
 }
 
+.columns-wrapper .sample-cert.columns > div > div:first-child > ul > li,
+.columns-wrapper .sample-cert.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .renewal-cert.columns > div > div:first-child > ul > li,
 .columns-wrapper .renewal-cert.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .owners-name.columns > div > div:first-child > ul > li,
