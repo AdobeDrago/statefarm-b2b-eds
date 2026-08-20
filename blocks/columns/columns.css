@@ -563,6 +563,8 @@
   display: flex;
 }
 
+.columns-wrapper .standard-address.columns > div > div:first-child > ul > li,
+.columns-wrapper .standard-address.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .sample-cert.columns > div > div:first-child > ul > li,
 .columns-wrapper .sample-cert.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .renewal-cert.columns > div > div:first-child > ul > li,
