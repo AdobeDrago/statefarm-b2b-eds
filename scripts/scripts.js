@@ -255,6 +255,85 @@ export function decorateDropdown(ul, placeholder) {
 }
 
 /**
+ * Contact Us FAQ section headings — not accordion questions.
+ */
+const CONTACT_US_SECTION_IDS = new Set([
+  'contact-us-frequently-asked-questions',
+  'log-in--registration',
+  'working-with-us',
+]);
+
+/**
+ * Builds one FAQ accordion item from a question heading and its following answer nodes.
+ * @param {Element} heading the question heading
+ * @param {Element[]} answerNodes nodes that make up the answer
+ * @returns {HTMLDetailsElement} the accordion item
+ */
+function buildContactUsFaqItem(heading, answerNodes) {
+  const summary = document.createElement('summary');
+  summary.className = 'contact-us-faq-label';
+  summary.append(heading);
+
+  const answer = document.createElement('div');
+  answer.className = 'contact-us-faq-body';
+  answer.append(...answerNodes);
+
+  const details = document.createElement('details');
+  details.className = 'contact-us-faq-item';
+  details.append(summary, answer);
+  return details;
+}
+
+/**
+ * Turns Contact Us FAQ question/answer pairs into accordions under each section
+ * heading (Log In & Registration, Working with us), matching the live site.
+ * @param {Element} main The main element
+ */
+function decorateContactUsFaq(main) {
+  const title = main.querySelector('#contact-us-frequently-asked-questions');
+  if (!title) return;
+  const wrapper = title.parentElement;
+  if (!wrapper) return;
+
+  const headings = [...wrapper.querySelectorAll(':scope > h3')];
+  let i = 0;
+  while (i < headings.length) {
+    const section = headings[i];
+    const isFaqSection = CONTACT_US_SECTION_IDS.has(section.id)
+      && section.id !== 'contact-us-frequently-asked-questions';
+    if (!isFaqSection) {
+      i += 1;
+    } else {
+      const accordion = document.createElement('div');
+      accordion.className = 'contact-us-faq';
+      let j = i + 1;
+      while (j < headings.length && !CONTACT_US_SECTION_IDS.has(headings[j].id)) {
+        const question = headings[j];
+        const answerNodes = [];
+        let node = question.nextElementSibling;
+        while (node && node.tagName !== 'H3') {
+          const next = node.nextElementSibling;
+          // closing copy after the last Working with us item stays outside the accordion
+          if (question.id === 'personal-property-replacement-service' && answerNodes.length) break;
+          answerNodes.push(node);
+          node = next;
+        }
+        accordion.append(buildContactUsFaqItem(question, answerNodes));
+        j += 1;
+      }
+      if (accordion.children.length) section.after(accordion);
+      i = j;
+    }
+  }
+
+  [...wrapper.querySelectorAll(':scope > p')].forEach((paragraph) => {
+    paragraph.classList.add('contact-us-closing');
+    const bold = paragraph.querySelector(':scope > b');
+    if (bold && paragraph.childNodes.length === 1) bold.replaceWith(...bold.childNodes);
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -269,6 +348,7 @@ export function decorateMain(main) {
   decorateAuthLinks(main);
   // must run after decorateSections — the gate walk relies on section wrappers
   decorateAuthGate(main);
+  decorateContactUsFaq(main);
 }
 
 /**
