@@ -289,10 +289,6 @@ main:has(.side-nav-help-support) .section:has(> .side-nav-wrapper) > .default-co
   margin-bottom: 32px;
 }
 
-main:has(#auto-operations-faq, #fire-operations-faq) > .breadcrumbs-container {
-  display: none;
-}
-
 main:has(#lender-relations-contacts) .side-nav-body {
   margin-bottom: 48px;
 }
