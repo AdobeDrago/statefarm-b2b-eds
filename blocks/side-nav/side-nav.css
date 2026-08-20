@@ -307,10 +307,46 @@ main:has(#what-is-edi-and-eft) .side-nav-body .side-nav-lead,
 main:has(#what-is-edi-and-eft) .side-nav-body > h3:first-child {
   margin-top: 0;
   margin-bottom: 19px;
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 26px;
+  line-height: 22px;
   letter-spacing: 0;
+}
+
+main:has(#what-is-edi-and-eft) .side-nav-body #why-edi {
+  font-size: 1.375rem;
+  font-weight: 500;
+}
+
+@media (width >= 768px) {
+  main:has(#what-is-edi-and-eft) .side-nav-body .side-nav-lead,
+  main:has(#what-is-edi-and-eft) .side-nav-body > h3:first-child {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  main:has(#what-is-edi-and-eft) .side-nav-body #why-edi {
+    font-size: 1.688rem;
+    font-weight: 500;
+  }
+}
+
+@media (width >= 1024px) {
+  main:has(#what-is-edi-and-eft) .side-nav-body .side-nav-lead,
+  main:has(#what-is-edi-and-eft) .side-nav-body > h3:first-child {
+    font-size: 19px;
+    line-height: 26px;
+  }
+
+  main:has(#what-is-edi-and-eft) .side-nav-body #why-edi {
+    font-size: 1.938rem;
+    font-weight: 500;
+    line-height: 31px;
+  }
+}
+
+main:has(#what-is-edi-and-eft) .side-nav-body :is(p, li) :is(strong, b) {
+  font-weight: 600;
 }
 
 main:has(#replacement-program-faqs) .side-nav-body h3:not(#replacement-program-faqs) {
