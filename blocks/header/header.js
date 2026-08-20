@@ -318,7 +318,7 @@ export default async function decorate(block) {
     if (loginPara) {
       const loginLink = loginPara.querySelector('a');
       if (loginLink) {
-        loginLink.classList.add('nav-login');
+        loginLink.classList.add('-oneX-header-top-menu-btn');
         // the authored href is the real login app, so only simulation hosts rewrite it
         if (isSimulationEnabled()) decorateAuthControl(loginLink);
       }

@@ -19,7 +19,7 @@ function decorateLoginPanel(block) {
   // e.g. /b2b-content/suppliers, whose panel cell holds only a spacer
   if (!loginLink) return;
 
-  loginLink.classList.add('button', 'accent');
+  loginLink.classList.add('-oneX-btn-primary');
   const wrapper = loginLink.closest('p');
   if (!wrapper) return;
   wrapper.classList.add('button-wrapper');

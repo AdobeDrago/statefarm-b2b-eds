@@ -56,7 +56,7 @@ export default async function decorate(block) {
   if (footerHeading && footerHeading.textContent.includes('®') && !footerHeading.querySelector('.registered')) {
     footerHeading.innerHTML = footerHeading.innerHTML.replace(
       /®/g,
-      '<sup class="registered">®</sup>',
+      '<sup class="registered -oneX-accent-malachite-75">®</sup>',
     );
   }
 }
