@@ -351,3 +351,8 @@
     font-size: 18px;
   }
 }
+
+
+.request-supplement .cards-card-body{
+    min-height: unset;
+  }
