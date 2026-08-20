@@ -143,6 +143,10 @@
   color: var(--dark-gray-color);
 }
 
+.columns-wrapper .policy-search.columns > div > div:last-child > p:has( > picture > img) {
+  margin-top: 50px;
+}
+
 .columns.columns-2-cols #resources ~ p,
 /* stylelint-disable-next-line selector-id-pattern */
 .columns.columns-2-cols #help--support ~ p {
