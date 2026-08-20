@@ -1513,7 +1513,7 @@ main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body
 /* Bold copy should read as emphasis (600), not heavy black (700) */
 main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body :is(strong, b),
 .accordion.contact-us .accordion-item-body :is(strong, b),
-main:has(#contact-us-frequently-asked-questions) .default-content-wrapper > p.contact-us-closing :is(strong, b) {
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p :is(strong, b) {
   font-weight: 600;
 }
 
@@ -1550,9 +1550,9 @@ main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body
   color: var(--text-dark-color);
 }
 
-/* Closing copy after the Working with us accordion */
-main:has(#contact-us-frequently-asked-questions) .default-content-wrapper > .accordion ~ p,
-main:has(#contact-us-frequently-asked-questions) .default-content-wrapper > p.contact-us-closing {
+/* Closing copy authored outside the accordion — after decoration those
+   paragraphs land in their own .default-content-wrapper (not beside .accordion). */
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p {
   margin-top: 0;
   margin-bottom: 16px;
   font-size: 16px;
@@ -1561,8 +1561,11 @@ main:has(#contact-us-frequently-asked-questions) .default-content-wrapper > p.co
   color: var(--text-dark-color);
 }
 
-main:has(#contact-us-frequently-asked-questions) .default-content-wrapper > .accordion ~ p a,
-main:has(#contact-us-frequently-asked-questions) .default-content-wrapper > p.contact-us-closing a {
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p:first-child {
+  margin-top: 16px;
+}
+
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p a {
   font-weight: 600;
 }
 
