@@ -464,6 +464,7 @@ main .section.khaki ul:last-child {
 
 #instructions--guides+ul li .button-wrapper a { 
   text-decoration: unset;
+  white-space: unset;
   display: block;
   border-radius: 0;
   padding: 0 0;
