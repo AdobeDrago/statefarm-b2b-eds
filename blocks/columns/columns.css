@@ -376,6 +376,10 @@
   padding-bottom: 8px;
 }
 
+.columns-wrapper .policy-search.columns > div > div:last-child > p:has( > picture > img) {
+  margin-top: 50px;
+}
+
 /* stylelint-disable no-descending-specificity */
 .columns-wrapper .two-columns-layout.columns > div > div:last-child > p:has( > picture > img),
 .columns-wrapper .cert-holder-error.columns > div > div:last-child > p:has( > picture > img),
