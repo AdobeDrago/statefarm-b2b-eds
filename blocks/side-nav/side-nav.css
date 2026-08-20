@@ -307,6 +307,12 @@ main:has(#auto-operations-directory) .side-nav-body h3 {
   font-weight: 500;
 }
 
+main:has(#replacement-program-faqs) .side-nav-body h3:not(#replacement-program-faqs) {
+  margin-bottom: 24px;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
 main:has(#auto-operations-directory) .side-nav-body #to-help-expedite-your-call-review-the-hints-and-tips-below {
   margin-top: 26px;
 }
