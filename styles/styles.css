@@ -572,6 +572,79 @@ main .section.khaki ul:last-child {
 
 
 
+#fire-service{
+    font-size: 3rem;
+    line-height: 48px;
+    font-weight: 600;
+    margin: 24px 0 64px;
+  }
+#need-help{
+    font-size: 1.563rem;
+      font-weight: 500;
+      line-height: 25px;
+      margin-top: 78px;
+      margin-bottom: 24px;
+  }
+#need-help + ul {
+  list-style-type: none;
+  padding-left: 0px;
+  font-size: 16px; 
+    line-height: 21px;
+    font-weight: 400;
+  margin-bottom: 105px;
+}
+#need-help+ul li {
+  margin-bottom: 18px;
+}
+
+
+@media(width <=990px){
+  #fire-service {
+      font-size: 2.438rem;
+        line-height: 39px;
+      font-weight: 600;
+      margin: 24px 0 64px;
+    }
+  
+    #need-help {
+      font-size: 1.438rem;
+        line-height: 23px;
+      margin-top: 54px;
+      margin-bottom: 24px;
+    }
+        #need-help+ul { 
+          margin-bottom: 72px;
+        }
+   
+  
+    #need-help+ul li {
+      margin-bottom: 18px;
+    }
+  }
+
+@media(width <768px) {
+  #fire-service {
+    font-size: 1.75rem;
+    line-height: 28px;
+    font-weight: 600;
+    margin: 24px 0 64px;
+  }
+
+  #need-help {
+    font-size: 1.25rem;
+    line-height: 20px;
+    margin-top: 54px;
+    margin-bottom: 24px;
+  }
+
+#need-help+ul { 
+  margin-bottom: 72px;
+}
+  #need-help+ul li {
+    margin-bottom: 18px;
+  }
+}
+
 
 main img {
   max-width: 100%;
