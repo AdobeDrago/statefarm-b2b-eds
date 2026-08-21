@@ -1557,6 +1557,30 @@ h1#functional-acknowledgement-electronic-file {
     line-height: 33px;
   }
 }
+
+/* stylelint-disable-next-line selector-id-pattern */
+h1#example-transaction-set-segment-uses--sequence {
+  margin: 24px 8.333%;
+  font-size: 1.563rem;
+  font-weight: 600;
+}
+
+@media (width >=768px) {
+  /* stylelint-disable-next-line selector-id-pattern */
+  h1#example-transaction-set-segment-uses--sequence {
+    margin-bottom: 24px;
+    font-size: 2.063rem;
+    line-height: 25px;
+  }
+}
+
+@media (width >=1024px) {
+  /* stylelint-disable-next-line selector-id-pattern */
+  h1#example-transaction-set-segment-uses--sequence {
+    font-size: 2.438rem;
+    line-height: 33px;
+  }
+}
 /* stylelint-enable no-descending-specificity */
 
 .default-content-wrapper #electronic-payments {
