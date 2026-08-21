@@ -562,6 +562,10 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   color: var(--dark-gray-color);
 }
 
+.columns-wrapper .examples-997.columns > div > div:last-child > table > tbody > tr {
+  grid-template-columns: 7fr 12fr;
+}
+
 .columns-wrapper .examples-820.columns > div > div:last-child > table > tbody > tr,
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr {
   grid-template-columns: 1fr 1fr;
@@ -626,6 +630,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   padding: 19px 20px 18px 10px;
 }
 
+.columns-wrapper .examples-997.columns > div > div:last-child > p:has(a[title="Back to top"]),
 .columns-wrapper .examples-820.columns > div > div:last-child > p.button-wrapper > a[title="Back to top"],
 .columns-wrapper .examples-811.columns > div > div:last-child > p.button-wrapper > a[title="Back to top"] {
   margin-top: 10px;
@@ -654,6 +659,21 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
 
 .columns-wrapper .examples-811.columns > div > div:last-child > table:first-of-type > tbody > tr:nth-child(2) > td > * {
   color: var(--dark-gray-color);
+}
+
+.columns-wrapper .examples-997.columns > div > div:last-child > table > tbody > tr {
+  border-bottom: 1pt solid #ACABAB;
+}
+
+.columns-wrapper .examples-997.columns > div > div:last-child > table > tbody > tr > td {
+  font-size: 14px;
+  place-content: center;
+  color: #767676 !important;
+  font-weight: 400 !important;
+  border-right: none !important;
+  white-space: normal !important;
+  border-bottom: none !important;
+  padding: 19px 20px 18px 10px !important;
 }
 
 .columns-wrapper .two-columns-layout.columns > div > div:first-child > ul,
