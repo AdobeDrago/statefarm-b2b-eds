@@ -1420,6 +1420,12 @@ h1#acquisition-114 {
     font-size: 2.063rem;
   }
 }
+
+@media (width >=1024px) {
+  h1#acquisition-114 {
+    font-size: 2.438rem;
+  }
+}
 /* stylelint-enable no-descending-specificity */
 
 .default-content-wrapper #electronic-payments {

@@ -1039,9 +1039,14 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
 }
 
 /* mortgage-record-chg-table: second variant for mortgage-record-chg subpages whose
-   right-hand column contains a data-format table (e.g. Acquisition 114). Kept
-   separate from .mortgage-record-chg so table rules never leak into pages that
-   only have text/list content. Author as: columns(mortgage-record-chg, mortgage-record-chg-table) */
+   right-hand column contains a data-format table (e.g. Acquisition 114). Content is
+   authored as one or more native <table> blocks (only the first has a header row —
+   a plain <tr><td><strong> pair, not a <thead>/<th>). A bold <p> directly between two
+   tables is the "next policy..." note; a <td colspan="2"> row is a footnote line like
+   "*Interchange receiver...". Kept separate from .mortgage-record-chg so these rules
+   never leak into pages with only text/list content.
+   Author as: columns(mortgage-record-chg, mortgage-record-chg-table) */
+/* stylelint-disable no-descending-specificity */
 .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table {
   width: 100%;
   margin: 0 0 16px;
@@ -1049,53 +1054,74 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   table-layout: fixed;
 }
 
-/* stylelint-disable no-descending-specificity */
-.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table th,
 .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td {
+  padding: 19px 20px 18px 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #767676;
   text-align: left;
+  vertical-align: middle;
+  border-bottom: 1pt solid #acabab;
   overflow-wrap: anywhere;
 }
 
-.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table th {
-  padding: 17px 10px 20px;
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td:first-child {
+  width: 38%;
+}
+
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td:last-child:not([colspan]) {
+  padding-left: 30px;
+}
+
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table:first-of-type > tbody > tr:first-child > td {
+  padding-top: 17px;
+  padding-right: 10px;
+  padding-bottom: 20px;
   font-size: 14px;
   font-weight: 600;
   color: var(--dark-gray-color);
   border-bottom: 1px solid #e4e3e3;
 }
 
-.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td {
-  padding: 19px 20px 18px 10px;
-  font-size: 14px;
-  font-weight: 400;
-  color: #767676;
-  vertical-align: middle;
-  border-bottom: 1pt solid #acabab;
-}
-
-.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table th:first-child,
-.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td:first-child {
-  width: 38%;
-}
-/* stylelint-enable no-descending-specificity */
-
 .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table ul {
   margin: 8px 0 0;
   padding: 0 0 0 20px;
 }
 
-.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td.mrc-table-note {
+/* "The next policy goes here..." note sitting between two tables. Stacks
+   .mortgage-record-chg with .mortgage-record-chg-table to outrank the plain
+   intro-paragraph rule above (same class count would otherwise let source
+   order decide, which is fragile) */
+.columns-wrapper .mortgage-record-chg.mortgage-record-chg-table.columns > div > div:last-child > table + p {
+  margin: 0;
+  padding: 19px 10px 18px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #212121;
+  border-top: 1pt solid #acabab;
+}
+
+.columns-wrapper .mortgage-record-chg.mortgage-record-chg-table.columns > div > div:last-child > table + p > strong {
+  font-weight: 400;
+}
+
+/* full-width note row, e.g. "The next policy goes here..." — a colspan row
+   that isn't the table's last row (the last row is the footnote below) */
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td[colspan] {
   font-size: 16px;
   font-weight: 400;
   color: #212121;
 }
 
-.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td.mrc-table-footnote {
+/* footnote row, e.g. "*Interchange receiver for test is..." — always the
+   final row of its table */
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table tr:last-child > td[colspan] {
   padding-left: 40px;
   font-size: 14px;
   font-weight: 400;
   color: #767676;
 }
+/* stylelint-enable no-descending-specificity */
 
 .columns-wrapper .mortgage-record-chg.mortgage-record-chg-table.columns > div > div:last-child > h3 {
   font-size: 1.375rem;
@@ -1114,14 +1140,19 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   }
 }
 
+@media (width >=1024px) {
+  .columns-wrapper .mortgage-record-chg.mortgage-record-chg-table.columns > div > div:last-child > h3 {
+    font-size: 1.938rem;
+  }
+}
+
 @media (width <= 900px) {
-  .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table th,
   .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td {
     padding: 12px 8px 12px 6px;
     font-size: 12px;
   }
 
-  .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td.mrc-table-note {
-    font-size: 13px;
+  .columns-wrapper .mortgage-record-chg.mortgage-record-chg-table.columns > div > div:last-child > table + p {
+    padding: 12px 6px;
   }
 }
