@@ -1177,3 +1177,68 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
     padding: 12px 6px;
   }
 }
+
+/* auto811files-table: 
+   Author as: columns(auto811files, auto811files-table) */
+/* stylelint-disable no-descending-specificity */
+.columns-wrapper .auto811files-table.columns > div > div:last-child > table {
+  width: 100%;
+  margin: 0 0 16px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.columns-wrapper .auto811files-table.columns > div > div:last-child > table td {
+  padding: 19px 20px 18px 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #767676;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1pt solid #acabab;
+  overflow-wrap: anywhere;
+}
+
+.columns-wrapper .auto811files-table.columns > div > div:last-child > table td:first-child {
+  width: 38%;
+}
+
+.columns-wrapper .auto811files-table.columns > div > div:last-child > table td:last-child {
+  padding-left: 30px;
+}
+/* stylelint-enable no-descending-specificity */
+
+@media (width <= 900px) {
+  /* narrow the left nav column so the table has room to breathe on
+     mobile/tablet — overrides the shared 1fr 2fr split for this variant only.
+     A small left padding keeps the nav link text off the block's own left
+     edge so it never renders flush against the viewport/section boundary */
+  .columns-wrapper .auto811files.auto811files-table.columns > div {
+    grid-template-columns: minmax(80px, 25%) 1fr;
+  }
+
+  .columns-wrapper .auto811files-table.columns > div > div:first-child {
+    padding-left: 4px;
+  }
+
+  .columns-wrapper .auto811files-table.columns > div > div:last-child > table td {
+    padding: 12px 8px 12px 6px;
+  }
+
+  /* give the short segment codes a bit more room than the desktop 38% split,
+     since the whole content column is narrower here */
+  .columns-wrapper .auto811files-table.columns > div > div:last-child > table td:first-child {
+    width: 45%;
+  }
+
+  .columns-wrapper .auto811files-table.columns > div > div:first-child > p.button-wrapper {
+    width: 100%;
+  }
+
+  .columns-wrapper .auto811files-table.columns > div > div:first-child > p.button-wrapper > a {
+    width: 100%;
+    overflow: visible;
+    overflow-wrap: anywhere;
+    text-overflow: clip;
+  }
+}
