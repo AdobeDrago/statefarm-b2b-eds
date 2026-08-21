@@ -651,6 +651,112 @@ main .section.khaki ul:last-child {
 }
 
 
+#multi-factor-authentication-faq{
+    display: none;
+  }
+
+#log-in-faq{
+    font-size: 2.438rem;
+      line-height: 39px;
+      margin-block: 88px 56px;
+  }
+
+#what-changes-have-been-made-to-the-login-process,
+#what-is-multi-factor-authentication-mfa,
+#what-are-my-authentication-options,
+#how-do-i-update-my-email-address-for-mfa,
+#how-often-will-mfa-be-required,
+#how-does-the-mfa-process-work-on-b2b,
+#who-can-i-contact-for-help-if-i-have-trouble-logging-in,
+#what-should-i-do-if-i-dont-receive-the-mfa-code
+{
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 400;
+    margin-block: 0px 25px;
+  }
+
+#what-changes-have-been-made-to-the-login-process +p,
+#what-changes-have-been-made-to-the-login-process+p+p,
+#what-is-multi-factor-authentication-mfa +p,
+#what-are-my-authentication-options +p,
+#how-do-i-update-my-email-address-for-mfa +p,
+#how-often-will-mfa-be-required +p,
+#how-does-the-mfa-process-work-on-b2b +p,
+#who-can-i-contact-for-help-if-i-have-trouble-logging-in +p,
+#what-should-i-do-if-i-dont-receive-the-mfa-code+p {
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 400;
+  margin-block: 0px 16px;
+}
+
+#what-changes-have-been-made-to-the-login-process+p+p a { 
+  display: block;
+    margin-block: 0px 37px;
+    font-weight: 500;
+  }
+#who-can-i-contact-for-help-if-i-have-trouble-logging-in+p a{ 
+    font-weight: 500;
+  }
+
+#what-should-i-do-if-i-dont-receive-the-mfa-code + p {
+    margin-bottom: 100px;
+  }
+
+@media(width <=990px) {
+  #log-in-faq {
+      font-size: 2.063rem;
+        line-height: 33px;
+      margin-block: 80px 56px;
+    }
+  #what-changes-have-been-made-to-the-login-process,
+  #what-is-multi-factor-authentication-mfa,
+  #what-are-my-authentication-options,
+  #how-do-i-update-my-email-address-for-mfa,
+  #how-often-will-mfa-be-required,
+  #how-does-the-mfa-process-work-on-b2b,
+  #who-can-i-contact-for-help-if-i-have-trouble-logging-in,
+  #what-should-i-do-if-i-dont-receive-the-mfa-code {
+    font-size: 23px;
+      line-height: 29px;
+      margin-block: 0px 23px;
+  }
+  #what-should-i-do-if-i-dont-receive-the-mfa-code+p {
+    margin-bottom: 80px;
+  }
+}
+@media(width <768px) {
+  #log-in-faq {
+    font-size: 1.563rem;;
+    line-height: 25px;
+    margin-block: 72px 55px;
+  }
+
+  #what-changes-have-been-made-to-the-login-process,
+  #what-is-multi-factor-authentication-mfa,
+  #what-are-my-authentication-options,
+  #how-do-i-update-my-email-address-for-mfa,
+  #how-often-will-mfa-be-required,
+  #how-does-the-mfa-process-work-on-b2b,
+  #who-can-i-contact-for-help-if-i-have-trouble-logging-in,
+  #what-should-i-do-if-i-dont-receive-the-mfa-code {
+    font-size: 20px;
+    line-height: 26px;
+    margin-block: 0px 21px;
+  }
+
+  #what-should-i-do-if-i-dont-receive-the-mfa-code+p {
+    margin-bottom: 76px;
+  }
+}
+
+
+
+
+
+
+
 main img {
   max-width: 100%;
   width: auto;
