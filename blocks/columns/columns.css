@@ -267,6 +267,7 @@
   overflow-wrap: anywhere;
 }
 
+.columns-wrapper .two-columns-layout.columns > div > div:last-child > h3 > *,
 .columns-wrapper .two-columns-layout.columns > div > div:last-child > h3,
 .columns-wrapper .mbps.columns > div > div:last-child > h3,
 .columns-wrapper .edi-faq.columns > div > div:last-child > h3,
@@ -331,6 +332,7 @@
   color: var(--dark-gray-color);
 }
 
+.columns-wrapper .two-columns-layout.columns > div > div:last-child > h5 > *,
 .columns-wrapper .two-columns-layout.columns > div > div:last-child > h5,
 .columns-wrapper .mbps.columns > div > div:last-child > h5,
 .columns-wrapper .edi-faq.columns > div > div:last-child > h5,
@@ -516,6 +518,10 @@
   grid-template-columns: minmax(63.95px, 1fr) 3fr 6fr;
 }
 
+.columns-wrapper .examples-820.columns > div > div:last-child > p > strong {
+  font-weight: 600;
+}
+
 .columns-wrapper .two-columns-layout.columns > div > div:last-child > table > tbody > tr:first-child > td > strong {
   font-weight: 600;
 }
@@ -545,6 +551,7 @@
   color: var(--dark-gray-color);
 }
 
+.columns-wrapper .examples-820.columns > div > div:last-child > table > tbody > tr,
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr {
   grid-template-columns: 1fr 1fr;
 }
@@ -563,6 +570,7 @@
   padding: 19px 20px 18px 10px;
 }
 
+.columns-wrapper .examples-820.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td,
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td {
   font-size: 14px;
   text-align: left;
@@ -573,6 +581,7 @@
   padding: 19px 20px 18px 10px !important;
 }
 
+.columns-wrapper .examples-820.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td:first-child,
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td:first-child,
 .columns-wrapper .ach-payments.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td:first-child {
   border-right: none !important;
@@ -606,6 +615,7 @@
   padding: 19px 20px 18px 10px;
 }
 
+.columns-wrapper .examples-820.columns > div > div:last-child > p.button-wrapper > a[title="Back to top"],
 .columns-wrapper .examples-811.columns > div > div:last-child > p.button-wrapper > a[title="Back to top"] {
   margin-top: 10px;
   margin-bottom: 50px;
@@ -621,6 +631,10 @@
   background: none;
   text-decoration: none;
   color: var(--link-color);
+}
+
+.columns-wrapper .two-columns-layout.columns > div > div:last-child > p.button-wrapper > a[title="Back to top"]:hover {
+  text-decoration: underline;
 }
 
 .columns-wrapper .ach-payments.columns > div > div:last-child > h5:not(:first-of-type) {
