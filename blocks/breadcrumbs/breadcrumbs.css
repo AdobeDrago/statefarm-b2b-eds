@@ -34,15 +34,6 @@ main .breadcrumbs-container > .breadcrumbs-wrapper {
   }
 }
 
-/* tablet only: line up the trail's left edge with the hamburger icon above
-   it (header nav .nav-hamburger-icon sits at 24px from the viewport edge at
-   this width) instead of the wider 26px gutter used from tablet up */
-@media (width >= 768px) and (width <= 1023px) {
-  main .breadcrumbs-container > .breadcrumbs-wrapper {
-    padding-left: 2px;
-  }
-}
-
 main .breadcrumbs ol {
   display: flex;
   flex-wrap: wrap;
