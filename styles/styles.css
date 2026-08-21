@@ -1409,6 +1409,17 @@ main:has(#medical-provider-portal--claim-view) > .section > .default-content-wra
     grid-column: 2;
   }
 }
+
+h1#acquisition-114 {
+  font-size: 1.563rem;
+  font-weight: 600;
+}
+
+@media (width >=768px) {
+  h1#acquisition-114 {
+    font-size: 2.063rem;
+  }
+}
 /* stylelint-enable no-descending-specificity */
 
 .default-content-wrapper #electronic-payments {

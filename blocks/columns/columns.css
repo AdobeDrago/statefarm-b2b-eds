@@ -163,6 +163,17 @@
   color: var(--dark-gray-color);
 }
 
+/* Page title on mortgage-record-chg subpages: align the h1 with the block's own
+   8.333% side margin (see .mortgage-record-chg.columns margin below) instead of
+   the page's default padding. Scoped via :has() to sections immediately
+   followed by a section containing the mortgage-record-chg block, so it never
+   affects h1 on unrelated pages. */
+main .section:has(~ .section .mortgage-record-chg) h1 {
+  margin: 24px 8.333%;
+  font-size: 2.438rem;
+  font-weight: 600;
+}
+
 .columns-container:has( > div:last-child > .two-columns-layout) > div:first-child > h1,
 /* stylelint-disable-next-line selector-id-pattern */
 .default-content-wrapper #certificate-holder--error,
@@ -968,5 +979,90 @@
 
   .columns-wrapper .ach-payments.columns > div > div:last-child > table > tbody > tr:first-child > td > strong {
     white-space: normal;
+  }
+}
+
+/* mortgage-record-chg-table: second variant for mortgage-record-chg subpages whose
+   right-hand column contains a data-format table (e.g. Acquisition 114). Kept
+   separate from .mortgage-record-chg so table rules never leak into pages that
+   only have text/list content. Author as: columns(mortgage-record-chg, mortgage-record-chg-table) */
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table {
+  width: 100%;
+  margin: 0 0 16px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table th,
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td {
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table th {
+  padding: 17px 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark-gray-color);
+  border-bottom: 1px solid #e4e3e3;
+}
+
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td {
+  padding: 19px 20px 18px 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #767676;
+  vertical-align: middle;
+  border-bottom: 1pt solid #acabab;
+}
+
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table th:first-child,
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td:first-child {
+  width: 38%;
+}
+
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table ul {
+  margin: 8px 0 0;
+  padding: 0 0 0 20px;
+}
+
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td.mrc-table-note {
+  font-size: 16px;
+  font-weight: 400;
+  color: #212121;
+}
+
+.columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td.mrc-table-footnote {
+  font-size: 14px;
+  font-weight: 400;
+  color: #767676;
+}
+
+.columns-wrapper .mortgage-record-chg.mortgage-record-chg-table.columns > div > div:last-child > h3 {
+  font-size: 1.375rem;
+  font-weight: 500;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.columns-wrapper .mortgage-record-chg.mortgage-record-chg-table.columns > div > div:last-child > p {
+  font-size: 16px;
+  line-height: 21px;
+}
+
+@media (width >=768px) {
+  .columns-wrapper .mortgage-record-chg.mortgage-record-chg-table.columns > div > div:last-child > h3 {
+    font-size: 1.688rem;
+  }
+}
+
+@media (width <= 900px) {
+  .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table th,
+  .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td {
+    padding: 12px 8px 12px 6px;
+    font-size: 12px;
+  }
+
+  .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td.mrc-table-note {
+    font-size: 13px;
   }
 }
