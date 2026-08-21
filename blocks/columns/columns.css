@@ -993,6 +993,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   table-layout: fixed;
 }
 
+/* stylelint-disable no-descending-specificity */
 .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table th,
 .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td {
   text-align: left;
@@ -1020,6 +1021,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
 .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td:first-child {
   width: 38%;
 }
+/* stylelint-enable no-descending-specificity */
 
 .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table ul {
   margin: 8px 0 0;
