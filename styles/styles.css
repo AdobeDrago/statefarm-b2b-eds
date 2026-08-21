@@ -673,7 +673,7 @@ main .section.khaki ul:last-child {
     font-size: 25px;
     line-height: 30px;
     font-weight: 400;
-    margin-block: 0px 25px;
+    margin-block: 0 25px;
   }
 
 #what-changes-have-been-made-to-the-login-process +p,
@@ -688,14 +688,15 @@ main .section.khaki ul:last-child {
   font-size: 16px;
   line-height: 21px;
   font-weight: 400;
-  margin-block: 0px 16px;
+  margin-block: 0 16px;
 }
 
 #what-changes-have-been-made-to-the-login-process+p+p a { 
   display: block;
-    margin-block: 0px 37px;
+    margin-block: 0 37px;
     font-weight: 500;
   }
+
 #who-can-i-contact-for-help-if-i-have-trouble-logging-in+p a{ 
     font-weight: 500;
   }
@@ -710,6 +711,7 @@ main .section.khaki ul:last-child {
         line-height: 33px;
       margin-block: 80px 56px;
     }
+
   #what-changes-have-been-made-to-the-login-process,
   #what-is-multi-factor-authentication-mfa,
   #what-are-my-authentication-options,
@@ -720,12 +722,14 @@ main .section.khaki ul:last-child {
   #what-should-i-do-if-i-dont-receive-the-mfa-code {
     font-size: 23px;
       line-height: 29px;
-      margin-block: 0px 23px;
+      margin-block: 0 23px;
   }
+
   #what-should-i-do-if-i-dont-receive-the-mfa-code+p {
     margin-bottom: 80px;
   }
 }
+
 @media(width <768px) {
   #log-in-faq {
     font-size: 1.563rem;;
@@ -743,7 +747,7 @@ main .section.khaki ul:last-child {
   #what-should-i-do-if-i-dont-receive-the-mfa-code {
     font-size: 20px;
     line-height: 26px;
-    margin-block: 0px 21px;
+    margin-block: 0 21px;
   }
 
   #what-should-i-do-if-i-dont-receive-the-mfa-code+p {
