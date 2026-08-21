@@ -545,6 +545,10 @@
   color: var(--dark-gray-color);
 }
 
+.columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr {
+  grid-template-columns: 1fr 1fr;
+}
+
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr:not(:first-child),
 .columns-wrapper .ach-payments.columns > div > div:last-child > table > tbody > tr:not(:first-child) {
   border-bottom: 1pt solid #ACABAB;
@@ -557,6 +561,16 @@
   color: #767676 !important;
   font-weight: 400 !important;
   padding: 19px 20px 18px 10px;
+}
+
+.columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td {
+  font-size: 14px;
+  text-align: left;
+  place-content: center;
+  color: #767676 !important;
+  font-weight: 400 !important;
+  white-space: normal !important;
+  padding: 19px 20px 18px 10px !important;
 }
 
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td:first-child,
@@ -613,23 +627,8 @@
   margin-top: 60px;
 }
 
-.columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr {
-  grid-template-columns: 1fr 1fr;
-}
-
 .columns-wrapper .examples-811.columns > div > div:last-child > table:first-of-type > tbody > tr:nth-child(2) > td > * {
   color: var(--dark-gray-color);
-}
-
-.columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td {
-  font-size: 14px;
-  text-align: left;
-  place-content: middle;
-  color: #767676 !important;
-  font-weight: 400 !important;
-  padding: 19px 20px 18px 10px;
-  white-space: normal !important;
-  padding: 17px 10px 20px !important;
 }
 
 .columns-wrapper .two-columns-layout.columns > div > div:first-child > ul,
