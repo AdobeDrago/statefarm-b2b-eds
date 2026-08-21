@@ -1077,6 +1077,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
 }
 
 .columns-wrapper .mortgage-record-chg-table.columns > div > div:last-child > table td.mrc-table-footnote {
+  padding-left: 40px;
   font-size: 14px;
   font-weight: 400;
   color: #767676;
