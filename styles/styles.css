@@ -767,13 +767,13 @@ main .section.khaki ul:last-child {
     font-size: 1.938rem;
     line-height: 31px;
     font-weight: 500;
-    margin-block: 0px 24px;
+    margin-block: 0 24px;
   }
 
 #about-registration ~ p {
   font-size: 16px;
   line-height: 21px;
-  margin-block: 0px  16px;
+  margin-block: 0 16px;
 }
 
 #about-registration ~ p:last-child { 
@@ -794,6 +794,7 @@ main .section.khaki ul:last-child {
       font-size: 1.688rem;
       line-height: 27px; 
     }
+    
     #about-registration~p:last-child {
       margin-bottom: 82px;
     }
