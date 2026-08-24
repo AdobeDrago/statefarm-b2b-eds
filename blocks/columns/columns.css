@@ -534,6 +534,10 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   grid-template-columns: minmax(63.95px, 1fr) 3fr 6fr;
 }
 
+.columns-wrapper .table-column.columns > div > div:last-child > table > tbody > tr {
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+}
+
 .columns-wrapper .examples-820.columns > div > div:last-child > p > strong {
   font-weight: 600;
 }
@@ -588,6 +592,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   grid-template-columns: 1fr 1fr;
 }
 
+.columns-wrapper .table-column.columns > div > div:last-child > table > tbody > tr:not(:first-child),
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr:not(:first-child),
 .columns-wrapper .ach-payments.columns > div > div:last-child > table > tbody > tr:not(:first-child) {
   border-bottom: 1pt solid #ACABAB;
@@ -602,6 +607,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   padding: 19px 20px 18px 10px;
 }
 
+.columns-wrapper .table-column.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td,
 .columns-wrapper .examples-820.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td,
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td {
   font-size: 14px;
@@ -613,6 +619,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   padding: 19px 20px 18px 10px !important;
 }
 
+.columns-wrapper .table-column.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td:first-child,
 .columns-wrapper .examples-820.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td:first-child,
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td:first-child,
 .columns-wrapper .ach-payments.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td:first-child {
@@ -645,6 +652,12 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   line-height: 21px;
   place-content: center;
   padding: 19px 20px 18px 10px;
+}
+
+.columns-wrapper .table-column.columns > div > div:last-child > table > tbody > tr:not(:first-child, :last-child) > td[colspan="2"] {
+  font-size: 16px;
+  padding: 1px !important;
+  color: #212121 !important;
 }
 
 .columns-wrapper .examples-820.columns > div > div:last-child > p.button-wrapper > a[title="Back to top"],
@@ -764,6 +777,11 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
 .columns-wrapper .auto-3rd-party.columns > div > div:first-child > p.button-wrapper,
 .columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper {
   width: 76%;
+}
+
+.columns-wrapper .table-column.columns > div > div:first-child > ul > li,
+.columns-wrapper .table-column.columns > div > div:first-child > p.button-wrapper {
+  width: 90%;
 }
 
 .columns-wrapper .two-columns-layout.columns > div > div:first-child > p.button-wrapper > a,
