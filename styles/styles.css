@@ -497,12 +497,10 @@ main .section.khaki ul:last-child {
 #what-if-i-do-not-know-my-customers-claim-number-to-submit-a-supplement-request,
 #can-i-fax-or-email-the-supplement-information-instead-of-uploading-through-the-b2b-portal,
 #i-am-having-technical-issues-with-submitting-a-supplement-request-who-do-i-contact,
-#i-have-questions-regarding-a-claim-that-are-unrelated-to-the-estimate-who-should-i-contact{
-  /* border-top: 1px solid #0002; */
+#i-have-questions-regarding-a-claim-that-are-unrelated-to-the-estimate-who-should-i-contact{ 
     line-height: 21px;
     font-size: 16px;
-
-    /* padding-block: 13.5px; */
+ 
   }
 
 #why-should-i-register-with-b2b + p,
@@ -568,7 +566,9 @@ main .section.khaki ul:last-child {
   }
 }
 
-
+.fire-services ul li .cards-card-body{
+    min-height: unset;
+  }
 
 
 
@@ -637,7 +637,7 @@ main .section.khaki ul:last-child {
   #need-help {
     font-size: 1.25rem;
     line-height: 20px;
-    margin-top: 54px;
+    margin-top: 74px;
     margin-bottom: 24px;
   }
 
@@ -757,6 +757,68 @@ main .section.khaki ul:last-child {
 
 
 
+
+#about-registration{
+    font-size: 2.438rem;
+    line-height: 39px;
+    margin-block: 88px 56px;
+  }
+
+#why-register,
+#how-do-i-register{
+    font-size: 1.938rem;
+    line-height: 31px;
+    font-weight: 500;
+    margin-block: 0 24px;
+  }
+
+#about-registration ~ p {
+  font-size: 16px;
+  line-height: 21px;
+  margin-block: 0 16px;
+}
+
+#about-registration ~ p:last-child { 
+  margin-bottom: 106px;
+}
+
+
+
+@media(width <=990px){
+    #about-registration {
+        font-size: 2.063rem;
+        line-height: 33px;
+        margin-block: 80px 56px;
+      }
+    
+    #why-register,
+    #how-do-i-register {
+      font-size: 1.688rem;
+      line-height: 27px; 
+    }
+    
+    #about-registration~p:last-child {
+      margin-bottom: 82px;
+    }
+  }
+
+@media(width <768px) {
+  #about-registration {
+    font-size: 1.563rem;;
+    line-height: 25px;
+    margin-block: 72px 56px;
+  }
+
+  #why-register,
+  #how-do-i-register {
+    font-size: 1.375rem;;
+    line-height: 22px;
+  }
+
+  #about-registration~p:last-child {
+    margin-bottom: 76px;
+  }
+}
 
 
 
