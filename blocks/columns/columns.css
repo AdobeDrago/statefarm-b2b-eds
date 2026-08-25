@@ -1077,8 +1077,21 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
     height: auto;
   }
 
-  .columns-wrapper .ach-payments.columns > div > div:last-child > table > tbody > tr:first-child > td > strong {
-    white-space: normal;
+  .columns-wrapper:has(table) .two-columns-layout.columns > div {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+
+  .columns-wrapper:has(table) .two-columns-layout.columns > div > div:first-child > ul > li,
+  .columns-wrapper:has(table) .two-columns-layout.columns > div > div:first-child > p.button-wrapper {
+    width: fit-content;
+  }
+
+  .columns-wrapper .two-columns-layout.columns > div > div:last-child > table > tbody > tr {
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  }
+
+  .columns-wrapper .two-columns-layout.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td {
+    width: 100%;
   }
 }
 
