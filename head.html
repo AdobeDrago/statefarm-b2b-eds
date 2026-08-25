@@ -4,6 +4,20 @@
   move-to-http-header="true"
 />
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script type="importmap" nonce="aem">
+{
+  "imports": {
+    "lit": "/scripts/lit/vendor/lit/index.js",
+    "lit-html": "/scripts/lit/vendor/lit-html/lit-html.js",
+    "lit-html/": "/scripts/lit/vendor/lit-html/",
+    "lit-element": "/scripts/lit/vendor/lit-element/lit-element.js",
+    "lit-element/": "/scripts/lit/vendor/lit-element/",
+    "@lit/reactive-element": "/scripts/lit/vendor/@lit/reactive-element/reactive-element.js",
+    "@lit/reactive-element/": "/scripts/lit/vendor/@lit/reactive-element/",
+    "@lit-labs/ssr-client/": "/scripts/lit/vendor/@lit-labs/ssr-client/"
+  }
+}
+</script>
 <script nonce="aem" src="/scripts/aem.js" type="module"></script>
 <script nonce="aem" src="/scripts/scripts.js" type="module"></script>
 <!-- preloads auth.js so scripts.js doesn't wait to discover it after parsing;
