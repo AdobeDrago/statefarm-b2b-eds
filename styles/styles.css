@@ -1934,6 +1934,20 @@ sf-hero > .hero-login a {
   line-height: 1;
   font-size: 39px;
   font-weight: 600;
-  margin: 64px 0 44px;
+  margin: 64px 0 24px;
   color: var(--dark-gray-color);
+}
+
+@media (width <= 1024px) {
+  .default-content-wrapper #coupa-supplier-portal-training {
+    font-size: 33px;
+    margin: 56px 0 24px;
+  }
+}
+
+@media (width <= 560px) {
+  .default-content-wrapper #coupa-supplier-portal-training {
+    font-size: 25px;
+    margin: 48px 0 24px;
+  }
 }
