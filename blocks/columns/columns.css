@@ -593,6 +593,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
 }
 
 .columns-wrapper .table-column.columns > div > div:last-child > table > tbody > tr:not(:first-child),
+.columns-wrapper .examples-820.columns > div > div:last-child > table > tbody > tr:not(:first-child),
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr:not(:first-child),
 .columns-wrapper .ach-payments.columns > div > div:last-child > table > tbody > tr:not(:first-child) {
   border-bottom: 1pt solid #ACABAB;
