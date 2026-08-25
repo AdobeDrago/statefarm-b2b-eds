@@ -13,6 +13,17 @@ import {
 } from './aem.js';
 import { initAuthState, decorateAuthGate, decorateAuthLinks } from './auth.js';
 
+// Deliberately limited to the direct-1X-class reuse spike. Do not add pages here:
+// the spike is intended to measure compatibility on one representative B2B page.
+const ONE_X_SPIKE_PATH = '/b2b-content/suppliers';
+const ONE_X_CORE_CSS = 'https://static1.st8fm.com/en_US/dxl-1x/prod/css/1x.core.css';
+
+async function loadOneXSpikeStyles() {
+  if (window.location.pathname !== ONE_X_SPIKE_PATH) return;
+  document.documentElement.classList.add('-oneX');
+  await loadCSS(ONE_X_CORE_CSS);
+}
+
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
   const innerTT = window.trustedTypes.createPolicy('tt-inner', {
     createHTML: (s) => s, // avoid stack overflow
@@ -362,6 +373,7 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
+    await loadOneXSpikeStyles();
     decorateMain(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
