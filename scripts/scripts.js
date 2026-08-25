@@ -363,6 +363,23 @@ export function decorateMain(main) {
 }
 
 /**
+ * Loads the browser definition after the server-rendered element is parsed, so
+ * Lit hydrates its existing declarative shadow DOM instead of replacing it.
+ *
+ * @param {Element} main page content
+ * @returns {Promise<void>}
+ */
+async function hydrateSsrComponents(main) {
+  const componentModules = [];
+  if (main.querySelector('ssr-proof-element')) componentModules.push('./lit/ssr-proof-demo.js');
+  if (main.querySelector('sf-hero')) componentModules.push('../blocks/hero/sf-hero.js');
+  if (componentModules.length) {
+    await import('./lit/hydrate.js');
+    await Promise.all(componentModules.map((modulePath) => import(modulePath)));
+  }
+}
+
+/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
@@ -374,6 +391,7 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     await loadOneXSpikeStyles();
+    await hydrateSsrComponents(main);
     decorateMain(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);

@@ -187,6 +187,105 @@ function decorateTables(body) {
   });
 }
 
+/** Columns that can be sorted on the operations directory tables. */
+const SORTABLE_COLUMNS = {
+  State: 'text',
+  'Office Name': 'text',
+  'Area Code': 'numeric',
+  'Office Code': 'numeric',
+};
+
+/**
+ * Compares two cell values for sorting.
+ * @param {string} a left value
+ * @param {string} b right value
+ * @param {'text'|'numeric'} type how to compare
+ * @param {'asc'|'desc'} dir sort direction
+ * @returns {number} comparator result
+ */
+function compareCells(a, b, type, dir) {
+  const mult = dir === 'asc' ? 1 : -1;
+  if (type === 'numeric') {
+    return (Number.parseInt(a, 10) - Number.parseInt(b, 10)) * mult;
+  }
+  return a.localeCompare(b, undefined, { sensitivity: 'base' }) * mult;
+}
+
+/**
+ * Reorders tbody rows by the given column.
+ * @param {HTMLTableElement} table the table
+ * @param {number} index column index
+ * @param {'text'|'numeric'} type how to compare
+ * @param {'asc'|'desc'} dir sort direction
+ */
+function sortTableRows(table, index, type, dir) {
+  const tbody = table.tBodies[0];
+  if (!tbody) return;
+  const rows = [...tbody.rows];
+  rows.sort((left, right) => compareCells(
+    left.cells[index]?.textContent.trim() || '',
+    right.cells[index]?.textContent.trim() || '',
+    type,
+    dir,
+  ));
+  tbody.append(...rows);
+}
+
+/**
+ * Makes State / Office Name / Area Code / Office Code headers clickable to
+ * sort rows (text A–Z, numeric by number). Centers Area Code and Office Code.
+ * @param {Element} body the body column
+ */
+function decorateSortableTables(body) {
+  body.querySelectorAll('table').forEach((table) => {
+    const headers = [...table.querySelectorAll('thead tr:last-child th')];
+    if (!headers.some((th) => SORTABLE_COLUMNS[th.textContent.trim()])) return;
+
+    table.classList.add('side-nav-table-sortable');
+
+    headers.forEach((th, index) => {
+      const label = th.textContent.trim();
+      const type = SORTABLE_COLUMNS[label];
+      if (label === 'Area Code' || label === 'Office Code') {
+        th.classList.add('side-nav-table-center');
+      }
+      if (!type) return;
+
+      th.classList.add('side-nav-table-sort');
+      th.setAttribute('role', 'columnheader');
+      th.tabIndex = 0;
+      th.setAttribute('aria-sort', 'none');
+
+      const activate = () => {
+        const next = th.getAttribute('aria-sort') === 'ascending' ? 'descending' : 'ascending';
+        headers.forEach((header) => {
+          if (header !== th && SORTABLE_COLUMNS[header.textContent.trim()]) {
+            header.setAttribute('aria-sort', 'none');
+          }
+        });
+        th.setAttribute('aria-sort', next);
+        sortTableRows(table, index, type, next === 'ascending' ? 'asc' : 'desc');
+      };
+
+      th.addEventListener('click', activate);
+      th.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          activate();
+        }
+      });
+    });
+
+    const centerIndexes = headers
+      .map((th, i) => (th.textContent.trim() === 'Area Code' || th.textContent.trim() === 'Office Code' ? i : -1))
+      .filter((i) => i >= 0);
+
+    table.querySelectorAll('tbody tr').forEach((tr) => {
+      centerIndexes.forEach((i) => tr.cells[i]?.classList.add('side-nav-table-center'));
+    });
+  });
+}
+
 /**
  * Tags the back to top links and repeats one at the end of the page when the
  * closing section was authored without it.
@@ -327,5 +426,6 @@ export default function decorate(block) {
 
   if (isFaqPage) decorateFaq(content);
   decorateTables(body);
+  decorateSortableTables(body);
   decorateBackToTop(body);
 }

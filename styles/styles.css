@@ -1915,3 +1915,25 @@ body:has(#contact-us-frequently-asked-questions) > footer {
   font-weight: 600;
   color: var(--dark-gray-color);
 }
+
+/* The SSR Hero's rich text remains in light DOM so authored links retain their
+   normal behavior. Its login paragraph is explicitly mapped by the generator. */
+/* stylelint-disable-next-line no-descending-specificity */
+sf-hero > .hero-login a {
+  display: inline-block;
+  padding: 14px 48px;
+  border-radius: 24px;
+  background: var(--link-color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.default-content-wrapper #coupa-supplier-portal-training {
+  line-height: 1;
+  font-size: 39px;
+  font-weight: 600;
+  margin: 64px 0 44px;
+  color: var(--dark-gray-color);
+}
