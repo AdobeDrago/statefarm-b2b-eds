@@ -184,6 +184,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
 .default-content-wrapper #certificate-holder--error,
 /* stylelint-disable-next-line selector-id-pattern */
 .default-content-wrapper #daily-edi-mortgagee-notification-billing--payment,
+.default-content-wrapper #specific-instructions-for-edi-billing,
 /* stylelint-disable-next-line selector-id-pattern */
 .default-content-wrapper #mortgage-billing--payment-system,
 .default-content-wrapper #auto-third-party,
@@ -892,6 +893,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   .default-content-wrapper #certificate-holder--error,
   /* stylelint-disable-next-line selector-id-pattern */
   .default-content-wrapper #daily-edi-mortgagee-notification-billing--payment,
+  .default-content-wrapper #specific-instructions-for-edi-billing,
   /* stylelint-disable-next-line selector-id-pattern */
   .default-content-wrapper #mortgage-billing--payment-system,
   .default-content-wrapper #auto-third-party,
@@ -1004,6 +1006,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   .default-content-wrapper #certificate-holder--error,
   /* stylelint-disable-next-line selector-id-pattern */
   .default-content-wrapper #daily-edi-mortgagee-notification-billing--payment,
+  .default-content-wrapper #specific-instructions-for-edi-billing,
   /* stylelint-disable-next-line selector-id-pattern */
   .default-content-wrapper #mortgage-billing--payment-system,
   .default-content-wrapper #auto-third-party,
@@ -1264,6 +1267,86 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
     text-align: left;
     overflow: visible;
     overflow-wrap: anywhere;
+    text-overflow: clip;
+  }
+}
+
+/* daily-811-notifications-table:
+   Author as: columns(daily-811-notifications, daily-811-notifications-table)
+   Tables on specific-instructions sit inside ol > li, so use descendant
+   selectors (not > table) and strip DA's default cell borders. */
+/* stylelint-disable no-descending-specificity */
+.columns-wrapper .daily-811-notifications-table.columns > div > div:last-child table {
+  width: 100%;
+  margin: 0 0 16px;
+  border: none;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.columns-wrapper .daily-811-notifications-table.columns > div > div:last-child table td {
+  padding: 19px 20px 18px 10px;
+  border: none;
+  border-bottom: 1pt solid #acabab;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #767676;
+  text-align: left;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+
+.columns-wrapper .daily-811-notifications-table.columns > div > div:last-child table td:first-child {
+  width: 38%;
+}
+
+.columns-wrapper .daily-811-notifications-table.columns > div > div:last-child table td:last-child {
+  padding-left: 30px;
+}
+/* stylelint-enable no-descending-specificity */
+
+@media (width <= 900px) {
+  .columns-wrapper .daily-811-notifications.daily-811-notifications-table.columns > div {
+    grid-template-columns: minmax(110px, 32%) minmax(0, 1fr);
+    column-gap: 12px;
+  }
+
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:first-child {
+    min-width: 0;
+    margin-right: 0;
+    padding-left: 4px;
+    overflow: hidden;
+  }
+
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:last-child {
+    min-width: 0;
+  }
+
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:last-child table td {
+    padding: 12px 8px 12px 6px;
+  }
+
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:last-child table td:first-child {
+    width: 45%;
+  }
+
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:first-child > ul > li,
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:first-child > p.button-wrapper {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:first-child > ul > li > a,
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:first-child > p.button-wrapper > a {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    justify-content: flex-start;
+    text-align: left;
+    overflow: hidden;
+    overflow-wrap: break-word;
     text-overflow: clip;
   }
 }
