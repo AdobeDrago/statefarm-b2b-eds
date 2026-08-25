@@ -40,6 +40,8 @@ function decorateSoftLoginPrompts(block) {
   });
 }
 
+const ONE_X_SPIKE_PATH = '/b2b-content/suppliers';
+
 export default function decorate(block) {
   /* change to ul, li */
   const ul = document.createElement('ul');
@@ -56,6 +58,19 @@ export default function decorate(block) {
     });
     ul.append(li);
   });
+  if (window.location.pathname === ONE_X_SPIKE_PATH) {
+    // Direct 1X reuse experiment: classes are placed on the same elements
+    // EDS decoration produces, with no adapter markup or copied 1X rules.
+    block.classList.add('-oneX-container');
+    ul.classList.add('-oneX-row');
+    [...ul.children].forEach((card) => {
+      // the comments are intentional to show that the 1X classes are not applied,
+      // but could be if we wanted to match the 1X layout more closely
+      // card.classList.add('-oneX-col-6');
+      // card.firstElementChild?.classList.add('-oneX-cards-container--padding-md');
+      card.querySelector('a')?.classList.add('-oneX-link--inline');
+    });
+  }
   ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
   block.replaceChildren(ul);
   decorateLockedCards(block);
