@@ -257,6 +257,39 @@ main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
   padding-left: 0;
 }
 
+.side-nav-body .side-nav-table-center {
+  text-align: center;
+}
+
+.side-nav-body .side-nav-table-sort {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.side-nav-body .side-nav-table-sort::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 6px;
+  vertical-align: middle;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #000;
+  border-bottom: none;
+}
+
+.side-nav-body .side-nav-table-sort[aria-sort="ascending"]::after {
+  border-top: none;
+  border-bottom: 5px solid #000;
+}
+
+.side-nav-body .side-nav-table-sort[aria-sort="descending"]::after {
+  border-top: 5px solid #000;
+  border-bottom: none;
+}
+
 @media (width >= 768px) {
   main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
     font-size: 2.063rem;
