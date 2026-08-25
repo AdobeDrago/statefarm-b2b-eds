@@ -133,6 +133,11 @@
   margin: 0 0 50px;
 }
 
+.columns-wrapper .examples-997.columns > div > div:last-child > p:has(a[title="Back to top"]) {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
 .columns.columns-2-cols #resources,
 /* stylelint-disable-next-line selector-id-pattern */
 .columns.columns-2-cols #help--support {
@@ -179,6 +184,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
 .default-content-wrapper #certificate-holder--error,
 /* stylelint-disable-next-line selector-id-pattern */
 .default-content-wrapper #daily-edi-mortgagee-notification-billing--payment,
+.default-content-wrapper #specific-instructions-for-edi-billing,
 /* stylelint-disable-next-line selector-id-pattern */
 .default-content-wrapper #mortgage-billing--payment-system,
 .default-content-wrapper #auto-third-party,
@@ -529,12 +535,27 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   grid-template-columns: minmax(63.95px, 1fr) 3fr 6fr;
 }
 
+.columns-wrapper .table-column.columns > div > div:last-child > table > tbody > tr {
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+}
+
 .columns-wrapper .examples-820.columns > div > div:last-child > p > strong {
   font-weight: 600;
 }
 
 .columns-wrapper .two-columns-layout.columns > div > div:last-child > table > tbody > tr:first-child > td > strong {
   font-weight: 600;
+}
+
+.columns-wrapper .examples-997.columns > div > div:last-child > table > tbody > tr > td {
+  font-size: 14px;
+  place-content: center;
+  color: #767676 !important;
+  font-weight: 400 !important;
+  border-right: none !important;
+  white-space: normal !important;
+  border-bottom: none !important;
+  padding: 19px 20px 18px 10px !important;
 }
 
 .columns-wrapper .two-columns-layout.columns > div > div:last-child > table > tbody > tr:first-child > td {
@@ -562,11 +583,17 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   color: var(--dark-gray-color);
 }
 
+.columns-wrapper .examples-997.columns > div > div:last-child > table > tbody > tr {
+  grid-template-columns: 7fr 12fr;
+  border-bottom: 1pt solid #ACABAB;
+}
+
 .columns-wrapper .examples-820.columns > div > div:last-child > table > tbody > tr,
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr {
   grid-template-columns: 1fr 1fr;
 }
 
+.columns-wrapper .table-column.columns > div > div:last-child > table > tbody > tr:not(:first-child),
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr:not(:first-child),
 .columns-wrapper .ach-payments.columns > div > div:last-child > table > tbody > tr:not(:first-child) {
   border-bottom: 1pt solid #ACABAB;
@@ -581,6 +608,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   padding: 19px 20px 18px 10px;
 }
 
+.columns-wrapper .table-column.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td,
 .columns-wrapper .examples-820.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td,
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td {
   font-size: 14px;
@@ -592,6 +620,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   padding: 19px 20px 18px 10px !important;
 }
 
+.columns-wrapper .table-column.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td:first-child,
 .columns-wrapper .examples-820.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td:first-child,
 .columns-wrapper .examples-811.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td:first-child,
 .columns-wrapper .ach-payments.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td:first-child {
@@ -624,6 +653,12 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   line-height: 21px;
   place-content: center;
   padding: 19px 20px 18px 10px;
+}
+
+.columns-wrapper .table-column.columns > div > div:last-child > table > tbody > tr:not(:first-child, :last-child) > td[colspan="2"] {
+  font-size: 16px;
+  padding: 1px !important;
+  color: #212121 !important;
 }
 
 .columns-wrapper .examples-820.columns > div > div:last-child > p.button-wrapper > a[title="Back to top"],
@@ -745,6 +780,11 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   width: 76%;
 }
 
+.columns-wrapper .table-column.columns > div > div:first-child > ul > li,
+.columns-wrapper .table-column.columns > div > div:first-child > p.button-wrapper {
+  width: 90%;
+}
+
 .columns-wrapper .two-columns-layout.columns > div > div:first-child > p.button-wrapper > a,
 .columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a,
 .columns-wrapper .edi-faq.columns > div > div:first-child > p.button-wrapper > a,
@@ -763,6 +803,11 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   font-weight: 600;
   line-height: 21px;
   white-space: normal;
+
+  /* override a.button's justify-content: center so short labels (e.g. "811 auto
+     test") stay left-aligned with longer wrapping nav items on tablet */
+  justify-content: flex-start;
+  text-align: left;
   padding: 2px 2px 10px;
   color: var(--link-color);
   background-color: transparent;
@@ -848,6 +893,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   .default-content-wrapper #certificate-holder--error,
   /* stylelint-disable-next-line selector-id-pattern */
   .default-content-wrapper #daily-edi-mortgagee-notification-billing--payment,
+  .default-content-wrapper #specific-instructions-for-edi-billing,
   /* stylelint-disable-next-line selector-id-pattern */
   .default-content-wrapper #mortgage-billing--payment-system,
   .default-content-wrapper #auto-third-party,
@@ -960,6 +1006,7 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   .default-content-wrapper #certificate-holder--error,
   /* stylelint-disable-next-line selector-id-pattern */
   .default-content-wrapper #daily-edi-mortgagee-notification-billing--payment,
+  .default-content-wrapper #specific-instructions-for-edi-billing,
   /* stylelint-disable-next-line selector-id-pattern */
   .default-content-wrapper #mortgage-billing--payment-system,
   .default-content-wrapper #auto-third-party,
@@ -1033,8 +1080,21 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
     height: auto;
   }
 
-  .columns-wrapper .ach-payments.columns > div > div:last-child > table > tbody > tr:first-child > td > strong {
-    white-space: normal;
+  .columns-wrapper:has(table) .two-columns-layout.columns > div {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+
+  .columns-wrapper:has(table) .two-columns-layout.columns > div > div:first-child > ul > li,
+  .columns-wrapper:has(table) .two-columns-layout.columns > div > div:first-child > p.button-wrapper {
+    width: fit-content;
+  }
+
+  .columns-wrapper .two-columns-layout.columns > div > div:last-child > table > tbody > tr {
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  }
+
+  .columns-wrapper .two-columns-layout.columns > div > div:last-child > table > tbody > tr:not(:first-child) > td {
+    width: 100%;
   }
 }
 
@@ -1154,5 +1214,152 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
 
   .columns-wrapper .mortgage-record-chg.mortgage-record-chg-table.columns > div > div:last-child > table + p {
     padding: 12px 6px;
+  }
+}
+
+/* auto811files-table: 
+   Author as: columns(auto811files, auto811files-table) */
+/* stylelint-disable no-descending-specificity */
+.columns-wrapper .auto811files-table.columns > div > div:last-child > table {
+  width: 100%;
+  margin: 0 0 16px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.columns-wrapper .auto811files-table.columns > div > div:last-child > table td {
+  padding: 19px 20px 18px 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #767676;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1pt solid #acabab;
+  overflow-wrap: anywhere;
+}
+
+.columns-wrapper .auto811files-table.columns > div > div:last-child > table td:first-child {
+  width: 38%;
+}
+
+.columns-wrapper .auto811files-table.columns > div > div:last-child > table td:last-child {
+  padding-left: 30px;
+}
+/* stylelint-enable no-descending-specificity */
+
+@media (width <= 900px) {
+  /* narrow the left nav column so the table has room to breathe on
+     mobile/tablet — overrides the shared 1fr 2fr split for this variant only.
+     A small left padding keeps the nav link text off the block's own left
+     edge so it never renders flush against the viewport/section boundary */
+  .columns-wrapper .auto811files.auto811files-table.columns > div {
+    grid-template-columns: minmax(80px, 25%) 1fr;
+  }
+
+  .columns-wrapper .auto811files-table.columns > div > div:first-child {
+    padding-left: 4px;
+  }
+
+  .columns-wrapper .auto811files-table.columns > div > div:last-child > table td {
+    padding: 12px 8px 12px 6px;
+  }
+
+  /* give the short segment codes a bit more room than the desktop 38% split,
+     since the whole content column is narrower here */
+  .columns-wrapper .auto811files-table.columns > div > div:last-child > table td:first-child {
+    width: 45%;
+  }
+
+  .columns-wrapper .auto811files-table.columns > div > div:first-child > p.button-wrapper {
+    width: 100%;
+  }
+
+  .columns-wrapper .auto811files-table.columns > div > div:first-child > p.button-wrapper > a {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+    overflow: visible;
+    overflow-wrap: anywhere;
+    text-overflow: clip;
+  }
+}
+
+/* daily-811-notifications-table:
+   Author as: columns(daily-811-notifications, daily-811-notifications-table)
+   Tables on specific-instructions sit inside ol > li, so use descendant
+   selectors (not > table) and strip DA's default cell borders. */
+/* stylelint-disable no-descending-specificity */
+.columns-wrapper .daily-811-notifications-table.columns > div > div:last-child table {
+  width: 100%;
+  margin: 0 0 16px;
+  border: none;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.columns-wrapper .daily-811-notifications-table.columns > div > div:last-child table td {
+  padding: 19px 20px 18px 10px;
+  border: none;
+  border-bottom: 1pt solid #acabab;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #767676;
+  text-align: left;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+
+.columns-wrapper .daily-811-notifications-table.columns > div > div:last-child table td:first-child {
+  width: 38%;
+}
+
+.columns-wrapper .daily-811-notifications-table.columns > div > div:last-child table td:last-child {
+  padding-left: 30px;
+}
+/* stylelint-enable no-descending-specificity */
+
+@media (width <= 900px) {
+  .columns-wrapper .daily-811-notifications.daily-811-notifications-table.columns > div {
+    grid-template-columns: minmax(110px, 32%) minmax(0, 1fr);
+    column-gap: 12px;
+  }
+
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:first-child {
+    min-width: 0;
+    margin-right: 0;
+    padding-left: 4px;
+    overflow: hidden;
+  }
+
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:last-child {
+    min-width: 0;
+  }
+
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:last-child table td {
+    padding: 12px 8px 12px 6px;
+  }
+
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:last-child table td:first-child {
+    width: 45%;
+  }
+
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:first-child > ul > li,
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:first-child > p.button-wrapper {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:first-child > ul > li > a,
+  .columns-wrapper .daily-811-notifications-table.columns > div > div:first-child > p.button-wrapper > a {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    justify-content: flex-start;
+    text-align: left;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    text-overflow: clip;
   }
 }
