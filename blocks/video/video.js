@@ -93,11 +93,11 @@ function getVideoElement(source, autoplay, background, poster) {
     });
   }
 
-  video.style.width = "100%";
+  video.style.width = '100%';
   video.setAttribute('src', source);
   video.setAttribute('poster', poster);
   video.setAttribute('data-video-state', 'loaded');
-  video.setAttribute('type', `video/${source.split('.').pop()}`)
+  video.setAttribute('type', `video/${source.split('.').pop()}`);
 
   return video;
 }
