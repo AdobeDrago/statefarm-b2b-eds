@@ -1915,3 +1915,11 @@ body:has(#contact-us-frequently-asked-questions) > footer {
   font-weight: 600;
   color: var(--dark-gray-color);
 }
+
+.default-content-wrapper #coupa-supplier-portal-training {
+  line-height: 1;
+  font-size: 39px;
+  font-weight: 600;
+  margin: 64px 0 44px;
+  color: var(--dark-gray-color);
+}
