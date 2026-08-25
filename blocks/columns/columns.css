@@ -802,6 +802,11 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
   font-weight: 600;
   line-height: 21px;
   white-space: normal;
+
+  /* override a.button's justify-content: center so short labels (e.g. "811 auto
+     test") stay left-aligned with longer wrapping nav items on tablet */
+  justify-content: flex-start;
+  text-align: left;
   padding: 2px 2px 10px;
   color: var(--link-color);
   background-color: transparent;
@@ -1255,6 +1260,8 @@ main .section:has(~ .section .mortgage-record-chg) h1 {
 
   .columns-wrapper .auto811files-table.columns > div > div:first-child > p.button-wrapper > a {
     width: 100%;
+    justify-content: flex-start;
+    text-align: left;
     overflow: visible;
     overflow-wrap: anywhere;
     text-overflow: clip;
