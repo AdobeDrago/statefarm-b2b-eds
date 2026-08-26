@@ -11,7 +11,12 @@ import {
   loadCSS,
   buildBlock,
 } from './aem.js';
-import { initAuthState, decorateAuthGate, decorateAuthLinks } from './auth.js';
+import {
+  initAuthState,
+  decorateAuthGate,
+  decorateAuthLinks,
+  decorateAuthControl,
+} from './auth.js';
 
 // Deliberately limited to the direct-1X-class reuse spike. Do not add pages here:
 // the spike is intended to measure compatibility on one representative B2B page.
@@ -408,22 +413,39 @@ async function loadEager(doc) {
 }
 
 /**
- * Decorates login gate sections by adding a login button.
+ * Decorates login gate sections by turning the authored Log In link into the
+ * red pill, or injecting one when the page only authored the help copy.
+ * Same pattern as the homepage: Log In + help stay visible while logged out.
+ * Runs even when nothing is gated behind the prompt (auth gate may skip).
  */
 function decorateLoginButtons() {
-  const heading = document.querySelector('h3#log-in-to-view-content[data-auth="anonymous"]');
-  if (!heading) return;
+  const heading = document.querySelector('#log-in-to-view-content');
+  if (!heading || heading.dataset.auth === 'authenticated') return;
 
+  const next = heading.nextElementSibling;
+  const authoredLogin = next?.tagName === 'P'
+    && /^log\s*in$/i.test(next.textContent.replace(/\s+/g, ' ').trim())
+    ? next.querySelector('a[href]')
+    : null;
+
+  if (authoredLogin) {
+    const wrapper = authoredLogin.closest('p');
+    wrapper.className = 'button-wrapper';
+    if (!wrapper.dataset.auth) wrapper.dataset.auth = 'anonymous';
+    authoredLogin.className = 'button accent';
+    decorateAuthControl(authoredLogin);
+    return;
+  }
+
+  // pages that only author the forgot/register line (e.g. ss-agreement)
   const wrapper = document.createElement('p');
   wrapper.className = 'button-wrapper';
-  wrapper.setAttribute('data-auth', 'anonymous');
+  wrapper.dataset.auth = 'anonymous';
 
   const link = document.createElement('a');
-  link.href = '/b2b-content/select-service/ss-agreement?loggedIn=true';
-  link.title = 'Log In';
   link.className = 'button accent';
-  link.setAttribute('data-auth-action', 'login');
   link.textContent = 'Log In';
+  decorateAuthControl(link);
 
   wrapper.append(link);
   heading.after(wrapper);

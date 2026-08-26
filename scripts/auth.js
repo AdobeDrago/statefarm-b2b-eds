@@ -190,6 +190,10 @@ const isAuthHelpParagraph = (el) => el?.tagName === 'P'
   && [...el.querySelectorAll('a[href]')]
     .some((a) => AUTH_HELP_HOSTS.some((host) => a.href.includes(host)));
 
+/** Authored "Log In" / "Log Out" control sitting with the gate prompt. */
+const isGateLoginParagraph = (el) => el?.tagName === 'P'
+  && /^log\s*(in|out)$/i.test(el.textContent.replace(/\s+/g, ' ').trim());
+
 /**
  * Tags the gate heading and everything it guards so CSS can hide/show them.
  * Matches an exact heading whitelist, never an H1, to avoid false gates.
@@ -206,10 +210,10 @@ export function decorateAuthGate(main) {
   const wrapper = gate.parentElement;
   if (!section || !wrapper) return;
 
-  // the gate prompt: the heading plus the auth-help paragraphs following it
+  // Gate prompt stays visible when logged out: heading, authored Log In, help links.
   const gateNodes = [gate];
   let next = gate.nextElementSibling;
-  while (isAuthHelpParagraph(next)) {
+  while (isGateLoginParagraph(next) || isAuthHelpParagraph(next)) {
     gateNodes.push(next);
     next = next.nextElementSibling;
   }
