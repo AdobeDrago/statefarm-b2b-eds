@@ -8,7 +8,11 @@ main .breadcrumbs-container > .breadcrumbs-wrapper {
   display: flex;
   align-items: center;
   height: 57px;
-  max-width: 100%;
+
+  /* width accounts for the left margin so the bar can't overflow the viewport
+     (margin + 100% width was causing ~16–31px horizontal scroll on tablet/desktop) */
+  width: calc(100% - 16px);
+  max-width: calc(100% - 16px);
   margin: 0 0 0 16px;
   padding-left: calc((100vw - 1155px) / 2);
   padding-right: calc((100vw - 1155px) / 2);
@@ -61,13 +65,16 @@ main .breadcrumbs ol > li > span {
 
 @media (width <= 1024px) {
   main .breadcrumbs-container > .breadcrumbs-wrapper {
+    width: calc(100% - 31px);
+    max-width: calc(100% - 31px);
     margin: 0 0 0 31px;
   }
-
 }
 
 @media (width <= 560px) {
   main .breadcrumbs-container > .breadcrumbs-wrapper {
+    width: 100%;
+    max-width: 100%;
     margin: 0;
     padding: 0 15px;
   }
