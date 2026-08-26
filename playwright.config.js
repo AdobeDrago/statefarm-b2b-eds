@@ -25,6 +25,15 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
 
+  // GitHub Actions has no AEM proxy running by default. Start one for the
+  // browser suite so the localhost base URL is available in CI as well.
+  webServer: process.env.CI ? {
+    command: 'npx -y @adobe/aem-cli up --no-open --forward-browser-logs',
+    url: 'http://127.0.0.1:3000/b2b-content',
+    timeout: 120000,
+    reuseExistingServer: false,
+  } : undefined,
+
   /* Configure projects for major browsers */
   projects: [
     {
