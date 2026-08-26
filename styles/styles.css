@@ -862,7 +862,7 @@ main .section.khaki ul:last-child {
 }
 
 
-
+/* stylelint-disable-next-line selector-id-pattern */
 #admin-roles--responsibilities{
     font-size: 2.438rem;
     line-height: 39px;
@@ -885,25 +885,33 @@ summary:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1
     padding-block: 8px;
     margin-left: 2px;
   }
+
 .accordion:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1){
     padding-bottom: 46px;
   }
+
 @media(width <=990px) {
+  /* stylelint-disable-next-line selector-id-pattern */
   #admin-roles--responsibilities {
       font-size: 2.063rem;
         line-height: 33px;
         margin-block: 80px 56px;
     }
+
+    /* stylelint-disable-next-line selector-id-pattern */
   .accordion:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1) {
     padding-bottom: 20px;
   }
 }
+
 @media(width <768px) { 
+  /* stylelint-disable-next-line selector-id-pattern */
   #admin-roles--responsibilities {
       font-size: 1.563rem; 
         line-height: 25px;
         margin-block: 72px 56px;
     }
+
   .accordion:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1) {
     padding-bottom: 12px;
   }
@@ -914,12 +922,15 @@ summary:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1
 #jewelry-replacement{ 
     margin-block:23px 34px;
   }
+
 .default-content-wrapper:has(#jewelry-replacement) + .side-nav-wrapper .side-nav .side-nav-menu nav p{
     padding-block: 0 ;
   }
+
 .default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul {
   margin-top: 7px;
 }
+
 .default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul li {
   padding-block: 0 7px;
 }
@@ -942,15 +953,17 @@ summary:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1
     line-height: 16px;
     margin-bottom: 15px;
   }
+
 #example-item-description-and-breakdown + p + p {
   margin-left: 12px;
 }
+
 #commission-schedule+table{
-    margin-bottom: 0px;
+    margin-bottom: 0;
   } 
+
 #commission-schedule + table tbody tr td{
- 
-  padding: 0px; 
+  padding: 0; 
   padding-inline: 2px;
   padding-block: 2px;
   border: none;
@@ -958,9 +971,11 @@ summary:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1
   line-height: 21px;
   color: #212121; 
   }
+
 #commission-schedule+table tbody tr td:last-child{ 
     padding-left: 35px;
   }
+
 #invoice + p + ul{
     padding-left: 24px;
   }
@@ -971,7 +986,6 @@ summary:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1
 
 
 @media(width <=990px) { 
-
   .default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul {
     margin-top: 11px;
   }
@@ -989,6 +1003,7 @@ summary:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1
 .default-content-wrapper:has(#jewelry-replacement) + .side-nav-wrapper .side-nav > div{
     gap: 1px;
   }
+
 .default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav {
   min-width: 100px;
 }
@@ -1571,6 +1586,7 @@ main .section:has(#how-to-engage-us) p {
 }
 /* stylelint-enable no-descending-specificity */
 
+/* stylelint-disable-next-line no-descending-specificity */
 main .section.khaki:has(#our-program) li {
   padding-bottom: 8px;
 }
