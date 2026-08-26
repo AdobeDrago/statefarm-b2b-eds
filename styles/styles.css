@@ -1049,6 +1049,25 @@ main .section .default-content-wrapper #log-in-to-view-content {
   color: var(--dark-gray-color);
 }
 
+/* select-service-home-repair login gate (H1 + prompt only on this page) */
+/* stylelint-disable selector-id-pattern -- DA slug from "Select Service™ - Home Repair Program" */
+main .section .default-content-wrapper #select-service---home-repair-program,
+main .section .default-content-wrapper #select-service---home-repair-program strong {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 48px;
+  margin-bottom: 0;
+}
+/* stylelint-enable selector-id-pattern */
+
+/* stylelint-disable-next-line selector-id-pattern */
+main .section .default-content-wrapper:has(#select-service---home-repair-program) #log-in-to-view-content {
+  font-size: 2.438rem;
+  font-weight: 600;
+  margin-top: 64px;
+  margin-bottom: 24px;
+}
+
 .section .default-content-wrapper #additional-resources {
   line-height: 1;
   font-size: 25px;
@@ -1258,6 +1277,22 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
     font-size: 27px !important;
   }
 
+  /* stylelint-disable-next-line selector-id-pattern */
+  .section .default-content-wrapper:has(#select-service---home-repair-program) #log-in-to-view-content {
+    font-size: 2.063rem !important;
+    font-weight: 600;
+    margin-top: 64px;
+    margin-bottom: 24px;
+  }
+
+  /* stylelint-disable selector-id-pattern -- DA slug from "Select Service™ - Home Repair Program" */
+  main .section .default-content-wrapper #select-service---home-repair-program,
+  main .section .default-content-wrapper #select-service---home-repair-program strong {
+    font-size: 2.438rem;
+    font-weight: 600;
+  }
+  /* stylelint-enable selector-id-pattern */
+
   .default-content-wrapper #electronic-payments {
     font-size: 23px !important;
   }
@@ -1310,6 +1345,21 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   .section .default-content-wrapper #log-in-to-view-content {
     font-size: 22px !important;
   }
+
+  /* stylelint-disable selector-id-pattern -- DA slug from "Select Service™ - Home Repair Program" */
+  main .section .default-content-wrapper #select-service---home-repair-program,
+  main .section .default-content-wrapper #select-service---home-repair-program strong {
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+
+  main .section .default-content-wrapper:has(#select-service---home-repair-program) #log-in-to-view-content {
+    font-size: 1.563rem !important;
+    font-weight: 600;
+    margin-top: 64px;
+    margin-bottom: 24px;
+  }
+  /* stylelint-enable selector-id-pattern */
 
   .default-content-wrapper #electronic-payments {
     font-size: 20px !important;
