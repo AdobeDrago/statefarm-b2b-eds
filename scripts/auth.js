@@ -73,14 +73,35 @@ export function isAuthenticated() {
  * The current page's URL in a given state — login adds the parameter, logout
  * removes it. Used as the Log In / Log Out href so both work without JS.
  * @param {boolean} authenticated the state to switch to
+ * @param {string} [baseHref] optional navigation target (defaults to current page)
  * @returns {string} a path-relative href
  */
-function authActionHref(authenticated) {
-  const url = new URL(window.location.href);
+function authActionHref(authenticated, baseHref = window.location.href) {
+  const url = new URL(baseHref, window.location.href);
   if (authenticated) url.searchParams.set(PARAM, 'true');
   else url.searchParams.delete(PARAM);
+  // simulation-only chat flag — never carry it into auth navigations
+  url.searchParams.delete('external');
   url.hash = '';
   return `${url.pathname}${url.search}`;
+}
+
+/**
+ * Login destination from the authored href when it is a real page path.
+ * Hash-only targets (e.g. `#login`) fall back to the current page.
+ * This portal has no `/` index — authored `/` means B2B home.
+ * @param {HTMLElement} control the Log In control
+ * @returns {string} path-relative href with the auth parameter
+ */
+function loginDestinationHref(control) {
+  const authored = control.getAttribute('href');
+  if (!authored || authored.startsWith('#')) return authActionHref(true);
+
+  const url = new URL(authored, window.location.href);
+  if (url.origin === window.location.origin && (url.pathname === '/' || url.pathname === '')) {
+    url.pathname = '/b2b-content';
+  }
+  return authActionHref(true, url.href);
 }
 
 /**
@@ -111,6 +132,12 @@ export function initAuthState() {
     const trigger = event.target.closest('[data-auth-action]');
     if (!trigger) return;
     event.preventDefault();
+    // Prefer the decorated href (may be an authored destination + loggedIn).
+    const href = trigger.getAttribute('href');
+    if (href) {
+      window.location.replace(href);
+      return;
+    }
     applyAuthState(trigger.dataset.authAction === 'login');
   });
 }
@@ -160,6 +187,7 @@ export function decorateAuthLinks(main) {
 /**
  * Points a Log In / Log Out control at the current state. Sets `title` too,
  * because decorateButtons() has already copied the old label into it.
+ * Login prefers the authored href (e.g. `/` → B2B home); logout stays here.
  * @param {HTMLElement} control the authored Log In link
  */
 export function decorateAuthControl(control) {
@@ -167,7 +195,9 @@ export function decorateAuthControl(control) {
   control.textContent = authenticated ? 'Log Out' : 'Log In';
   control.title = control.textContent;
   control.dataset.authAction = authenticated ? 'logout' : 'login';
-  if ('href' in control) control.href = authActionHref(!authenticated);
+  if ('href' in control) {
+    control.href = authenticated ? authActionHref(false) : loginDestinationHref(control);
+  }
 }
 
 /**
