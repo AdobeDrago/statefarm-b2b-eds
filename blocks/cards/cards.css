@@ -1,56 +1,144 @@
+.cards-wrapper {
+  margin-bottom: 20px !important;
+}
+
+/* a card grid that ends the page (Other Auto Insurance Carriers, Suppliers)
+   clears 110px before the footer banner on the source, tightening to 78px on
+   phones; the footer's own 30px top margin collapses into this */
+.cards-wrapper:last-child {
+  margin-bottom: 110px !important;
+}
+
+.cards-wrapper:has(.edi-transactions) {
+  margin-bottom: 50px !important;
+}
+
+@media (width <768px) {
+  .cards-wrapper:last-child {
+    margin-bottom: 78px !important;
+  }
+
+  .cards-wrapper:has(.edi-transactions) {
+    margin-bottom: 50px !important;
+  }
+}
+
 .cards > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
+  gap: 20px 30px;
   grid-template-columns: 1fr;
-  gap: 24px;
 }
 
-@media (width >= 600px) {
+@media (width >= 768px) {
   .cards > ul {
     /* 2 per row, each sharing 50% of the row (minus the gap) */
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.cards > ul > li {
+.cards > ul > li > div {
   position: relative;
   margin: 0;
   min-height: 160px;
-  border: 1px solid #dadada;
+  border-radius: 4px;
+  border: 1px solid #acabab;
   background-color: var(--background-color);
   box-shadow: 0 0 3px rgb(33 33 33 / 25%);
   transition: box-shadow 0.2s ease;
 }
 
-.cards > ul > li:hover {
+.cards > ul > li > div:hover {
+  border: 1px solid #403c3c;
   box-shadow: 0 2px 5px rgb(33 33 33 / 25%);
 }
 
 .cards .cards-card-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   padding: 24px;
 }
 
 .cards .cards-card-body p {
-  margin: 0;
   font-size: 16px;
   font-weight: 400;
-}
-
-.cards .cards-card-body p + p {
-  margin-top: 8px;
+  line-height: 21px;
+  margin: 16px 0;
 }
 
 .cards .cards-card-body p:first-child {
   /* reserve room so title text doesn't run under the icon */
-  padding-right: 32px;
   font-weight: 600;
+  margin: 0;
 }
 
+/* card title: the source renders this as oneX `-oneX-body--intro`, whose scale
+   steps down on narrower viewports — 20/26 mobile, 23/29 tablet, 25/30 desktop */
 .cards .cards-card-body p:first-child a {
+  padding: 2px;
+  font-size: 20px;
   font-weight: 600;
+  line-height: 26px;
+  padding-right: 15px;
+}
+
+.cards .cards-card-body p:first-child:has(> strong) {
+  gap: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.cards .cards-card-body p:first-child:has(> strong) > strong {
+  order: -1;
+  color: #FFF;
+  font-size: 12px;
+  padding: 2px 8px;
+  font-weight: 400;
+  line-height: 19px;
+  border-radius: 16px;
+  background-color: #D62311;
+  border: 1px solid #D62311;
+}
+
+/* reserve one title line so cards with and without a lock icon keep a
+   consistent baseline — tracks the title's line-height at each breakpoint.
+   min-height, not height: a title that wraps has to grow the card rather than
+   overflow past its top edge */
+.cards .cards-card-body p:first-child:not(:has(picture)) {
+  min-height: 26px;
+  display: flex;
+  align-items: end;
+  box-sizing: border-box;
+}
+
+@media (width >= 768px) {
+  .cards .cards-card-body p:first-child a {
+    font-size: 23px;
+    line-height: 29px;
+  }
+
+  .cards .cards-card-body p:first-child:not(:has(picture)) {
+    min-height: 29px;
+  }
+}
+
+@media (width > 1024px) {
+  .cards .cards-card-body p:first-child a {
+    font-size: 25px;
+    line-height: 30px;
+  }
+
+  .cards .cards-card-body p:first-child:not(:has(picture)) {
+    min-height: 30px;
+  }
+
+  .cards.edi-transactions > ul > li {
+    min-height: 220px;
+  }
 }
 
 .cards .cards-card-image {
@@ -88,3 +176,183 @@
   aspect-ratio: auto;
   object-fit: contain;
 }
+
+/* the same icon authored as its own paragraph rather than trailing the title */
+.cards .cards-card-body p:has(> picture:only-child) {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.cards .cards-card-body p:has(> picture:only-child) picture,
+.cards .cards-card-body p:has(> picture:only-child) img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.default-content-wrapper #select-service {
+  margin: 24px 0 0;
+  font-weight: 500;
+  line-height: 25px;
+  font-size: 25.008px;
+  color: var(--dark-gray-color);
+}
+
+.default-content-wrapper #create-assignment {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 48px;
+  margin: 6px 0 32px;
+  color: var(--dark-gray-color);
+}
+
+.default-content-wrapper #job-aids {
+  margin: 0 0 24px;
+  font-weight: 500;
+  line-height: 25px;
+  font-size: 25.008px;
+  color: var(--dark-gray-color);
+}
+
+.columns-wrapper div:has(> #erac),
+.columns-wrapper div:has(> #hertz) {
+  margin: 0 0 24px;
+}
+
+.columns-wrapper #erac,
+.columns-wrapper #hertz {
+  line-height: 1;
+  font-size: 20px;
+  margin: 0 0 24px;
+  font-weight: 500;
+  color: var(--dark-gray-color);
+}
+
+.columns-wrapper #erac + ul,
+.columns-wrapper #hertz + ul {
+  margin: 0;
+  padding: 0;
+}
+
+.columns-wrapper #erac + ul > li,
+.columns-wrapper #hertz + ul > li {
+  margin: 0 0 16px;
+  list-style-type: none;
+}
+
+.columns-wrapper #erac + ul > li > strong,
+.columns-wrapper #hertz + ul > li > strong {
+  display: flex;
+}
+
+.columns-wrapper #erac + ul > li a,
+.columns-wrapper #hertz + ul > li a {
+  padding: 2px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.cards-container .default-content-wrapper:has(#job-aids) > ul {
+  margin: 0;
+  padding: 0;
+}
+
+.cards-container .default-content-wrapper:has(#job-aids) > ul > li {
+  margin: 0 0 16px;
+  list-style-type: none;
+}
+
+.cards-container .default-content-wrapper:has(#job-aids) > ul > li > strong {
+  display: flex;
+}
+
+.cards-container .default-content-wrapper:has(#job-aids) > ul > li a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--link-color);
+}
+
+.default-content-wrapper #rental-job-aids {
+  margin: 40px 0 0;
+  font-weight: 500;
+  line-height: 25px;
+  font-size: 25.008px;
+  color: var(--dark-gray-color);
+}
+
+.cards-wrapper:has( > .create-assignment) {
+  padding: 0 15px !important;
+}
+
+@media (width <= 1024px) {
+  .default-content-wrapper #create-assignment {
+    line-height: 1;
+    font-size: 39px;
+  }
+
+  .default-content-wrapper #job-aids {
+    line-height: 1;
+    font-size: 23px;
+  }
+
+  .default-content-wrapper #rental-job-aids {
+    line-height: 1;
+    font-size: 23px;
+  }
+
+  .create-assignment.columns > div {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cards.edi-transactions > ul > li {
+    height: max-content;
+  }
+}
+
+@media (width <=600px) {
+  .claims-services .cards-card-body p:last-child { 
+      margin: 14px 0;
+    }
+}
+
+@media (width <= 560px) {
+  .default-content-wrapper #create-assignment {
+    font-size: 28px;
+  }
+
+  .create-assignment.columns > div {
+    display: grid !important;
+    grid-template-columns: 1fr;
+  }
+
+  .cards-wrapper .create-assignment.cards ul li div {
+    min-height: auto;
+  }
+
+  .default-content-wrapper #job-aids {
+    font-size: 20px;
+  }
+
+  .default-content-wrapper #rental-job-aids {
+    font-size: 20px;
+  }
+
+  .columns-wrapper #erac,
+  .columns-wrapper #hertz {
+    font-size: 18px;
+  }
+}
+
+
+.request-supplement .cards-card-body{
+    min-height: unset;
+  }

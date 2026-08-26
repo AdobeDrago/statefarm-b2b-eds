@@ -1,30 +1,50 @@
 import { decorateIcons } from '../../scripts/aem.js';
+import { isSimulationEnabled, decorateAuthControl } from '../../scripts/auth.js';
 
 // maps the "no login required" link labels to an icon in /icons
 const NO_LOGIN_ICONS = {
-  'Request supplement': 'loan-quote',
-  'Create assignment': 'document-add',
-  'Fire service provider tool': 'homeowners-insurance',
+  'Request supplement': 'loan-quote-2',
+  'Create assignment': 'document-add-2',
+  'Fire service provider tool': 'homeowners-insurance-2',
 };
 
 /**
- * Turns the "Log In" link into a red pill button, reusing the existing
- * .button.accent styling (which already resolves to var(--link-color)).
+ * Turns "Log In" into a red pill; only the anonymous state renders anything
+ * here — logging out happens via the header nav.
  * @param {Element} block The columns-auth block
  */
-function decorateLoginButton(block) {
+function decorateLoginPanel(block) {
   const loginLink = [...block.querySelectorAll('a')]
     .find((a) => a.textContent.trim() === 'Log In');
-  if (loginLink) {
-    loginLink.classList.add('button', 'accent');
-    const wrapper = loginLink.closest('p');
-    if (wrapper) wrapper.classList.add('button-wrapper');
-  }
+  // e.g. /b2b-content/suppliers, whose panel cell holds only a spacer
+  if (!loginLink) return;
+
+  loginLink.classList.add('button', 'accent');
+  const wrapper = loginLink.closest('p');
+  if (!wrapper) return;
+  wrapper.classList.add('button-wrapper');
+  if (!isSimulationEnabled()) return;
+
+  // wires the href/click-to-login attribute; harmless once authenticated
+  // since the wrapper is hidden then anyway
+  decorateAuthControl(loginLink);
+  wrapper.dataset.auth = 'anonymous';
+
+  // homepage-only prompt line, identified by content — hub pages have no
+  // such paragraph before the login wrapper
+  const prompt = [...block.querySelectorAll('p')]
+    .find((p) => p !== wrapper && /\blog in\b/i.test(p.textContent));
+  if (prompt) prompt.dataset.auth = 'anonymous';
+
+  // not `p.forgot` — that class exists in the import artifacts but in no
+  // delivered page
+  const forgot = block.querySelector('a[href*="forgot-id-pwd"]')?.closest('p');
+  if (forgot) forgot.dataset.auth = 'anonymous';
 }
 
 /**
- * Transforms the "no login required" list into a horizontal row of
- * icon + link items.
+ * Turns the "no login required" list into icon + link items. Only the
+ * heading hides once authenticated — the list itself stays visible always.
  * @param {Element} block The columns-auth block
  */
 function decorateNoLoginList(block) {
@@ -45,6 +65,8 @@ function decorateNoLoginList(block) {
     }
   });
   decorateIcons(list);
+
+  if (isSimulationEnabled()) heading.dataset.auth = 'anonymous';
 }
 
 export default function decorate(block) {
@@ -52,6 +74,14 @@ export default function decorate(block) {
 
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-auth-${cols.length}-cols`);
+
+  const colHeading = block.querySelector('.columns-auth h1');
+  if (colHeading && colHeading.textContent.includes('®') && !colHeading.querySelector('.registered')) {
+    colHeading.innerHTML = colHeading.innerHTML.replace(
+      /®/g,
+      '<sup class="registered">®</sup>',
+    );
+  }
 
   // setup image columns
   [...block.children].forEach((row) => {
@@ -67,6 +97,6 @@ export default function decorate(block) {
     });
   });
 
-  decorateLoginButton(block);
+  decorateLoginPanel(block);
   decorateNoLoginList(block);
 }

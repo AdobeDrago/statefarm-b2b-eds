@@ -50,4 +50,13 @@ export default async function decorate(block) {
   }
 
   block.append(footer);
+
+  // wrap registered trademark symbol in superscript
+  const footerHeading = block.querySelector('.footer-banner > p');
+  if (footerHeading && footerHeading.textContent.includes('®') && !footerHeading.querySelector('.registered')) {
+    footerHeading.innerHTML = footerHeading.innerHTML.replace(
+      /®/g,
+      '<sup class="registered">®</sup>',
+    );
+  }
 }

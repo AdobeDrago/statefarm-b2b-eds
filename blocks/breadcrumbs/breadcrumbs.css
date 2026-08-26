@@ -1,28 +1,27 @@
-/* full-bleed separator below the trail, matching the source site's
-   breadcrumb strip (a thin border directly under the section, not the
-   page's usual 1200px-constrained content) */
 main .breadcrumbs-container {
-  border-bottom: 1px solid var(--sf-border);
+  margin: 0;
+  border-bottom: 1px solid var(--sf-border, #e6e6e6);
 }
 
-/* fixed height with the trail vertically centered inside it, matching the
-   source's 56px bar. Applied on the wrapper (not breadcrumbs-container
-   itself) so the section keeps its normal block layout — the wrapper still
-   fills up to its max-width and stays left-aligned; making the container a
-   flex parent instead would shrink the wrapper to content width and let its
-   margin: auto center that narrow box in the viewport. */
 main .breadcrumbs-container > .breadcrumbs-wrapper {
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  height: 56px;
+  height: 57px;
+
+  /* width accounts for the left margin so the bar can't overflow the viewport
+     (margin + 100% width was causing ~16–31px horizontal scroll on tablet/desktop) */
+  width: calc(100% - 16px);
+  max-width: calc(100% - 16px);
+  margin: 0 0 0 16px;
+  padding-left: calc((100vw - 1155px) / 2);
+  padding-right: calc((100vw - 1155px) / 2);
 }
 
 main .breadcrumbs ol {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -31,33 +30,72 @@ main .breadcrumbs ol {
 main .breadcrumbs li {
   display: flex;
   align-items: center;
-  gap: 6px;
   margin: 0;
-  font-size: 13px;
 }
 
-/* right-pointing chevron separator, same border-triangle technique used
-   for the header megamenu's dropdown arrow */
 main .breadcrumbs li:not(:first-child)::before {
   content: '';
   flex: none;
-  width: 0;
-  height: 0;
-  border: 4px solid transparent;
-  border-left-color: var(--dark-color);
+  width: 24px;
+  height: 24px;
+  background-image: url("../../icons/chevron_24.svg#right_default");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-main .breadcrumbs a {
-  color: var(--dark-color);
+main .breadcrumbs ol > li > a {
+  font-size: 14px;
+  line-height: 24px;
   text-decoration: none;
+  font-weight: 600 !important;
+  color: var(--dark-gray-color);
 }
 
-main .breadcrumbs a:hover {
-  color: var(--link-color);
+main .breadcrumbs ol > li > a:hover {
   text-decoration: underline;
 }
 
-main .breadcrumbs span[aria-current] {
-  color: var(--text-color);
-  font-weight: 500;
+main .breadcrumbs ol > li > span {
+  font-size: 14px;
+  line-height: 24px;
+  color: #767676;
+  font-weight: 400;
+}
+
+@media (width <= 1024px) {
+  main .breadcrumbs-container > .breadcrumbs-wrapper {
+    width: calc(100% - 31px);
+    max-width: calc(100% - 31px);
+    margin: 0 0 0 31px;
+  }
+}
+
+@media (width <= 560px) {
+  main .breadcrumbs-container > .breadcrumbs-wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 15px;
+  }
+
+  main .breadcrumbs li {
+    display: none;
+  }
+
+  main .breadcrumbs li:nth-last-child(2) {
+    display: flex;
+  }
+
+  main .breadcrumbs li:nth-last-child(2)::before {
+    content: '';
+    flex: none;
+    width: 24px;
+    height: 24px;
+    background-image: url("../../icons/chevron_24.svg#right_default");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: scaleX(-1);
+  }
 }

@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>State Farm B2B — EDS Documentation</title>
+<style>
+  :root {
+    /* Color theme matches docs/template.html. State Farm's own brand font
+       (MecherleSans) isn't embedded here since the licensed files aren't
+       available to this doc, so a system-font stack is used below instead. */
+    --brand-navy: #003b71;
+    --brand-blue: #0074ad;
+    --brand-blue-hover: #005a87;
+    --brand-text: #0d1c3d;
+    --brand-grey-text: #677083;
+    --brand-pale-blue: #f0f7fa;
+    --accent: var(--brand-blue);
+
+    --gray-50: #ffffff;
+    --gray-75: #fafafa;
+    --gray-100: #f5f5f5;
+    --gray-200: #eaeaea;
+    --gray-300: #e1e1e1;
+    --gray-400: #cacaca;
+    --gray-500: #b3b3b3;
+    --gray-600: #8e8e8e;
+    --gray-700: #6e6e6e;
+    --gray-800: #4b4b4b;
+    --gray-900: #2c2c2c;
+
+    --font: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    --mono: ui-monospace, 'SF Mono', 'Courier New', monospace;
+    --sidebar-width: 248px;
+    --content-max: 860px;
+    --header-h: 56px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gray-900);
+    background: var(--gray-50);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* ── TOP NAV ── */
+  .topnav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--header-h);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 16px;
+    z-index: 100;
+    box-shadow: 0 1px 0 var(--gray-200);
+  }
+  .topnav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--brand-navy);
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+  .topnav-logo .mark {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--brand-blue);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .topnav-divider { width: 1px; height: 20px; background: var(--gray-300); }
+  .topnav-title {
+    color: var(--gray-800);
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .topnav-badge {
+    margin-left: auto;
+    background: var(--brand-pale-blue);
+    color: var(--brand-blue);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  /* ── LAYOUT ── */
+  .layout { display: flex; margin-top: var(--header-h); min-height: calc(100vh - var(--header-h)); }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    position: sticky;
+    top: var(--header-h);
+    height: calc(100vh - var(--header-h));
+    overflow-y: auto;
+    border-right: 1px solid var(--gray-200);
+    background: var(--gray-75);
+    padding: 24px 0 40px;
+  }
+  .sidebar-section { margin-bottom: 8px; }
+  .sidebar-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-600);
+    padding: 8px 20px 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 20px;
+    font-size: 13px;
+    color: var(--gray-800);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: background 0.1s, color 0.1s, border-color 0.1s;
+  }
+  .sidebar-link:hover { background: var(--gray-200); color: var(--gray-900); }
+  .sidebar-link.active {
+    background: var(--brand-pale-blue);
+    color: var(--brand-blue);
+    border-left-color: var(--brand-blue);
+    font-weight: 700;
+  }
+  .sidebar-link .icon { width: 16px; height: 16px; opacity: 0.6; flex-shrink: 0; }
+  .sidebar-link.active .icon { opacity: 1; }
+
+  /* ── MAIN ── */
+  .main { flex: 1; min-width: 0; padding: 48px 56px 80px; }
+  .main-inner { max-width: var(--content-max); }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    scroll-margin-top: var(--header-h);
+    margin-bottom: 48px;
+  }
+  .page-hero-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brand-blue);
+    margin-bottom: 8px;
+  }
+  .page-hero h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--brand-navy);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .page-hero-sub { font-size: 16px; color: var(--gray-700); max-width: 640px; line-height: 1.5; }
+
+  /* ── SECTIONS ── */
+  .doc-section { margin-bottom: 56px; scroll-margin-top: calc(var(--header-h) + 24px); }
+  .doc-section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--brand-navy);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+  .section-rule { height: 1px; background: var(--gray-200); margin: 12px 0 24px; }
+  .doc-section h3 { font-size: 14px; font-weight: 700; color: var(--gray-900); margin: 24px 0 8px; }
+  .doc-section p { font-size: 14px; color: var(--gray-800); margin-bottom: 12px; line-height: 1.65; }
+
+  /* ── SECTION ICON BADGE ── */
+  .section-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .icon-blue   { background: #e9f1fc; color: var(--brand-blue); }
+  .icon-navy   { background: #e6eef7; color: var(--brand-navy); }
+  .icon-green  { background: #eaf6f1; color: #268e6c; }
+  .icon-purple { background: #f3edfb; color: #7240ab; }
+  .icon-seafoam{ background: #e6f4f4; color: #16878c; }
+  .icon-orange { background: #fff4e5; color: #da7b11; }
+
+  /* ── URL CARDS ── */
+  .url-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .url-card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .url-card:hover { border-color: var(--brand-blue); box-shadow: 0 0 0 1px var(--brand-blue); }
+  .url-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--gray-600);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .url-card-label .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .dot-blue   { background: var(--brand-blue); }
+  .dot-navy   { background: var(--brand-navy); }
+  .dot-green  { background: #268e6c; }
+  .dot-orange { background: #da7b11; }
+  .url-card-title { font-size: 13px; font-weight: 700; color: var(--gray-900); }
+  .url-card-url { font-size: 12px; font-family: var(--mono); color: var(--brand-blue); word-break: break-all; }
+  .url-card-desc { font-size: 12px; color: var(--gray-600); margin-top: 2px; }
+
+  /* ── LIGHTHOUSE COMPARISON ── */
+  .lighthouse-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 16px 0 24px;
+  }
+  .lighthouse-card { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; background: var(--gray-50); }
+  .lighthouse-card img { display: block; width: 100%; height: auto; }
+  .lighthouse-card-label {
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-700);
+    border-top: 1px solid var(--gray-200);
+  }
+  .score-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .score-good { background: #eaf6f1; color: #268e6c; }
+  .score-mid  { background: #fff4e5; color: #da7b11; }
+
+  /* ── STEPS ── */
+  .steps { counter-reset: step; list-style: none; display: flex; flex-direction: column; gap: 0; position: relative; }
+  .steps::before {
+    content: '';
+    position: absolute;
+    left: 15px; top: 30px; bottom: 30px;
+    width: 1px;
+    background: var(--gray-300);
+  }
+  .step { display: flex; gap: 16px; padding-bottom: 24px; position: relative; }
+  .step:last-child { padding-bottom: 0; }
+  .step-num {
+    counter-increment: step;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--brand-blue);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .step-num::after { content: counter(step); }
+  .step-body { padding-top: 5px; flex: 1; }
+  .step-title { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px; }
+  .step-body p { font-size: 13px; color: var(--gray-700); margin-bottom: 8px; }
+
+  /* ── CODE BLOCKS ── */
+  .code-block {
+    background: var(--gray-900);
+    color: #d4d4d4;
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.6;
+    overflow-x: auto;
+    margin: 8px 0 4px;
+    white-space: pre;
+  }
+  .code-block .cmt  { color: #6a9955; }
+  .code-block .str  { color: #ce9178; }
+  .code-block .kw   { color: #569cd6; }
+  .code-block .var  { color: #9cdcfe; }
+  .code-inline {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-300);
+    color: var(--gray-900);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+
+  /* ── NOTICES ── */
+  .notice {
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 13px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .notice-icon { flex-shrink: 0; margin-top: 1px; }
+  .notice.info     { background: #e9f1fc; color: #0d51b5; border-left: 3px solid var(--brand-blue); }
+  .notice.tip      { background: #eaf6f1; color: #1a6b50; border-left: 3px solid #268e6c; }
+  .notice.warning  { background: #fff4e5; color: #8a4b08; border-left: 3px solid #da7b11; }
+
+  /* ── SPEC TABLE ── */
+  .spec-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+  .spec-table th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--gray-600);
+    padding: 8px 12px;
+    border-bottom: 2px solid var(--gray-200);
+    background: var(--gray-75);
+  }
+  .spec-table td { padding: 9px 12px; border-bottom: 1px solid var(--gray-200); color: var(--gray-800); vertical-align: top; }
+  .spec-table tr:last-child td { border-bottom: none; }
+  .spec-table td:first-child { font-weight: 700; color: var(--gray-900); }
+  .spec-table.blocks-matrix td:first-child {
+    font-weight: 700;
+    color: var(--gray-900);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .spec-table.blocks-matrix td.mark-col {
+    text-align: center;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .spec-table.blocks-matrix .mark-yes { color: #268e6c; }
+  .spec-table.blocks-matrix .mark-no { color: #c0392b; }
+
+  /* ── STATUS BADGE / SIDEBAR PILL ── */
+  .nav-status {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 1px 6px;
+    border-radius: 8px;
+    text-transform: uppercase;
+  }
+  .ns-gap      { background: #fff4e5; color: #8a4b08; }
+  .ns-progress { background: #fff4e5; color: #8a4b08; }
+  .ns-planned  { background: var(--gray-200); color: var(--gray-600); }
+  .ns-done     { background: #eaf6f1; color: #1a6b50; }
+
+  .status-badge {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 3px 10px;
+    border-radius: 12px;
+    text-transform: uppercase;
+  }
+  .sb-warn     { background: #fff4e5; color: #8a4b08; }
+  .sb-progress { background: #fff4e5; color: #8a4b08; }
+  .sb-planned  { background: var(--gray-100); color: var(--gray-600); }
+  .sb-ok,
+  .sb-done     { background: #eaf6f1; color: #1a6b50; }
+
+  .req-list { margin: 8px 0 0 18px; font-size: 13px; color: var(--gray-700); }
+  .req-list li { margin-bottom: 4px; }
+
+  /* ── PROGRESS CHECKLIST ── */
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 4px 0; }
+  .check-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    background: var(--gray-50);
+  }
+  .check-mark {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .check-mark svg { width: 12px; height: 12px; }
+  .cm-done    { background: #eaf6f1; color: #268e6c; }
+  .cm-partial { background: #fff4e5; color: #da7b11; }
+  .cm-todo    { background: var(--gray-100); color: var(--gray-500); }
+  .check-body { flex: 1; }
+  .check-title { font-weight: 700; font-size: 13px; color: var(--gray-900); }
+  .check-note  { font-size: 12px; color: var(--gray-600); line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    border-top: 1px solid var(--gray-200);
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 12px;
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .main { padding: 24px 20px 60px; }
+    .page-hero h1 { font-size: 24px; }
+    .url-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <a class="topnav-logo" href="#overview">
+    <span class="mark">SF</span>
+    State Farm B2B
+  </a>
+  <div class="topnav-divider"></div>
+  <span class="topnav-title">Edge Delivery Services — Documentation</span>
+  <span class="topnav-badge">Docs</span>
+</nav>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" aria-label="Page navigation">
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Overview</div>
+      <a class="sidebar-link" href="#purpose">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h5v5H2zm7 0h5v5H9zM2 9h5v5H2zm7 0h5v5H9z"/></svg>
+        Purpose &amp; requirements
+      </a>
+      <a class="sidebar-link" href="#journeys-status">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg>
+        Workstream status
+      </a>
+      <a class="sidebar-link" href="#repository">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 1A1.5 1.5 0 001 2.5v11A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-11A1.5 1.5 0 0013.5 1h-11z"/></svg>
+        Repository
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Key References</div>
+      <a class="sidebar-link" href="#references">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"/></svg>
+        Key references
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Getting Started</div>
+      <a class="sidebar-link" href="#setup">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg>
+        Install &amp; run
+      </a>
+      <a class="sidebar-link" href="#linting">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M0 3.75C0 2.784.784 2 1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0114.25 14H1.75A1.75 1.75 0 010 12.25v-8.5zm1.75-.25a.25.25 0 00-.25.25v.5h13v-.5a.25.25 0 00-.25-.25H1.75zM1.5 5.5v6.75c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.5h-13z"/></svg>
+        Linting &amp; CI
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Architecture</div>
+      <a class="sidebar-link" href="#block-routing">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1 3.5A1.5 1.5 0 012.5 2h2A1.5 1.5 0 016 3.5v2A1.5 1.5 0 014.5 7h-2A1.5 1.5 0 011 5.5v-2zm5.5 0A1.5 1.5 0 018 2h2a1.5 1.5 0 011.5 1.5v2A1.5 1.5 0 0110 7H8A1.5 1.5 0 016.5 5.5v-2zm-5.5 5A1.5 1.5 0 012.5 7h2A1.5 1.5 0 016 8.5v2A1.5 1.5 0 014.5 12h-2A1.5 1.5 0 011 10.5v-2zm5.5 0A1.5 1.5 0 018 7h2a1.5 1.5 0 011.5 1.5v2A1.5 1.5 0 0110 12H8A1.5 1.5 0 016.5 10.5v-2z"/></svg>
+        Block loading &amp; decoration flow
+      </a>
+      <a class="sidebar-link" href="#page-decoration">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>
+        Page decoration
+      </a>
+      <a class="sidebar-link" href="#blocks">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 1A1.5 1.5 0 001 2.5v11A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-11A1.5 1.5 0 0013.5 1h-11zm8.4 1.3l-.1 1.6a.2.2 0 00.32.17l.55-.42.47.36a.2.2 0 00.32-.17l-.13-2.03h.8v11.4H4.4V2.3h6.5z"/></svg>
+        Blocks
+      </a>
+      <a class="sidebar-link" href="#supporting-modules">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M4.5 2A2.5 2.5 0 002 4.5v7A2.5 2.5 0 004.5 14h7a2.5 2.5 0 002.5-2.5v-7A2.5 2.5 0 0011.5 2h-7zM5 5.5A.5.5 0 015.5 5h5a.5.5 0 010 1h-5A.5.5 0 015 5.5zm0 2.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5A.5.5 0 015 8zm.5 2a.5.5 0 000 1h3a.5.5 0 000-1h-3z"/></svg>
+        Supporting modules
+      </a>
+      <a class="sidebar-link" href="#lighthouse-comparison">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1 14.5a.5.5 0 01.5-.5h13a.5.5 0 010 1h-13a.5.5 0 01-.5-.5zM3 12a1 1 0 011-1 1 1 0 011 1v.5H3V12zm4-3.5A1 1 0 018 7.5a1 1 0 011 1V12.5H7V8.5zm4-3A1 1 0 0112 4.5a1 1 0 011 1v7H11v-7z"/></svg>
+        Lighthouse comparison
+      </a>
+      <a class="sidebar-link" href="#ue-status">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zM4.5 7.25a.75.75 0 000 1.5h5.25l-2.22 2.22a.75.75 0 001.06 1.06l3.5-3.5a.75.75 0 000-1.06l-3.5-3.5a.75.75 0 10-1.06 1.06l2.22 2.22H4.5z"/></svg>
+        Universal Editor enablement
+        <span class="nav-status ns-progress">Progress</span>
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Journeys</div>
+      <a class="sidebar-link" href="#j-nav">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>
+        Navigation / Header
+        <span class="nav-status ns-done">Complete</span>
+      </a>
+      <a class="sidebar-link" href="#j-auth">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 2.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V2.75zM3 4.5h6v1H3v-1zm0 2.5h6v1H3V7zm0 2.5h4v1H3v-1z"/></svg>
+        Auth / Login Simulation
+        <span class="nav-status ns-done">Complete</span>
+      </a>
+      <a class="sidebar-link" href="#j-hub">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h5v5H2zm7 0h5v5H9zM2 9h5v5H2zm7 0h5v5H9z"/></svg>
+        Service Hub Pages
+        <span class="nav-status ns-done">Complete</span>
+      </a>
+      <a class="sidebar-link" href="#j-agreement">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 1A1.5 1.5 0 001 2.5v11A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-11A1.5 1.5 0 0013.5 1h-11zm1 3h9v1.5h-9V4zm0 3h9v1.5h-9V7zm0 3h6v1.5h-6V10z"/></svg>
+        Select Service &amp; Agreement
+        <span class="nav-status ns-done">Complete</span>
+      </a>
+      <a class="sidebar-link" href="#j-ue">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zM4.5 7.25a.75.75 0 000 1.5h5.25l-2.22 2.22a.75.75 0 001.06 1.06l3.5-3.5a.75.75 0 000-1.06l-3.5-3.5a.75.75 0 10-1.06 1.06l2.22 2.22H4.5z"/></svg>
+        Universal Editor Enablement
+        <span class="nav-status ns-progress">Progress</span>
+      </a>
+      <a class="sidebar-link" href="#j-testing">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm8-3.25a.75.75 0 01.75.75v2.69l1.78 1.78a.75.75 0 11-1.06 1.06l-2-2A.75.75 0 017.25 8.5v-3a.75.75 0 01.75-.75z"/></svg>
+        Testing (Playwright)
+        <span class="nav-status ns-planned">Planned</span>
+      </a>
+      <a class="sidebar-link" href="#other-workstreams">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M4.5 2A2.5 2.5 0 002 4.5v7A2.5 2.5 0 004.5 14h7a2.5 2.5 0 002.5-2.5v-7A2.5 2.5 0 0011.5 2h-7z"/></svg>
+        Other workstreams
+      </a>
+    </div>
+
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <div class="main-inner">
+
+      <!-- HERO -->
+      <div class="page-hero" id="overview">
+        <div class="page-hero-eyebrow">State Farm B2B · EDS</div>
+        <h1>State Farm B2B — Edge Delivery Services Documentation</h1>
+        <p class="page-hero-sub">A Document Authoring (DA)-backed Edge Delivery Services site for State Farm's B2B portal — claims, billing, supplier, and lender-facing service hub pages migrated from a legacy portal. Built on <code class="code-inline">@adobe/aem-boilerplate</code>, with fragment-based header/footer, a simulated login/auth-state system for gating "Login required" content, and Universal Editor authoring currently being wired up alongside classic DA editing.</p>
+        <div class="url-grid" style="margin-top:20px;">
+          <a class="url-card" href="https://github.com/AdobeDrago/statefarm-b2b-eds" target="_blank" rel="noopener">
+            <span class="url-card-label"><span class="dot dot-navy"></span>GitHub</span>
+            <span class="url-card-title">AdobeDrago/statefarm-b2b-eds</span>
+            <span class="url-card-url">https://github.com/AdobeDrago/statefarm-b2b-eds</span>
+            <span class="url-card-desc">Source repo, <code class="code-inline">main</code> branch — dev happens on ticket branches merged via <code class="code-inline">develop</code>.</span>
+          </a>
+          <a class="url-card" href="https://main--statefarm-b2b-eds--adobedrago.aem.page/b2b-content" target="_blank" rel="noopener">
+            <span class="url-card-label"><span class="dot dot-blue"></span>Preview</span>
+            <span class="url-card-title">EDS preview</span>
+            <span class="url-card-url">https://main--statefarm-b2b-eds--adobedrago.aem.page/b2b-content</span>
+            <span class="url-card-desc">Preview environment for <code class="code-inline">main</code>.</span>
+          </a>
+          <a class="url-card" href="https://main--statefarm-b2b-eds--adobedrago.aem.live/b2b-content" target="_blank" rel="noopener">
+            <span class="url-card-label"><span class="dot dot-green"></span>Live</span>
+            <span class="url-card-title">EDS live</span>
+            <span class="url-card-url">https://main--statefarm-b2b-eds--adobedrago.aem.live/b2b-content</span>
+            <span class="url-card-desc">Production live environment.</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- PURPOSE -->
+      <section class="doc-section" id="purpose">
+        <h2>
+          <span class="section-icon icon-blue">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h5v5H2zm7 0h5v5H9zM2 9h5v5H2zm7 0h5v5H9z"/></svg>
+          </span>
+          Purpose &amp; requirements
+        </h2>
+        <div class="section-rule"></div>
+
+        <h3>Goals</h3>
+        <ul class="req-list">
+          <li>Migrate the legacy State Farm B2B portal to Edge Delivery Services, authored in Document Authoring.</li>
+          <li>Support role-based service hub navigation — claims, billing/payments, medical e-billing, suppliers, other-carrier, and home/auto lender pages.</li>
+          <li>Ship a simulated auth/login-state system (no live IdP) that gates "Login required" content and swaps CTAs by auth state.</li>
+          <li>Enable Universal Editor authoring alongside classic DA editing.</li>
+        </ul>
+
+        <h3>Core engineering constraints</h3>
+        <ul class="req-list">
+          <li>Use the EDS block-based development model only (<code class="code-inline">scripts/aem.js</code> + <code class="code-inline">scripts/scripts.js</code>).</li>
+          <li>Auto-block <code class="code-inline">a[href*="/fragments/"]</code> and <code class="code-inline">a[href*="/widgets/"]</code> links rather than requiring authors to hand-author those blocks.</li>
+          <li>Enforce a strict CSP with Trusted Types, since <code class="code-inline">widget.js</code> injects third-party HTML/CSS/JS via an <code class="code-inline">innerHTML</code> sink.</li>
+          <li>Single project, single locale — no multi-brand or locale routing (unlike other EDS pilots in this org).</li>
+        </ul>
+      </section>
+
+      <!-- WORKSTREAM STATUS -->
+      <section class="doc-section" id="journeys-status">
+        <h2>
+          <span class="section-icon icon-navy">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg>
+          </span>
+          Workstream status
+        </h2>
+        <div class="section-rule"></div>
+        <table class="spec-table">
+          <thead>
+            <tr><th>Workstream</th><th>Covers</th><th>Status</th><th>Detail</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Navigation / Header</td>
+              <td>Nav/megamenu chrome parity with the production site</td>
+              <td><span class="nav-status ns-done">Complete</span></td>
+              <td><a href="#j-nav" style="color:var(--brand-blue);">Journey detail</a></td>
+            </tr>
+            <tr>
+              <td>Auth / Login Simulation</td>
+              <td>Simulated login state, gated content, login pill</td>
+              <td><span class="nav-status ns-done">Complete</span></td>
+              <td><a href="#j-auth" style="color:var(--brand-blue);">Journey detail</a></td>
+            </tr>
+            <tr>
+              <td>Service Hub Pages</td>
+              <td>Cards / cards-service hub pages across claims, billing, suppliers, lenders</td>
+              <td><span class="nav-status ns-done">Complete</span></td>
+              <td><a href="#j-hub" style="color:var(--brand-blue);">Journey detail</a></td>
+            </tr>
+            <tr>
+              <td>Select Service &amp; Agreement</td>
+              <td>Service-selection hub and agreement subpage layout</td>
+              <td><span class="nav-status ns-done">Complete</span></td>
+              <td><a href="#j-agreement" style="color:var(--brand-blue);">Journey detail</a></td>
+            </tr>
+            <tr>
+              <td>Universal Editor Enablement</td>
+              <td>UE component models/filters/definitions, runtime wiring</td>
+              <td><span class="nav-status ns-progress">In progress</span></td>
+              <td><a href="#j-ue" style="color:var(--brand-blue);">Journey detail</a></td>
+            </tr>
+            <tr>
+              <td>Testing (Playwright)</td>
+              <td>Automated test coverage</td>
+              <td><span class="nav-status ns-planned">Planned</span></td>
+              <td><a href="#j-testing" style="color:var(--brand-blue);">Journey detail</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Service Hub Pages are shipped, with ongoing visual polish as new hub pages are added. Universal Editor and Testing are called out separately below because their completion status is not yet confirmed end to end — see their sections for the specific gaps.</p>
+      </section>
+
+      <!-- REPOSITORY -->
+      <section class="doc-section" id="repository">
+        <h2>
+          <span class="section-icon icon-navy">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 1A1.5 1.5 0 001 2.5v11A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-11A1.5 1.5 0 0013.5 1h-11z"/></svg>
+          </span>
+          Repository
+        </h2>
+        <div class="section-rule"></div>
+        <table class="spec-table">
+          <tbody>
+            <tr><td>GitHub repo</td><td><code class="code-inline">AdobeDrago/statefarm-b2b-eds</code> · branch <code class="code-inline">main</code></td></tr>
+            <tr><td>Branch flow</td><td>Ticket branches (<code class="code-inline">drago-NN</code>) → <code class="code-inline">develop</code> → <code class="code-inline">main</code></td></tr>
+            <tr><td>Base</td><td><code class="code-inline">@adobe/aem-boilerplate</code> — <code class="code-inline">package.json</code> name/version are still literally <code class="code-inline">@adobe/aem-boilerplate</code> v1.3.0</td></tr>
+            <tr><td>Project type</td><td><code class="code-inline">doc</code> (DA-backed) — <code class="code-inline">previewOrg</code>/<code class="code-inline">previewSite</code> = <code class="code-inline">adobedrago</code>/<code class="code-inline">statefarm-b2b-eds</code> (<code class="code-inline">.migration/project.json</code>)</td></tr>
+            <tr><td>Testing</td><td>No confirmed automated test suite merged yet; see <a href="#j-testing" style="color:var(--brand-blue);">Testing journey</a></td></tr>
+            <tr><td>Guides</td><td><code class="code-inline">project-guides/</code> — admin, author, and developer PDF guides (see <a href="#references" style="color:var(--brand-blue);">Key references</a>)</td></tr>
+          </tbody>
+        </table>
+        <div class="notice info">
+          <svg class="notice-icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"/></svg>
+          <span>There is no <code class="code-inline">fstab.yaml</code> in this repo, so the Document Authoring mount is only inferable from <code class="code-inline">.migration/project.json</code>, not directly confirmed. See the note in <a href="#references" style="color:#0d51b5;">Key references</a>.</span>
+        </div>
+      </section>
+
+      <!-- KEY REFERENCES -->
+      <section class="doc-section" id="references">
+        <h2>
+          <span class="section-icon icon-blue">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"/></svg>
+          </span>
+          Key references
+        </h2>
+        <div class="section-rule"></div>
+
+        <h3>Project environments</h3>
+        <div class="url-grid">
+          <a class="url-card" href="https://github.com/AdobeDrago/statefarm-b2b-eds" target="_blank" rel="noopener">
+            <span class="url-card-label"><span class="dot dot-navy"></span>GitHub</span>
+            <span class="url-card-title">AdobeDrago/statefarm-b2b-eds</span>
+            <span class="url-card-url">https://github.com/AdobeDrago/statefarm-b2b-eds</span>
+            <span class="url-card-desc">Source repo, <code class="code-inline">main</code> branch.</span>
+          </a>
+          <a class="url-card" href="https://main--statefarm-b2b-eds--adobedrago.aem.page/b2b-content" target="_blank" rel="noopener">
+            <span class="url-card-label"><span class="dot dot-blue"></span>Preview</span>
+            <span class="url-card-title">EDS preview</span>
+            <span class="url-card-url">https://main--statefarm-b2b-eds--adobedrago.aem.page/b2b-content</span>
+            <span class="url-card-desc">Preview environment for <code class="code-inline">main</code>.</span>
+          </a>
+          <a class="url-card" href="https://main--statefarm-b2b-eds--adobedrago.aem.live/b2b-content" target="_blank" rel="noopener">
+            <span class="url-card-label"><span class="dot dot-green"></span>Live</span>
+            <span class="url-card-title">EDS live</span>
+            <span class="url-card-url">https://main--statefarm-b2b-eds--adobedrago.aem.live/b2b-content</span>
+            <span class="url-card-desc">Production live environment.</span>
+          </a>
+          <a class="url-card" href="https://da.live/#/adobedrago/statefarm-b2b-eds" target="_blank" rel="noopener">
+            <span class="url-card-label"><span class="dot dot-orange"></span>DA</span>
+            <span class="url-card-title">Document Authoring</span>
+            <span class="url-card-url">https://da.live/#/adobedrago/statefarm-b2b-eds</span>
+            <span class="url-card-desc">DA Live content source.</span>
+          </a>
+        </div>
+
+        <h3>Project guides (in-repo)</h3>
+        <div class="url-grid">
+          <a class="url-card" href="../project-guides/ADMIN-GUIDE.pdf">
+            <span class="url-card-label"><span class="dot dot-navy"></span>Guide</span>
+            <span class="url-card-title">Admin guide</span>
+            <span class="url-card-url">project-guides/ADMIN-GUIDE.pdf</span>
+            <span class="url-card-desc">Role-based admin operations guide.</span>
+          </a>
+          <a class="url-card" href="../project-guides/AUTHOR-GUIDE.pdf">
+            <span class="url-card-label"><span class="dot dot-navy"></span>Guide</span>
+            <span class="url-card-title">Author guide</span>
+            <span class="url-card-url">project-guides/AUTHOR-GUIDE.pdf</span>
+            <span class="url-card-desc">Content-authoring guide for Document Authoring.</span>
+          </a>
+          <a class="url-card" href="../project-guides/DEVELOPER-GUIDE.pdf">
+            <span class="url-card-label"><span class="dot dot-navy"></span>Guide</span>
+            <span class="url-card-title">Developer guide</span>
+            <span class="url-card-url">project-guides/DEVELOPER-GUIDE.pdf</span>
+            <span class="url-card-desc">Developer onboarding guide.</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- GETTING STARTED: SETUP -->
+      <section class="doc-section" id="setup">
+        <h2>
+          <span class="section-icon icon-blue">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg>
+          </span>
+          Install &amp; run
+        </h2>
+        <div class="section-rule"></div>
+        <ol class="steps">
+          <li class="step">
+            <div class="step-num"></div>
+            <div class="step-body">
+              <div class="step-title">Clone and install</div>
+              <div class="code-block">git clone https://github.com/AdobeDrago/statefarm-b2b-eds.git
+cd statefarm-b2b-eds
+npm i</div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-num"></div>
+            <div class="step-body">
+              <div class="step-title">Run the AEM CLI</div>
+              <div class="code-block">npm install -g @adobe/aem-cli
+aem up</div>
+              <p>Starts the standard EDS local dev server at <code class="code-inline">http://localhost:3000</code>, proxying content from the linked Document Authoring source.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- GETTING STARTED: LINTING -->
+      <section class="doc-section" id="linting">
+        <h2>
+          <span class="section-icon icon-navy">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M0 3.75C0 2.784.784 2 1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0114.25 14H1.75A1.75 1.75 0 010 12.25v-8.5zm1.75-.25a.25.25 0 00-.25.25v.5h13v-.5a.25.25 0 00-.25-.25H1.75zM1.5 5.5v6.75c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.5h-13z"/></svg>
+          </span>
+          Linting &amp; CI
+        </h2>
+        <div class="section-rule"></div>
+        <div class="code-block">npm run lint       <span class="cmt"># runs lint:js + lint:css</span>
+npm run lint:js    <span class="cmt"># ESLint (airbnb-base)</span>
+npm run lint:css   <span class="cmt"># Stylelint (blocks/**/*.css, styles/*.css)</span>
+npm run lint:fix   <span class="cmt"># auto-fix variants of the above</span></div>
+        <div class="notice info">
+          <svg class="notice-icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"/></svg>
+          <span>There is no confirmed automated test suite in this repo yet. A <code class="code-inline">feature/playwright-tests</code> branch exists; its merge status into <code class="code-inline">develop</code>/<code class="code-inline">main</code> is unconfirmed — see the <a href="#j-testing" style="color:#0d51b5;">Testing journey</a>.</span>
+        </div>
+      </section>
+
+      <!-- ARCHITECTURE: BLOCK ROUTING -->
+      <section class="doc-section" id="block-routing">
+        <h2>
+          <span class="section-icon icon-navy">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1 3.5A1.5 1.5 0 012.5 2h2A1.5 1.5 0 016 3.5v2A1.5 1.5 0 014.5 7h-2A1.5 1.5 0 011 5.5v-2zm5.5 0A1.5 1.5 0 018 2h2a1.5 1.5 0 011.5 1.5v2A1.5 1.5 0 0110 7H8A1.5 1.5 0 016.5 5.5v-2zm-5.5 5A1.5 1.5 0 012.5 7h2A1.5 1.5 0 016 8.5v2A1.5 1.5 0 014.5 12h-2A1.5 1.5 0 011 10.5v-2zm5.5 0A1.5 1.5 0 018 7h2a1.5 1.5 0 011.5 1.5v2A1.5 1.5 0 0110 12H8A1.5 1.5 0 016.5 10.5v-2z"/></svg>
+          </span>
+          Block loading &amp; decoration flow
+        </h2>
+        <div class="section-rule"></div>
+        <p>This project uses the standard stock <code class="code-inline">aem-boilerplate</code> three-phase loading pattern unchanged — <code class="code-inline">loadEager</code> → <code class="code-inline">loadLazy</code> → <code class="code-inline">loadDelayed</code>, driven by <code class="code-inline">loadPage()</code> in <code class="code-inline">scripts/scripts.js</code>. Unlike some other EDS pilots in this org, there is no custom per-project block-path routing (e.g. no <code class="code-inline">blocks/statefarm/*</code> override family) — every block lives directly under <code class="code-inline">blocks/</code> and is resolved the default aem-boilerplate way.</p>
+      </section>
+
+      <!-- ARCHITECTURE: PAGE DECORATION -->
+      <section class="doc-section" id="page-decoration">
+        <h2>
+          <span class="section-icon icon-navy">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>
+          </span>
+          Page decoration (<code class="code-inline">scripts/scripts.js</code>)
+        </h2>
+        <div class="section-rule"></div>
+        <table class="spec-table">
+          <thead>
+            <tr><th>Behavior</th><th>Trigger / detail</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Trusted Types CSP policy</td><td>Strips <code class="code-inline">&lt;script&gt;</code> tags and <code class="code-inline">iframe[srcdoc]</code> from HTML sink content — required because <code class="code-inline">widget.js</code> assigns third-party markup via <code class="code-inline">innerHTML</code> under a strict-dynamic CSP.</td></tr>
+            <tr><td><code class="code-inline">buildAutoBlocks(main)</code></td><td>Auto-loads <code class="code-inline">a[href*="/fragments/"]</code> links as fragments.</td></tr>
+            <tr><td><code class="code-inline">buildWidgetAutoBlocks</code></td><td>Auto-converts <code class="code-inline">a[href*="/widgets/"]</code> links into <code class="code-inline">widget</code> blocks.</td></tr>
+            <tr><td><code class="code-inline">decorateAuthLinks</code> / <code class="code-inline">decorateAuthGate</code></td><td>From <code class="code-inline">scripts/auth.js</code> — wires the simulated login/auth-gating system into <code class="code-inline">decorateMain</code>.</td></tr>
+            <tr><td><code class="code-inline">initAuthState()</code></td><td>Called first in <code class="code-inline">loadEager</code>, before decoration, to set the <code class="code-inline">auth-anonymous</code> / <code class="code-inline">auth-authenticated</code> body class.</td></tr>
+            <tr><td><code class="code-inline">decorateDropdown(ul, placeholder)</code></td><td>Exported utility — converts an authored link list into a native <code class="code-inline">&lt;select&gt;</code> jump menu; reused by <code class="code-inline">columns-promo</code> and <code class="code-inline">cards-service</code>.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ARCHITECTURE: BLOCKS -->
+      <section class="doc-section" id="blocks">
+        <h2>
+          <span class="section-icon icon-navy">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 1A1.5 1.5 0 001 2.5v11A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-11A1.5 1.5 0 0013.5 1h-11zm8.4 1.3l-.1 1.6a.2.2 0 00.32.17l.55-.42.47.36a.2.2 0 00.32-.17l-.13-2.03h.8v11.4H4.4V2.3h6.5z"/></svg>
+          </span>
+          Blocks
+        </h2>
+        <div class="section-rule"></div>
+        <table class="spec-table blocks-matrix">
+          <thead>
+            <tr><th>Block</th><th>Purpose</th><th class="mark-col">JS decoration?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>breadcrumbs</td><td>Wraps an authored <code class="code-inline">&lt;ul&gt;</code> link list into <code class="code-inline">&lt;nav aria-label="Breadcrumb"&gt;&lt;ol&gt;</code>; the last item's link is stripped and replaced with an <code class="code-inline">aria-current="page"</code> span.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>cards</td><td>Standard card grid; adds a "Login required" lock badge (<code class="code-inline">data-auth="anonymous"</code>) via <code class="code-inline">auth.js</code>, hiding soft login prompts when auth is simulated.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>cards-service</td><td>Icon + body service card list; detects icon cell (picture / <code class="code-inline">span.icon</code> / <code class="code-inline">:icon-name:</code> token) vs. body; a nested link list becomes a dropdown.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>columns</td><td>Generic N-column layout; adds a <code class="code-inline">columns-{n}-cols</code> class and flags image-only columns.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>columns-auth</td><td>Auth-aware column panel; turns a "Log In" link into a red pill button, wires click-to-simulate-login, maps specific "no login required" links to icons.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>columns-promo</td><td>Promo variant of columns (home/hub pages); converts an authored link list into a "Select a product" dropdown.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>footer</td><td>Loads the footer as a fragment (<code class="code-inline">getMetadata('footer')</code> → <code class="code-inline">/content/footer</code> → <code class="code-inline">/footer</code> fallback chain), splits into banner + content sections.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>fragment</td><td>Core fragment-include block; <code class="code-inline">loadFragment(path)</code> fetches <code class="code-inline">{path}.plain.html</code> and rebases relative media paths. Reused by header/footer.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>header</td><td>Full nav/megamenu block; builds desktop/mobile nav from a fragment, manages dropdown open/close, integrates the auth system, responsive at 900px.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>hero</td><td>CSS-only — <code class="code-inline">hero.js</code> is an empty file; no JS decoration is needed for this block.</td><td class="mark-col mark-no">✗</td></tr>
+            <tr><td>icon-text</td><td>Two-cell row (icon + body) repeated per authored row; converts <code class="code-inline">:icon-name:</code> token paragraphs to <code class="code-inline">span.icon</code> as a fallback.</td><td class="mark-col mark-yes">✓</td></tr>
+            <tr><td>widget</td><td>Loads third-party/internal widget bundles referenced by <code class="code-inline">/widgets/...</code> links (auto-blocked); injects the widget's CSS/JS and guards against path traversal.</td><td class="mark-col mark-yes">✓</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ARCHITECTURE: SUPPORTING MODULES -->
+      <section class="doc-section" id="supporting-modules">
+        <h2>
+          <span class="section-icon icon-navy">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M4.5 2A2.5 2.5 0 002 4.5v7A2.5 2.5 0 004.5 14h7a2.5 2.5 0 002.5-2.5v-7A2.5 2.5 0 0011.5 2h-7z"/></svg>
+          </span>
+          Supporting modules
+        </h2>
+        <div class="section-rule"></div>
+        <table class="spec-table">
+          <thead>
+            <tr><th>Module</th><th>Purpose</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>scripts/aem.js</td><td>Core AEM Edge Delivery library (page decoration primitives) — never modified per project convention.</td></tr>
+            <tr><td>scripts/scripts.js</td><td>Global decoration entry point — three-phase loading, auto-blocking, <code class="code-inline">decorateDropdown</code> export, Trusted Types CSP setup (see <a href="#page-decoration" style="color:var(--brand-blue);">Page decoration</a>).</td></tr>
+            <tr><td>scripts/auth.js</td><td>Simulated login/auth-state system — not present in stock aem-boilerplate; drives <code class="code-inline">auth-anonymous</code>/<code class="code-inline">auth-authenticated</code> body classes and gated content across cards, cards-service, columns-auth, and header.</td></tr>
+            <tr><td>scripts/delayed.js</td><td>Delayed/martech-style loading, run after the lazy phase.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ARCHITECTURE: LIGHTHOUSE COMPARISON -->
+      <section class="doc-section" id="lighthouse-comparison">
+        <h2>
+          <span class="section-icon icon-green">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1 14.5a.5.5 0 01.5-.5h13a.5.5 0 010 1h-13a.5.5 0 01-.5-.5zM3 12a1 1 0 011-1 1 1 0 011 1v.5H3V12zm4-3.5A1 1 0 018 7.5a1 1 0 011 1V12.5H7V8.5zm4-3A1 1 0 0112 4.5a1 1 0 011 1v7H11v-7z"/></svg>
+          </span>
+          Lighthouse comparison — Live vs EDS
+        </h2>
+        <div class="section-rule"></div>
+        <p>Chrome DevTools Lighthouse audits of the <code class="code-inline">/b2b-content</code> landing page, captured against the production live site (<code class="code-inline">b2b.statefarm.com</code>) and the EDS preview (<code class="code-inline">main--statefarm-b2b-eds--adobedrago.aem.page</code>).</p>
+        <table class="spec-table">
+          <thead>
+            <tr><th>Metric</th><th>Live</th><th>EDS</th><th>Delta</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Performance</td><td><span class="score-pill score-mid">53</span></td><td><span class="score-pill score-good">100</span></td><td>+47</td></tr>
+            <tr><td>Accessibility</td><td><span class="score-pill score-good">95</span></td><td><span class="score-pill score-good">90</span></td><td>&minus;5</td></tr>
+            <tr><td>Best Practices</td><td><span class="score-pill score-mid">73</span></td><td><span class="score-pill score-good">96</span></td><td>+23</td></tr>
+          </tbody>
+        </table>
+        <div class="lighthouse-grid">
+          <figure class="lighthouse-card">
+            <img src="images/live-site.png" alt="Lighthouse audit of the live b2b.statefarm.com site scoring 53 Performance, 95 Accessibility, 73 Best Practices">
+            <figcaption class="lighthouse-card-label">Live &mdash; b2b.statefarm.com</figcaption>
+          </figure>
+          <figure class="lighthouse-card">
+            <img src="images/eds-site.png" alt="Lighthouse audit of the EDS preview scoring 100 Performance, 90 Accessibility, 96 Best Practices">
+            <figcaption class="lighthouse-card-label">EDS &mdash; aem.page preview</figcaption>
+          </figure>
+        </div>
+        <div class="notice tip">
+          <svg class="notice-icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"/></svg>
+          <span>The EDS rebuild nearly doubles Performance (53 → 100) and improves Best Practices (73 → 96). Accessibility dips slightly (95 → 90) and is worth a follow-up pass.</span>
+        </div>
+      </section>
+
+      <!-- ARCHITECTURE: UNIVERSAL EDITOR -->
+      <section class="doc-section" id="ue-status">
+        <h2>
+          <span class="section-icon icon-orange">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zM4.5 7.25a.75.75 0 000 1.5h5.25l-2.22 2.22a.75.75 0 001.06 1.06l3.5-3.5a.75.75 0 000-1.06l-3.5-3.5a.75.75 0 10-1.06 1.06l2.22 2.22H4.5z"/></svg>
+          </span>
+          Universal Editor enablement
+          <span class="status-badge sb-progress">In Progress</span>
+        </h2>
+        <div class="section-rule"></div>
+        <p>Commit <code class="code-inline">b71bfb0</code> ("Add the required files for Universal Editor") added the root <code class="code-inline">component-definition.json</code>, <code class="code-inline">component-models.json</code>, and <code class="code-inline">component-filters.json</code> — generated from source partials under <code class="code-inline">ue/models/</code> (<code class="code-inline">page.json</code>, <code class="code-inline">section.json</code>, <code class="code-inline">text.json</code>, <code class="code-inline">title.json</code>, <code class="code-inline">image.json</code>, <code class="code-inline">button.json</code>, plus one <code class="code-inline">ue/models/blocks/{blockname}.json</code> per block) via <code class="code-inline">npm run build:json</code>, per <code class="code-inline">ue/README.md</code>. <code class="code-inline">ue/scripts/ue-utils.js</code> and <code class="code-inline">ue/scripts/ue.js</code> provide <code class="code-inline">moveInstrumentation</code> helpers and DOM-mutation observers to keep <code class="code-inline">data-aue-*</code> authoring attributes attached when blocks rewrite the DOM.</p>
+        <div class="notice warning">
+          <svg class="notice-icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M7.56 1.22a.5.5 0 01.88 0l6.5 12.5A.5.5 0 0114.5 14.5h-13a.5.5 0 01-.44-.78l6.5-12.5zM8 5.5a.5.5 0 00-.5.5v3a.5.5 0 001 0V6a.5.5 0 00-.5-.5zM8 11.5a.75.75 0 100 1.5.75.75 0 000-1.5z"/></svg>
+          <span>Wiring is not complete: <code class="code-inline">package.json</code> has no <code class="code-inline">build:json</code> script defined (only <code class="code-inline">lint</code>/<code class="code-inline">lint:fix</code>) despite <code class="code-inline">ue/README.md</code> requiring it; <code class="code-inline">ue/README.md</code> also references a runtime file <code class="code-inline">scripts/editor-support.js</code> for XWalk live-patch/richtext support that does not exist (<code class="code-inline">scripts/</code> only has <code class="code-inline">aem.js</code>, <code class="code-inline">auth.js</code>, <code class="code-inline">delayed.js</code>, <code class="code-inline">scripts.js</code>); and <code class="code-inline">head.html</code> has no Universal Editor script reference yet. UE is scaffolded but not fully wired end to end.</span>
+        </div>
+      </section>
+
+      <!-- JOURNEY: NAVIGATION / HEADER -->
+      <section class="doc-section" id="j-nav">
+        <h2>
+          Journey — Navigation / Header
+          <span class="status-badge sb-done">Complete</span>
+        </h2>
+        <div class="section-rule"></div>
+        <p>Nav bar height, padding, and overlay fixes to mirror the production State Farm site chrome (<code class="code-inline">drago-66-67</code> · PR #20, <code class="code-inline">drago-82</code> · PR #21/#22).</p>
+        <ul class="checklist">
+          <li class="check-item">
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title">Nav chrome matches production</div>
+              <div class="check-note">Header/megamenu height and padding adjusted to mirror the live site.</div>
+            </div>
+          </li>
+          <li class="check-item">
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title">Overlay / dropdown parity fixes</div>
+              <div class="check-note">Nav overlay hidden correctly on hover-out and page scroll; dropdown padding and font-size bugs fixed.</div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- JOURNEY: AUTH / LOGIN SIMULATION -->
+      <section class="doc-section" id="j-auth">
+        <h2>
+          Journey — Auth / Login Simulation
+          <span class="status-badge sb-done">Complete</span>
+        </h2>
+        <div class="section-rule"></div>
+        <p><code class="code-inline">feature/login-flow</code> (PR #11) introduced <code class="code-inline">scripts/auth.js</code>, a simulated login/auth-state system layered on top of the boilerplate, followed by icon/label fixes for "no login required" content (<code class="code-inline">bugfix/manoj-bhise-se/drago-77</code> · PR #13, <code class="code-inline">drago-80</code> · PR #15).</p>
+        <ul class="checklist">
+          <li class="check-item">
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title">Simulated auth-state module shipped</div>
+              <div class="check-note"><code class="code-inline">scripts/auth.js</code> sets <code class="code-inline">auth-anonymous</code>/<code class="code-inline">auth-authenticated</code> body classes and gates content.</div>
+            </div>
+          </li>
+          <li class="check-item">
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title">Login pill in columns-auth</div>
+              <div class="check-note">"Log In" link styled as a red pill button, wired to click-to-simulate-login.</div>
+            </div>
+          </li>
+          <li class="check-item">
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title">"No login required" icon corrections</div>
+              <div class="check-note">Icon mapping fixed for Request supplement, Create assignment, and Fire service provider tool links.</div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- JOURNEY: SERVICE HUB PAGES -->
+      <section class="doc-section" id="j-hub">
+        <h2>
+          Journey — Service Hub Pages
+          <span class="status-badge sb-done">Complete</span>
+        </h2>
+        <div class="section-rule"></div>
+        <p>Card-grid hub pages built with <code class="code-inline">cards</code> + <code class="code-inline">columns-auth</code> across <code class="code-inline">claim-services</code>, <code class="code-inline">electronic-payments</code>, <code class="code-inline">medical-ebilling</code>, <code class="code-inline">other-ins-carrier</code>, <code class="code-inline">suppliers</code>, and <code class="code-inline">home-auto-lenders</code>, with icon-text link-weight fixes along the way (<code class="code-inline">icon-text-block</code>/<code class="code-inline">icon-text-link-weight-fix</code> · PR #8–#10).</p>
+        <ul class="checklist">
+          <li class="check-item">
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title">Hub content model shipped</div>
+              <div class="check-note">Cards + columns-auth pattern in place across all six service hub pages.</div>
+            </div>
+          </li>
+          <li class="check-item">
+            <span class="check-mark cm-partial"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title">Ongoing visual polish</div>
+              <div class="check-note">Card/service-list height and padding adjustments continue as new hub pages are added — treat as shipped-with-polish, not a one-time finished state.</div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- JOURNEY: SELECT SERVICE & AGREEMENT -->
+      <section class="doc-section" id="j-agreement">
+        <h2>
+          Journey — Select Service &amp; Agreement
+          <span class="status-badge sb-done">Complete</span>
+        </h2>
+        <div class="section-rule"></div>
+        <p>The <code class="code-inline">select-service</code> hub and its <code class="code-inline">ss-agreement</code> subpage flow (<code class="code-inline">drago-82</code> · PR #21/#22, <code class="code-inline">drago-57</code>/<code class="code-inline">drago-84</code> · PR #24/#25).</p>
+        <ul class="checklist">
+          <li class="check-item">
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title">Select-service hub built</div>
+              <div class="check-note"><code class="code-inline">columns</code> content layout added on top of the standard cards + columns-auth pattern.</div>
+            </div>
+          </li>
+          <li class="check-item">
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title">Agreement subpage alignment fixed</div>
+              <div class="check-note">"Create assignment" layout and <code class="code-inline">ss-agreement</code> alignment issues resolved.</div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- JOURNEY: UNIVERSAL EDITOR ENABLEMENT -->
+      <section class="doc-section" id="j-ue">
+        <h2>
+          Journey — Universal Editor Enablement
+          <span class="status-badge sb-progress">In Progress</span>
+        </h2>
+        <div class="section-rule"></div>
+        <p>Scaffolding from <code class="code-inline">feature/enable-ue-capabilities</code> landed in commit <code class="code-inline">b71bfb0</code>; runtime wiring is not yet complete. See <a href="#ue-status" style="color:var(--brand-blue);">Universal Editor enablement</a> for the full gap detail.</p>
+        <ul class="checklist">
+          <li class="check-item">
+            <span class="check-mark cm-done"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06l2.72 2.72 6.72-6.72a.75.75 0 011.06 0z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title">Component definitions/models/filters generated &amp; committed</div>
+              <div class="check-note"><code class="code-inline">component-definition.json</code>, <code class="code-inline">component-models.json</code>, <code class="code-inline">component-filters.json</code> plus <code class="code-inline">ue/models/*</code> source partials.</div>
+            </div>
+          </li>
+          <li class="check-item">
+            <span class="check-mark cm-todo"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title"><code class="code-inline">build:json</code> npm script</div>
+              <div class="check-note">Not yet defined in <code class="code-inline">package.json</code>, despite <code class="code-inline">ue/README.md</code> requiring it as the generation step.</div>
+            </div>
+          </li>
+          <li class="check-item">
+            <span class="check-mark cm-todo"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title"><code class="code-inline">scripts/editor-support.js</code> runtime file</div>
+              <div class="check-note">Referenced by <code class="code-inline">ue/README.md</code> for XWalk live-patch/richtext support, but does not exist yet.</div>
+            </div>
+          </li>
+          <li class="check-item">
+            <span class="check-mark cm-todo"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title"><code class="code-inline">head.html</code> Universal Editor reference</div>
+              <div class="check-note">No UE-related script reference present yet.</div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- JOURNEY: TESTING -->
+      <section class="doc-section" id="j-testing">
+        <h2>
+          Journey — Testing (Playwright)
+          <span class="status-badge sb-planned">Planned</span>
+        </h2>
+        <div class="section-rule"></div>
+        <p>A <code class="code-inline">feature/playwright-tests</code> branch exists in the repo. Its merge status into <code class="code-inline">develop</code>/<code class="code-inline">main</code> is not confirmed by the visible git history, so this is tracked as planned/in-progress rather than complete.</p>
+        <ul class="checklist">
+          <li class="check-item">
+            <span class="check-mark cm-partial"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title"><code class="code-inline">feature/playwright-tests</code> branch exists</div>
+              <div class="check-note">Not confirmed merged into <code class="code-inline">develop</code> or <code class="code-inline">main</code> — verify current status before relying on it.</div>
+            </div>
+          </li>
+          <li class="check-item">
+            <span class="check-mark cm-todo"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 108 1a7 7 0 000 14z"/></svg></span>
+            <div class="check-body">
+              <div class="check-title">CI test step</div>
+              <div class="check-note"><code class="code-inline">.github/workflows</code> currently runs lint only — no automated test execution wired into CI yet.</div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- OTHER WORKSTREAMS -->
+      <section class="doc-section" id="other-workstreams">
+        <h2>
+          <span class="section-icon icon-purple">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M4.5 2A2.5 2.5 0 002 4.5v7A2.5 2.5 0 004.5 14h7a2.5 2.5 0 002.5-2.5v-7A2.5 2.5 0 0011.5 2h-7z"/></svg>
+          </span>
+          Other notable workstreams
+        </h2>
+        <div class="section-rule"></div>
+        <ul class="req-list">
+          <li><code class="code-inline">chore/remove-import-byproduct</code> (PR #12) — cleaned up deprecated B2B portal import artifacts left over from the initial content migration.</li>
+          <li><code class="code-inline">develop</code> — MecherleSans brand font file rollout and styling/branding polish.</li>
+          <li><code class="code-inline">feature/home-page-fixes</code> (PR #16) — promo section visual match against the production homepage.</li>
+        </ul>
+      </section>
+
+      <div class="doc-footer">
+        <span>State Farm B2B · Edge Delivery Services — docs/</span>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+(() => {
+  const links = document.querySelectorAll('.sidebar-link[href^="#"]');
+  const sections = new Map();
+  links.forEach((link) => {
+    const target = document.getElementById(link.getAttribute('href').slice(1));
+    if (target) sections.set(target, link);
+  });
+
+  const setActive = (link) => {
+    links.forEach((l) => l.classList.toggle('active', l === link));
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries.filter((entry) => entry.isIntersecting);
+    if (!visible.length) return;
+    visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+    setActive(sections.get(visible[0].target));
+  }, { rootMargin: '-64px 0px -70% 0px', threshold: 0 });
+
+  sections.forEach((_, target) => observer.observe(target));
+})();
+</script>
+</body>
+</html>

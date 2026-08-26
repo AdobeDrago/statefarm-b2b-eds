@@ -7,7 +7,13 @@
     "lint:js": "eslint .",
     "lint:css": "stylelint \"blocks/**/*.css\" \"styles/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix"
+    "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "ssr:html": "node tools/ssr/post-process-html.js",
+    "ssr:ssr-test": "node tools/ssr/generate-authored-hero-demo.js https://main--statefarm-b2b-eds--adobedrago.aem.page/b2b-content/ssr-test.plain.html drafts/ssr-test-lit.plain.html",
+    "copy:lit-runtime": "node tools/ssr/copy-lit-runtime-assets.js",
+    "start:ssr-demo": "npx -y @adobe/aem-cli up --no-open --html-folder drafts --html-mount /drafts --prefer-plain-html"
   },
   "repository": {
     "type": "git",
@@ -20,11 +26,20 @@
   },
   "homepage": "https://github.com/adobe/aem-boilerplate#readme",
   "devDependencies": {
+    "@babel/core": "^7.29.7",
     "@babel/eslint-parser": "7.29.7",
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.2.0",
     "eslint": "8.57.1",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.32.0",
     "stylelint": "17.14.1",
     "stylelint-config-standard": "40.0.0"
+  },
+  "dependencies": {
+    "@lit-labs/ssr": "^4.1.0",
+    "@lit-labs/ssr-client": "^1.1.8",
+    "lit": "^3.3.3",
+    "lit-html": "^3.3.3"
   }
 }

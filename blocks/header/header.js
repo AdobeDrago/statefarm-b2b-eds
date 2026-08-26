@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { isSimulationEnabled, decorateAuthControl, decorateAuthForm } from '../../scripts/auth.js';
 
 // media query match that indicates desktop width (header shows full nav)
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -8,11 +9,18 @@ const isDesktop = window.matchMedia('(min-width: 900px)');
  * Close every open megamenu dropdown (triggers + their panels).
  * @param {Element} navSections the nav sections container
  */
-function closeAllDrops(navSections) {
+function closeAllDrops(navSections, panelHost = null) {
   navSections.querySelectorAll('.nav-drop[aria-expanded="true"]').forEach((drop) => {
     drop.setAttribute('aria-expanded', 'false');
     if (drop.megaPanel) drop.megaPanel.classList.remove('open');
   });
+  // reset any drilled-into column so the section re-opens at its top level next time
+  navSections.querySelectorAll('.nav-drop-col.open').forEach((col) => col.classList.remove('open'));
+  if (panelHost) panelHost.classList.remove('open');
+  if (isDesktop.matches) {
+    document.body.style.overflowY = 'scroll';
+    document.body.style.position = '';
+  }
 }
 
 /**
@@ -20,16 +28,20 @@ function closeAllDrops(navSections) {
  * @param {Element} navSections the nav sections container
  * @param {Element} li the trigger list item
  */
-function openDrop(navSections, li) {
-  closeAllDrops(navSections);
+function openDrop(navSections, li, panelHost = null) {
+  closeAllDrops(navSections, panelHost);
   li.setAttribute('aria-expanded', 'true');
   if (li.megaPanel) {
     li.megaPanel.classList.add('open');
+    if (panelHost) panelHost.classList.add('open');
     // panels host is position:fixed on desktop — align it under the nav bar
     if (isDesktop.matches) {
       const host = li.megaPanel.parentElement;
       const nav = navSections.closest('nav');
       if (host && nav) host.style.top = `${Math.round(nav.getBoundingClientRect().bottom)}px`;
+      document.body.style.overflowY = 'scroll';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
     }
   }
 }
@@ -55,12 +67,8 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
- * Build the search control from JS — not authored in the fragment. The
- * toggle lives in the utility bar; the pane is its own row inside <nav>'s
- * grid, between the gray utility row and the logo/links row, so opening it
- * grows nav's own grid-template-rows and pushes everything below (including
- * the logo/links row and the rest of the page) down — unlike the megamenu
- * panels, which float over content via position: fixed.
+ * Builds the search control from JS — not authored in the fragment. Opening
+ * it grows nav's own grid row rather than floating over content, unlike the megamenu.
  * @param {Element} nav the nav element (search row lives in its grid)
  * @param {Element} searchLink the placeholder anchor for search in the tools section
  */
@@ -96,12 +104,13 @@ function decorateSearch(nav, searchLink) {
   submit.className = 'nav-search-submit button accent';
   submit.textContent = 'Search';
   form.append(input, submit);
+  decorateAuthForm(form);
 
   const closeBtn = document.createElement('button');
   closeBtn.type = 'button';
   closeBtn.className = 'nav-search-close';
   closeBtn.setAttribute('aria-label', 'Close search');
-  closeBtn.innerHTML = '<span aria-hidden="true">&times;</span>';
+  closeBtn.innerHTML = '<span aria-hidden="true">✕</span>';
 
   paneInner.append(form, closeBtn);
   pane.append(paneInner);
@@ -167,6 +176,9 @@ export default async function decorate(block) {
   // sections: wire up megamenu dropdowns
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
+    let panelHost = null;
+    panelHost = document.createElement('div');
+    panelHost.className = 'nav-drop-panels';
     navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) {
         navSection.classList.add('nav-drop');
@@ -206,46 +218,96 @@ export default async function decorate(block) {
         closeBtn.type = 'button';
         closeBtn.className = 'nav-drop-close';
         closeBtn.setAttribute('aria-label', 'Close menu');
-        closeBtn.innerHTML = '<span aria-hidden="true">&times;</span>';
-        closeBtn.addEventListener('click', () => closeAllDrops(navSections));
-        panel.append(panelInner, closeBtn);
+        closeBtn.innerHTML = '<span aria-hidden="true">✕</span>';
+        closeBtn.addEventListener('click', () => closeAllDrops(navSections, panelHost));
+
+        // mobile drill-down: each column's heading becomes its own trigger —
+        // tapping it reveals that column's real links, collapsing the others
+        panelInner.querySelectorAll(':scope > .nav-drop-col').forEach((col) => {
+          const colHeading = col.querySelector('h3');
+          const colLinks = col.querySelector('ul');
+          if (!colHeading || !colLinks) return;
+          colHeading.setAttribute('role', 'button');
+          colHeading.setAttribute('tabindex', '0');
+          const toggleCol = () => {
+            const wasOpen = col.classList.contains('open');
+            panelInner.querySelectorAll(':scope > .nav-drop-col.open').forEach((openCol) => {
+              if (openCol !== col) openCol.classList.remove('open');
+            });
+            col.classList.toggle('open', !wasOpen);
+          };
+          colHeading.addEventListener('click', toggleCol);
+          colHeading.addEventListener('keydown', (e) => {
+            if (e.code === 'Enter' || e.code === 'Space') {
+              toggleCol();
+            }
+          });
+        });
+
+        // mobile drill-down: back control + section title, shown above the
+        // columns once the section's panel replaces the main menu list
+        const drillBack = document.createElement('button');
+        drillBack.type = 'button';
+        drillBack.className = 'nav-drop-back';
+        drillBack.textContent = 'Back';
+        drillBack.addEventListener('click', () => closeAllDrops(navSections, panelHost));
+        const drillTitle = document.createElement('p');
+        drillTitle.className = 'nav-drop-title';
+        drillTitle.textContent = topLink ? topLink.textContent.trim() : '';
+
+        panel.append(drillBack, drillTitle, panelInner, closeBtn);
         navSection.megaPanel = panel;
 
-        navSection.addEventListener('mouseenter', () => {
-          if (isDesktop.matches) openDrop(navSections, navSection);
-        });
+        setTimeout(() => {
+          navSection.addEventListener('mouseenter', () => {
+            if (isDesktop.matches) openDrop(navSections, navSection, panelHost);
+          });
+        }, 100);
         if (topLink) {
-          topLink.addEventListener('click', (e) => {
-            e.preventDefault();
+          topLink.addEventListener('click', () => {
+            // this link's only job is to toggle its megamenu/drill-down panel —
+            // without this it silently navigates to its href instead
             const wasOpen = navSection.getAttribute('aria-expanded') === 'true';
-            if (wasOpen) closeAllDrops(navSections);
-            else openDrop(navSections, navSection);
+            if (wasOpen) closeAllDrops(navSections, panelHost);
+            else openDrop(navSections, navSection, panelHost);
           });
         }
       }
     });
 
-    // move every panel into a trailing container so all top-level trigger
-    // anchors precede panel links in DOM order (keeps "Payments" ahead of the
-    // nested "View Payments" link)
-    const panelHost = document.createElement('div');
-    panelHost.className = 'nav-drop-panels';
+    // move every panel into a trailing container so top-level trigger anchors
+    // precede panel links in DOM order
+    // let panelHost = null;
+    const panelOverlay = document.createElement('div');
+    panelOverlay.className = 'nav-drop-overlay';
+
+    // panelHost = document.createElement('div');
+    // panelHost.className = 'nav-drop-panels';
     navSections.querySelectorAll(':scope > ul > li.nav-drop').forEach((li) => {
       if (li.megaPanel) panelHost.append(li.megaPanel);
     });
+    panelHost.append(panelOverlay);
     navSections.append(panelHost);
+
+    panelOverlay.addEventListener('mouseenter', () => {
+      if (isDesktop.matches) closeAllDrops(navSections, panelHost);
+    });
+    panelOverlay.addEventListener('click', () => {
+      if (isDesktop.matches) closeAllDrops(navSections, panelHost);
+    });
 
     // desktop: close the open panel when the pointer leaves the nav bar
     navSections.addEventListener('mouseleave', () => {
-      if (isDesktop.matches) closeAllDrops(navSections);
+      if (isDesktop.matches) closeAllDrops(navSections, panelHost);
     });
     // close on click outside
     document.addEventListener('click', (e) => {
-      if (isDesktop.matches && !navSections.contains(e.target)) closeAllDrops(navSections);
+      if (isDesktop.matches
+        && !navSections.contains(e.target)) closeAllDrops(navSections, panelHost);
     });
     // close on escape
     document.addEventListener('keydown', (e) => {
-      if (e.code === 'Escape') closeAllDrops(navSections);
+      if (e.code === 'Escape') closeAllDrops(navSections, panelHost);
     });
   }
 
@@ -255,7 +317,11 @@ export default async function decorate(block) {
     const loginPara = navTools.querySelector('p');
     if (loginPara) {
       const loginLink = loginPara.querySelector('a');
-      if (loginLink) loginLink.classList.add('nav-login');
+      if (loginLink) {
+        loginLink.classList.add('nav-login');
+        // the authored href is the real login app, so only simulation hosts rewrite it
+        if (isSimulationEnabled()) decorateAuthControl(loginLink);
+      }
       const loginWrap = document.createElement('div');
       loginWrap.className = 'nav-login-wrap';
       loginWrap.append(loginPara);

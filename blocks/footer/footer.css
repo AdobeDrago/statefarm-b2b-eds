@@ -9,8 +9,9 @@ footer {
   --sf-footer-cream: #f7f0e4;
   --sf-footer-text: rgb(64 60 60);
   --sf-footer-border: rgb(64 60 60 / 20%);
-  --sf-footer-max: 1200px;
+  --sf-footer-max: 1140px;
 
+  margin: 46px 0 0;
   background-color: var(--sf-footer-cream);
   font-family: MecherleSans, Arial, sans-serif;
 }
@@ -31,13 +32,34 @@ footer .footer .footer-banner {
 }
 
 footer .footer .footer-banner p {
-  max-width: var(--sf-footer-max);
-  margin: 0 auto;
-  padding: 18px 24px;
+  max-width: 1140px;
+  width: 100%;
+  height: 62px;
   font-size: 16px;
   font-weight: 400;
   color: #fff;
-  text-align: left;
+  display: flex;
+  margin: auto;
+  padding: 0 15px;
+  line-height: 20px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+@media(width<=1200px){
+    footer .footer .footer-banner p {
+        max-width: 960px; 
+      }
+  }
+
+footer .footer .footer-banner p .registered {
+  height: 19px;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 5px;
+  line-height: 20px;
+  padding-bottom: 9px;
+  color: #fff;
 }
 
 /* ---- cream content area (full-width bg, constrained inner) ---- */
@@ -47,12 +69,13 @@ footer .footer .footer-content {
   color: var(--sf-footer-text);
 }
 
-footer .footer .footer-content > * {
+footer .footer .footer-content>* {
   max-width: var(--sf-footer-max);
   margin-left: auto;
   margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
 }
 
 /* logo is authored but not part of this footer layout — kept in the DOM, hidden visually */
@@ -65,12 +88,13 @@ footer .footer .footer-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 12px 24px;
   list-style: none;
-  margin: 32px auto 0;
-  padding: 0 24px 20px;
-  border-bottom: 1px solid var(--sf-footer-border);
-}
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 20px;
+  padding-bottom: 26px;
+  border-bottom: 0.5px solid #0003;
+} 
 
 footer .footer .footer-links li {
   margin: 0;
@@ -78,8 +102,9 @@ footer .footer .footer-links li {
 
 footer .footer .footer-links a {
   color: var(--sf-footer-text);
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
   text-decoration: none;
 }
 
@@ -93,10 +118,9 @@ footer .footer .footer-notices {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 8px 20px;
   list-style: none;
-  margin: 16px auto 0;
-  padding: 0 24px;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 footer .footer .footer-notices li {
@@ -104,9 +128,11 @@ footer .footer .footer-notices li {
 }
 
 footer .footer .footer-notices a {
-  color: var(--sf-footer-text);
-  font-size: 13px;
-  font-weight: 700;
+  color: #000;
+  font-size: 12px;
+  padding: 0 15px;
+  font-weight: 600;
+  line-height: 18px;
   text-decoration: none;
 }
 
@@ -117,12 +143,54 @@ footer .footer .footer-notices a:hover {
 
 /* copyright */
 footer .footer .footer-copyright {
-  padding-top: 16px;
-  padding-bottom: 24px;
-  font-size: 13px;
-  color: var(--sf-footer-text);
+  /* font-family: "MecherleLegal";
+  this font is used in live site. it is not MecherleSans */
+  margin-top: 12px;
+  font-weight: 400;
+  line-height: 20px;
+
+  /* margin-bottom: 12px; */
+  padding-bottom: 68px;
+  font-size: 12px;
   text-align: left;
+  color: var(--text-color);
 }
+
+/* under 1024p */
+
+@media (width <=1024px) {
+  footer .footer .footer-banner p,
+  footer .footer .footer-links,
+  footer .footer .footer-notices,
+  footer .footer .footer-copyright {
+    padding-inline: 48px;
+  }
+}
+
+@media (width <=768px) {
+  footer .footer .footer-banner p,
+  footer .footer .footer-links,
+  footer .footer .footer-notices,
+  footer .footer .footer-copyright {
+    padding-inline: 38px;
+  } 
+
+  footer .footer .footer-links  {
+    padding-bottom: 30px;
+    padding-top: 28px;
+  }
+
+  footer .footer .footer-notices { 
+    margin-top: 20px; 
+  }
+
+  footer .footer .footer-copyright {
+    margin-top: 8px; 
+    padding-bottom: 66px;
+  }
+}
+
+
 
 /* ---- mobile ---- */
 @media (width < 600px) {
@@ -132,20 +200,25 @@ footer .footer .footer-copyright {
   }
 
   footer .footer .footer-links {
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: flex-start;
-    gap: 10px;
+    gap: 10px 15px;
   }
 
   footer .footer .footer-notices {
-    flex-direction: column;
+    /* flex-direction: column; */
+    margin-top: 15px;
     align-items: flex-start;
-    gap: 8px;
+    gap: 0;
     text-align: left;
   }
 
-  footer .footer .footer-content > * {
+  footer .footer .footer-content>* {
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  footer .footer .footer-copyright { 
+    padding-bottom: 78px; 
   }
 }

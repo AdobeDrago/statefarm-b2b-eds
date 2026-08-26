@@ -10,6 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
+@import url('./fonts.css');
+
 :root {
   /* colors */
   --background-color: white;
@@ -19,6 +21,10 @@
   --link-color: #d62311;
   --link-hover-color: #b81c0e;
   --khaki-color: #f7f0e4;
+  --dark-gray-color: #403c3c;
+  --sf-background-brand-default: #ec0c21;
+  --sf-background-brand-hover: #bd0a1a;
+  --text-dark-color: #212121;
 
   /* fonts */
   /* stylelint-disable-next-line value-keyword-case -- MecherleSans is a brand font name, not a CSS keyword */
@@ -40,7 +46,7 @@
   --heading-font-size-xs: 22px;
 }
 
-@media (width >= 900px) {
+@media (width <=900px) {
   :root {
     /* body sizes */
     --body-font-size-m: 16px;
@@ -71,6 +77,21 @@ body.appear {
   display: block;
 }
 
+/* on a page too short to fill the viewport the footer slides down to the bottom
+   edge instead of leaving white space under it. Sticky rather than a flex column
+   so main stays a block box and section margins keep collapsing as before */
+body.appear > footer {
+  position: sticky;
+  top: 100vh;
+}
+
+/* simulated auth state (scripts/auth.js) — `html body` (0,2,2) outranks a
+   tagged pill's `a.button:any-link` (0,2,1) specificity */
+html body.auth-anonymous [data-auth="authenticated"],
+html body.auth-authenticated [data-auth="anonymous"] {
+  display: none;
+}
+
 header .header,
 footer .footer {
   visibility: hidden;
@@ -95,17 +116,30 @@ h6 {
   scroll-margin: 40px;
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
+h1 {
+  font-size: var(--heading-font-size-xxl);
+}
+
+h2 {
+  font-size: var(--heading-font-size-xl);
+}
+
+h3 {
+  font-size: var(--heading-font-size-l);
+}
 
 h4 {
   font-size: var(--heading-font-size-m);
   font-weight: 500;
 }
 
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
+h5 {
+  font-size: var(--heading-font-size-s);
+}
+
+h6 {
+  font-size: var(--heading-font-size-xs);
+}
 
 p,
 dl,
@@ -130,9 +164,6 @@ pre {
   white-space: pre;
 }
 
-main > div {
-  margin: 40px 16px;
-}
 
 input,
 textarea,
@@ -266,11 +297,732 @@ button.button.accent:disabled:focus-visible {
   color: var(--dark-color);
 }
 
+#terms-of-use{
+    font-size: 3rem;
+      font-weight: 600;
+      line-height: 48px;
+      margin-top: 24px;
+      margin-bottom: 32px;
+  }
+
+#terms-of-use-1{
+    display: none;
+  }
+  
+  #other-agreements, 
+  #collaboration-site-users, 
+  #privacy,
+  #prohibitions-in-your-use-of-this-collaboration-site,
+  #secured-areaspasswords,
+  #changes-to-this-document,
+  #waiver, 
+  #assignment, 
+  #limitation-of-liability,
+  #warranty-disclaimer, 
+  #general, 
+  #your-obligations, 
+  #additional-terms, 
+  #state-farm-intellectual-property-rights
+  {
+      margin-block: 64px 24px;
+        font-size: 2.438rem;
+        line-height: 39px;
+   }
+
+   #additional-terms + ul a {
+      font-weight: 600 !important;
+    }
+
+   main .section.khaki>div p {
+  margin: 0 0 16px;
+}
+
+main .section.khaki ul {
+  margin-bottom: 24px;
+}
+
+main .section.khaki ul:last-child {
+  margin-bottom: 0;
+}
+
+ /* stylelint-disable no-descending-specificity */
+
+#other-agreements + p,
+#collaboration-site-users + p,
+#privacy + p,
+#prohibitions-in-your-use-of-this-collaboration-site + p,
+#prohibitions-in-your-use-of-this-collaboration-site ~ ul ,
+#changes-to-this-document + p,
+#waiver + p,
+#assignment + p,
+#limitation-of-liability + p,
+#warranty-disclaimer + p,
+#general + p,
+#your-obligations + p,
+#your-obligations + p + ul + p,
+#additional-terms + p,
+#state-farm-intellectual-property-rights + p,
+#terms-of-use-1 + p,
+#secured-areaspasswords + p,
+#state-farm-intellectual-property-rights+p+p,
+#assignment+p+p,
+#secured-areaspasswords+p+p,
+#secured-areaspasswords+p+p+p,
+#state-farm-intellectual-property-rights+p+p+p
+{
+    margin-block: 0;
+    margin-bottom: 16px;
+    font-size: 16px; 
+    font-weight: 400;
+    line-height: 21px;
+  }
+
+#prohibitions-in-your-use-of-this-collaboration-site~ul{
+    margin-top: 24px;
+    padding-left: 24px;
+  }
+
+
+#prohibitions-in-your-use-of-this-collaboration-site~ul li{
+    padding-bottom: 8px;
+  }
+
+@media(width <=990px){
+    #terms-of-use {
+        font-size: 2.438rem; 
+        line-height: 39px;  
+      }
+
+    #other-agreements,
+    #collaboration-site-users,
+    #privacy,
+    #prohibitions-in-your-use-of-this-collaboration-site,
+    #secured-areaspasswords,
+    #changes-to-this-document,
+    #waiver,
+    #assignment,
+    #limitation-of-liability,
+    #warranty-disclaimer,
+    #general,
+    #your-obligations,
+    #additional-terms,
+    #state-farm-intellectual-property-rights { 
+      font-size: 2.063rem;
+      line-height: 33px;
+      margin-top: 56px;
+    }
+  }
+
+@media(width <=768px) {
+  #terms-of-use {
+    font-size: 1.75rem;
+    line-height: 28px;
+  }
+
+  #other-agreements,
+  #collaboration-site-users,
+  #privacy,
+  #prohibitions-in-your-use-of-this-collaboration-site,
+  #secured-areaspasswords,
+  #changes-to-this-document,
+  #waiver,
+  #assignment,
+  #limitation-of-liability,
+  #warranty-disclaimer,
+  #general,
+  #your-obligations,
+  #additional-terms,
+  #state-farm-intellectual-property-rights {
+    font-size: 1.563rem;
+    line-height: 25px;
+    margin-top: 48px;
+  }
+}
+/* stylelint-disable selector-id-pattern */
+.default-content-wrapper:has(#request-supplement--shop-claim-view)  #claim-services,
+ #instructions--guides{
+    font-size: 1.563rem;
+    line-height: 25px;
+    margin-block: 0;
+    margin-top: 24px  !important;
+  }
+
+  #instructions--guides { 
+    margin-top: 36px !important;
+  }
+
+#request-supplement--shop-claim-view{
+    font-size: 3rem;
+    line-height: 48px;
+    font-weight: 600;
+    margin: 6px 0 32px;
+  }  
+
+#instructions--guides + ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 25px;
+}
+
+.default-content-wrapper #auto-repair-facility-survey {
+  line-height: 1;
+  font-size: 39px;
+  font-weight: 600;
+  margin: 64px 0 50px;
+  color: var(--dark-gray-color);
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p {
+  color: #212121;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 21px;
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p > a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.default-content-wrapper:has(#auto-repair-facility-survey) {
+  margin-bottom: 120px;
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p:has(> a[title='Log In']) {
+  height: 48px;
+  display: flex;
+  padding: 0 48px;
+  cursor: pointer;
+  margin: 0 0 24px;
+  width: max-content;
+  border-radius: 28px;
+  align-items: center;
+  background-color: var(--link-color);
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p:has(> a[title='Log In']):hover {
+  background-color: #a11b13;
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p > a[title='Log In'] {
+  color: #fff;
+  text-decoration: none;
+}
+
+#instructions--guides+ul li .button-wrapper a { 
+  text-decoration: unset;
+  white-space: unset;
+  display: block;
+  border-radius: 0;
+  padding: 0;
+  font-size: 1pc; 
+  line-height: 21px;
+  margin-bottom: 16px;
+  color: unset;
+  color: var(--link-color);
+  background-color: unset;
+  border: none;
+  font-weight: 600;
+}
+
+#instructions--guides+ul li .button-wrapper a:hover { 
+  color: var(--link-hover-color); 
+  text-decoration: underline;
+}
+
+#auto-repair-supplements-faqs{
+  font-size: 2.438rem;
+  line-height: 39px; 
+  margin: 6px 0 32px;
+}
+
+#why-should-i-register-with-b2b,
+#can-i-submit-a-supplement-request-without-registering-or-while-pending-registration,
+#what-if-i-do-not-know-my-customers-claim-number-to-submit-a-supplement-request,
+#can-i-fax-or-email-the-supplement-information-instead-of-uploading-through-the-b2b-portal,
+#i-am-having-technical-issues-with-submitting-a-supplement-request-who-do-i-contact,
+#i-have-questions-regarding-a-claim-that-are-unrelated-to-the-estimate-who-should-i-contact{ 
+    line-height: 21px;
+    font-size: 16px;
+ 
+  }
+
+#why-should-i-register-with-b2b + p,
+#why-should-i-register-with-b2b+p + ul,
+#can-i-submit-a-supplement-request-without-registering-or-while-pending-registration + p,
+#can-i-submit-a-supplement-request-without-registering-or-while-pending-registration+p+p,
+#what-if-i-do-not-know-my-customers-claim-number-to-submit-a-supplement-request + p,
+#can-i-fax-or-email-the-supplement-information-instead-of-uploading-through-the-b2b-portal + p,
+#can-i-fax-or-email-the-supplement-information-instead-of-uploading-through-the-b2b-portal+p+p,
+#i-am-having-technical-issues-with-submitting-a-supplement-request-who-do-i-contact + p,
+#i-have-questions-regarding-a-claim-that-are-unrelated-to-the-estimate-who-should-i-contact+p {
+  line-height: 21px;
+  font-size: 16px;
+} 
+
+ .request-supplement{
+    margin-bottom: -15px;
+  }
+
+    .request-supplement details .accordion-item-body {
+      padding-block: 6px 8px;
+      padding-left: 2px;
+    }
+
+.request-supplement details .accordion-item-body ul {
+  padding-left: 24px;
+} 
+
+@media(width <=990px) {
+#request-supplement--shop-claim-view {
+    font-size: 2.438rem;
+    line-height: 39px;
+    font-weight: 600;
+    margin: 4px 0 32px;
+  }
+
+#auto-repair-supplements-faqs {
+    font-size: 2.063rem;
+    line-height: 33px;
+    margin: 6px 0 24px;
+  }
+}
+
+@media(width < 768px) {
+  .default-content-wrapper:has(#request-supplement--shop-claim-view) #claim-services,
+  #instructions--guides {
+    font-size: 1.25rem;
+    line-height: 20px; 
+  }
+
+  #request-supplement--shop-claim-view {
+    font-size: 1.75rem;
+    line-height: 28px;
+    font-weight: 600;
+    margin: 4px 0 32px;
+  }
+  /* stylelint-enable selector-id-pattern */
+
+  #auto-repair-supplements-faqs {
+    font-size: 1.563rem;
+    line-height: 25px;
+    margin: 6px 0 24px;
+  }
+}
+
+.fire-services ul li .cards-card-body{
+    min-height: unset;
+  }
+
+
+
+#fire-service{
+    font-size: 3rem;
+    line-height: 48px;
+    font-weight: 600;
+    margin: 24px 0 64px;
+  }
+
+#need-help{
+    font-size: 1.563rem;
+      font-weight: 500;
+      line-height: 25px;
+      margin-top: 78px;
+      margin-bottom: 24px;
+  }
+
+#need-help + ul {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 16px; 
+    line-height: 21px;
+    font-weight: 400;
+  margin-bottom: 105px;
+}
+
+#need-help+ul li {
+  margin-bottom: 18px;
+}
+
+
+@media(width <=990px){
+  #fire-service {
+      font-size: 2.438rem;
+        line-height: 39px;
+      font-weight: 600;
+      margin: 24px 0 64px;
+    }
+  
+    #need-help {
+      font-size: 1.438rem;
+        line-height: 23px;
+      margin-top: 54px;
+      margin-bottom: 24px;
+    }
+
+        #need-help+ul { 
+          margin-bottom: 72px;
+        }
+   
+  
+    #need-help+ul li {
+      margin-bottom: 18px;
+    }
+  }
+
+@media(width <768px) {
+  #fire-service {
+    font-size: 1.75rem;
+    line-height: 28px;
+    font-weight: 600;
+    margin: 24px 0 64px;
+  }
+
+  #need-help {
+    font-size: 1.25rem;
+    line-height: 20px;
+    margin-top: 74px;
+    margin-bottom: 24px;
+  }
+
+#need-help+ul { 
+  margin-bottom: 72px;
+}
+
+  #need-help+ul li {
+    margin-bottom: 18px;
+  }
+}
+
+
+#multi-factor-authentication-faq{
+    display: none;
+  }
+
+#log-in-faq{
+    font-size: 2.438rem;
+      line-height: 39px;
+      margin-block: 88px 56px;
+  }
+
+#what-changes-have-been-made-to-the-login-process,
+#what-is-multi-factor-authentication-mfa,
+#what-are-my-authentication-options,
+#how-do-i-update-my-email-address-for-mfa,
+#how-often-will-mfa-be-required,
+#how-does-the-mfa-process-work-on-b2b,
+#who-can-i-contact-for-help-if-i-have-trouble-logging-in,
+#what-should-i-do-if-i-dont-receive-the-mfa-code
+{
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 400;
+    margin-block: 0 25px;
+  }
+
+#what-changes-have-been-made-to-the-login-process +p,
+#what-changes-have-been-made-to-the-login-process+p+p,
+#what-is-multi-factor-authentication-mfa +p,
+#what-are-my-authentication-options +p,
+#how-do-i-update-my-email-address-for-mfa +p,
+#how-often-will-mfa-be-required +p,
+#how-does-the-mfa-process-work-on-b2b +p,
+#who-can-i-contact-for-help-if-i-have-trouble-logging-in +p,
+#what-should-i-do-if-i-dont-receive-the-mfa-code+p {
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 400;
+  margin-block: 0 16px;
+}
+
+#what-changes-have-been-made-to-the-login-process+p+p a { 
+  display: block;
+    margin-block: 0 37px;
+    font-weight: 500;
+  }
+
+#who-can-i-contact-for-help-if-i-have-trouble-logging-in+p a{ 
+    font-weight: 500;
+  }
+
+#what-should-i-do-if-i-dont-receive-the-mfa-code + p {
+    margin-bottom: 100px;
+  }
+
+@media(width <=990px) {
+  #log-in-faq {
+      font-size: 2.063rem;
+        line-height: 33px;
+      margin-block: 80px 56px;
+    }
+
+  #what-changes-have-been-made-to-the-login-process,
+  #what-is-multi-factor-authentication-mfa,
+  #what-are-my-authentication-options,
+  #how-do-i-update-my-email-address-for-mfa,
+  #how-often-will-mfa-be-required,
+  #how-does-the-mfa-process-work-on-b2b,
+  #who-can-i-contact-for-help-if-i-have-trouble-logging-in,
+  #what-should-i-do-if-i-dont-receive-the-mfa-code {
+    font-size: 23px;
+      line-height: 29px;
+      margin-block: 0 23px;
+  }
+
+  #what-should-i-do-if-i-dont-receive-the-mfa-code+p {
+    margin-bottom: 80px;
+  }
+}
+
+@media(width <768px) {
+  #log-in-faq {
+    font-size: 1.563rem;;
+    line-height: 25px;
+    margin-block: 72px 55px;
+  }
+
+  #what-changes-have-been-made-to-the-login-process,
+  #what-is-multi-factor-authentication-mfa,
+  #what-are-my-authentication-options,
+  #how-do-i-update-my-email-address-for-mfa,
+  #how-often-will-mfa-be-required,
+  #how-does-the-mfa-process-work-on-b2b,
+  #who-can-i-contact-for-help-if-i-have-trouble-logging-in,
+  #what-should-i-do-if-i-dont-receive-the-mfa-code {
+    font-size: 20px;
+    line-height: 26px;
+    margin-block: 0 21px;
+  }
+
+  #what-should-i-do-if-i-dont-receive-the-mfa-code+p {
+    margin-bottom: 76px;
+  }
+}
+ 
+#about-registration{
+    font-size: 2.438rem;
+    line-height: 39px;
+    margin-block: 88px 56px;
+  }
+
+#why-register,
+#how-do-i-register{
+    font-size: 1.938rem;
+    line-height: 31px;
+    font-weight: 500;
+    margin-block: 0 24px;
+  }
+
+#about-registration ~ p {
+  font-size: 16px;
+  line-height: 21px;
+  margin-block: 0 16px;
+}
+
+#about-registration ~ p:last-child { 
+  margin-bottom: 106px;
+}
+ 
+@media(width <=990px){
+    #about-registration {
+        font-size: 2.063rem;
+        line-height: 33px;
+        margin-block: 80px 56px;
+      }
+    
+    #why-register,
+    #how-do-i-register {
+      font-size: 1.688rem;
+      line-height: 27px; 
+    }
+    
+    #about-registration~p:last-child {
+      margin-bottom: 82px;
+    }
+  }
+
+@media(width <768px) {
+  #about-registration {
+    font-size: 1.563rem;;
+    line-height: 25px;
+    margin-block: 72px 56px;
+  }
+
+  #why-register,
+  #how-do-i-register {
+    font-size: 1.375rem;;
+    line-height: 22px;
+  }
+
+  #about-registration~p:last-child {
+    margin-bottom: 76px;
+  }
+}
+
+
+/* stylelint-disable-next-line selector-id-pattern */
+#admin-roles--responsibilities{
+    font-size: 2.438rem;
+    line-height: 39px;
+    margin-block: 88px 56px;
+  } 
+
+summary:has(#what-are-my-capabilities-and-duties-as-administrator)+.accordion-item-body,
+summary:has(#what-can-users-who-are-not-administrators-do-to-manage-their-own-account) + .accordion-item-body,
+summary:has(#if-a-co-worker-is-registered-on-b2b-and-leaves-the-company-or-changes-job-duties-what-should-i-do)+.accordion-item-body,
+summary:has(#can-we-share-ids)+.accordion-item-body,
+summary:has(#can-we-have-more-than-one-administrator-at-our-company)+.accordion-item-body,
+summary:has(#what-if-a-co-worker-forgets-their-id)+.accordion-item-body,
+summary:has(#what-if-co-worker-forgets-their-password)+.accordion-item-body,
+summary:has(#a-co-worker-got-a-message-indicating-their-account-is-disabled-what-does-this-mean)+.accordion-item-body,
+summary:has(#what-do-i-do-if-an-account-becomes-disabled-and-the-co-worker-still-needs-access)+.accordion-item-body,
+summary:has(#what-do-i-do-if-my-account-becomes-disabled-and-im-the-only-administrator-for-my-business)+.accordion-item-body,
+summary:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website)+.accordion-item-body,
+summary:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1)+.accordion-item-body
+{
+    padding-block: 8px;
+    margin-left: 2px;
+  }
+
+.accordion:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1){
+    padding-bottom: 46px;
+  }
+
+@media(width <=990px) {
+  /* stylelint-disable-next-line selector-id-pattern */
+  #admin-roles--responsibilities {
+      font-size: 2.063rem;
+        line-height: 33px;
+        margin-block: 80px 56px;
+    }
+
+    /* stylelint-disable-next-line selector-id-pattern */
+  .accordion:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1) {
+    padding-bottom: 20px;
+  }
+}
+
+@media(width <768px) { 
+  /* stylelint-disable-next-line selector-id-pattern */
+  #admin-roles--responsibilities {
+      font-size: 1.563rem; 
+        line-height: 25px;
+        margin-block: 72px 56px;
+    }
+
+  .accordion:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1) {
+    padding-bottom: 12px;
+  }
+}
+
+
+
+#jewelry-replacement{ 
+    margin-block:23px 34px;
+  }
+
+.default-content-wrapper:has(#jewelry-replacement) + .side-nav-wrapper .side-nav .side-nav-menu nav p{
+    padding-block: 0 ;
+  }
+
+.default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul {
+  margin-top: 7px;
+}
+
+.default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul li {
+  padding-block: 0 7px;
+}
+
+ 
+
+
+#jewelry-replacement-quotation-form-jrq ~ ol{
+    padding-inline-start: 30px;
+    margin-top: 22px;
+  }
+
+#jewelry-replacement-quotation-form-jrq~ul {
+  padding-inline-start: 40px;
+  margin-top: 26px;
+}
+
+#example-item-description-and-breakdown{
+    font-size: 1rem;
+    line-height: 16px;
+    margin-bottom: 15px;
+  }
+
+#example-item-description-and-breakdown + p + p {
+  margin-left: 12px;
+}
+
+#commission-schedule+table{
+    margin-bottom: 0;
+  } 
+
+#commission-schedule + table tbody tr td{
+  padding: 0; 
+  padding-inline: 2px;
+  padding-block: 2px;
+  border: none;
+  font-size: 16px;
+  line-height: 21px;
+  color: #212121; 
+  }
+
+#commission-schedule+table tbody tr td:last-child{ 
+    padding-left: 35px;
+  }
+
+#invoice + p + ul{
+    padding-left: 24px;
+  }
+
+#salvage~p:last-child{
+    margin-bottom: 60px;
+  }
+
+
+@media(width <=990px) { 
+  .default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul {
+    margin-top: 11px;
+  }
+
+  .default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul li {
+    padding-block: 0 8px; 
+  }
+
+#salvage~p:last-child {
+  margin-bottom: 37px;
+}
+}
+
+@media(width <768px) {
+.default-content-wrapper:has(#jewelry-replacement) + .side-nav-wrapper .side-nav > div{
+    gap: 1px;
+  }
+
+.default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav {
+  min-width: 100px;
+}
+  
+#salvage~p:last-child {
+    margin-bottom: 30px;
+  }
+
+#commission-schedule+table tbody tr td:last-child {
+  padding-left: 22px;
+}
+}
+
+
 main img {
   max-width: 100%;
   width: auto;
   height: auto;
-}
+} 
 
 .icon {
   display: inline-block;
@@ -285,8 +1037,11 @@ main img {
 
 /* dropdown jump-menu (converted from an authored list of links) */
 .dropdown-select-wrapper {
+  display: block;
+  width: 100%;
   position: relative;
   background-color: #fff;
+  margin-inline: auto;
   box-shadow:
     inset 0 -1px 0 0 #767676,
     inset -1px 0 0 #f4f3f3,
@@ -310,38 +1065,56 @@ main img {
   cursor: pointer;
 }
 
+.dropdown-select:focus,
+.dropdown-select:hover {
+  background-color: var(--khaki-color);
+  outline: 1px solid var(--text-color);
+}
+
+.dropdown-select option {
+  background-color: var(--khaki-color);
+}
+
 .dropdown-select-wrapper::after {
   content: '';
   position: absolute;
-  top: 50%;
-  right: 16px;
-  width: 8px;
-  height: 8px;
-  margin-top: -6px;
-  border: 4px solid transparent;
-  border-top-color: var(--text-color);
+  right: 23px;
   pointer-events: none;
+  border: 2px solid var(--text-color);
+  width: 0.6rem;
+  height: 0.6rem;
+  top: calc(50% - 0.5rem);
+  rotate: 45deg;
+  border-top: none;
+  border-left: none;
+
 }
 
-/* sections */
-main > .section {
-  margin: 40px 0;
-}
 
-main > .section > div {
-  max-width: 1200px;
+main>.section>div {
+  max-width: 1140px;
   margin: auto;
-  padding: 0 24px;
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 
-main > .section:first-of-type {
-  margin-top: 0;
+@media (width<768px) {
+  main>.section>div {
+    max-width: 690px;
+    padding-inline: 0;
+  } 
 }
 
-@media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
+@media (width<=600px) {
+  main>.section>div {
+    max-width: unset;
+    padding: 0 15px;
   }
+}
+
+main>.section:first-of-type {
+  margin-top: 0;
 }
 
 /* section metadata */
@@ -352,8 +1125,32 @@ main .section.highlight {
   padding: 40px 0;
 }
 
-/* khaki: a framed, rounded highlight box inset in the normal content width (not full-bleed) */
-main .section.khaki > div {
+/* khaki: inset from the viewport edges to match body content padding */
+main .section.khaki {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* tablet: body content side inset — starts above 768px so it doesn't stack on
+   top of the 690px content width that still applies at exactly 768px */
+@media (width > 768px) and (width < 1024px) {
+  main > .section > div {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  main .section.khaki {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+}
+
+/* khaki: a framed, rounded highlight box inset in the normal content width (not full-bleed).
+   The box padding replaces the content wrapper's 15px inset, so the max width has to drop
+   by that inset (1140 - 30) to keep the box edges on the same column as body copy in
+   sections without a box. Narrower viewports are already constrained by the section inset. */
+main .section.khaki>div {
+  max-width: 1110px;
   padding: 24px;
   border: 1px solid #acabab;
   border-radius: 4px;
@@ -361,22 +1158,1064 @@ main .section.khaki > div {
   box-shadow: 0 0 3px 0 rgb(33 33 33 / 25%);
 }
 
-main .section.khaki ul {
-  margin-bottom: 24px;
-}
-
-main .section.khaki ul:last-child {
-  margin-bottom: 0;
+/* the box padding provides the inset above the first element */
+main .section.khaki>div>:first-child {
+  margin-top: 0;
 }
 
 /* spacious: a khaki box with more content (e.g. multiple lists) uses more padding */
-@media (width >= 900px) {
-  main .section.khaki.spacious > div {
+@media (width >=900px) {
+  main .section.khaki.spacious>div {
     padding: 40px;
   }
 }
 
 /* accent-heading: marks the first heading of a section as the brand-red accent color */
-main .section.accent-heading > div > h3:first-of-type {
+main .section.accent-heading>div>h3:first-of-type {
   color: var(--link-color);
+  font-size: 1.375rem;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+@media (width >= 768px) {
+  main .section.accent-heading>div>h3:first-of-type {
+    font-size: 1.688rem;
+  }
+}
+
+@media (width >= 1024px) {
+  main .section.accent-heading>div>h3:first-of-type {
+    font-size: 1.938rem;
+  }
+}
+
+/* Coupa resource portal — Overview section + body copy */
+main .section.accent-heading:has(#overview) {
+  margin-bottom: 40px;
+}
+
+.section .default-content-wrapper:has(#overview) > p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Coupa resource portal — What's new heading spacing + Benefits/Changes/list type */
+.section .default-content-wrapper #whats-new {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.section .default-content-wrapper:has(#whats-new) > p,
+.section .default-content-wrapper:has(#whats-new) li {
+  font-size: 16px;
+}
+
+/* Coupa resource portal — space above Communications / resources / FAQ */
+main .section:has(#communications) {
+  margin-top: 40px;
+}
+
+/* Coupa resource portal — Contact us khaki box spacing */
+main .section.khaki:has(#contact-us) {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+main .section .default-content-wrapper #select-service-agreements {
+  font-weight: 600;
+  line-height: 39px;
+  margin: 20px 0 16px;
+  font-size: 39.008px;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper:has(#select-service-agreements) {
+  margin-bottom: 60px;
+}
+
+main .section .default-content-wrapper #log-in-to-view-content {
+  font-weight: 500;
+  margin: 0 0 24px;
+  line-height: 31px;
+  font-size: 31.008px;
+  color: var(--dark-gray-color);
+}
+
+/* select-service-home-repair login gate (H1 + prompt only on this page) */
+/* stylelint-disable selector-id-pattern -- DA slug from "Select Service™ - Home Repair Program" */
+main .section:has(#select-service---home-repair-program) {
+  padding-bottom: 80px;
+}
+
+main .section .default-content-wrapper #select-service---home-repair-program,
+main .section .default-content-wrapper #select-service---home-repair-program strong {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 48px;
+  margin-bottom: 0;
+}
+/* stylelint-enable selector-id-pattern */
+
+/* stylelint-disable-next-line selector-id-pattern */
+main .section .default-content-wrapper:has(#select-service---home-repair-program) #log-in-to-view-content {
+  font-size: 2.438rem;
+  font-weight: 600;
+  margin-top: 64px;
+  margin-bottom: 24px;
+}
+
+.section .default-content-wrapper #additional-resources {
+  line-height: 1;
+  font-size: 25px;
+  margin: 50px 0 25px;
+  font-weight: 500;
+  color: var(--dark-gray-color);
+}
+
+.section .default-content-wrapper #additional-resources ~ p {
+  font-size: 16px;
+  margin: 0 0 16px;
+  font-weight: 600;
+  line-height: 21px;
+  color: var(--link-color);
+}
+
+.section .default-content-wrapper:has(#who-can-participate-in-state-farms-survey-of-autobody-repair-facilities) > p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  color: var(--text-dark-color);
+  line-height: 21px;
+}
+
+.section .default-content-wrapper:has(#who-can-participate-in-state-farms-survey-of-autobody-repair-facilities) > p:last-child {
+  margin-bottom: 40px;
+}
+
+main .section .default-content-wrapper #log-in-to-view-content + .button-wrapper {
+  margin: 0;
+  width: max-content;
+}
+
+main .section .default-content-wrapper #log-in-to-view-content + .button-wrapper > a {
+  height: 48px;
+  color: #fff;
+  padding: 0 48px;
+  font-size: 16px;
+  margin: 0 0 24px;
+  font-weight: 600;
+  line-height: 18px;
+  background-color: var(--link-color);
+}
+
+main .section .default-content-wrapper #log-in-to-view-content+ .button-wrapper + p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 20px;
+  color: var(--text-color);
+}
+
+main .section .default-content-wrapper #log-in-to-view-content+ .button-wrapper + p > a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--link-color);
+}
+
+main .section .default-content-wrapper #agreement-pdfs {
+  font-weight: 500;
+  margin: 0 0 20px;
+  line-height: 1;
+  font-size: 31px;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper:has(#agreement-pdfs)>#select-service-agreement,
+main .section .default-content-wrapper:has(#agreement-pdfs)>#select-service-agreement-1 {
+  line-height: 1;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 20px 0 0;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper:has(#agreement-pdfs)>#job-aid {
+  line-height: 1;
+  font-size: 21px;
+  font-weight: 500;
+  margin: 10px 0 0;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper:has(#agreement-pdfs)>p[data-auth="authenticated"] {
+  line-height: 1;
+  font-size: 21px;
+  font-weight: 500;
+  margin: 10px 0 0;
+  color: var(--light-color);
+}
+
+main .section .default-content-wrapper #agreement-addendum-pdfs {
+  font-weight: 500;
+  line-height: 1;
+  font-size: 31px;
+  margin: 20px 0;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#select-service-agreement-addendum,
+main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#select-service-agreement-addendum-1 {
+  line-height: 1;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 20px 0 0;
+  color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 {
+  line-height: 1;
+  font-size: 21px;
+  font-weight: 500;
+  margin: 10px 0 0;
+  color: var(--dark-gray-color);
+}
+
+.section .default-content-wrapper #select-service {
+  margin: 24px 0 0;
+  line-height: 1;
+  font-size: 25px;
+  font-weight: 500;
+  color: var(--dark-gray-color);
+}
+
+/* stylelint-disable-next-line selector-id-pattern */
+.section:not(:has(> .side-nav-wrapper)) .default-content-wrapper #help--support {
+  line-height: 1;
+  font-size: 48px;
+  font-weight: 600;
+  margin: 6px 0 32px;
+  color: var(--dark-gray-color);
+}
+
+.section .default-content-wrapper #frequently-asked-questions {
+  line-height: 1;
+  font-size: 31px;
+  font-weight: 500;
+  margin: 0 0 24px;
+  color: var(--dark-gray-color);
+}
+
+.section .default-content-wrapper #who-can-participate-in-state-farms-survey-of-autobody-repair-facilities,
+.section .default-content-wrapper #i-am-opening-a-new-repair-facility-how-can-i-submit-information-about-my-repair-facility,
+.section .default-content-wrapper #will-there-be-further-notice-to-repairers-of-the-survey-process,
+.section .default-content-wrapper #how-will-select-service-repairers-learn-of-changes-in-prevailing-competitive-prices,
+.section .default-content-wrapper #how-can-i-submit-prevailing-competitive-price-information {
+  font-size: 25px;
+  font-weight: 400;
+  margin: 0 0 25px;
+  color: var(--text-dark-color);
+  line-height: 30px;
+}
+
+.section .default-content-wrapper #contact-us {
+  line-height: 1;
+  font-size: 31px;
+  margin: 0 0 24px;
+  font-weight: 500;
+  padding-top: 30px;
+  color: var(--dark-gray-color);
+}
+
+@media (width <= 1024px) {
+  main > .section > div {
+    max-width: 720px; 
+  }
+
+  .section .default-content-wrapper #select-service {
+    line-height: 1;
+    font-size: 23px;
+  }
+
+  /* stylelint-disable-next-line selector-id-pattern */
+  .section:not(:has(> .side-nav-wrapper)) .default-content-wrapper #help--support {
+    line-height: 1;
+    font-size: 39px;
+  }
+
+  .section .default-content-wrapper #frequently-asked-questions {
+    line-height: 1;
+    font-size: 27px;
+  }
+
+  .section .default-content-wrapper #who-can-participate-in-state-farms-survey-of-autobody-repair-facilities,
+  .section .default-content-wrapper #i-am-opening-a-new-repair-facility-how-can-i-submit-information-about-my-repair-facility,
+  .section .default-content-wrapper #will-there-be-further-notice-to-repairers-of-the-survey-process,
+  .section .default-content-wrapper #how-will-select-service-repairers-learn-of-changes-in-prevailing-competitive-prices,
+  .section .default-content-wrapper #how-can-i-submit-prevailing-competitive-price-information {
+    font-size: 23px;
+    line-height: 29px;
+    margin: 0 0 23px;
+  }
+
+  .section .default-content-wrapper #contact-us {
+    line-height: 1;
+    font-size: 27px;
+  }
+
+  .section .default-content-wrapper #select-service-agreements {
+    line-height: 1 !important;
+    font-size: 33px !important;
+  }
+
+  .section .default-content-wrapper #log-in-to-view-content {
+    line-height: 1 !important;
+    font-size: 27px !important;
+  }
+
+  /* stylelint-disable-next-line selector-id-pattern */
+  .section .default-content-wrapper:has(#select-service---home-repair-program) #log-in-to-view-content {
+    font-size: 2.063rem !important;
+    font-weight: 600;
+    margin-top: 64px;
+    margin-bottom: 24px;
+  }
+
+  /* stylelint-disable selector-id-pattern -- DA slug from "Select Service™ - Home Repair Program" */
+  main .section .default-content-wrapper #select-service---home-repair-program,
+  main .section .default-content-wrapper #select-service---home-repair-program strong {
+    font-size: 2.438rem;
+    font-weight: 600;
+  }
+  /* stylelint-enable selector-id-pattern */
+
+  .default-content-wrapper #electronic-payments {
+    font-size: 23px !important;
+  }
+
+  .default-content-wrapper #eftremittance-faqs {
+    font-size: 39px !important;
+  }
+
+  .default-content-wrapper #electronic-data-interchange-edi-transactions {
+    font-size: 33px !important;
+  }
+}
+
+@media (width <= 560px) {
+  .section .default-content-wrapper #select-service {
+    line-height: 1;
+    font-size: 20px;
+  }
+
+  /* stylelint-disable-next-line selector-id-pattern */
+  .section:not(:has(> .side-nav-wrapper)) .default-content-wrapper #help--support {
+    line-height: 1;
+    font-size: 28px;
+  }
+
+  .section .default-content-wrapper #frequently-asked-questions {
+    line-height: 1;
+    font-size: 22px;
+  }
+
+  .section .default-content-wrapper #who-can-participate-in-state-farms-survey-of-autobody-repair-facilities,
+  .section .default-content-wrapper #i-am-opening-a-new-repair-facility-how-can-i-submit-information-about-my-repair-facility,
+  .section .default-content-wrapper #will-there-be-further-notice-to-repairers-of-the-survey-process,
+  .section .default-content-wrapper #how-will-select-service-repairers-learn-of-changes-in-prevailing-competitive-prices,
+  .section .default-content-wrapper #how-can-i-submit-prevailing-competitive-price-information {
+    font-size: 20px;
+    line-height: 26px;
+    margin: 0 0 20px;
+  }
+
+  .section .default-content-wrapper #contact-us {
+    line-height: 1;
+    font-size: 22px;
+  }
+
+  .section .default-content-wrapper #select-service-agreements {
+    font-size: 25px !important;
+  }
+
+  .section .default-content-wrapper #log-in-to-view-content {
+    font-size: 22px !important;
+  }
+
+  /* stylelint-disable selector-id-pattern -- DA slug from "Select Service™ - Home Repair Program" */
+  main .section .default-content-wrapper #select-service---home-repair-program,
+  main .section .default-content-wrapper #select-service---home-repair-program strong {
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+
+  main .section .default-content-wrapper:has(#select-service---home-repair-program) #log-in-to-view-content {
+    font-size: 1.563rem !important;
+    font-weight: 600;
+    margin-top: 64px;
+    margin-bottom: 24px;
+  }
+  /* stylelint-enable selector-id-pattern */
+
+  .default-content-wrapper #electronic-payments {
+    font-size: 20px !important;
+  }
+
+  .default-content-wrapper #eftremittance-faqs {
+    font-size: 28px !important;
+  }
+
+  .default-content-wrapper #electronic-data-interchange-edi-transactions {
+    font-size: 25px !important;
+  }
+}
+
+/* stylelint-enable no-descending-specificity */
+
+/* Supplier engagement — body copy stays 16px at all widths (source keeps text
+   size fixed regardless of viewport, unlike the default fluid body scale) */
+/* stylelint-disable no-descending-specificity */
+main .section.khaki:has(#our-program) p,
+main .section.khaki:has(#our-program) li,
+main .section:has(#how-to-engage-us) p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+/* stylelint-enable no-descending-specificity */
+
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.khaki:has(#our-program) li {
+  padding-bottom: 8px;
+}
+
+/* Supplier engagement — restore the section spacing lost when the khaki box
+   sits flush against the hero and the following section sits flush against it */
+main .section.khaki:has(#our-program) {
+  margin-top: 24px;
+}
+
+main .section:has(#how-to-engage-us) {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+/* Supplier engagement — tablet (768px–1024px) drops the shared content grid for
+   a 92.5px gutter on both sides, so the khaki border and the body copy start on
+   the same column as they do on desktop */
+@media (width >= 768px) and (width <= 1024px) {
+  main:has(#our-program) > .section:not(.breadcrumbs-container) {
+    padding-inline: 92.5px;
+  }
+
+  main:has(#our-program) > .section:not(.breadcrumbs-container, .khaki) > div {
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  /* the box keeps its own padding, which the gutter must not double up on */
+  main:has(#our-program) > .section.khaki > div {
+    max-width: none;
+    padding: 40px;
+  }
+}
+
+/* Supplier engagement — on desktop every section except the breadcrumbs starts
+   92.5px further right than the shared content grid while its right edge stays
+   put. The section keeps the box centered, so the shift is split: the section
+   gains the full offset as left padding and the content box loses it from its
+   max width. */
+@media (width > 1024px) {
+  main:has(#our-program) > .section:not(.breadcrumbs-container, .khaki) {
+    padding-left: 92.5px;
+  }
+
+  main:has(#our-program) > .section:not(.breadcrumbs-container, .khaki) > div {
+    max-width: calc(1140px - 92.5px);
+  }
+
+  /* the khaki box carries its own 15px section inset */
+  main:has(#our-program) > .section.khaki {
+    padding-left: calc(15px + 92.5px);
+  }
+
+  main:has(#our-program) > .section.khaki > div {
+    max-width: calc(1110px - 92.5px);
+  }
+}
+
+/* the shared content grid narrows to 960px below 1200px — the khaki box keeps
+   its own 1110px width there, so it stays out of this override */
+@media (width > 1024px) and (width <= 1200px) {
+  main:has(#our-program) > .section:not(.breadcrumbs-container, .khaki) > div {
+    max-width: calc(960px - 92.5px);
+  }
+}
+
+/* medical billing — hero and card rows sit one gutter further in below desktop */
+@media (width <1024px) {
+  main:has(#medical-billing) > .section:not(.breadcrumbs-container) {
+    padding-inline: 15px;
+  }
+}
+
+/* tablet adds a 24px margin on each wrapper, over its own 15px padding */
+@media (width >=768px) and (width <1024px) {
+  main:has(#medical-billing) > .section:not(.breadcrumbs-container) > div {
+    width: auto;
+    margin-inline: auto;
+    padding-inline: 15px;
+  }
+}
+
+main:has(#medical-billing) .cards .cards-card-body p:not(:first-child) a {
+  font-weight: 600;
+}
+
+/* Medical provider portal / Claim view */
+/* stylelint-disable selector-id-pattern -- the slash in the heading text produces a double hyphen */
+/* stylelint-disable no-descending-specificity */
+main .section .default-content-wrapper #medical-provider-portal--claim-view {
+  margin: 48px 0 60px;
+  font-size: 1.563rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--dark-gray-color);
+}
+
+@media (width >=768px) {
+  main .section .default-content-wrapper #medical-provider-portal--claim-view {
+    margin-top: 56px;
+    font-size: 2.063rem;
+  }
+}
+
+@media (width >=1024px) {
+  main .section .default-content-wrapper #medical-provider-portal--claim-view {
+    margin-top: 64px;
+    font-size: 2.438rem;
+  }
+}
+
+/* the card row keeps the section gutter here instead of breaking out of it, so
+   it lines up with the heading above */
+main:has(#medical-provider-portal--claim-view) > .section > .cards-wrapper {
+  padding-inline: 30px;
+}
+
+main:has(#medical-provider-portal--claim-view) .cards li {
+  margin-bottom: 20px;
+}
+
+/* 20px card margin + this = the 80px the source leaves above Job aids */
+main:has(#medical-provider-portal--claim-view) > .section > .default-content-wrapper:has(#job-aids) {
+  margin-top: 60px;
+  margin-bottom: 85px;
+}
+
+@media (width >=768px) and (width <1024px) {
+  main:has(#medical-provider-portal--claim-view) > .section:not(.breadcrumbs-container) > div {
+    width: auto;
+    margin-inline: 24px;
+  }
+
+  main:has(#medical-provider-portal--claim-view) .cards .cards-card-body p:first-child {
+    max-width: 240px;
+  }
+}
+/* stylelint-enable no-descending-specificity */
+/* stylelint-enable selector-id-pattern */
+
+/* Is State Farm taking new vendors? */
+/* stylelint-disable no-descending-specificity */
+.section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) {
+  margin-bottom: 80px;
+}
+
+@media (width >=768px) and (width <1024px) {
+  main > .section > .default-content-wrapper:has(#state-farm-seeks-new-suppliers) {
+    width: auto;
+    margin-inline: 24px;
+  }
+}
+
+.section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) > h1 {
+  margin: 64px 0 24px;
+  font-size: 1.563rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--dark-gray-color);
+}
+
+.section .default-content-wrapper #state-farm-seeks-new-suppliers {
+  margin: 0 0 24px;
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 31px;
+  letter-spacing: 0;
+  color: var(--dark-gray-color);
+}
+
+@media (width >=768px) {
+  .section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) > h1 {
+    font-size: 2.063rem;
+  }
+
+  .section .default-content-wrapper #state-farm-seeks-new-suppliers {
+    font-size: 1.688rem;
+  }
+}
+
+@media (width >=1024px) {
+  .section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) > h1 {
+    font-size: 2.438rem;
+  }
+
+  .section .default-content-wrapper #state-farm-seeks-new-suppliers {
+    font-size: 1.938rem;
+  }
+}
+
+.section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) > p {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) > p > a {
+  font-weight: 600;
+}
+
+.section .default-content-wrapper #the-following-is-a-partial-list-of-the-products-and-services-state-farm-purchases {
+  margin: 0 0 19px;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--text-color);
+}
+
+.section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) > ul {
+  margin: 0 0 16px;
+  padding-left: 40px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+/* two list groups per row, each heading staying with its own list, in the
+   source's 920px copy measure (the section keeps its own wider box) */
+@media (width >=768px) {
+  .section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 445px));
+    grid-auto-flow: row dense;
+    column-gap: 30px;
+  }
+
+  .section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) > * {
+    grid-column: 1 / -1;
+  }
+
+  .section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) > ul:nth-of-type(odd),
+  .section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) > p:has(+ ul:nth-of-type(odd)) {
+    grid-column: 1;
+  }
+
+  .section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) > ul:nth-of-type(even),
+  .section .default-content-wrapper:has(#state-farm-seeks-new-suppliers) > p:has(+ ul:nth-of-type(even)) {
+    grid-column: 2;
+  }
+}
+
+h1#acquisition-114 {
+  font-size: 1.563rem;
+  font-weight: 600;
+}
+
+@media (width >=768px) {
+  h1#acquisition-114 {
+    font-size: 2.063rem;
+  }
+}
+
+@media (width >=1024px) {
+  h1#acquisition-114 {
+    font-size: 2.438rem;
+  }
+}
+
+h1#functional-acknowledgement-electronic-file {
+  margin: 24px 8.333%;
+  font-size: 1.563rem;
+  font-weight: 600;
+}
+
+@media (width >=768px) {
+  h1#functional-acknowledgement-electronic-file {
+    margin-bottom: 24px;
+    font-size: 2.063rem;
+    line-height: 25px;
+  }
+}
+
+@media (width >=1024px) {
+  h1#functional-acknowledgement-electronic-file {
+    font-size: 2.438rem;
+    line-height: 33px;
+  }
+}
+
+/* stylelint-disable-next-line selector-id-pattern */
+h1#example-transaction-set-segment-uses--sequence {
+  margin: 24px 8.333%;
+  font-size: 1.563rem;
+  font-weight: 600;
+}
+
+@media (width >=768px) {
+  /* stylelint-disable-next-line selector-id-pattern */
+  h1#example-transaction-set-segment-uses--sequence {
+    margin-bottom: 24px;
+    font-size: 2.063rem;
+    line-height: 25px;
+  }
+}
+
+@media (width >=1024px) {
+  /* stylelint-disable-next-line selector-id-pattern */
+  h1#example-transaction-set-segment-uses--sequence {
+    font-size: 2.438rem;
+    line-height: 33px;
+  }
+}
+/* stylelint-enable no-descending-specificity */
+
+.default-content-wrapper #electronic-payments {
+  line-height: 1;
+  font-size: 25px;
+  margin: 24px 0 0;
+  font-weight: 500;
+  color: var(--dark-gray-color);
+}
+
+.default-content-wrapper #eftremittance-faqs {
+  line-height: 1;
+  font-size: 48px;
+  font-weight: 600;
+  margin: 6px 0 32px;
+  color: var(--dark-gray-color);
+}
+
+.default-content-wrapper #eftremittance-faqs ~ h3 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+/* Contact Us FAQ page */
+/* stylelint-disable selector-id-pattern, no-descending-specificity */
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #contact-us-frequently-asked-questions {
+  margin-top: 64px;
+  margin-bottom: 24px;
+  font-size: 2.438rem;
+  font-weight: 600;
+  line-height: 39px;
+  letter-spacing: 0;
+  color: var(--dark-gray-color);
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #contact-us-frequently-asked-questions {
+    margin-top: 56px;
+    margin-bottom: 24px;
+    font-size: 2.063rem;
+    font-weight: 600;
+    line-height: 33px;
+  }
+}
+
+@media (width < 768px) {
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #contact-us-frequently-asked-questions {
+    margin-top: 48px;
+    margin-bottom: 24px;
+    font-size: 1.563rem;
+    font-weight: 600;
+    line-height: 25px;
+  }
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #log-in--registration,
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #working-with-us {
+  margin: 32px 0 16px;
+  font-size: 1.938rem;
+  font-weight: 500;
+  line-height: 31px;
+  letter-spacing: 0;
+  color: var(--dark-gray-color);
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #log-in--registration,
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #working-with-us {
+    font-size: 1.688rem;
+    font-weight: 500;
+  }
+}
+
+@media (width < 768px) {
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #log-in--registration,
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #working-with-us {
+    font-size: 1.375rem;
+    font-weight: 500;
+  }
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-item {
+  border-top: 1px solid #e4e3e3;
+  interpolate-size: allow-keywords;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-item:last-child {
+  border-bottom: 1px solid #e4e3e3;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-item::details-content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease, content-visibility 0.3s ease allow-discrete;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-item[open]::details-content {
+  height: auto;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-label {
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  overflow: auto;
+  padding: 13.5px 2px;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-label::-webkit-details-marker {
+  display: none;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background-image: url("../icons/chevron_32.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-item[open] > .contact-us-faq-label::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-label > h3 {
+  margin: 0;
+  padding: 0 32px 0 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: left;
+  color: var(--text-dark-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-body > :is(p, ol, ul) {
+  margin: 8px 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-body > ul {
+  padding-left: 24px;
+}
+
+/* Accordion on Contact Us — prefer DA variant `accordion (contact-us)`.
+   Page-scoped rules also cover pages still authored as request-supplement. */
+main:has(#contact-us-frequently-asked-questions) .accordion,
+.accordion.contact-us {
+  margin-bottom: 0;
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body,
+.accordion.contact-us .accordion-item-body {
+  padding: 6px 0 8px 2px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body > p,
+.accordion.contact-us .accordion-item-body > p {
+  margin: 8px 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+/* Bold copy should read as emphasis (600), not heavy black (700) */
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body :is(strong, b),
+.accordion.contact-us .accordion-item-body :is(strong, b),
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p :is(strong, b) {
+  font-weight: 600;
+}
+
+/* Links in answers — including Forgot ID / Forgot Password list links */
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body a,
+.accordion.contact-us .accordion-item-body a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  color: var(--link-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body ul,
+.accordion.contact-us .accordion-item-body ul {
+  margin: 24px 0 16px;
+  padding-left: 24px;
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body ul li,
+.accordion.contact-us .accordion-item-body ul li {
+  padding: 0 0 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body > h3,
+.accordion.contact-us .accordion-item-body > h3 {
+  margin: 16px 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+/* Closing copy authored outside the accordion — after decoration those
+   paragraphs land in their own .default-content-wrapper (not beside .accordion). */
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p:first-child {
+  margin-top: 16px;
+}
+
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p a {
+  font-weight: 600;
+}
+
+body:has(#contact-us-frequently-asked-questions) > footer {
+  margin-top: 64px;
+}
+/* stylelint-enable selector-id-pattern, no-descending-specificity */
+
+@media (width <=990px) {
+  .default-content-wrapper  {
+    max-width: 720px !important;
+    margin-inline: auto;
+  }
+
+  .default-content-wrapper h4 {
+    margin-top: 30px !important;
+    font-size: 1.438rem !important;
+    line-height: 23px;
+  }
+}
+
+@media (width <=600px) { 
+  .default-content-wrapper h4 {
+    margin-top: 20px !important;
+    font-size: 1.25rem !important;
+    line-height: 20px;
+  }
+}
+
+.default-content-wrapper #electronic-data-interchange-edi-transactions {
+  margin: 24px 0;
+  line-height: 1;
+  font-size: 39px;
+  font-weight: 600;
+  color: var(--dark-gray-color);
+}
+
+/* The SSR Hero's rich text remains in light DOM so authored links retain their
+   normal behavior. Its login paragraph is explicitly mapped by the generator. */
+/* stylelint-disable-next-line no-descending-specificity */
+sf-hero > .hero-login a {
+  display: inline-block;
+  padding: 14px 48px;
+  border-radius: 24px;
+  background: var(--link-color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.default-content-wrapper #coupa-supplier-portal-training {
+  line-height: 1;
+  font-size: 39px;
+  font-weight: 600;
+  margin: 64px 0 24px;
+  color: var(--dark-gray-color);
+}
+
+main:has(.default-content-wrapper > #auto-repair-facility-survey) .breadcrumbs-container {
+  display: none;
+}
+
+@media (width <= 1024px) {
+  .default-content-wrapper #auto-repair-facility-survey {
+    font-size: 33px;
+    margin: 56px 0 50px;
+  }
+
+  .default-content-wrapper #coupa-supplier-portal-training {
+    font-size: 33px;
+    margin: 56px 0 24px;
+  }
+}
+
+@media (width <= 560px) {
+  .default-content-wrapper:has(#auto-repair-facility-survey) {
+    margin-bottom: 100px;
+  }
+
+  .default-content-wrapper #auto-repair-facility-survey {
+    font-size: 25px;
+    margin: 48px 0 50px;
+  }
+
+  .default-content-wrapper #coupa-supplier-portal-training {
+    font-size: 25px;
+    margin: 48px 0 24px;
+  }
 }

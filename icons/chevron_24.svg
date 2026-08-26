@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 288">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0;
+      }
+
+      .cls-2 {
+        fill: #403c3c;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #e4e3e3;
+      }
+    </style>
+    <view  id="down_default" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" zoomAndPan="magnify"></view>
+    <view  id="right_default" preserveAspectRatio="xMidYMid meet" viewBox="0 24 24 24" zoomAndPan="magnify"></view>
+    <view  id="up_default" preserveAspectRatio="xMidYMid meet" viewBox="0 48 24 24" zoomAndPan="magnify"></view>
+    <view  id="left_default" preserveAspectRatio="xMidYMid meet" viewBox="0 72 24 24" zoomAndPan="magnify"></view>
+    <view  id="down_disabled" preserveAspectRatio="xMidYMid meet" viewBox="0 96 24 24" zoomAndPan="magnify"></view>
+    <view  id="right_disabled" preserveAspectRatio="xMidYMid meet" viewBox="0 120 24 24" zoomAndPan="magnify"></view>
+    <view  id="up_disabled" preserveAspectRatio="xMidYMid meet" viewBox="0 144 24 24" zoomAndPan="magnify"></view>
+    <view  id="left_disabled" preserveAspectRatio="xMidYMid meet" viewBox="0 168 24 24" zoomAndPan="magnify"></view>
+    <view  id="down_inverse" preserveAspectRatio="xMidYMid meet" viewBox="0 192 24 24" zoomAndPan="magnify"></view>
+    <view  id="right_inverse" preserveAspectRatio="xMidYMid meet" viewBox="0 216 24 24" zoomAndPan="magnify"></view>
+    <view  id="up_inverse" preserveAspectRatio="xMidYMid meet" viewBox="0 240 24 24" zoomAndPan="magnify"></view><view  id="left_inverse" preserveAspectRatio="xMidYMid meet" viewBox="0 264 24 24" zoomAndPan="magnify"></view>
+</defs>
+  <g id="viewbox" class="cls-1">
+    <path class="cls-2" d="M23.5,24.5v23H.5v-23h23M24,24H0V48H24V24Z"/>
+    <path class="cls-2" d="M23.5,48.5v23H.5v-23h23M24,48H0V72H24V48Z"/>
+    <path class="cls-2" d="M23.5,72.5v23H.5v-23h23M24,72H0V96H24V72Z"/>
+    <path class="cls-2" d="M23.5,96.5v23H.5v-23h23M24,96H0v24H24V96Z"/>
+    <path class="cls-2" d="M23.5,120.5v23H.5v-23h23m.5-.5H0v24H24V120Z"/>
+    <path class="cls-2" d="M23.5,144.5v23H.5v-23h23m.5-.5H0v24H24V144Z"/>
+    <path class="cls-2" d="M23.5,168.5v23H.5v-23h23m.5-.5H0v24H24V168Z"/>
+    <path class="cls-2" d="M23.5,192.5v23H.5v-23h23m.5-.5H0v24H24V192Z"/>
+    <path class="cls-2" d="M23.5,216.5v23H.5v-23h23m.5-.5H0v24H24V216Z"/>
+    <path class="cls-2" d="M23.5,240.5v23H.5v-23h23m.5-.5H0v24H24V240Z"/>
+    <path class="cls-2" d="M23.5,264.5v23H.5v-23h23m.5-.5H0v24H24V264Z"/>
+    <path class="cls-2" d="M23.5.5v23H.5V.5h23M24,0H0V24H24V0Z"/>
+  </g>
+  <g id="down_default">
+    <polygon class="cls-2" points="13 11.73 12 12.73 11 11.73 7.71 8.44 6.29 9.85 12 15.56 17.71 9.85 16.29 8.44 13 11.73"/>
+  </g>
+  <g id="right_default">
+    <polygon class="cls-2" points="11.73 35 12.73 36 11.73 37 8.44 40.29 9.85 41.71 15.56 36 9.85 30.29 8.44 31.71 11.73 35"/>
+  </g>
+  <g id="up_default">
+    <polygon class="cls-2" points="11 60.27 12 59.27 13 60.27 16.29 63.56 17.71 62.15 12 56.44 6.29 62.15 7.71 63.56 11 60.27"/>
+  </g>
+  <g id="left_default">
+    <polygon class="cls-2" points="12.27 85 11.27 84 12.27 83 15.56 79.71 14.15 78.29 8.44 84 14.15 89.71 15.56 88.29 12.27 85"/>
+  </g>
+   <g id="down_disabled">
+    <polygon class="cls-4" points="13 107.73 12 108.73 11 107.73 7.71 104.44 6.29 105.85 12 111.56 17.71 105.85 16.29 104.44 13 107.73"/>
+  </g>
+  <g id="right_disabled">
+    <polygon class="cls-4" points="11.73 131 12.73 132 11.73 133 8.44 136.29 9.85 137.71 15.56 132 9.85 126.29 8.44 127.71 11.73 131"/>
+  </g>
+   <g id="up_disabled">
+    <polygon class="cls-4" points="11 156.27 12 155.27 13 156.27 16.29 159.56 17.71 158.15 12 152.44 6.29 158.15 7.71 159.56 11 156.27"/>
+  </g>
+  <g id="left_disabled">
+    <polygon class="cls-4" points="12.27 181 11.27 180 12.27 179 15.56 175.71 14.15 174.29 8.44 180 14.15 185.71 15.56 184.29 12.27 181"/>
+  </g>
+  <g id="down_inverse">
+    <rect class="cls-2" x="4" y="196" width="16" height="16" rx="4" transform="translate(-192 216) rotate(-90)"/>
+    <polygon class="cls-3" points="13 203.73 12 204.73 11 203.73 7.71 200.44 6.29 201.85 12 207.56 17.71 201.85 16.29 200.44 13 203.73"/>
+  </g>
+  <g id="right_inverse">
+    <g>
+      <rect class="cls-2" x="4" y="220" width="16" height="16" rx="4" transform="translate(24 456) rotate(180)"/>
+      <polygon class="cls-3" points="11.73 227 12.73 228 11.73 229 8.44 232.29 9.85 233.71 15.56 228 9.85 222.29 8.44 223.71 11.73 227"/>
+    </g>
+  </g>
+  <g id="up_inverse">
+    <g>
+      <rect class="cls-2" x="4" y="244" width="16" height="16" rx="4" transform="translate(264 240) rotate(90)"/>
+      <polygon class="cls-3" points="11 252.27 12 251.27 13 252.27 16.29 255.56 17.71 254.15 12 248.44 6.29 254.15 7.71 255.56 11 252.27"/>
+    </g>
+  </g>
+  <g id="left_inverse">
+    <g>
+      <rect class="cls-2" x="4" y="268" width="16" height="16" rx="4"/>
+      <polygon class="cls-3" points="12.27 277 11.27 276 12.27 275 15.56 271.71 14.15 270.29 8.44 276 14.15 281.71 15.56 280.29 12.27 277"/>
+    </g>
+  </g>
+</svg>

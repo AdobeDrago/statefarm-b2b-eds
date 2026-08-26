@@ -31,7 +31,7 @@ header .nav-wrapper {
    viewport-math breakout needed) instead of on .nav-tools itself — avoids
    the sub-pixel compositing seam that a left: 50%/width: 100vw/margin-left:
    -50vw breakout can produce right at the edge of nav's own max-width box. */
-@media (width >= 900px) {
+@media (width >= 1024px) {
   header .nav-wrapper::before {
     content: '';
     position: absolute;
@@ -40,7 +40,6 @@ header .nav-wrapper {
     right: 0;
     height: 32px;
     background-color: var(--sf-hover-bg);
-    border-bottom: 1px solid var(--sf-border);
   }
 }
 
@@ -53,23 +52,25 @@ header nav {
     'sections sections sections';
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 0 16px;
-  max-width: 1200px;
+  max-width: 1170px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
 header nav[aria-expanded='true'] {
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
 /* ---- brand / logo ---- */
 header nav .nav-brand {
   grid-area: brand;
+  border-right: 1px solid #ececec;
 }
 
 header nav .nav-brand p {
   margin: 0;
+  margin-left: 10px;
+  padding-right: 16px;
 }
 
 header nav .nav-brand .nav-brand-link {
@@ -95,7 +96,7 @@ header nav .nav-tools {
 header nav .nav-tools ul {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -103,6 +104,7 @@ header nav .nav-tools ul {
 
 header nav .nav-tools ul li {
   margin: 0;
+  display: flex;
 }
 
 header nav .nav-tools a {
@@ -194,6 +196,7 @@ header .nav-search-pane-inner {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
+  padding-top: 40px;
   box-sizing: border-box;
 }
 
@@ -202,17 +205,25 @@ header .nav-search-form {
   align-items: center;
   gap: 16px;
   flex: 1;
+  justify-content: center;
 }
 
 header .nav-search-form input[type='search'] {
   flex: 1;
   height: 48px;
   box-sizing: border-box;
-  border: 1px solid var(--sf-border);
-  border-radius: 4px;
   padding: 0 16px;
   font: inherit;
   font-size: 16px;
+  max-width: 270px;
+  border: none;
+  border: 1px solid var(--light-color);
+  border-bottom: 1px solid var(--text-color);
+}
+
+header .nav-search-form input[type='search']:focus {
+  outline: none;
+  background-color: var(--khaki-color);
 }
 
 /* same size/style as the columns-auth Log In button */
@@ -228,14 +239,21 @@ header .nav-search-submit {
 
 header .nav-search-close {
   flex: none;
-  width: 24px;
-  height: 24px;
   border: 0;
   background: none;
   color: var(--sf-utility-text);
-  font-size: 20px;
+  font-size: 23px;
+  font-weight: 100;
   line-height: 1;
   cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  text-shadow: 4px 1px 0 var(--sf-utility-text) ,  ;
+}
+
+header .nav-search-close >span { 
+  text-shadow: 0 -1px 0 var(--sf-utility-text) ;
 }
 
 header .nav-search-close:hover {
@@ -250,6 +268,8 @@ header nav .nav-login-wrap {
 
 header nav .nav-login-wrap p {
   margin: 0;
+  display: flex;
+  align-items: start;
 }
 
 header nav .nav-login {
@@ -257,9 +277,11 @@ header nav .nav-login {
   background: none;
   color: var(--sf-red);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
+  padding: 2px;
   text-decoration: none;
   white-space: nowrap;
+  margin-top: -4px;
 }
 
 header nav .nav-login:hover {
@@ -273,17 +295,17 @@ header nav .nav-sections {
   position: relative;
 }
 
-header nav .nav-sections > ul {
+header nav .nav-sections>ul {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px 24px;
+  gap: 4px 20px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-header nav .nav-sections > ul > li {
+header nav .nav-sections>ul>li {
   position: relative;
   margin: 0;
 }
@@ -292,26 +314,28 @@ header nav .nav-sections > ul > li {
    this reset it inherits the global default-content paragraph margin
    (0.8em top / 0.25em bottom), which pushes the trigger link down and
    breaks its vertical centering in the nav row */
-header nav .nav-sections > ul > li > p {
+header nav .nav-sections>ul>li>p {
   margin: 0;
 }
 
 /* the top-level trigger link may be a direct child of the <li> (no dropdown)
    or wrapped in a <p> (DA/EDS-authored items with a megamenu) */
-header nav .nav-sections > ul > li > a,
-header nav .nav-sections > ul > li > p > a {
+header nav .nav-sections>ul>li>a,
+header nav .nav-sections>ul>li>p>a {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--sf-header-text);
   font-size: 14px;
   text-decoration: none;
-  padding: 12px 0;
+  padding: 10px 0;
   cursor: pointer;
 }
 
 /* animated red underline: scales in from the left on hover/open */
-header nav .nav-sections > ul > li > a::before,
-header nav .nav-sections > ul > li > p > a::before {
+header nav .nav-sections>ul>li>a::before,
+header nav .nav-sections>ul>li>p>a::before {
   content: '';
   position: absolute;
   left: 0;
@@ -324,34 +348,38 @@ header nav .nav-sections > ul > li > p > a::before {
   transition: transform 0.25s ease;
 }
 
-header nav .nav-sections > ul > li.nav-drop > a::after,
-header nav .nav-sections > ul > li.nav-drop > p > a::after {
+header nav .nav-sections>ul>li.nav-drop>a::after,
+header nav .nav-sections>ul>li.nav-drop>p>a::after {
   content: '';
   display: inline-block;
-  margin-left: 6px;
-  border: 4px solid transparent;
-  border-top-color: currentcolor;
-  vertical-align: middle;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background-image: url("../../icons/chevron_32.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(-90deg);
   transition: transform 0.2s ease;
 }
 
-header nav .nav-sections > ul > li[aria-expanded='true'] > a,
-header nav .nav-sections > ul > li[aria-expanded='true'] > p > a,
-header nav .nav-sections > ul > li > a:hover,
-header nav .nav-sections > ul > li > p > a:hover {
+header nav .nav-sections>ul>li[aria-expanded='true']>a,
+header nav .nav-sections>ul>li[aria-expanded='true']>p>a,
+header nav .nav-sections>ul>li>a:hover,
+header nav .nav-sections>ul>li>p>a:hover {
   color: var(--sf-red);
 }
 
-header nav .nav-sections > ul > li[aria-expanded='true'] > a::before,
-header nav .nav-sections > ul > li[aria-expanded='true'] > p > a::before,
-header nav .nav-sections > ul > li > a:hover::before,
-header nav .nav-sections > ul > li > p > a:hover::before {
+header nav .nav-sections>ul>li[aria-expanded='true']>a::before,
+header nav .nav-sections>ul>li[aria-expanded='true']>p>a::before,
+header nav .nav-sections>ul>li>a:hover::before,
+header nav .nav-sections>ul>li>p>a:hover::before {
   transform: scaleX(1);
 }
 
-header nav .nav-sections > ul > li[aria-expanded='true'] > a::after,
-header nav .nav-sections > ul > li[aria-expanded='true'] > p > a::after {
-  transform: rotate(180deg);
+header nav .nav-sections>ul>li[aria-expanded='true']>a::after,
+header nav .nav-sections>ul>li[aria-expanded='true']>p>a::after {
+  transform: rotate(0deg);
 }
 
 /* dropdown panels: full-width mega-panel below the nav bar (matches source).
@@ -366,7 +394,24 @@ header nav .nav-drop-panels {
   pointer-events: none;
 }
 
-header nav .nav-drop-panels .nav-drop-panel.open {
+header nav .nav-drop-panels.open {
+  pointer-events: auto;
+}
+
+header nav .nav-drop-panels .nav-drop-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  background-color: #000a;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+header nav .nav-drop-panels.open .nav-drop-overlay {
+  opacity: 1;
   pointer-events: auto;
 }
 
@@ -377,6 +422,7 @@ header nav .nav-drop-panel {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   display: grid;
   grid-template-rows: 0fr;
   width: 100%;
@@ -387,7 +433,9 @@ header nav .nav-drop-panel {
   box-shadow: 0 6px 20px rgb(0 0 0 / 12%);
   opacity: 0;
   overflow: hidden;
-  transition: grid-template-rows 0.3s ease, opacity 0.3s ease;
+  transition:
+    grid-template-rows 0.7s ease,
+    opacity 0.25s ease;
 }
 
 header nav .nav-drop-panel.open {
@@ -400,7 +448,7 @@ header nav .nav-drop-panel-inner {
   gap: 48px;
   min-height: 0;
   overflow: hidden;
-  padding: 24px max(24px, calc((100vw - 1200px) / 2 + 24px));
+  padding: 24px max(24px, calc((100vw - 1160px) / 2 + 24px));
 }
 
 header nav .nav-drop-close {
@@ -412,7 +460,7 @@ header nav .nav-drop-close {
   border: 0;
   background: none;
   color: var(--sf-utility-text);
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1;
   cursor: pointer;
 }
@@ -421,12 +469,23 @@ header nav .nav-drop-close:hover {
   color: var(--sf-red);
 }
 
+/* ---- mobile drill-down: back control + section title (hidden on desktop,
+   the megamenu panel there needs neither) ---- */
+header nav .nav-drop-back,
+header nav .nav-drop-title {
+  display: none;
+}
+
 header nav .nav-drop-col h3 {
   font-size: 20px;
   font-weight: 600;
   color: var(--sf-utility-text);
   margin: 0 0 8px;
   text-transform: none;
+}
+
+header nav .nav-drop-col:last-child:not(:only-child) h3 {
+  font-size: 14px;
 }
 
 header nav .nav-drop-col ul {
@@ -480,7 +539,7 @@ header nav .nav-hamburger-icon::after {
   position: relative;
   width: 22px;
   height: 2px;
-  background: var(--sf-utility-text);
+  background: var(--link-color);
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -517,16 +576,18 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 /* =========================================================
    DESKTOP (>= 900px): two rows — utility bar over main nav
    ========================================================= */
-@media (width >= 900px) {
+@media (width >= 1024px) {
   header nav {
     grid-template:
       'tools tools tools' 32px
       'search search search' 0fr
-      'brand sections login' 60px
+      'brand sections login' minmax(47px, auto)
+      /* changed the to match the exact row height*/
       / auto 1fr auto;
     transition: grid-template-rows 0.3s ease;
     row-gap: 0;
     padding: 0 24px;
+    box-sizing: border-box;
   }
 
   /* opening search grows the middle row from 0fr to 1fr, pushing the
@@ -556,44 +617,131 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     align-self: center;
   }
 
+  header nav .nav-brand+.nav-sections {
+    align-self: center;
+    padding-left: 10px;
+  }
+
   header nav .nav-sections {
     align-self: center;
-    padding-left: 20px;
-    border-left: 1px solid var(--sf-border);
+    padding-block: 10px;
   }
 
   /* desktop top-level nav links render as plain text, no dropdown arrow */
-  header nav .nav-sections > ul > li.nav-drop > a::after,
-  header nav .nav-sections > ul > li.nav-drop > p > a::after {
+  header nav .nav-sections>ul>li.nav-drop>a::after,
+  header nav .nav-sections>ul>li.nav-drop>p>a::after {
     display: none;
   }
 }
 
 /* =========================================================
-   MOBILE / TABLET (< 900px): hamburger + accordion drawer
+   MOBILE / TABLET (< 1024px): hamburger + accordion drawer
    ========================================================= */
-@media (width < 900px) {
+@media (width < 768px) {
+  header nav[aria-expanded='true'] .nav-sections {
+    padding: 40px 48px;
+  }
+
+  header nav[aria-expanded='true'] .nav-sections:has(.nav-drop[aria-expanded='true']) {
+    padding: 0;
+  }
+}
+
+@media (width >= 768px) and (width < 1024px) {
+  header nav[aria-expanded='true'] .nav-sections {
+    padding: 40px 104px;
+  }
+
+  header nav[aria-expanded='true'] .nav-sections:has(.nav-drop[aria-expanded='true']) {
+    padding: 0;
+  }
+}
+
+@media (width < 1024px) {
   header nav {
-    grid-template-areas:
-      'hamburger brand spacer'
-      'sections sections sections'
-      'tools tools tools'
-      'search search search'
-      'login login login';
-    grid-template-columns: auto auto 1fr;
-    padding: 0 16px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
     min-height: 56px;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  header nav .nav-hamburger {
-    display: block;
+  /* open drawer takes over the full viewport so page content behind it
+     (breadcrumbs, hero art, the floating chat button) is fully hidden
+     instead of showing through below the drawer's own content height */
+  header.header-wrapper:has(nav[aria-expanded='true']) {
+    z-index: 200;
   }
 
-  /* collapse the main nav + tools + login into a drawer, hidden until open */
-  header nav[aria-expanded='false'] .nav-sections,
-  header nav[aria-expanded='false'] .nav-tools,
-  header nav[aria-expanded='false'] .nav-login-wrap {
-    display: none;
+  header nav[aria-expanded='true'] {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    height: 100dvh;
+    overflow-y: auto;
+    background-color: #fff;
+
+    /* without this, the two flex "lines" (top row + sections/tools) stretch
+       to fill the full 100dvh height by default, and align-items: center
+       then centers the top row's content inside that oversized line box —
+       pinning lines to the start keeps the top row snug against the top */
+    align-content: flex-start;
+  }
+
+  /* Top row: hamburger | brand | login (always visible in single row) */
+  header nav > .nav-hamburger,
+  header nav > .nav-brand,
+  header nav > .nav-login-wrap {
+    display: flex !important;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 0;
+    flex-wrap: nowrap;
+  }
+
+  header nav > .nav-hamburger {
+    order: 1;
+    padding: 12px 15px;
+  }
+
+  header nav > .nav-brand {
+    order: 2;
+    flex: 1;
+    border: none;
+    padding: 12px 0;
+    justify-content: center;
+  }
+
+  header nav > .nav-brand p {
+    margin: 0;
+  }
+
+  header nav > .nav-brand picture {
+    display: flex;
+    align-items: center;
+  }
+
+  header nav > .nav-login-wrap {
+    order: 3;
+    padding: 12px 15px;
+  }
+
+  header nav > .nav-login-wrap p {
+    margin: 0;
+  }
+
+  /* Sections & Tools: full width below header, hidden until menu opens */
+  header nav > .nav-sections,
+  header nav > .nav-tools {
+    width: 100%;
+    order: 10;
+    flex-basis: 100%;
+  }
+
+  header nav[aria-expanded='false'] > .nav-sections,
+  header nav[aria-expanded='false'] > .nav-tools {
+    display: none !important;
   }
 
   /* no row-track animation on mobile (rows are auto-sized) — simple show/hide */
@@ -610,45 +758,61 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     grid-area: sections;
     display: block;
     width: 100%;
-    padding: 8px 0 16px;
     border-top: 1px solid var(--sf-border);
   }
 
-  header nav .nav-sections > ul {
+  header nav .nav-sections>ul {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
     width: 100%;
   }
 
-  header nav .nav-sections > ul > li {
+  header nav .nav-sections>ul>li {
     width: 100%;
-    border-bottom: 1px solid var(--sf-border);
   }
 
-  header nav .nav-sections > ul > li > a,
-  header nav .nav-sections > ul > li > p > a {
-    display: block;
+  header nav .nav-sections > ul > li:first-child > a ,
+  header nav .nav-sections > ul > li:first-child > p > a {
+    margin-top: 25px;
+  }
+
+  header nav .nav-sections>ul>li>a,
+  header nav .nav-sections>ul>li>p>a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    padding: 14px 4px;
-    font-size: 16px;
+    padding: 0;
+    font-size: 19px;
+    margin: 0 0 25px;
+    font-weight: 600;
+    line-height: 21px;
   }
 
-  header nav .nav-sections > ul > li.nav-drop > a::after,
-  header nav .nav-sections > ul > li.nav-drop > p > a::after {
-    float: right;
-    margin-top: 8px;
-  }
-
-  /* accordion panels: the detached panel host flows below the trigger list */
+  /* accordion panels: the detached panel host flows below the trigger list.
+     Hidden until a section is drilled into — otherwise its (empty) box still
+     occupies space below the main menu list even when nothing is open. */
   header nav .nav-drop-panels {
     position: static;
-    display: block;
+    display: none;
     width: 100%;
     transform: none;
     top: auto;
     left: auto;
     pointer-events: auto;
+  }
+
+  header nav .nav-drop-panels:has(.nav-drop-panel.open) {
+    display: block;
+  }
+
+  /* the click-outside-to-close backdrop is a desktop-only affordance for the
+     floating megamenu — on mobile its parent becomes position:static, so its
+     own inset:0 would otherwise size against the fixed full-screen nav and
+     blanket the whole drill-down drawer instead of staying contained */
+  header nav .nav-drop-overlay {
+    display: none;
   }
 
   header nav .nav-drop-panel {
@@ -671,8 +835,8 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   header nav .nav-drop-panel-inner {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 0 0 8px 12px;
+    gap: 0;
+    padding: 0;
   }
 
   /* the accordion trigger link itself toggles the panel on mobile */
@@ -680,9 +844,101 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     display: none;
   }
 
+  /* drilled into a section: the main menu list steps aside for its panel */
+  header nav .nav-sections:has(.nav-drop-panel.open) > ul {
+    display: none;
+  }
+
+  header nav .nav-drop-back {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    margin: 0 0 78px;
+    padding: 10px 0 10px 10px;
+    border: 0;
+    border-bottom: 1px solid var(--sf-border);
+    background: none;
+    color: var(--sf-red);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  /* the sprite's fill color is baked into the SVG, so a plain background-image
+     can't be recolored — masking the shape with background-color lets it
+     take the same red as the "Back" text instead of the sprite's gray */
+  header nav .nav-drop-back::before {
+    content: '';
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    background-color: var(--sf-red);
+    mask-image: url("../../icons/chevron_32.svg");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    transform: rotate(90deg);
+  }
+
+  header nav .nav-drop-title {
+    display: block;
+    width: 100%;
+    margin: 0 0 25px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--sf-header-text);
+  }
+
+  /* each column heading becomes its own drill-into trigger, showing its
+     real links only once tapped — collapsed by default, one open at a time */
+  header nav .nav-drop-col h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 0 25px;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 21px;
+    color: var(--sf-header-text);
+    cursor: pointer;
+  }
+
+  header nav .nav-drop-col h3::after {
+    content: '';
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background-image: url("../../icons/chevron_32.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(-90deg);
+    transition: transform 0.2s ease;
+  }
+
+  header nav .nav-drop-col.open h3 {
+    margin-bottom: 16px;
+  }
+
+  header nav .nav-drop-col.open h3::after {
+    transform: rotate(0deg);
+  }
+
+  header nav .nav-drop-col ul {
+    display: none;
+    margin: 0 0 25px;
+  }
+
+  header nav .nav-drop-col.open ul {
+    display: block;
+  }
+
   header nav .nav-drop-col ul li a {
     white-space: normal;
-    font-size: 15px;
+    font-size: 16px;
     padding: 8px 0;
   }
 
@@ -695,36 +951,105 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     grid-area: tools;
     display: block;
     width: 100%;
-    padding: 12px 4px 0;
+    margin: 10px 0 0;
+    position: fixed;
+    bottom: 40px;
   }
 
   header nav[aria-expanded='true'] .nav-tools ul {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
+    justify-content: space-evenly;
     gap: 4px;
     width: 100%;
+    margin-top: 40px;
   }
 
   header nav[aria-expanded='true'] .nav-tools ul li {
-    width: 100%;
-    border-bottom: 1px solid var(--sf-border);
-    padding: 10px 0;
+    margin-left: 24px;
+    margin-right: 24px;
+    padding: 0 38px;
   }
 
   header nav[aria-expanded='true'] .nav-tools a,
   header nav[aria-expanded='true'] .nav-search-toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     font-size: 16px;
   }
 
-  header nav[aria-expanded='true'] .nav-login-wrap {
-    grid-area: login;
-    display: block;
-    width: 100%;
-    padding: 16px 4px 0;
+  header nav[aria-expanded='true'] .nav-tools a::after,
+  header nav[aria-expanded='true'] .nav-search-toggle::after {
+    content: '';
+    order: -1;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
-  header nav[aria-expanded='true'] .nav-login {
-    display: block;
-    text-align: center;
+  header nav[aria-expanded='true'] .nav-tools a::after {
+    background-image: url("../../icons/help.svg");
+  }
+
+  header nav[aria-expanded='true'] .nav-search-toggle::after {
+    background-image: url("../../icons/search.svg");
+  }
+
+  .nav-drop-panel.open .nav-drop-title {
+    padding: 0 99px;
+    margin: 0 46px;
+  }
+  
+  .nav-drop-panel.open .nav-drop-col {
+    padding: 0 99px;
+    margin: 0 46px;
+  }
+
+  .nav-drop-panel.open .nav-drop-col > h3 {
+    margin: 25px 0 0;
+    font-weight: 500;
+    line-height: 24px;
+    font-size: 18px !important;
+  }
+
+  header nav[aria-expanded="true"]:has(.nav-drop[aria-expanded="true"]) .nav-tools {
+    display: none;
+  }
+
+  /* the chat widget's own button lives inside its shadow root
+     (<sf-chat><template shadowrootmode="open">...</template></sf-chat>), so
+     page CSS can't reach .traditional-chat-button directly — hiding the
+     shadow host itself achieves the same result without piercing it */
+  body:has(header nav[aria-expanded="true"]) sf-chat {
+    display: none;
+  }
+}
+
+
+@media (width < 560px) {
+  .nav-drop-panel.open .nav-drop-title {
+    padding: 0;
+    margin: 0 0 0 46px;
+  }
+
+  .nav-drop-panel.open .nav-drop-col > h3 {
+    margin: 20px 0 0;
+  }
+
+  .nav-drop-panel.open .nav-drop-col {
+    padding: 0;
+  }
+
+  header nav[aria-expanded='true'] .nav-sections {
+    padding: 40px 30px;
+  }
+
+  header nav[aria-expanded='true'] .nav-tools ul li {
+    margin: 0;
+    padding: 2px;
   }
 }

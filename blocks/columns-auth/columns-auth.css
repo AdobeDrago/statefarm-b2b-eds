@@ -1,23 +1,190 @@
-.columns-auth {
+.columns-auth-container {
+  margin: 0 !important;
+}
+
+/* Baseline hero row for hub pages authored without a variant class (Other Auto
+   Insurance Carriers, Claim Services, Electronic Payments, …): icon, copy and
+   the Log In panel sit on one line from tablet up. Declared first so the
+   .home-page / .select-service / .suppliers variants below still override it.
+   The row margin is 32px rather than the source's 2em, which would resolve
+   against the inherited 22px body size. */
+.columns-auth-3-cols {
+  margin: 32px 0;
+}
+
+.columns-auth-3-cols>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-auth-3-cols h1 {
+  margin: 0 0 32px;
+  color: var(--dark-gray-color);
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.columns-auth-3-cols h1+p {
+  margin: 0 0 25px;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+@media (width >=768px) {
+  /* .columns-auth doubles up here only to outrank the select-service variant's
+     align-items: center — every hub hero is top-aligned on the source, that one
+     included */
+  .columns-auth.columns-auth-3-cols>div {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .columns-auth-3-cols h1 {
+    font-size: 2.438rem;
+  }
+
+  .columns-auth-3-cols h1+p {
+    font-size: 23px;
+    line-height: 29px;
+  }
+}
+
+@media (width >=991px) {
+  .columns-auth-3-cols h1 {
+    font-size: 3rem;
+  }
+
+  .columns-auth-3-cols h1+p {
+    font-size: 25px;
+    line-height: 30px;
+  }
+}
+
+.home-page {
   margin-top: 32px;
   margin-bottom: 32px;
 }
 
-.columns-auth > div {
+.home-page>div {
   display: flex;
-  flex-direction: column;
 }
 
-.columns-auth img {
-  width: 100%;
+.home-page>div>.columns-auth-img-col img {
+  max-width: 420px;
 }
+
+.home-page>div>div h1 {
+  margin-top: 0;
+  margin-bottom: 0.2em;
+  line-height: 48px;
+  font-size: 48px;
+}
+
+.home-page h1+p {
+  margin: 0 0 25px;
+  font-size: 25px;
+  margin-bottom: 0.4em;
+  font-weight: 400;
+  line-height: 30px;
+  color: #212121;
+}
+
+.home-page h1+p+p {
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+@media (width <1200px) {
+  .home-page>div>.columns-auth-img-col img {
+    display: block;
+    width: 100%;
+    max-width: 345px;
+  }
+}
+
+
+
+@media (width <=990px) {
+  .home-page {
+    margin-inline: auto;
+  }
+
+  .home-page>div {
+    flex-direction: column;
+  }
+
+  .home-page>div>.columns-auth-img-col img {
+    display: block;
+    width: 100%;
+    max-width: 630px;
+  }
+
+  .home-page>div>div h1 {
+    margin-top: 0.1em;
+    margin-bottom: 0.2em;
+    line-height: 39px;
+    font-size: 2.438rem;
+  }
+
+  .home-page h1+p {
+    font-size: 23px;
+    line-height: 29px;
+  }
+}
+
+@media (width <=768px) {
+  .home-page>div>.columns-auth-img-col img {
+    display: block;
+    width: 100%;
+    max-width: 630px;
+  }
+
+  .home-page>div>div h1 {
+    margin-top: 0.23em;
+    margin-bottom: 0.2em;
+    line-height: 28px;
+    font-size: 39.008px;
+  }
+
+  .home-page h1+p {
+    font-size: 23px;
+    line-height: 26px;
+  }
+}
+
+@media (width <=560px) {
+  .home-page>div>.columns-auth-img-col img {
+    display: block;
+    width: 100%;
+    max-width: 345px;
+  }
+
+  .home-page>div>div h1 {
+    margin-top: 0.23em;
+    margin-bottom: 0.2em;
+    line-height: 28px;
+    font-size: 1.75rem;
+  }
+
+  .home-page h1+p {
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
 
 /* "No login required" icon + link row: stacked on narrow viewports,
    an even 3-across row once there is enough room */
 .columns-auth-no-login-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  gap: 16px 24px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -29,10 +196,18 @@
   gap: 8px;
 }
 
-@media (width >= 600px) {
+/* no gap — the columns carry the grid's own 15px gutters */
+.select-service>div {
+  display: flex;
+  align-items: center;
+  flex-direction: unset;
+}
+
+/* used .columns-auth>div>div as container */
+@container (width >=768px) {
   .columns-auth-no-login-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: auto auto auto;
     gap: 16px 24px;
   }
 }
@@ -43,123 +218,473 @@
   height: 24px;
 }
 
-.columns-auth-no-login-list .icon img {
+/* .columns-auth-no-login-list .icon img {
   width: 100%;
   height: 100%;
-}
+} */
 
 .columns-auth-no-login-list a {
   font-size: 14px;
   font-weight: 700;
 }
 
-.columns-auth > div > div {
-  order: 1;
+/* .columns-auth-3-cols>div {
+  min-height: 165px;
+} */
+
+.suppliers>div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px
 }
 
-.columns-auth > div > .columns-auth-img-col {
-  order: 0;
+.home-page>div>div {
+  /* padding-inline: 0.7em; */
+  flex-grow: 1;
 }
 
-.columns-auth > div > .columns-auth-img-col img {
-  display: block;
+/* .home-page h1 {
+  margin: 0 0 32px;
+  color: #403c3c;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+} */
+
+
+
+
+@media (width <=560px) {
+  .columns-auth-no-login-list li:last-child .icon img {
+    translate: 0 -1px;
+  }
 }
 
-/* fixed-size pictogram (not a fluid promotional photo). Targeted
-   structurally (nth-child) rather than via .columns-auth-img-col, since
-   that class is only added once the image is wrapped in a <picture> —
-   true after the DA pipeline processes it, but not for a raw <img> */
-.columns-auth-3-cols > div > div:first-child img {
+
+/* tablet + desktop share the row layout (icon beside heading, multi-column
+   flex split); only font sizes further up scale between the two */
+
+
+/* min-height, not height, so taller content grows the row instead of
+     clipping; 165px matches the source's row height for every hub page that
+     has a real Log In column. The one exception (a third column with no
+     link — just a spacer, e.g. Suppliers) sizes naturally below. */
+
+/* .columns-auth-3-cols>div {
+    min-height: 165px;
+  }  */
+
+/* 3-col layout: icon column is a fixed 2/12 share on the source for every
+     page (icon:text:third fractions of 12); only the icon's share is shared
+     between variants, so it's the only one set unconditionally */
+.columns-auth.suppliers>div {
+  min-height: 0;
+}
+
+.columns-auth-3-cols>div>div:first-child {
+  flex: 1;
+}
+
+/* default (most hub pages, e.g. Select Service, Claims, Lenders): a real
+     Log In column, icon:text:login = 2:6:4 of 12 */
+.columns-auth-3-cols>div>div:nth-child(2) {
+  flex: 3;
+}
+
+.columns-auth-3-cols>div>div:nth-child(2)>#electronic-payments {
+  line-height: 1;
+  font-size: 48px;
+  font-weight: 600;
+  margin: 0 0 32px;
+  color: var(--dark-gray-color);
+}
+
+.columns-auth-3-cols>div>div:nth-child(3) {
+  flex: 2;
+  text-align: right;
+}
+
+/* Once the row is horizontal it follows the source's 12-column grid rather
+   than free flex ratios: the row is 30px narrower than the card grid below it
+   (the source's hero sits in a 1110px container while the cards break out to
+   1140px) and every column carries a 15px gutter. That puts the heading and
+   the Log In panel on the same columns as the source, with the panel's right
+   edge landing just inside the header's own Log In link. */
+@media (width >=768px) {
+  .columns-auth-3-cols:not(.suppliers)>div {
+    padding-right: 30px;
+  }
+
+  .columns-auth-3-cols:not(.suppliers)>div>div {
+    box-sizing: border-box;
+    padding-inline: 15px;
+  }
+
+  .columns-auth-3-cols:not(.suppliers)>div>div:first-child {
+    flex-grow: 0;
+    flex-basis: 16.667%;
+  }
+
+  .columns-auth-3-cols:not(.suppliers)>div>div:nth-child(2) {
+    flex-grow: 0;
+    flex-basis: 50%;
+  }
+
+  .columns-auth-3-cols:not(.suppliers)>div>div:nth-child(3) {
+    flex-grow: 0;
+    flex-basis: 33.333%;
+  }
+}
+
+/* exception: third column has no link — just a spacer (e.g. Suppliers) —
+     so icon:text:spacer = 2:8:2 of 12, giving the text column more room, and
+     the row sizes to its own content instead of the 165px Log In row height */
+.columns-auth.suppliers>div>div {
+  box-sizing: border-box;
+  padding-inline: 15px;
+}
+
+.columns-auth-3-cols>div:not(:has(> div:nth-child(3) a)) {
+  min-height: 0;
+}
+
+.columns-auth-3-cols>div:not(:has(> div:nth-child(3) a))>div:nth-child(2) {
+  flex: 4;
+}
+
+.columns-auth-3-cols>div:not(:has(> div:nth-child(3) a))>div:nth-child(3) {
+  flex: 1;
+}
+
+/* Log In panel of the baseline hero row — the pill and the forgot/register
+   help text below it */
+.columns-auth-3-cols .button-wrapper {
+  margin: 0;
+}
+
+/* min-width, not width — a fixed width clips "Log In"/"Log Out"; growing it
+   shifts nothing since the cell is right-aligned */
+.columns-auth-3-cols .button.accent {
+  min-width: 138px;
+  height: 48px;
+  margin: 0 0 24px;
+  padding: 0 48px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.columns-auth-3-cols .button-wrapper+p {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.claims-services div div p a{
+  width: 138px;
+ } 
+
+.columns-auth-3-cols .button-wrapper+p a {
+  font-weight: 600;
+}
+
+/* the source left-aligns the forgot/register help at tablet and below, while
+   the pill above it stays right-aligned in its column */
+@media (width <=768px) {
+  .columns-auth-3-cols .button-wrapper+p {
+    text-align: left;
+  }
+}
+
+/* suppliers hub (/b2b-content/suppliers): the icon column holds a 104px
+   pictogram next to the heading rather than the wide hero image the login
+   variants use, and there is no Log In column — so the row keeps its
+   horizontal split at every width instead of stacking. */
+
+/* pictogram is tablet/desktop-only on the source */
+.columns-auth.suppliers>div>.columns-auth-img-col {
+  display: none;
+}
+
+.columns-auth.suppliers h1 {
+  margin: 0 0 32px;
+  font-size: 28px;
+  line-height: 28px;
+}
+
+.columns-auth.suppliers h1+p {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+@media (width >=768px) {
+  /* the 2:8:2 column split comes from the shared no-login-column rules above */
+  .columns-auth.suppliers>div {
+    flex-direction: row;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .columns-auth.suppliers>div>.columns-auth-img-col {
+    display: block;
+  }
+
+  .columns-auth.suppliers>div>.columns-auth-img-col img {
+    width: 104px;
+    height: 104px;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  .columns-auth.suppliers h1 {
+    font-size: 39px;
+    line-height: 39px;
+  }
+}
+
+@media (width >=1025px) {
+  .columns-auth.suppliers h1 {
+    font-size: 48px;
+    line-height: 48px;
+  }
+}
+
+/* fixed-size pictogram, targeted structurally (nth-child) since
+   .columns-auth-img-col isn't added until the DA pipeline wraps it */
+
+.columns-auth-3-cols>div>div:first-child img {
   width: 104px;
   height: 104px;
-  margin: 0 auto;
+  margin: auto;
 }
 
-@media (width >= 900px) {
-  .columns-auth > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+.home-page p.button-wrapper+p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 22px;
+}
+
+ .claims-services ul li .cards-card-body p + p {
+   padding-top: 2px;
+ }
+
+ .claims-services ul li .cards-card-body p:first-child:has(picture){
+  padding-top: 2px; 
+ }
+
+ .section .default-content-wrapper #additional-resources { 
+   margin: 20px 0 24px; 
+ }
+
+ @media (width <=1200px) {
+  .claims-services {
+     max-width: 930px;
+     margin-inline: auto;
+   }
+ }
+
+ @media (width <=990px) {
+   .claims-services {
+     max-width: 690px;
+     margin-inline: auto;
+   }
+
+  .claims-services ul li .cards-card-body p:first-child>picture{
+    right: 10px;
   }
 
-  /* baseline row height for the 3-col (fixed-icon) variant — min-height,
-     not height, so content that renders slightly taller than the source
-     (font differences) grows the row instead of getting clipped */
-  .columns-auth-3-cols > div {
-    min-height: 165px;
+   .claims-services:not(.suppliers)>div>div:first-child {
+    box-sizing: border-box;
+    padding-inline: 0;
+    translate: 15px;
   }
 
-  .columns-auth > div > div {
-    /* matches the source's 5/12 (image) : 7/12 (text) column split */
-    flex: 7;
-    order: unset;
-  }
+ }
 
-  .columns-auth > div > .columns-auth-img-col {
-    flex: 5;
-  }
-
-  /* 3-column layout (icon, title block, right-aligned login/links) used
-     when the image is a small fixed-size pictogram rather than a wide
-     promotional photo */
-
-  /* wider than the 104px icon itself so the icon reads as centered with
-     breathing room, matching the source's column proportions (roughly
-     1:3:2 across icon : title : actions) */
-  .columns-auth-3-cols > div > div:first-child {
-    flex: 1;
-  }
-
-  .columns-auth-3-cols > div > div:nth-child(2) {
-    flex: 3;
-  }
-
-  .columns-auth-3-cols > div > div:nth-child(3) {
-    flex: 2;
-    text-align: right;
+/* line the pictogram up with the brand divider in the header: nav caps at
+   1170px with a 24px inset and its divider sits 54px past that (10px brand
+   margin + 28px logo + 16px padding), which lands 48px right of the 1140px
+   content box's own 15px inset — 33px of that is already covered by the
+   column's gutter. Only holds above 1200px, where the content box stops
+   narrowing to 960px. */
+@media (width > 1024px) {
+  .columns-auth-3-cols > div > div:first-child img {
+    margin: 0 23px;
   }
 }
 
-/* spacing sequence matches the source markup's explicit margins:
-   h1 -> intro paragraph -> second paragraph -> Log In button -> forgot
-   paragraph -> "No login required" heading. Several of these are *larger*
-   than the default paragraph margins, not smaller — a blanket margin
-   collapse here is what was making the column read as crushed together. */
-.columns-auth h1 {
-  margin-bottom: 16px;
+.columns-auth-no-login-list li:last-child .icon img {
+  translate: 0 -2px;
 }
 
-.columns-auth h1 + p {
+@media (width <=600px) {
+  .claims-services > div{
+      padding-inline: 15px;
+    }
+
+  .claims-services>div> div h1 +p{
+      margin-bottom: 20px;
+    }
+
+  .select-service>div>div>picture img {
+    display: none;
+  }
+
+  .columns-auth-no-login-list li:last-child .icon img {
+    translate: 0 -1px;
+  }
+
+.claims-services ul li .cards-card-body p:first-child>picture {
+  right: 16px;
+}
+
+  .select-service>div {
+    display: block;
+  }
+
+  .select-service>div>div:nth-child(3) {
+    text-align: left;
+  }
+
+  .select-service .cards-card-body p:first-child a {
+    max-width: 300px;
+  }
+
+  .select-service .cards-card-body p {
+    max-width: 300px;
+  }
+}
+
+/* spacing matches the source's explicit margins between h1, intro copy,
+   Log In button and forgot-help — several are larger than the defaults */
+.home-page #select-service {
+  color: #403c3c;
+
+  /* line-height: 48px;
+  margin: 0 0 32px; */
+
+  /* font-size: 48px;
+  font-weight: 600; */
+  position: relative;
+}
+
+.home-page h1 .registered {
+  top: 24px;
+  line-height: 0;
+  font-size: 45px;
+  position: absolute;
+}
+
+.home-page p.button-wrapper {
   margin-top: 0;
-  margin-bottom: 0.4em;
-  font-size: 25px;
 }
 
-.columns-auth h1 + p + p {
-  margin-top: 0;
-  margin-bottom: 1.5em;
+.home-page #select-service+p {
+  margin: 0 0 25px;
+
+  /* font-size: 25px;
+  font-weight: 400; */
+
+  /* line-height: 30px; */
+  color: #212121;
 }
 
-.columns-auth p.button-wrapper {
-  margin-top: 0;
+.home-page p.button-wrapper+p>a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
 }
 
-.columns-auth p.button-wrapper + p {
-  margin-top: 24px;
-}
-
-.columns-auth h6 {
+.home-page h6 {
   margin-top: 24px;
   margin-bottom: 8px;
   font-size: 16px;
 }
 
-/* Log In pill button */
-.columns-auth .button.accent {
-  width: 138px;
+/* min-width, not width — a fixed 138px clipped "Log In" and would ellipsize
+   "Log Out"; growing it shifts nothing since the cell is right-aligned */
+.home-page .button.accent {
+  min-width: 138px;
   height: 48px;
-  padding-left: 48px;
-  padding-right: 48px;
   font-size: 16px;
   font-weight: 600;
+  margin: 0 0 24px;
+  padding: 0 48px;
+}
+
+.home-page .button-wrapper {
+  margin: 0;
+}
+
+.columns-auth-container .default-content-wrapper #resources {
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 25px;
+  color: var(--dark-gray-color);
+  margin: 37.512px 0 24px !important;
+}
+
+.columns-auth-container .default-content-wrapper #resources~p {
+  display: flex;
+  margin: 0 0 16px;
+}
+
+.columns-auth-container .default-content-wrapper #rental-job-aids {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 25px;
+  color: var(--dark-gray-color);
+}
+
+.columns-auth-container .columns-wrapper .columns #erac,
+.columns-auth-container .columns-wrapper .columns #hertz {
+  margin: 0 0 24px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--dark-gray-color);
+}
+
+.columns-auth-container .columns-wrapper .columns #erac~p,
+.columns-auth-container .columns-wrapper .columns #hertz~p {
+  display: flex;
+  margin: 0 0 16px;
+}
+
+.columns-auth-container .default-content-wrapper #resources~p>a,
+.columns-auth-container .columns-wrapper .columns #erac~p>a,
+.columns-auth-container .columns-wrapper .columns #hertz~p>a {
+  padding: 2px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+@media (width <= 1024px) {
+  .columns-auth-3-cols > div > div:nth-child(2) > #electronic-payments {
+    font-size: 39px;
+  }
+}
+
+@media (width <= 560px) {
+  .columns-auth-3-cols > div > div:nth-child(2) > #electronic-payments {
+    font-size: 28px;
+  }
+  
+  .columns-auth-wrapper > .home-auto-lenders {
+    padding: 0 15px;
+  }
+
+  .columns-auth-3-cols>div>div:first-child img {
+    display: none;
+  }
+
+  .columns-auth-3-cols>div>div:nth-child(3) {
+    text-align: left;
+  }
 }

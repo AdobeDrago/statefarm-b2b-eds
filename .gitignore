@@ -7,10 +7,16 @@ helix-importer-ui
 .DS_Store
 *.bak
 .idea
+.playwright-mcp/
 
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
-migration-work/navigation-validation/
-migration-work/footer-validation/
 .claude-plugin/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
