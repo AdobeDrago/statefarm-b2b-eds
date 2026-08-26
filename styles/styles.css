@@ -1051,6 +1051,10 @@ main .section .default-content-wrapper #log-in-to-view-content {
 
 /* select-service-home-repair login gate (H1 + prompt only on this page) */
 /* stylelint-disable selector-id-pattern -- DA slug from "Select Service™ - Home Repair Program" */
+main .section:has(#select-service---home-repair-program) {
+  padding-bottom: 80px;
+}
+
 main .section .default-content-wrapper #select-service---home-repair-program,
 main .section .default-content-wrapper #select-service---home-repair-program strong {
   font-size: 3rem;
