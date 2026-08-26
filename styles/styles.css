@@ -75,7 +75,6 @@ body {
 
 body.appear {
   display: block;
-  min-height: 100vh;
 }
 
 /* on a page too short to fill the viewport the footer slides down to the bottom
@@ -463,6 +462,53 @@ main .section.khaki ul:last-child {
   list-style-type: none;
   padding: 0;
   margin-top: 25px;
+}
+
+.default-content-wrapper #auto-repair-facility-survey {
+  line-height: 1;
+  font-size: 39px;
+  font-weight: 600;
+  margin: 64px 0 50px;
+  color: var(--dark-gray-color);
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p {
+  color: #212121;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 21px;
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p > a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.default-content-wrapper:has(#auto-repair-facility-survey) {
+  margin-bottom: 120px;
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p:has(> a[title='Log In']) {
+  height: 48px;
+  display: flex;
+  padding: 0 48px;
+  cursor: pointer;
+  margin: 0 0 24px;
+  width: max-content;
+  border-radius: 28px;
+  align-items: center;
+  background-color: var(--link-color);
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p:has(> a[title='Log In']):hover {
+  background-color: #a11b13;
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p > a[title='Log In'] {
+  color: #fff;
+  text-decoration: none;
 }
 
 #instructions--guides+ul li .button-wrapper a { 
@@ -1000,8 +1046,6 @@ main .section.accent-heading:has(#overview) {
   margin-bottom: 40px;
 }
 
-/* stylelint-enable no-descending-specificity */
-
 .section .default-content-wrapper:has(#overview) > p {
   font-size: 16px;
   font-weight: 400;
@@ -1029,16 +1073,16 @@ main .section.khaki:has(#contact-us) {
   margin-bottom: 80px;
 }
 
-main .section .default-content-wrapper:has(#select-service-agreements) {
-  margin-bottom: 60px;
-}
-
 main .section .default-content-wrapper #select-service-agreements {
   font-weight: 600;
   line-height: 39px;
   margin: 20px 0 16px;
   font-size: 39.008px;
   color: var(--dark-gray-color);
+}
+
+main .section .default-content-wrapper:has(#select-service-agreements) {
+  margin-bottom: 60px;
 }
 
 main .section .default-content-wrapper #log-in-to-view-content {
@@ -1377,6 +1421,8 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
     font-size: 25px !important;
   }
 }
+
+/* stylelint-enable no-descending-specificity */
 
 /* Supplier engagement — body copy stays 16px at all widths (source keeps text
    size fixed regardless of viewport, unlike the default fluid body scale) */
@@ -1992,7 +2038,16 @@ sf-hero > .hero-login a {
   color: var(--dark-gray-color);
 }
 
+main:has(.default-content-wrapper > #auto-repair-facility-survey) .breadcrumbs-container {
+  display: none;
+}
+
 @media (width <= 1024px) {
+  .default-content-wrapper #auto-repair-facility-survey {
+    font-size: 33px;
+    margin: 56px 0 50px;
+  }
+
   .default-content-wrapper #coupa-supplier-portal-training {
     font-size: 33px;
     margin: 56px 0 24px;
@@ -2000,6 +2055,15 @@ sf-hero > .hero-login a {
 }
 
 @media (width <= 560px) {
+  .default-content-wrapper:has(#auto-repair-facility-survey) {
+    margin-bottom: 100px;
+  }
+
+  .default-content-wrapper #auto-repair-facility-survey {
+    font-size: 25px;
+    margin: 48px 0 50px;
+  }
+
   .default-content-wrapper #coupa-supplier-portal-training {
     font-size: 25px;
     margin: 48px 0 24px;
