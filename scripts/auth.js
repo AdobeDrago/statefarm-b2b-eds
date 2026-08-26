@@ -71,13 +71,12 @@ export function isAuthenticated() {
 
 /**
  * The current page's URL in a given state — login adds the parameter, logout
- * removes it. Used as the Log In / Log Out href so both work without JS.
+ * removes it. Used for logout and address-bar sync.
  * @param {boolean} authenticated the state to switch to
- * @param {string} [baseHref] optional navigation target (defaults to current page)
  * @returns {string} a path-relative href
  */
-function authActionHref(authenticated, baseHref = window.location.href) {
-  const url = new URL(baseHref, window.location.href);
+function authActionHref(authenticated) {
+  const url = new URL(window.location.href);
   if (authenticated) url.searchParams.set(PARAM, 'true');
   else url.searchParams.delete(PARAM);
   // simulation-only chat flag — never carry it into auth navigations
@@ -87,21 +86,24 @@ function authActionHref(authenticated, baseHref = window.location.href) {
 }
 
 /**
- * Login destination from the authored href when it is a real page path.
- * Hash-only targets (e.g. `#login`) fall back to the current page.
+ * Login destination from the DA-authored href only (plus simulation `loggedIn`).
  * This portal has no `/` index — authored `/` means B2B home.
  * @param {HTMLElement} control the Log In control
- * @returns {string} path-relative href with the auth parameter
+ * @returns {string|null} path-relative href, or null when DA gave no page URL
  */
 function loginDestinationHref(control) {
   const authored = control.getAttribute('href');
-  if (!authored || authored.startsWith('#')) return authActionHref(true);
+  if (!authored || authored.startsWith('#')) return null;
 
-  const url = new URL(authored, window.location.href);
+  // origin is only the parse base for root-relative DA paths — not the login target
+  const url = new URL(authored, window.location.origin);
   if (url.origin === window.location.origin && (url.pathname === '/' || url.pathname === '')) {
     url.pathname = '/b2b-content';
   }
-  return authActionHref(true, url.href);
+  url.searchParams.set(PARAM, 'true');
+  url.searchParams.delete('external');
+  url.hash = '';
+  return `${url.pathname}${url.search}`;
 }
 
 /**
@@ -187,7 +189,7 @@ export function decorateAuthLinks(main) {
 /**
  * Points a Log In / Log Out control at the current state. Sets `title` too,
  * because decorateButtons() has already copied the old label into it.
- * Login prefers the authored href (e.g. `/` → B2B home); logout stays here.
+ * Login uses the DA-authored href; logout clears `loggedIn` on the current page.
  * @param {HTMLElement} control the authored Log In link
  */
 export function decorateAuthControl(control) {
@@ -195,9 +197,15 @@ export function decorateAuthControl(control) {
   control.textContent = authenticated ? 'Log Out' : 'Log In';
   control.title = control.textContent;
   control.dataset.authAction = authenticated ? 'logout' : 'login';
-  if ('href' in control) {
-    control.href = authenticated ? authActionHref(false) : loginDestinationHref(control);
+  if (!('href' in control)) return;
+
+  if (authenticated) {
+    control.href = authActionHref(false);
+    return;
   }
+
+  const dest = loginDestinationHref(control);
+  if (dest) control.href = dest;
 }
 
 /**
