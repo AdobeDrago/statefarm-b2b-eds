@@ -800,10 +800,7 @@ main .section.khaki ul:last-child {
     margin-bottom: 76px;
   }
 }
-
-
-
-
+ 
 #about-registration{
     font-size: 2.438rem;
     line-height: 39px;
@@ -827,9 +824,7 @@ main .section.khaki ul:last-child {
 #about-registration ~ p:last-child { 
   margin-bottom: 106px;
 }
-
-
-
+ 
 @media(width <=990px){
     #about-registration {
         font-size: 2.063rem;
@@ -867,13 +862,167 @@ main .section.khaki ul:last-child {
 }
 
 
+/* stylelint-disable-next-line selector-id-pattern */
+#admin-roles--responsibilities{
+    font-size: 2.438rem;
+    line-height: 39px;
+    margin-block: 88px 56px;
+  } 
+
+summary:has(#what-are-my-capabilities-and-duties-as-administrator)+.accordion-item-body,
+summary:has(#what-can-users-who-are-not-administrators-do-to-manage-their-own-account) + .accordion-item-body,
+summary:has(#if-a-co-worker-is-registered-on-b2b-and-leaves-the-company-or-changes-job-duties-what-should-i-do)+.accordion-item-body,
+summary:has(#can-we-share-ids)+.accordion-item-body,
+summary:has(#can-we-have-more-than-one-administrator-at-our-company)+.accordion-item-body,
+summary:has(#what-if-a-co-worker-forgets-their-id)+.accordion-item-body,
+summary:has(#what-if-co-worker-forgets-their-password)+.accordion-item-body,
+summary:has(#a-co-worker-got-a-message-indicating-their-account-is-disabled-what-does-this-mean)+.accordion-item-body,
+summary:has(#what-do-i-do-if-an-account-becomes-disabled-and-the-co-worker-still-needs-access)+.accordion-item-body,
+summary:has(#what-do-i-do-if-my-account-becomes-disabled-and-im-the-only-administrator-for-my-business)+.accordion-item-body,
+summary:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website)+.accordion-item-body,
+summary:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1)+.accordion-item-body
+{
+    padding-block: 8px;
+    margin-left: 2px;
+  }
+
+.accordion:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1){
+    padding-bottom: 46px;
+  }
+
+@media(width <=990px) {
+  /* stylelint-disable-next-line selector-id-pattern */
+  #admin-roles--responsibilities {
+      font-size: 2.063rem;
+        line-height: 33px;
+        margin-block: 80px 56px;
+    }
+
+    /* stylelint-disable-next-line selector-id-pattern */
+  .accordion:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1) {
+    padding-bottom: 20px;
+  }
+}
+
+@media(width <768px) { 
+  /* stylelint-disable-next-line selector-id-pattern */
+  #admin-roles--responsibilities {
+      font-size: 1.563rem; 
+        line-height: 25px;
+        margin-block: 72px 56px;
+    }
+
+  .accordion:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1) {
+    padding-bottom: 12px;
+  }
+}
+
+
+
+#jewelry-replacement{ 
+    margin-block:23px 34px;
+  }
+
+.default-content-wrapper:has(#jewelry-replacement) + .side-nav-wrapper .side-nav .side-nav-menu nav p{
+    padding-block: 0 ;
+  }
+
+.default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul {
+  margin-top: 7px;
+}
+
+.default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul li {
+  padding-block: 0 7px;
+}
+
+ 
+
+
+#jewelry-replacement-quotation-form-jrq ~ ol{
+    padding-inline-start: 30px;
+    margin-top: 22px;
+  }
+
+#jewelry-replacement-quotation-form-jrq~ul {
+  padding-inline-start: 40px;
+  margin-top: 26px;
+}
+
+#example-item-description-and-breakdown{
+    font-size: 1rem;
+    line-height: 16px;
+    margin-bottom: 15px;
+  }
+
+#example-item-description-and-breakdown + p + p {
+  margin-left: 12px;
+}
+
+#commission-schedule+table{
+    margin-bottom: 0;
+  } 
+
+#commission-schedule + table tbody tr td{
+  padding: 0; 
+  padding-inline: 2px;
+  padding-block: 2px;
+  border: none;
+  font-size: 16px;
+  line-height: 21px;
+  color: #212121; 
+  }
+
+#commission-schedule+table tbody tr td:last-child{ 
+    padding-left: 35px;
+  }
+
+#invoice + p + ul{
+    padding-left: 24px;
+  }
+
+#salvage~p:last-child{
+    margin-bottom: 60px;
+  }
+
+
+@media(width <=990px) { 
+  .default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul {
+    margin-top: 11px;
+  }
+
+  .default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul li {
+    padding-block: 0 8px; 
+  }
+
+#salvage~p:last-child {
+  margin-bottom: 37px;
+}
+}
+
+@media(width <768px) {
+.default-content-wrapper:has(#jewelry-replacement) + .side-nav-wrapper .side-nav > div{
+    gap: 1px;
+  }
+
+.default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav {
+  min-width: 100px;
+}
+  
+#salvage~p:last-child {
+    margin-bottom: 30px;
+  }
+
+#commission-schedule+table tbody tr td:last-child {
+  padding-left: 22px;
+}
+}
 
 
 main img {
   max-width: 100%;
   width: auto;
   height: auto;
-}
+} 
 
 .icon {
   display: inline-block;
@@ -1437,6 +1586,7 @@ main .section:has(#how-to-engage-us) p {
 }
 /* stylelint-enable no-descending-specificity */
 
+/* stylelint-disable-next-line no-descending-specificity */
 main .section.khaki:has(#our-program) li {
   padding-bottom: 8px;
 }
