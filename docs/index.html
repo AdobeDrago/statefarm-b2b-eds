@@ -208,6 +208,7 @@
   .icon-navy   { background: #e6eef7; color: var(--brand-navy); }
   .icon-green  { background: #eaf6f1; color: #268e6c; }
   .icon-orange { background: #fff4e5; color: #da7b11; }
+  .icon-red    { background: #fff0f2; color: #c51d35; }
 
   /* ── URL CARDS ── */
   .url-grid {
@@ -352,6 +353,10 @@
   .notice.info     { background: #e9f1fc; color: #0d51b5; border-left: 3px solid var(--brand-blue); }
   .notice.tip      { background: #eaf6f1; color: #1a6b50; border-left: 3px solid #268e6c; }
   .notice.warning  { background: #fff4e5; color: #8a4b08; border-left: 3px solid #da7b11; }
+  .notice.audit    { background: #fff4f5; color: #7d1c2c; border-left: 3px solid #d71937; }
+  .seo-figure { max-width: 560px; margin: 16px auto 24px; }
+  .seo-figure img { display: block; width: 100%; height: auto; }
+  .seo-figure figcaption { padding: 9px 12px; font-size: 12px; color: var(--gray-700); border: 1px solid var(--gray-200); border-top: 0; }
 
   /* ── SPEC TABLE ── */
   .spec-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
@@ -533,6 +538,10 @@
       <a class="sidebar-link" href="#lighthouse-comparison">
         <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1 14.5a.5.5 0 01.5-.5h13a.5.5 0 010 1h-13a.5.5 0 01-.5-.5zM3 12a1 1 0 011-1 1 1 0 011 1v.5H3V12zm4-3.5A1 1 0 018 7.5a1 1 0 011 1V12.5H7V8.5zm4-3A1 1 0 0112 4.5a1 1 0 011 1v7H11v-7z"/></svg>
         Lighthouse comparison
+      </a>
+      <a class="sidebar-link" href="#seo-indexing-audit">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a.75.75 0 01.75.75v3.06l2.03 1.17a.75.75 0 11-.75 1.3L7.62 9.39A.75.75 0 017.25 8.75v-3.5A.75.75 0 018 4.5z"/></svg>
+        SEO indexing audit
       </a>
     </div>
 
@@ -1016,6 +1025,68 @@ npm run test:e2e:ui <span class="cmt"># same suite, interactive UI mode</span></
           <svg class="notice-icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"/></svg>
           <span>The pattern holds across all four pages: Performance jumps by +22 to +47 points, and Best Practices lands at exactly 96 every time (from 73 live) — both driven by the same EDS platform behavior regardless of page content. Accessibility is flat or improved on three of the four pages, with a single 5-point dip on the homepage (95 → 90) worth a follow-up pass.</span>
         </div>
+      </section>
+
+      <!-- SEO INDEXING AUDIT -->
+      <section class="doc-section" id="seo-indexing-audit">
+        <h2>
+          <span class="section-icon icon-red">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a.75.75 0 01.75.75v3.06l2.03 1.17a.75.75 0 11-.75 1.3L7.62 9.39A.75.75 0 017.25 8.75v-3.5A.75.75 0 018 4.5z"/></svg>
+          </span>
+          SEO indexing audit
+        </h2>
+        <div class="section-rule"></div>
+        <p>A Lighthouse audit captured on 27 August 2026 reports an SEO score of <span class="score-pill score-mid">69</span>. The failed check is <strong>“Page is blocked from indexing.”</strong></p>
+
+        <div class="notice audit">
+          <svg class="notice-icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 018 7.5v-3a.75.75 0 011.5 0v3a.75.75 0 01-.75.75.75.75 0 01-.75-.75zm8 3.5a1 1 0 100-2 1 1 0 000 2z"/></svg>
+          <span><strong>Blocking response header:</strong> <code class="code-inline">X-Robots-Tag: noindex, nofollow</code></span>
+        </div>
+
+        <h3>Executive summary</h3>
+        <p>The score is low because the inspected page returns <strong>X-Robots-Tag: noindex, nofollow</strong>. This asks search engines not to index the page or follow its links.</p>
+        <p>For AEM Edge Delivery Services, this is expected on <code class="code-inline">*.aem.page</code> preview URLs and <code class="code-inline">*.aem.live</code> origin URLs. It is platform-level protection for non-production origins, not a page-code defect in this repository.</p>
+
+        <h3>Evidence from the audit</h3>
+        <p>The report links to <code class="code-inline">/robots.txt</code>, but that file is not the operative cause of this failure. The restrictive HTTP header is what Lighthouse detected. A permissive robots file or an <code class="code-inline">index, follow</code> meta tag cannot override it.</p>
+        <figure class="seo-figure">
+          <img src="images/seo-indexing-audit.png" alt="Lighthouse SEO audit scoring 69 and reporting that the page is blocked from indexing by X-Robots-Tag: noindex, nofollow">
+          <figcaption>Figure 1. Lighthouse SEO audit showing the 69 score and <code class="code-inline">X-Robots-Tag: noindex, nofollow</code>.</figcaption>
+        </figure>
+
+        <h3>Scope of this finding</h3>
+        <ul class="req-list">
+          <li>The warning is expected when auditing an AEM preview or origin URL.</li>
+          <li>It does not prove that the public production domain is blocked from search.</li>
+          <li>The public domain must be validated separately through its production CDN.</li>
+        </ul>
+
+        <h3>What Adobe documents</h3>
+        <p>Adobe’s AEM Edge Delivery Services network-profile documentation states that the <code class="code-inline">x-robots-tag</code> header is automatically set to <strong>noindex, nofollow</strong> on all <code class="code-inline">.live</code> and <code class="code-inline">.page</code> origins to prevent indexing. Adobe further states that the header is removed by the production CDN tier.</p>
+
+        <table class="spec-table">
+          <thead>
+            <tr><th>URL audited</th><th>Expected result</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code class="code-inline">*.aem.page</code> preview URL</td><td>Blocked from indexing by design.</td></tr>
+            <tr><td><code class="code-inline">*.aem.live</code> origin URL</td><td>Blocked from indexing by design.</td></tr>
+            <tr><td>Public domain through the production CDN</td><td>The origin-only header is removed, so the audit can pass.</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Required validation</h3>
+        <ol class="req-list">
+          <li>Run Lighthouse against the public production domain, not an AEM origin URL.</li>
+          <li>Confirm that the production response does not include <code class="code-inline">X-Robots-Tag: noindex, nofollow</code> with <code class="code-inline">curl -I https://www.example.com/</code>.</li>
+          <li>If the header remains, have the CDN/AEM delivery administrator verify that the domain is routed through the production CDN tier.</li>
+          <li>Re-run Lighthouse after the CDN configuration is corrected.</li>
+        </ol>
+
+        <h3>What not to change</h3>
+        <p>Do not add a conflicting <code class="code-inline">index, follow</code> meta tag or alter <code class="code-inline">robots.txt</code> to try to override this header. The restrictive response header still wins, while the AEM origin URLs should remain protected from indexing.</p>
+
+        <p><a href="SEO%20Indexing%20Audit.docx" style="color:var(--brand-blue);font-weight:700;">Download the full SEO Indexing Audit (DOCX)</a> &middot; <a href="https://www.aem.live/docs/network-profile" target="_blank" rel="noopener" style="color:var(--brand-blue);">Adobe AEM network-profile documentation</a></p>
       </section>
 
       <!-- JOURNEY: NAVIGATION / HEADER -->
