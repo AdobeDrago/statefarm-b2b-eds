@@ -187,6 +187,105 @@ function decorateTables(body) {
   });
 }
 
+/** Columns that can be sorted on the operations directory tables. */
+const SORTABLE_COLUMNS = {
+  State: 'text',
+  'Office Name': 'text',
+  'Area Code': 'numeric',
+  'Office Code': 'numeric',
+};
+
+/**
+ * Compares two cell values for sorting.
+ * @param {string} a left value
+ * @param {string} b right value
+ * @param {'text'|'numeric'} type how to compare
+ * @param {'asc'|'desc'} dir sort direction
+ * @returns {number} comparator result
+ */
+function compareCells(a, b, type, dir) {
+  const mult = dir === 'asc' ? 1 : -1;
+  if (type === 'numeric') {
+    return (Number.parseInt(a, 10) - Number.parseInt(b, 10)) * mult;
+  }
+  return a.localeCompare(b, undefined, { sensitivity: 'base' }) * mult;
+}
+
+/**
+ * Reorders tbody rows by the given column.
+ * @param {HTMLTableElement} table the table
+ * @param {number} index column index
+ * @param {'text'|'numeric'} type how to compare
+ * @param {'asc'|'desc'} dir sort direction
+ */
+function sortTableRows(table, index, type, dir) {
+  const tbody = table.tBodies[0];
+  if (!tbody) return;
+  const rows = [...tbody.rows];
+  rows.sort((left, right) => compareCells(
+    left.cells[index]?.textContent.trim() || '',
+    right.cells[index]?.textContent.trim() || '',
+    type,
+    dir,
+  ));
+  tbody.append(...rows);
+}
+
+/**
+ * Makes State / Office Name / Area Code / Office Code headers clickable to
+ * sort rows (text A–Z, numeric by number). Centers Area Code and Office Code.
+ * @param {Element} body the body column
+ */
+function decorateSortableTables(body) {
+  body.querySelectorAll('table').forEach((table) => {
+    const headers = [...table.querySelectorAll('thead tr:last-child th')];
+    if (!headers.some((th) => SORTABLE_COLUMNS[th.textContent.trim()])) return;
+
+    table.classList.add('side-nav-table-sortable');
+
+    headers.forEach((th, index) => {
+      const label = th.textContent.trim();
+      const type = SORTABLE_COLUMNS[label];
+      if (label === 'Area Code' || label === 'Office Code') {
+        th.classList.add('side-nav-table-center');
+      }
+      if (!type) return;
+
+      th.classList.add('side-nav-table-sort');
+      th.setAttribute('role', 'columnheader');
+      th.tabIndex = 0;
+      th.setAttribute('aria-sort', 'none');
+
+      const activate = () => {
+        const next = th.getAttribute('aria-sort') === 'ascending' ? 'descending' : 'ascending';
+        headers.forEach((header) => {
+          if (header !== th && SORTABLE_COLUMNS[header.textContent.trim()]) {
+            header.setAttribute('aria-sort', 'none');
+          }
+        });
+        th.setAttribute('aria-sort', next);
+        sortTableRows(table, index, type, next === 'ascending' ? 'asc' : 'desc');
+      };
+
+      th.addEventListener('click', activate);
+      th.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          activate();
+        }
+      });
+    });
+
+    const centerIndexes = headers
+      .map((th, i) => (th.textContent.trim() === 'Area Code' || th.textContent.trim() === 'Office Code' ? i : -1))
+      .filter((i) => i >= 0);
+
+    table.querySelectorAll('tbody tr').forEach((tr) => {
+      centerIndexes.forEach((i) => tr.cells[i]?.classList.add('side-nav-table-center'));
+    });
+  });
+}
+
 /**
  * Tags the back to top links and repeats one at the end of the page when the
  * closing section was authored without it.
@@ -222,7 +321,7 @@ function decorateFaq(container) {
   const accordion = document.createElement('div');
   accordion.className = 'side-nav-faq';
 
-  questions.forEach((heading, i) => {
+  questions.forEach((heading) => {
     let node = heading.nextElementSibling;
     const summary = document.createElement('summary');
     summary.className = 'side-nav-faq-label';
@@ -238,7 +337,6 @@ function decorateFaq(container) {
 
     const details = document.createElement('details');
     details.className = 'side-nav-faq-item';
-    if (!i) details.open = true;
     details.append(summary, answer);
     accordion.append(details);
   });
@@ -267,12 +365,17 @@ export default function decorate(block) {
   if (!menu || !body) return;
   menu.className = 'side-nav-menu';
   body.className = 'side-nav-body';
-  if (!menu.querySelector('ul')) menu.classList.add('side-nav-menu-flat');
+  if (!(menu.querySelector('p') && menu.querySelector('ul'))) {
+    menu.classList.add('side-nav-menu-flat');
+  }
   if (window.location.pathname.startsWith('/b2b-content/home-auto-lenders/help-support')) {
     block.classList.add('side-nav-help-support');
   }
   unwrapColumn(menu);
   unwrapColumn(body);
+
+  const flatList = menu.querySelector(':scope > nav > ul') || menu.querySelector(':scope > ul');
+  if (flatList && !menu.querySelector('p')) flatList.classList.add('side-nav-menu-list');
 
   unnestSections(body);
 
@@ -282,9 +385,10 @@ export default function decorate(block) {
   const isAutoOpsFaq = !!block.closest('main')?.querySelector('#auto-operations-faq');
   const isFireOpsFaq = !!block.closest('main')?.querySelector('#fire-operations-faq');
   const isFaqPage = isAutoOpsFaq || isFireOpsFaq;
+  const hasFlatNav = menu.classList.contains('side-nav-menu-flat') || menu.querySelector('.side-nav-menu-list');
   // a heading that reads as a sentence opens the page rather than a section
   const lead = content.firstElementChild;
-  if (!isFaqPage && menu.classList.contains('side-nav-menu-flat') && lead?.tagName === 'H3' && /[.!?]$/.test(lead.textContent.trim())) {
+  if (!isFaqPage && hasFlatNav && lead?.tagName === 'H3' && /[.!?]$/.test(lead.textContent.trim())) {
     const paragraph = document.createElement('p');
     paragraph.append(...lead.childNodes);
     lead.replaceWith(paragraph);
@@ -301,6 +405,7 @@ export default function decorate(block) {
     if (isAutoOps) return;
     if (isFaqPage) return;
     if (isFireOps && heading.id !== 'payment-addressmailing-addresscontact-detailspersonal-lines-fire-questionsbusiness-lines-fire-questions') return;
+    if (i === 0 && /[.!?]$/.test(heading.textContent.trim()) && hasFlatNav) return;
     if (!separated || i === 0 || isBackToTop(heading.previousElementSibling)) heading.classList.add('side-nav-section-heading');
   });
 
@@ -313,11 +418,14 @@ export default function decorate(block) {
     const inquiry = menu.querySelector('a[title="Insurance inquiry tool"]');
     if (inquiry) {
       inquiry.classList.add('button', 'primary', 'side-nav-inquiry-tool');
-      inquiry.closest('p')?.classList.add('button-wrapper', 'side-nav-inquiry-tool-wrapper');
+      const wrapper = inquiry.closest('p, li');
+      if (wrapper?.tagName === 'P') wrapper.classList.add('button-wrapper', 'side-nav-inquiry-tool-wrapper');
+      else if (wrapper?.tagName === 'LI') wrapper.classList.add('side-nav-inquiry-tool-wrapper');
     }
   }
 
   if (isFaqPage) decorateFaq(content);
   decorateTables(body);
+  decorateSortableTables(body);
   decorateBackToTop(body);
 }

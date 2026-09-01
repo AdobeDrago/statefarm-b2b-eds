@@ -92,8 +92,10 @@ main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
 }
 
 .side-nav-body .side-nav-lead {
+  margin-top: 0;
   margin-bottom: 19px;
   font-size: 19px;
+  font-weight: 400;
   line-height: 26px;
 }
 
@@ -178,6 +180,28 @@ main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
   font-weight: 600;
 }
 
+.side-nav-menu .side-nav-menu-list {
+  margin: 0;
+}
+
+.side-nav-menu .side-nav-menu-list > li {
+  margin: 0;
+  padding: 2px;
+  padding-bottom: 10px;
+  line-height: 21px;
+}
+
+.side-nav-menu .side-nav-menu-list > li:not(:last-child) {
+  padding-bottom: 25px;
+}
+
+.side-nav-menu .side-nav-menu-list > li > a {
+  font-size: 18px;
+  font-weight: 600 !important;
+  line-height: 21px;
+  letter-spacing: 0;
+}
+
 .side-nav-body .side-nav-back-to-top:last-child {
   margin-bottom: 76px;
 }
@@ -233,6 +257,39 @@ main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
   padding-left: 0;
 }
 
+.side-nav-body .side-nav-table-center {
+  text-align: center;
+}
+
+.side-nav-body .side-nav-table-sort {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.side-nav-body .side-nav-table-sort::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 6px;
+  vertical-align: middle;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #000;
+  border-bottom: none;
+}
+
+.side-nav-body .side-nav-table-sort[aria-sort="ascending"]::after {
+  border-top: none;
+  border-bottom: 5px solid #000;
+}
+
+.side-nav-body .side-nav-table-sort[aria-sort="descending"]::after {
+  border-top: 5px solid #000;
+  border-bottom: none;
+}
+
 @media (width >= 768px) {
   main .section:has(> .side-nav-wrapper) > .default-content-wrapper > h1 {
     font-size: 2.063rem;
@@ -265,10 +322,6 @@ main:has(.side-nav-help-support) .section:has(> .side-nav-wrapper) > .default-co
   margin-bottom: 32px;
 }
 
-main:has(#auto-operations-faq, #fire-operations-faq) > .breadcrumbs-container {
-  display: none;
-}
-
 main:has(#lender-relations-contacts) .side-nav-body {
   margin-bottom: 48px;
 }
@@ -283,11 +336,61 @@ main:has(#auto-operations-directory) .side-nav-body h3 {
   font-weight: 500;
 }
 
+main:has(#what-is-edi-and-eft) .side-nav-body .side-nav-lead,
+main:has(#what-is-edi-and-eft) .side-nav-body > h3:first-child {
+  margin-top: 0;
+  margin-bottom: 19px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0;
+}
+
+main:has(#what-is-edi-and-eft) .side-nav-body #why-edi {
+  font-size: 1.375rem;
+  font-weight: 500;
+}
+
+@media (width >= 768px) {
+  main:has(#what-is-edi-and-eft) .side-nav-body .side-nav-lead,
+  main:has(#what-is-edi-and-eft) .side-nav-body > h3:first-child {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  main:has(#what-is-edi-and-eft) .side-nav-body #why-edi {
+    font-size: 1.688rem;
+    font-weight: 500;
+  }
+}
+
+@media (width >= 1024px) {
+  main:has(#what-is-edi-and-eft) .side-nav-body .side-nav-lead,
+  main:has(#what-is-edi-and-eft) .side-nav-body > h3:first-child {
+    font-size: 19px;
+    line-height: 26px;
+  }
+
+  main:has(#what-is-edi-and-eft) .side-nav-body #why-edi {
+    font-size: 1.938rem;
+    font-weight: 500;
+    line-height: 31px;
+  }
+}
+
+main:has(#what-is-edi-and-eft) .side-nav-body :is(p, li) :is(strong, b) {
+  font-weight: 600;
+}
+
+main:has(#replacement-program-faqs) .side-nav-body h3:not(#replacement-program-faqs) {
+  margin-bottom: 24px;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
 main:has(#auto-operations-directory) .side-nav-body #to-help-expedite-your-call-review-the-hints-and-tips-below {
   margin-top: 26px;
 }
-
-
 
 main:has(#fire-operations-directory) .side-nav-menu .side-nav-inquiry-tool {
   display: inline-flex;

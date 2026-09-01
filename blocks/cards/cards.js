@@ -2,7 +2,7 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { isSimulationEnabled } from '../../scripts/auth.js';
 
 // the authored lock badge marking a card whose target needs a B2B login
-const LOCK_BADGE = 'img[alt="Login required"], img[src*="../../icons/lock-2.svg"]';
+const LOCK_BADGE = 'img[alt="Login required"]';
 
 // soft prompts like "Log In to have shop info auto-filled..." or "Log in
 // requred to access." — distinct from "No log in required", which starts with "No"
@@ -15,10 +15,12 @@ const SOFT_LOGIN_PROMPT = /^log in\b/i;
  */
 function decorateLockedCards(block) {
   block.querySelectorAll(LOCK_BADGE).forEach((img) => {
-    // set src to lock icon if alt is "Login required"
-    if (img.alt === 'Login required') {
+    if (img.parentElement?.matches('picture')) {
+      const source = img.parentElement?.querySelector('source');
       img.src = '../../icons/lock-2.svg';
+      source.srcset = '../../icons/lock-2.svg';
     }
+
     // tag the outermost node — cards.css positions the picture or the bare img,
     // depending on whether createOptimizedPicture wrapped it
     (img.closest('picture') || img).dataset.auth = 'anonymous';
@@ -40,6 +42,8 @@ function decorateSoftLoginPrompts(block) {
   });
 }
 
+const ONE_X_SPIKE_PATH = '/b2b-content/suppliers';
+
 export default function decorate(block) {
   /* change to ul, li */
   const ul = document.createElement('ul');
@@ -56,6 +60,19 @@ export default function decorate(block) {
     });
     ul.append(li);
   });
+  if (window.location.pathname === ONE_X_SPIKE_PATH) {
+    // Direct 1X reuse experiment: classes are placed on the same elements
+    // EDS decoration produces, with no adapter markup or copied 1X rules.
+    block.classList.add('-oneX-container');
+    ul.classList.add('-oneX-row');
+    [...ul.children].forEach((card) => {
+      // the comments are intentional to show that the 1X classes are not applied,
+      // but could be if we wanted to match the 1X layout more closely
+      // card.classList.add('-oneX-col-6');
+      // card.firstElementChild?.classList.add('-oneX-cards-container--padding-md');
+      card.querySelector('a')?.classList.add('-oneX-link--inline');
+    });
+  }
   ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
   block.replaceChildren(ul);
   decorateLockedCards(block);

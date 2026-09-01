@@ -75,7 +75,6 @@ body {
 
 body.appear {
   display: block;
-  min-height: 100vh;
 }
 
 /* on a page too short to fill the viewport the footer slides down to the bottom
@@ -298,11 +297,732 @@ button.button.accent:disabled:focus-visible {
   color: var(--dark-color);
 }
 
+#terms-of-use{
+    font-size: 3rem;
+      font-weight: 600;
+      line-height: 48px;
+      margin-top: 24px;
+      margin-bottom: 32px;
+  }
+
+#terms-of-use-1{
+    display: none;
+  }
+  
+  #other-agreements, 
+  #collaboration-site-users, 
+  #privacy,
+  #prohibitions-in-your-use-of-this-collaboration-site,
+  #secured-areaspasswords,
+  #changes-to-this-document,
+  #waiver, 
+  #assignment, 
+  #limitation-of-liability,
+  #warranty-disclaimer, 
+  #general, 
+  #your-obligations, 
+  #additional-terms, 
+  #state-farm-intellectual-property-rights
+  {
+      margin-block: 64px 24px;
+        font-size: 2.438rem;
+        line-height: 39px;
+   }
+
+   #additional-terms + ul a {
+      font-weight: 600 !important;
+    }
+
+   main .section.khaki>div p {
+  margin: 0 0 16px;
+}
+
+main .section.khaki ul {
+  margin-bottom: 24px;
+}
+
+main .section.khaki ul:last-child {
+  margin-bottom: 0;
+}
+
+ /* stylelint-disable no-descending-specificity */
+
+#other-agreements + p,
+#collaboration-site-users + p,
+#privacy + p,
+#prohibitions-in-your-use-of-this-collaboration-site + p,
+#prohibitions-in-your-use-of-this-collaboration-site ~ ul ,
+#changes-to-this-document + p,
+#waiver + p,
+#assignment + p,
+#limitation-of-liability + p,
+#warranty-disclaimer + p,
+#general + p,
+#your-obligations + p,
+#your-obligations + p + ul + p,
+#additional-terms + p,
+#state-farm-intellectual-property-rights + p,
+#terms-of-use-1 + p,
+#secured-areaspasswords + p,
+#state-farm-intellectual-property-rights+p+p,
+#assignment+p+p,
+#secured-areaspasswords+p+p,
+#secured-areaspasswords+p+p+p,
+#state-farm-intellectual-property-rights+p+p+p
+{
+    margin-block: 0;
+    margin-bottom: 16px;
+    font-size: 16px; 
+    font-weight: 400;
+    line-height: 21px;
+  }
+
+#prohibitions-in-your-use-of-this-collaboration-site~ul{
+    margin-top: 24px;
+    padding-left: 24px;
+  }
+
+
+#prohibitions-in-your-use-of-this-collaboration-site~ul li{
+    padding-bottom: 8px;
+  }
+
+@media(width <=990px){
+    #terms-of-use {
+        font-size: 2.438rem; 
+        line-height: 39px;  
+      }
+
+    #other-agreements,
+    #collaboration-site-users,
+    #privacy,
+    #prohibitions-in-your-use-of-this-collaboration-site,
+    #secured-areaspasswords,
+    #changes-to-this-document,
+    #waiver,
+    #assignment,
+    #limitation-of-liability,
+    #warranty-disclaimer,
+    #general,
+    #your-obligations,
+    #additional-terms,
+    #state-farm-intellectual-property-rights { 
+      font-size: 2.063rem;
+      line-height: 33px;
+      margin-top: 56px;
+    }
+  }
+
+@media(width <=768px) {
+  #terms-of-use {
+    font-size: 1.75rem;
+    line-height: 28px;
+  }
+
+  #other-agreements,
+  #collaboration-site-users,
+  #privacy,
+  #prohibitions-in-your-use-of-this-collaboration-site,
+  #secured-areaspasswords,
+  #changes-to-this-document,
+  #waiver,
+  #assignment,
+  #limitation-of-liability,
+  #warranty-disclaimer,
+  #general,
+  #your-obligations,
+  #additional-terms,
+  #state-farm-intellectual-property-rights {
+    font-size: 1.563rem;
+    line-height: 25px;
+    margin-top: 48px;
+  }
+}
+/* stylelint-disable selector-id-pattern */
+.default-content-wrapper:has(#request-supplement--shop-claim-view)  #claim-services,
+ #instructions--guides{
+    font-size: 1.563rem;
+    line-height: 25px;
+    margin-block: 0;
+    margin-top: 24px  !important;
+  }
+
+  #instructions--guides { 
+    margin-top: 36px !important;
+  }
+
+#request-supplement--shop-claim-view{
+    font-size: 3rem;
+    line-height: 48px;
+    font-weight: 600;
+    margin: 6px 0 32px;
+  }  
+
+#instructions--guides + ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 25px;
+}
+
+.default-content-wrapper #auto-repair-facility-survey {
+  line-height: 1;
+  font-size: 39px;
+  font-weight: 600;
+  margin: 64px 0 50px;
+  color: var(--dark-gray-color);
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p {
+  color: #212121;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 21px;
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p > a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.default-content-wrapper:has(#auto-repair-facility-survey) {
+  margin-bottom: 120px;
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p:has(> a[title='Log In']) {
+  height: 48px;
+  display: flex;
+  padding: 0 48px;
+  cursor: pointer;
+  margin: 0 0 24px;
+  width: max-content;
+  border-radius: 28px;
+  align-items: center;
+  background-color: var(--link-color);
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p:has(> a[title='Log In']):hover {
+  background-color: #a11b13;
+}
+
+.default-content-wrapper #auto-repair-facility-survey ~ p > a[title='Log In'] {
+  color: #fff;
+  text-decoration: none;
+}
+
+#instructions--guides+ul li .button-wrapper a { 
+  text-decoration: unset;
+  white-space: unset;
+  display: block;
+  border-radius: 0;
+  padding: 0;
+  font-size: 1pc; 
+  line-height: 21px;
+  margin-bottom: 16px;
+  color: unset;
+  color: var(--link-color);
+  background-color: unset;
+  border: none;
+  font-weight: 600;
+}
+
+#instructions--guides+ul li .button-wrapper a:hover { 
+  color: var(--link-hover-color); 
+  text-decoration: underline;
+}
+
+#auto-repair-supplements-faqs{
+  font-size: 2.438rem;
+  line-height: 39px; 
+  margin: 6px 0 32px;
+}
+
+#why-should-i-register-with-b2b,
+#can-i-submit-a-supplement-request-without-registering-or-while-pending-registration,
+#what-if-i-do-not-know-my-customers-claim-number-to-submit-a-supplement-request,
+#can-i-fax-or-email-the-supplement-information-instead-of-uploading-through-the-b2b-portal,
+#i-am-having-technical-issues-with-submitting-a-supplement-request-who-do-i-contact,
+#i-have-questions-regarding-a-claim-that-are-unrelated-to-the-estimate-who-should-i-contact{ 
+    line-height: 21px;
+    font-size: 16px;
+ 
+  }
+
+#why-should-i-register-with-b2b + p,
+#why-should-i-register-with-b2b+p + ul,
+#can-i-submit-a-supplement-request-without-registering-or-while-pending-registration + p,
+#can-i-submit-a-supplement-request-without-registering-or-while-pending-registration+p+p,
+#what-if-i-do-not-know-my-customers-claim-number-to-submit-a-supplement-request + p,
+#can-i-fax-or-email-the-supplement-information-instead-of-uploading-through-the-b2b-portal + p,
+#can-i-fax-or-email-the-supplement-information-instead-of-uploading-through-the-b2b-portal+p+p,
+#i-am-having-technical-issues-with-submitting-a-supplement-request-who-do-i-contact + p,
+#i-have-questions-regarding-a-claim-that-are-unrelated-to-the-estimate-who-should-i-contact+p {
+  line-height: 21px;
+  font-size: 16px;
+} 
+
+ .request-supplement{
+    margin-bottom: -15px;
+  }
+
+    .request-supplement details .accordion-item-body {
+      padding-block: 6px 8px;
+      padding-left: 2px;
+    }
+
+.request-supplement details .accordion-item-body ul {
+  padding-left: 24px;
+} 
+
+@media(width <=990px) {
+#request-supplement--shop-claim-view {
+    font-size: 2.438rem;
+    line-height: 39px;
+    font-weight: 600;
+    margin: 4px 0 32px;
+  }
+
+#auto-repair-supplements-faqs {
+    font-size: 2.063rem;
+    line-height: 33px;
+    margin: 6px 0 24px;
+  }
+}
+
+@media(width < 768px) {
+  .default-content-wrapper:has(#request-supplement--shop-claim-view) #claim-services,
+  #instructions--guides {
+    font-size: 1.25rem;
+    line-height: 20px; 
+  }
+
+  #request-supplement--shop-claim-view {
+    font-size: 1.75rem;
+    line-height: 28px;
+    font-weight: 600;
+    margin: 4px 0 32px;
+  }
+  /* stylelint-enable selector-id-pattern */
+
+  #auto-repair-supplements-faqs {
+    font-size: 1.563rem;
+    line-height: 25px;
+    margin: 6px 0 24px;
+  }
+}
+
+.fire-services ul li .cards-card-body{
+    min-height: unset;
+  }
+
+
+
+#fire-service{
+    font-size: 3rem;
+    line-height: 48px;
+    font-weight: 600;
+    margin: 24px 0 64px;
+  }
+
+#need-help{
+    font-size: 1.563rem;
+      font-weight: 500;
+      line-height: 25px;
+      margin-top: 78px;
+      margin-bottom: 24px;
+  }
+
+#need-help + ul {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 16px; 
+    line-height: 21px;
+    font-weight: 400;
+  margin-bottom: 105px;
+}
+
+#need-help+ul li {
+  margin-bottom: 18px;
+}
+
+
+@media(width <=990px){
+  #fire-service {
+      font-size: 2.438rem;
+        line-height: 39px;
+      font-weight: 600;
+      margin: 24px 0 64px;
+    }
+  
+    #need-help {
+      font-size: 1.438rem;
+        line-height: 23px;
+      margin-top: 54px;
+      margin-bottom: 24px;
+    }
+
+        #need-help+ul { 
+          margin-bottom: 72px;
+        }
+   
+  
+    #need-help+ul li {
+      margin-bottom: 18px;
+    }
+  }
+
+@media(width <768px) {
+  #fire-service {
+    font-size: 1.75rem;
+    line-height: 28px;
+    font-weight: 600;
+    margin: 24px 0 64px;
+  }
+
+  #need-help {
+    font-size: 1.25rem;
+    line-height: 20px;
+    margin-top: 74px;
+    margin-bottom: 24px;
+  }
+
+#need-help+ul { 
+  margin-bottom: 72px;
+}
+
+  #need-help+ul li {
+    margin-bottom: 18px;
+  }
+}
+
+
+#multi-factor-authentication-faq{
+    display: none;
+  }
+
+#log-in-faq{
+    font-size: 2.438rem;
+      line-height: 39px;
+      margin-block: 88px 56px;
+  }
+
+#what-changes-have-been-made-to-the-login-process,
+#what-is-multi-factor-authentication-mfa,
+#what-are-my-authentication-options,
+#how-do-i-update-my-email-address-for-mfa,
+#how-often-will-mfa-be-required,
+#how-does-the-mfa-process-work-on-b2b,
+#who-can-i-contact-for-help-if-i-have-trouble-logging-in,
+#what-should-i-do-if-i-dont-receive-the-mfa-code
+{
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 400;
+    margin-block: 0 25px;
+  }
+
+#what-changes-have-been-made-to-the-login-process +p,
+#what-changes-have-been-made-to-the-login-process+p+p,
+#what-is-multi-factor-authentication-mfa +p,
+#what-are-my-authentication-options +p,
+#how-do-i-update-my-email-address-for-mfa +p,
+#how-often-will-mfa-be-required +p,
+#how-does-the-mfa-process-work-on-b2b +p,
+#who-can-i-contact-for-help-if-i-have-trouble-logging-in +p,
+#what-should-i-do-if-i-dont-receive-the-mfa-code+p {
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 400;
+  margin-block: 0 16px;
+}
+
+#what-changes-have-been-made-to-the-login-process+p+p a { 
+  display: block;
+    margin-block: 0 37px;
+    font-weight: 500;
+  }
+
+#who-can-i-contact-for-help-if-i-have-trouble-logging-in+p a{ 
+    font-weight: 500;
+  }
+
+#what-should-i-do-if-i-dont-receive-the-mfa-code + p {
+    margin-bottom: 100px;
+  }
+
+@media(width <=990px) {
+  #log-in-faq {
+      font-size: 2.063rem;
+        line-height: 33px;
+      margin-block: 80px 56px;
+    }
+
+  #what-changes-have-been-made-to-the-login-process,
+  #what-is-multi-factor-authentication-mfa,
+  #what-are-my-authentication-options,
+  #how-do-i-update-my-email-address-for-mfa,
+  #how-often-will-mfa-be-required,
+  #how-does-the-mfa-process-work-on-b2b,
+  #who-can-i-contact-for-help-if-i-have-trouble-logging-in,
+  #what-should-i-do-if-i-dont-receive-the-mfa-code {
+    font-size: 23px;
+      line-height: 29px;
+      margin-block: 0 23px;
+  }
+
+  #what-should-i-do-if-i-dont-receive-the-mfa-code+p {
+    margin-bottom: 80px;
+  }
+}
+
+@media(width <768px) {
+  #log-in-faq {
+    font-size: 1.563rem;;
+    line-height: 25px;
+    margin-block: 72px 55px;
+  }
+
+  #what-changes-have-been-made-to-the-login-process,
+  #what-is-multi-factor-authentication-mfa,
+  #what-are-my-authentication-options,
+  #how-do-i-update-my-email-address-for-mfa,
+  #how-often-will-mfa-be-required,
+  #how-does-the-mfa-process-work-on-b2b,
+  #who-can-i-contact-for-help-if-i-have-trouble-logging-in,
+  #what-should-i-do-if-i-dont-receive-the-mfa-code {
+    font-size: 20px;
+    line-height: 26px;
+    margin-block: 0 21px;
+  }
+
+  #what-should-i-do-if-i-dont-receive-the-mfa-code+p {
+    margin-bottom: 76px;
+  }
+}
+ 
+#about-registration{
+    font-size: 2.438rem;
+    line-height: 39px;
+    margin-block: 88px 56px;
+  }
+
+#why-register,
+#how-do-i-register{
+    font-size: 1.938rem;
+    line-height: 31px;
+    font-weight: 500;
+    margin-block: 0 24px;
+  }
+
+#about-registration ~ p {
+  font-size: 16px;
+  line-height: 21px;
+  margin-block: 0 16px;
+}
+
+#about-registration ~ p:last-child { 
+  margin-bottom: 106px;
+}
+ 
+@media(width <=990px){
+    #about-registration {
+        font-size: 2.063rem;
+        line-height: 33px;
+        margin-block: 80px 56px;
+      }
+    
+    #why-register,
+    #how-do-i-register {
+      font-size: 1.688rem;
+      line-height: 27px; 
+    }
+    
+    #about-registration~p:last-child {
+      margin-bottom: 82px;
+    }
+  }
+
+@media(width <768px) {
+  #about-registration {
+    font-size: 1.563rem;;
+    line-height: 25px;
+    margin-block: 72px 56px;
+  }
+
+  #why-register,
+  #how-do-i-register {
+    font-size: 1.375rem;;
+    line-height: 22px;
+  }
+
+  #about-registration~p:last-child {
+    margin-bottom: 76px;
+  }
+}
+
+
+/* stylelint-disable-next-line selector-id-pattern */
+#admin-roles--responsibilities{
+    font-size: 2.438rem;
+    line-height: 39px;
+    margin-block: 88px 56px;
+  } 
+
+summary:has(#what-are-my-capabilities-and-duties-as-administrator)+.accordion-item-body,
+summary:has(#what-can-users-who-are-not-administrators-do-to-manage-their-own-account) + .accordion-item-body,
+summary:has(#if-a-co-worker-is-registered-on-b2b-and-leaves-the-company-or-changes-job-duties-what-should-i-do)+.accordion-item-body,
+summary:has(#can-we-share-ids)+.accordion-item-body,
+summary:has(#can-we-have-more-than-one-administrator-at-our-company)+.accordion-item-body,
+summary:has(#what-if-a-co-worker-forgets-their-id)+.accordion-item-body,
+summary:has(#what-if-co-worker-forgets-their-password)+.accordion-item-body,
+summary:has(#a-co-worker-got-a-message-indicating-their-account-is-disabled-what-does-this-mean)+.accordion-item-body,
+summary:has(#what-do-i-do-if-an-account-becomes-disabled-and-the-co-worker-still-needs-access)+.accordion-item-body,
+summary:has(#what-do-i-do-if-my-account-becomes-disabled-and-im-the-only-administrator-for-my-business)+.accordion-item-body,
+summary:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website)+.accordion-item-body,
+summary:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1)+.accordion-item-body
+{
+    padding-block: 8px;
+    margin-left: 2px;
+  }
+
+.accordion:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1){
+    padding-bottom: 46px;
+  }
+
+@media(width <=990px) {
+  /* stylelint-disable-next-line selector-id-pattern */
+  #admin-roles--responsibilities {
+      font-size: 2.063rem;
+        line-height: 33px;
+        margin-block: 80px 56px;
+    }
+
+    /* stylelint-disable-next-line selector-id-pattern */
+  .accordion:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1) {
+    padding-bottom: 20px;
+  }
+}
+
+@media(width <768px) { 
+  /* stylelint-disable-next-line selector-id-pattern */
+  #admin-roles--responsibilities {
+      font-size: 1.563rem; 
+        line-height: 25px;
+        margin-block: 72px 56px;
+    }
+
+  .accordion:has(#what-do-i-do-if-another-co-worker-needs-access-to-the-b2b-website-1) {
+    padding-bottom: 12px;
+  }
+}
+
+
+
+#jewelry-replacement{ 
+    margin-block:23px 34px;
+  }
+
+.default-content-wrapper:has(#jewelry-replacement) + .side-nav-wrapper .side-nav .side-nav-menu nav p{
+    padding-block: 0 ;
+  }
+
+.default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul {
+  margin-top: 7px;
+}
+
+.default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul li {
+  padding-block: 0 7px;
+}
+
+ 
+
+
+#jewelry-replacement-quotation-form-jrq ~ ol{
+    padding-inline-start: 30px;
+    margin-top: 22px;
+  }
+
+#jewelry-replacement-quotation-form-jrq~ul {
+  padding-inline-start: 40px;
+  margin-top: 26px;
+}
+
+#example-item-description-and-breakdown{
+    font-size: 1rem;
+    line-height: 16px;
+    margin-bottom: 15px;
+  }
+
+#example-item-description-and-breakdown + p + p {
+  margin-left: 12px;
+}
+
+#commission-schedule+table{
+    margin-bottom: 0;
+  } 
+
+#commission-schedule + table tbody tr td{
+  padding: 0; 
+  padding-inline: 2px;
+  padding-block: 2px;
+  border: none;
+  font-size: 16px;
+  line-height: 21px;
+  color: #212121; 
+  }
+
+#commission-schedule+table tbody tr td:last-child{ 
+    padding-left: 35px;
+  }
+
+#invoice + p + ul{
+    padding-left: 24px;
+  }
+
+#salvage~p:last-child{
+    margin-bottom: 60px;
+  }
+
+
+@media(width <=990px) { 
+  .default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul {
+    margin-top: 11px;
+  }
+
+  .default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav ul li {
+    padding-block: 0 8px; 
+  }
+
+#salvage~p:last-child {
+  margin-bottom: 37px;
+}
+}
+
+@media(width <768px) {
+.default-content-wrapper:has(#jewelry-replacement) + .side-nav-wrapper .side-nav > div{
+    gap: 1px;
+  }
+
+.default-content-wrapper:has(#jewelry-replacement)+.side-nav-wrapper .side-nav .side-nav-menu nav {
+  min-width: 100px;
+}
+  
+#salvage~p:last-child {
+    margin-bottom: 30px;
+  }
+
+#commission-schedule+table tbody tr td:last-child {
+  padding-left: 22px;
+}
+}
+
+
 main img {
   max-width: 100%;
   width: auto;
   height: auto;
-}
+} 
 
 .icon {
   display: inline-block;
@@ -443,18 +1163,6 @@ main .section.khaki>div>:first-child {
   margin-top: 0;
 }
 
-main .section.khaki>div p {
-  margin: 0 0 16px;
-}
-
-main .section.khaki ul {
-  margin-bottom: 24px;
-}
-
-main .section.khaki ul:last-child {
-  margin-bottom: 0;
-}
-
 /* spacious: a khaki box with more content (e.g. multiple lists) uses more padding */
 @media (width >=900px) {
   main .section.khaki.spacious>div {
@@ -480,435 +1188,6 @@ main .section.accent-heading>div>h3:first-of-type {
   main .section.accent-heading>div>h3:first-of-type {
     font-size: 1.938rem;
   }
-}
-
-.default-content-wrapper #edi-frequently-asked-questions,
-.default-content-wrapper #auto-glass {
-  line-height: 1;
-  font-size: 48px;
-  font-weight: 600;
-  margin: 24px 8.333% 32px;
-  color: var(--dark-gray-color);
-}
-
-/* stylelint-disable-next-line selector-id-pattern */
-.default-content-wrapper #daily-edi-mortgagee-notification-billing--payment,
-/* stylelint-disable-next-line selector-id-pattern */
-.default-content-wrapper #mortgage-billing--payment-system,
-.default-content-wrapper #auto-third-party,
-.default-content-wrapper #insurance-inquiry,
-.default-content-wrapper #auto-edi-notifications,
-.default-content-wrapper #mortgage-record-change,
-.default-content-wrapper #adas-calibration-program,
-.default-content-wrapper #personal-property-replacement {
-  line-height: 1;
-  font-size: 39px;
-  font-weight: 600;
-  margin: 24px 8.333% 20px;
-  color: var(--dark-gray-color);
-}
-
-.columns-wrapper .mbps.columns,
-.columns-wrapper .edi-faq.columns,
-.columns-wrapper .auto-glass.columns,
-.columns-wrapper .ins-inquiry.columns,
-.columns-wrapper .auto811files.columns,
-.columns-wrapper .auto-3rd-party.columns,
-.columns-wrapper .mortgage-record-chg.columns,
-.columns-wrapper .calibration-program.columns,
-.columns-wrapper .daily-811-notifications.columns,
-.columns-wrapper .personal-property.columns {
-  margin: 0 8.333% 60px;
-}
-
-.columns-wrapper .mbps.columns > div,
-.columns-wrapper .edi-faq.columns > div,
-.columns-wrapper .auto-glass.columns > div,
-.columns-wrapper .ins-inquiry.columns > div,
-.columns-wrapper .auto811files.columns > div,
-.columns-wrapper .auto-3rd-party.columns > div,
-.columns-wrapper .mortgage-record-chg.columns > div,
-.columns-wrapper .calibration-program.columns > div,
-.columns-wrapper .daily-811-notifications.columns > div,
-.columns-wrapper .personal-property.columns > div {
-  gap: 0;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-}
-
-.columns-wrapper .mbps.columns > div > div:first-child,
-.columns-wrapper .edi-faq.columns > div > div:first-child,
-.columns-wrapper .auto-glass.columns > div > div:first-child,
-.columns-wrapper .ins-inquiry.columns > div > div:first-child,
-.columns-wrapper .auto811files.columns > div > div:first-child,
-.columns-wrapper .auto-3rd-party.columns > div > div:first-child,
-.columns-wrapper .mortgage-record-chg.columns > div > div:first-child,
-.columns-wrapper .calibration-program.columns > div > div:first-child,
-.columns-wrapper .daily-811-notifications.columns > div > div:first-child,
-.columns-wrapper .personal-property.columns > div > div:first-child {
-  margin-right: 30px;
-}
-
-.columns-wrapper .mbps.columns > div > div:last-child *,
-.columns-wrapper .edi-faq.columns > div > div:last-child *,
-.columns-wrapper .auto-glass.columns > div > div:last-child *,
-.columns-wrapper .ins-inquiry.columns > div > div:last-child *,
-.columns-wrapper .auto811files.columns > div > div:last-child *,
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child *,
-.columns-wrapper .mortgage-record-chg.columns > div > div:last-child *,
-.columns-wrapper .calibration-program.columns > div > div:last-child *,
-.columns-wrapper .daily-811-notifications.columns > div > div:last-child *,
-.columns-wrapper .personal-property.columns > div > div:last-child * {
-  white-space: normal;
-  overflow-wrap: anywhere;
-}
-
-.columns-wrapper .mbps.columns > div > div:last-child > h3,
-.columns-wrapper .edi-faq.columns > div > div:last-child > h3,
-.columns-wrapper .auto-glass.columns > div > div:last-child > h3,
-.columns-wrapper .ins-inquiry.columns > div > div:last-child > h3,
-.columns-wrapper .auto811files.columns > div > div:last-child > h3,
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child > h3,
-.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h3,
-.columns-wrapper .calibration-program.columns > div > div:last-child > h3,
-.columns-wrapper .daily-811-notifications.columns > div > div:last-child > h3,
-.columns-wrapper .personal-property.columns > div > div:last-child > h3 {
-  line-height: 1;
-  font-size: 31px;
-  font-weight: 500;
-  margin: 0 0 24px;
-  color: var(--dark-gray-color);
-}
-
-.columns-wrapper .mbps.columns > div > div:last-child > h3:not(:first-child),
-.columns-wrapper .edi-faq.columns > div > div:last-child > h3:not(:first-child),
-.columns-wrapper .auto-glass.columns > div > div:last-child > h3:not(:first-child),
-.columns-wrapper .ins-inquiry.columns > div > div:last-child > h3:not(:first-child),
-.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h3:not(:first-child),
-.columns-wrapper .calibration-program.columns > div > div:last-child > h3:not(:first-child),
-.columns-wrapper .daily-811-notifications.columns > div > div:last-child > h3:not(:first-child),
-.columns-wrapper .personal-property.columns > div > div:last-child > h3:not(:first-child) {
-  margin-top: 50px;
-}
-
-.columns-wrapper .edi-faq.columns > div > div:last-child > h4 {
-  font-weight: 400 !important;
-  margin: 0 0 25px !important;
-}
-
-.columns-wrapper .mbps.columns > div > div:last-child > h4,
-.columns-wrapper .edi-faq.columns > div > div:last-child > h4,
-.columns-wrapper .auto-glass.columns > div > div:last-child > h4,
-.columns-wrapper .ins-inquiry.columns > div > div:last-child > h4,
-.columns-wrapper .auto811files.columns > div > div:last-child > h4,
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child > h4,
-.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h4,
-.columns-wrapper .calibration-program.columns > div > div:last-child > h4,
-.columns-wrapper .daily-811-notifications.columns > div > div:last-child > h4,
-.columns-wrapper .personal-property.columns > div > div:last-child > h4 {
-  font-size: 25px;
-  line-height: 1;
-  font-weight: 500;
-  margin: 0 0 24px;
-  color: var(--dark-gray-color);
-}
-
-.columns-wrapper .mbps.columns > div > div:last-child > h5,
-.columns-wrapper .edi-faq.columns > div > div:last-child > h5,
-.columns-wrapper .auto-glass.columns > div > div:last-child > h5,
-.columns-wrapper .ins-inquiry.columns > div > div:last-child > h5,
-.columns-wrapper .auto811files.columns > div > div:last-child > h5,
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child > h5,
-.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h5,
-.columns-wrapper .calibration-program.columns > div > div:last-child > h5,
-.columns-wrapper .daily-811-notifications.columns > div > div:last-child > h5,
-.columns-wrapper .personal-property.columns > div > div:last-child > h5 {
-  font-size: 20px;
-  line-height: 1;
-  font-weight: 500;
-  margin: 0 0 24px;
-  color: var(--dark-gray-color);
-}
-
-.columns-wrapper .mbps.columns > div > div:last-child > p,
-.columns-wrapper .edi-faq.columns > div > div:last-child > p,
-.columns-wrapper .auto-glass.columns > div > div:last-child > p,
-.columns-wrapper .ins-inquiry.columns > div > div:last-child > p,
-.columns-wrapper .auto811files.columns > div > div:last-child > p,
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child > p,
-.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > p,
-.columns-wrapper .calibration-program.columns > div > div:last-child > p,
-.columns-wrapper .daily-811-notifications.columns > div > div:last-child > p,
-.columns-wrapper .personal-property.columns > div > div:last-child > p {
-  font-size: 16px;
-  font-weight: 400;
-  margin: 0 0 16px;
-  line-height: 21px;
-  color: var(--text-dark-color);
-}
-
-.columns-wrapper .mbps.columns > div > div:last-child > ol,
-.columns-wrapper .edi-faq.columns > div > div:last-child > ol,
-.columns-wrapper .auto-glass.columns > div > div:last-child > ol,
-.columns-wrapper .ins-inquiry.columns > div > div:last-child > ol,
-.columns-wrapper .auto811files.columns > div > div:last-child > ol,
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child > ol,
-.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ol,
-.columns-wrapper .calibration-program.columns > div > div:last-child > ol,
-.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ol,
-.columns-wrapper .personal-property.columns > div > div:last-child > ol {
-  padding-left: 30px;
-  margin: 24px 0 16px;
-}
-
-.columns-wrapper .mbps.columns > div > div:last-child > ol > li,
-.columns-wrapper .edi-faq.columns > div > div:last-child > ol > li,
-.columns-wrapper .auto-glass.columns > div > div:last-child > ol > li,
-.columns-wrapper .ins-inquiry.columns > div > div:last-child > ol > li,
-.columns-wrapper .auto811files.columns > div > div:last-child > ol > li,
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child > ol > li,
-.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ol > li,
-.columns-wrapper .calibration-program.columns > div > div:last-child > ol > li,
-.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ol > li,
-.columns-wrapper .personal-property.columns > div > div:last-child > ol > li {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 21px;
-  padding-bottom: 8px;
-}
-
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child > p:nth-child(5) {
-  border: 1px solid black;
-}
-
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child > p:nth-child(8) {
-  margin: 0;
-  border: 1px solid black;
-  border-bottom: none !important;
-}
-
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child > p:nth-child(9) {
-  margin: 0;
-  border: 1px solid black;
-  border-top: none !important;
-}
-
-.columns-wrapper .mbps.columns > div > div:last-child > p > a,
-.columns-wrapper .edi-faq.columns > div > div:last-child > p > a,
-.columns-wrapper .auto-glass.columns > div > div:last-child > p > a,
-.columns-wrapper .ins-inquiry.columns > div > div:last-child > p > a,
-.columns-wrapper .auto811files.columns > div > div:last-child > p > a,
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child > p > a,
-.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > p > a,
-.columns-wrapper .calibration-program.columns > div > div:last-child > p > a,
-.columns-wrapper .daily-811-notifications.columns > div > div:last-child > p > a,
-.columns-wrapper .personal-property.columns > div > div:last-child > p > a {
-  font-weight: 600;
-}
-
-.columns-wrapper .mbps.columns > div > div:last-child > ul,
-.columns-wrapper .edi-faq.columns > div > div:last-child > ul,
-.columns-wrapper .auto-glass.columns > div > div:last-child > ul,
-.columns-wrapper .ins-inquiry.columns > div > div:last-child > ul,
-.columns-wrapper .auto811files.columns > div > div:last-child > ul,
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child > ul,
-.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ul,
-.columns-wrapper .calibration-program.columns > div > div:last-child > ul,
-.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ul,
-.columns-wrapper .personal-property.columns > div > div:last-child > ul {
-  margin: 24px 0 16px;
-  padding: 0 0 0 24px;
-
-}
-
-.columns-wrapper .mbps.columns > div > div:last-child > ul > li,
-.columns-wrapper .edi-faq.columns > div > div:last-child > ul > li,
-.columns-wrapper .auto-glass.columns > div > div:last-child > ul > li,
-.columns-wrapper .ins-inquiry.columns > div > div:last-child > ul > li,
-.columns-wrapper .auto811files.columns > div > div:last-child > ul > li,
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child > ul > li,
-.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ul > li,
-.columns-wrapper .calibration-program.columns > div > div:last-child > ul > li,
-.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ul > li,
-.columns-wrapper .personal-property.columns > div > div:last-child > ul > li {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 21px;
-  padding: 0 0 8px;
-  color: var(--text-dark-color);
-}
-
-.columns-wrapper .mbps.columns > div > div:last-child > ul > li > a,
-.columns-wrapper .edi-faq.columns > div > div:last-child > ul > li > a,
-.columns-wrapper .auto-glass.columns > div > div:last-child > ul > li > a,
-.columns-wrapper .ins-inquiry.columns > div > div:last-child > ul > li > a,
-.columns-wrapper .auto811files.columns > div > div:last-child > ul > li > a,
-.columns-wrapper .auto-3rd-party.columns > div > div:last-child > ul > li > a,
-.columns-wrapper .mortgage-record-chg.columns > div > div:last-child > ul > li > a,
-.columns-wrapper .calibration-program.columns > div > div:last-child > ul > li > a,
-.columns-wrapper .daily-811-notifications.columns > div > div:last-child > ul > li > a,
-.columns-wrapper .personal-property.columns > div > div:last-child > ul > li > a {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 21px;
-  color: var(--link-color);
-}
-
-.columns-wrapper .personal-property.columns > div > div:last-child > p > a[title="State Farm replacement program jewelry invoice"]::after,
-.columns-wrapper .personal-property.columns > div > div:last-child > p > a[title="Jewelry replacement agreement"]::after {
-  gap: 0;
-  content: "";
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  background-image: url("../icons/lock-2.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  vertical-align: bottom;
-}
-
-.columns-wrapper .mbps.columns > div > div:first-child > ul,
-.columns-wrapper .edi-faq.columns > div > div:first-child > ul,
-.columns-wrapper .auto-glass.columns > div > div:first-child > ul,
-.columns-wrapper .ins-inquiry.columns > div > div:first-child > ul,
-.columns-wrapper .auto811files.columns > div > div:first-child > ul,
-.columns-wrapper .auto-3rd-party.columns > div > div:first-child > ul,
-.columns-wrapper .mortgage-record-chg.columns > div > div:first-child > ul,
-.columns-wrapper .calibration-program.columns > div > div:first-child > ul,
-.columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul,
-.columns-wrapper .personal-property.columns > div > div:first-child > ul {
-  margin: 0 0 20px;
-  padding: 0;
-  list-style-type: none;
-}
-
-.columns-wrapper .mbps.columns > div > div:first-child > ul > li,
-.columns-wrapper .edi-faq.columns > div > div:first-child > ul > li,
-.columns-wrapper .auto-glass.columns > div > div:first-child > ul > li,
-.columns-wrapper .ins-inquiry.columns > div > div:first-child > ul > li,
-.columns-wrapper .auto811files.columns > div > div:first-child > ul > li,
-.columns-wrapper .auto-3rd-party.columns > div > div:first-child > ul > li,
-.columns-wrapper .mortgage-record-chg.columns > div > div:first-child > ul > li,
-.columns-wrapper .calibration-program.columns > div > div:first-child > ul > li,
-.columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li,
-.columns-wrapper .personal-property.columns > div > div:first-child > ul > li {
-  display: flex;
-  padding: 0 0 6px;
-}
-
-.columns-wrapper .mbps.columns > div > div:first-child > ul > li > a,
-.columns-wrapper .edi-faq.columns > div > div:first-child > ul > li > a,
-.columns-wrapper .auto-glass.columns > div > div:first-child > ul > li > a,
-.columns-wrapper .ins-inquiry.columns > div > div:first-child > ul > li > a,
-.columns-wrapper .auto811files.columns > div > div:first-child > ul > li > a,
-.columns-wrapper .auto-3rd-party.columns > div > div:first-child > ul > li > a,
-.columns-wrapper .mortgage-record-chg.columns > div > div:first-child > ul > li > a,
-.columns-wrapper .calibration-program.columns > div > div:first-child > ul > li > a,
-.columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li > a,
-.columns-wrapper .personal-property.columns > div > div:first-child > ul > li > a {
-  line-height: 1;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.66px;
-}
-
-.columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper,
-.columns-wrapper .edi-faq.columns > div > div:first-child > p.button-wrapper,
-.columns-wrapper .auto-glass.columns > div > div:first-child > p.button-wrapper,
-.columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper,
-.columns-wrapper .auto811files.columns > div > div:first-child > p.button-wrapper,
-.columns-wrapper .auto-3rd-party.columns > div > div:first-child > p.button-wrapper,
-.columns-wrapper .mortgage-record-chg.columns > div > div:first-child > p.button-wrapper,
-.columns-wrapper .calibration-program.columns > div > div:first-child > p.button-wrapper,
-.columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper,
-.columns-wrapper .personal-property.columns > div > div:first-child > p.button-wrapper {
-  margin: 0;
-  display: flex;
-}
-
-.columns-wrapper .auto811files.columns > div > div:first-child > ul > li,
-.columns-wrapper .auto-3rd-party.columns > div > div:first-child > ul > li,
-.columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li,
-.columns-wrapper .auto811files.columns > div > div:first-child > p.button-wrapper,
-.columns-wrapper .auto-3rd-party.columns > div > div:first-child > p.button-wrapper,
-.columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper {
-  width: 76%;
-}
-
-.columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a,
-.columns-wrapper .edi-faq.columns > div > div:first-child > p.button-wrapper > a,
-.columns-wrapper .auto-glass.columns > div > div:first-child > p.button-wrapper > a,
-.columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper > a,
-.columns-wrapper .auto811files.columns > div > div:first-child > p.button-wrapper > a,
-.columns-wrapper .auto-3rd-party.columns > div > div:first-child > p.button-wrapper > a,
-.columns-wrapper .mortgage-record-chg.columns > div > div:first-child > p.button-wrapper > a,
-.columns-wrapper .calibration-program.columns > div > div:first-child > p.button-wrapper > a,
-.columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper > a,
-.columns-wrapper .personal-property.columns > div > div:first-child > p.button-wrapper > a {
-  border: none;
-  margin: -2px;
-  font-size: 18px;
-  border-radius: 0;
-  font-weight: 600;
-  line-height: 21px;
-  white-space: normal;
-  padding: 2px 2px 10px;
-  color: var(--link-color);
-  background-color: transparent;
-}
-
-.columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
-.columns-wrapper .edi-faq.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
-.columns-wrapper .auto-glass.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
-.columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
-.columns-wrapper .auto811files.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
-.columns-wrapper .auto-3rd-party.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
-.columns-wrapper .mortgage-record-chg.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
-.columns-wrapper .calibration-program.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
-.columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a,
-.columns-wrapper .personal-property.columns > div > div:first-child > p.button-wrapper:not(:has( + ul)) > a {
-  padding-bottom: 0;
-  margin-bottom: 24px;
-}
-
-.columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper:has( > a[title="Certificate of insurance overview"]) {
-  width: 75%;
-}
-
-.columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a[title="MBPS tool"],
-.columns-wrapper .auto-3rd-party.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"],
-.columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"] {
-  height: 32px;
-  padding: 0 32px;
-  margin: 0 0 24px;
-  color: #FFF;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 14px;
-  border: none;
-  border-radius: 28px;
-  background-color: var(--link-color);
-}
-
-.columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a[title="MBPS tool"]:hover,
-.columns-wrapper .auto-3rd-party.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"]:hover,
-.columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"]:hover {
-  text-decoration: none;
-  background-color: #a11b13;
-}
-
-.columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a:hover,
-.columns-wrapper .edi-faq.columns > div > div:first-child > p.button-wrapper > a:hover,
-.columns-wrapper .auto-glass.columns > div > div:first-child > p.button-wrapper > a:hover,
-.columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper > a:hover,
-.columns-wrapper .auto811files.columns > div > div:first-child > p.button-wrapper > a:hover,
-.columns-wrapper .auto-3rd-party.columns > div > div:first-child > p.button-wrapper > a:hover,
-.columns-wrapper .mortgage-record-chg.columns > div > div:first-child > p.button-wrapper > a:hover,
-.columns-wrapper .calibration-program.columns > div > div:first-child > p.button-wrapper > a:hover,
-.columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper > a:hover,
-.columns-wrapper .personal-property.columns > div > div:first-child > p.button-wrapper > a:hover {
-  text-decoration: underline;
 }
 
 /* Coupa resource portal — Overview section + body copy */
@@ -943,10 +1222,6 @@ main .section.khaki:has(#contact-us) {
   margin-bottom: 80px;
 }
 
-main .section .default-content-wrapper:has(#select-service-agreements) {
-  margin-bottom: 60px;
-}
-
 main .section .default-content-wrapper #select-service-agreements {
   font-weight: 600;
   line-height: 39px;
@@ -955,12 +1230,39 @@ main .section .default-content-wrapper #select-service-agreements {
   color: var(--dark-gray-color);
 }
 
+main .section .default-content-wrapper:has(#select-service-agreements) {
+  margin-bottom: 60px;
+}
+
 main .section .default-content-wrapper #log-in-to-view-content {
   font-weight: 500;
   margin: 0 0 24px;
   line-height: 31px;
   font-size: 31.008px;
   color: var(--dark-gray-color);
+}
+
+/* select-service-home-repair login gate (H1 + prompt only on this page) */
+/* stylelint-disable selector-id-pattern -- DA slug from "Select Service™ - Home Repair Program" */
+main .section:has(#select-service---home-repair-program) {
+  padding-bottom: 80px;
+}
+
+main .section .default-content-wrapper #select-service---home-repair-program,
+main .section .default-content-wrapper #select-service---home-repair-program strong {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 48px;
+  margin-bottom: 0;
+}
+/* stylelint-enable selector-id-pattern */
+
+/* stylelint-disable-next-line selector-id-pattern */
+main .section .default-content-wrapper:has(#select-service---home-repair-program) #log-in-to-view-content {
+  font-size: 2.438rem;
+  font-weight: 600;
+  margin-top: 64px;
+  margin-bottom: 24px;
 }
 
 .section .default-content-wrapper #additional-resources {
@@ -1172,86 +1474,21 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
     font-size: 27px !important;
   }
 
-  .default-content-wrapper #edi-frequently-asked-questions,
-  .default-content-wrapper #auto-glass {
-    font-size: 39px;
-  }
-
-
   /* stylelint-disable-next-line selector-id-pattern */
-  .default-content-wrapper #daily-edi-mortgagee-notification-billing--payment,
-  /* stylelint-disable-next-line selector-id-pattern */
-  .default-content-wrapper #mortgage-billing--payment-system,
-  .default-content-wrapper #auto-third-party,
-  .default-content-wrapper #insurance-inquiry,
-  .default-content-wrapper #auto-edi-notifications,
-  .default-content-wrapper #mortgage-record-change,
-  .default-content-wrapper #adas-calibration-program,
-  .default-content-wrapper #personal-property-replacement {
-    font-size: 33px;
+  .section .default-content-wrapper:has(#select-service---home-repair-program) #log-in-to-view-content {
+    font-size: 2.063rem !important;
+    font-weight: 600;
+    margin-top: 64px;
+    margin-bottom: 24px;
   }
 
-  .columns-wrapper .mbps.columns > div > div:first-child,
-  .columns-wrapper .edi-faq.columns > div > div:first-child,
-  .columns-wrapper .auto-glass.columns > div > div:first-child,
-  .columns-wrapper .ins-inquiry.columns > div > div:first-child,
-  .columns-wrapper .auto811files.columns > div > div:first-child,
-  .columns-wrapper .auto-3rd-party.columns > div > div:first-child,
-  .columns-wrapper .mortgage-record-chg.columns > div > div:first-child,
-  .columns-wrapper .calibration-program.columns > div > div:first-child,
-  .columns-wrapper .daily-811-notifications.columns > div > div:first-child,
-  .columns-wrapper .personal-property.columns > div > div:first-child {
-    margin-right: 15px;
+  /* stylelint-disable selector-id-pattern -- DA slug from "Select Service™ - Home Repair Program" */
+  main .section .default-content-wrapper #select-service---home-repair-program,
+  main .section .default-content-wrapper #select-service---home-repair-program strong {
+    font-size: 2.438rem;
+    font-weight: 600;
   }
-
-  .columns-wrapper .mbps.columns > div > div:last-child > h3,
-  .columns-wrapper .edi-faq.columns > div > div:last-child > h3,
-  .columns-wrapper .auto-glass.columns > div > div:last-child > h3,
-  .columns-wrapper .ins-inquiry.columns > div > div:last-child > h3,
-  .columns-wrapper .auto811files.columns > div > div:last-child > h3,
-  .columns-wrapper .auto-3rd-party.columns > div > div:last-child > h3,
-  .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h3,
-  .columns-wrapper .calibration-program.columns > div > div:last-child > h3,
-  .columns-wrapper .daily-811-notifications.columns > div > div:last-child > h3,
-  .columns-wrapper .personal-property.columns > div > div:last-child > h3 {
-    font-size: 27px;
-  }
-
-  .columns-wrapper .mbps.columns > div > div:last-child > h4,
-  .columns-wrapper .edi-faq.columns > div > div:last-child > h4,
-  .columns-wrapper .auto-glass.columns > div > div:last-child > h4,
-  .columns-wrapper .ins-inquiry.columns > div > div:last-child > h4,
-  .columns-wrapper .auto811files.columns > div > div:last-child > h4,
-  .columns-wrapper .auto-3rd-party.columns > div > div:last-child > h4,
-  .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h4,
-  .columns-wrapper .calibration-program.columns > div > div:last-child > h4,
-  .columns-wrapper .daily-811-notifications.columns > div > div:last-child > h4,
-  .columns-wrapper .personal-property.columns > div > div:last-child > h4 {
-    font-size: 23px;
-  }
-
-  .columns-wrapper .mbps.columns > div > div:last-child > h5,
-  .columns-wrapper .edi-faq.columns > div > div:last-child > h5,
-  .columns-wrapper .auto-glass.columns > div > div:last-child > h5,
-  .columns-wrapper .ins-inquiry.columns > div > div:last-child > h5,
-  .columns-wrapper .auto811files.columns > div > div:last-child > h5,
-  .columns-wrapper .auto-3rd-party.columns > div > div:last-child > h5,
-  .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h5,
-  .columns-wrapper .calibration-program.columns > div > div:last-child > h5,
-  .columns-wrapper .daily-811-notifications.columns > div > div:last-child > h5,
-  .columns-wrapper .personal-property.columns > div > div:last-child > h5 {
-    font-size: 19px;
-  }
-
-  .columns-wrapper .edi-faq.columns > div > div:first-child > ul > li,
-  .columns-wrapper .auto811files.columns > div > div:first-child > ul > li,
-  .columns-wrapper .auto-3rd-party.columns > div > div:first-child > ul > li,
-  .columns-wrapper .daily-811-notifications.columns > div > div:first-child > ul > li,
-  .columns-wrapper .auto811files.columns > div > div:first-child > p.button-wrapper,
-  .columns-wrapper .auto-3rd-party.columns > div > div:first-child > p.button-wrapper,
-  .columns-wrapper .daily-811-notifications.columns > div > div:first-child > p.button-wrapper {
-    width: 100%;
-  }
+  /* stylelint-enable selector-id-pattern */
 
   .default-content-wrapper #electronic-payments {
     font-size: 23px !important;
@@ -1306,68 +1543,20 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
     font-size: 22px !important;
   }
 
-  .default-content-wrapper #edi-frequently-asked-questions,
-  .default-content-wrapper #auto-glass {
-    font-size: 28px;
+  /* stylelint-disable selector-id-pattern -- DA slug from "Select Service™ - Home Repair Program" */
+  main .section .default-content-wrapper #select-service---home-repair-program,
+  main .section .default-content-wrapper #select-service---home-repair-program strong {
+    font-size: 1.75rem;
+    font-weight: 600;
   }
 
-  /* stylelint-disable-next-line selector-id-pattern */
-  .default-content-wrapper #daily-edi-mortgagee-notification-billing--payment,
-  /* stylelint-disable-next-line selector-id-pattern */
-  .default-content-wrapper #mortgage-billing--payment-system,
-  .default-content-wrapper #auto-third-party,
-  .default-content-wrapper #insurance-inquiry,
-  .default-content-wrapper #auto-edi-notifications,
-  .default-content-wrapper #mortgage-record-change,
-  .default-content-wrapper #adas-calibration-program,
-  .default-content-wrapper #personal-property-replacement {
-    font-size: 25px;
+  main .section .default-content-wrapper:has(#select-service---home-repair-program) #log-in-to-view-content {
+    font-size: 1.563rem !important;
+    font-weight: 600;
+    margin-top: 64px;
+    margin-bottom: 24px;
   }
-
-  .columns-wrapper .mbps.columns > div > div:last-child > h3,
-  .columns-wrapper .edi-faq.columns > div > div:last-child > h3,
-  .columns-wrapper .auto-glass.columns > div > div:last-child > h3,
-  .columns-wrapper .ins-inquiry.columns > div > div:last-child > h3,
-  .columns-wrapper .auto811files.columns > div > div:last-child > h3,
-  .columns-wrapper .auto-3rd-party.columns > div > div:last-child > h3,
-  .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h3,
-  .columns-wrapper .calibration-program.columns > div > div:last-child > h3,
-  .columns-wrapper .daily-811-notifications.columns > div > div:last-child > h3,
-  .columns-wrapper .personal-property.columns > div > div:last-child > h3 {
-    font-size: 22px;
-  }
-
-  .columns-wrapper .mbps.columns > div > div:last-child > h4,
-  .columns-wrapper .edi-faq.columns > div > div:last-child > h4,
-  .columns-wrapper .auto-glass.columns > div > div:last-child > h4,
-  .columns-wrapper .ins-inquiry.columns > div > div:last-child > h4,
-  .columns-wrapper .auto811files.columns > div > div:last-child > h4,
-  .columns-wrapper .auto-3rd-party.columns > div > div:last-child > h4,
-  .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h4,
-  .columns-wrapper .calibration-program.columns > div > div:last-child > h4,
-  .columns-wrapper .daily-811-notifications.columns > div > div:last-child > h4,
-  .columns-wrapper .personal-property.columns > div > div:last-child > h4 {
-    font-size: 20px;
-  }
-
-  .columns-wrapper .mbps.columns > div > div:last-child > h5,
-  .columns-wrapper .edi-faq.columns > div > div:last-child > h5,
-  .columns-wrapper .auto-glass.columns > div > div:last-child > h5,
-  .columns-wrapper .ins-inquiry.columns > div > div:last-child > h5,
-  .columns-wrapper .auto811files.columns > div > div:last-child > h5,
-  .columns-wrapper .auto-3rd-party.columns > div > div:last-child > h5,
-  .columns-wrapper .mortgage-record-chg.columns > div > div:last-child > h5,
-  .columns-wrapper .calibration-program.columns > div > div:last-child > h5,
-  .columns-wrapper .daily-811-notifications.columns > div > div:last-child > h5,
-  .columns-wrapper .personal-property.columns > div > div:last-child > h5 {
-    font-size: 18px;
-  }
-
-  .columns-wrapper .mbps.columns > div > div:first-child > p.button-wrapper > a[title="MBPS tool"],
-  .columns-wrapper .auto-3rd-party.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"],
-  .columns-wrapper .ins-inquiry.columns > div > div:first-child > p.button-wrapper > a[title="Insurance inquiry tool"] {
-    height: auto;
-  }
+  /* stylelint-enable selector-id-pattern */
 
   .default-content-wrapper #electronic-payments {
     font-size: 20px !important;
@@ -1382,6 +1571,8 @@ main .section .default-content-wrapper:has(#agreement-addendum-pdfs)>#job-aid-1 
   }
 }
 
+/* stylelint-enable no-descending-specificity */
+
 /* Supplier engagement — body copy stays 16px at all widths (source keeps text
    size fixed regardless of viewport, unlike the default fluid body scale) */
 /* stylelint-disable no-descending-specificity */
@@ -1395,6 +1586,7 @@ main .section:has(#how-to-engage-us) p {
 }
 /* stylelint-enable no-descending-specificity */
 
+/* stylelint-disable-next-line no-descending-specificity */
 main .section.khaki:has(#our-program) li {
   padding-bottom: 8px;
 }
@@ -1639,6 +1831,68 @@ main:has(#medical-provider-portal--claim-view) > .section > .default-content-wra
     grid-column: 2;
   }
 }
+
+h1#acquisition-114 {
+  font-size: 1.563rem;
+  font-weight: 600;
+}
+
+@media (width >=768px) {
+  h1#acquisition-114 {
+    font-size: 2.063rem;
+  }
+}
+
+@media (width >=1024px) {
+  h1#acquisition-114 {
+    font-size: 2.438rem;
+  }
+}
+
+h1#functional-acknowledgement-electronic-file {
+  margin: 24px 8.333%;
+  font-size: 1.563rem;
+  font-weight: 600;
+}
+
+@media (width >=768px) {
+  h1#functional-acknowledgement-electronic-file {
+    margin-bottom: 24px;
+    font-size: 2.063rem;
+    line-height: 25px;
+  }
+}
+
+@media (width >=1024px) {
+  h1#functional-acknowledgement-electronic-file {
+    font-size: 2.438rem;
+    line-height: 33px;
+  }
+}
+
+/* stylelint-disable-next-line selector-id-pattern */
+h1#example-transaction-set-segment-uses--sequence {
+  margin: 24px 8.333%;
+  font-size: 1.563rem;
+  font-weight: 600;
+}
+
+@media (width >=768px) {
+  /* stylelint-disable-next-line selector-id-pattern */
+  h1#example-transaction-set-segment-uses--sequence {
+    margin-bottom: 24px;
+    font-size: 2.063rem;
+    line-height: 25px;
+  }
+}
+
+@media (width >=1024px) {
+  /* stylelint-disable-next-line selector-id-pattern */
+  h1#example-transaction-set-segment-uses--sequence {
+    font-size: 2.438rem;
+    line-height: 33px;
+  }
+}
 /* stylelint-enable no-descending-specificity */
 
 .default-content-wrapper #electronic-payments {
@@ -1664,7 +1918,224 @@ main:has(#medical-provider-portal--claim-view) > .section > .default-content-wra
   color: var(--text-dark-color);
 }
 
+/* Contact Us FAQ page */
+/* stylelint-disable selector-id-pattern, no-descending-specificity */
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #contact-us-frequently-asked-questions {
+  margin-top: 64px;
+  margin-bottom: 24px;
+  font-size: 2.438rem;
+  font-weight: 600;
+  line-height: 39px;
+  letter-spacing: 0;
+  color: var(--dark-gray-color);
+}
 
+@media (width >= 768px) and (width <= 1024px) {
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #contact-us-frequently-asked-questions {
+    margin-top: 56px;
+    margin-bottom: 24px;
+    font-size: 2.063rem;
+    font-weight: 600;
+    line-height: 33px;
+  }
+}
+
+@media (width < 768px) {
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #contact-us-frequently-asked-questions {
+    margin-top: 48px;
+    margin-bottom: 24px;
+    font-size: 1.563rem;
+    font-weight: 600;
+    line-height: 25px;
+  }
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #log-in--registration,
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #working-with-us {
+  margin: 32px 0 16px;
+  font-size: 1.938rem;
+  font-weight: 500;
+  line-height: 31px;
+  letter-spacing: 0;
+  color: var(--dark-gray-color);
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #log-in--registration,
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #working-with-us {
+    font-size: 1.688rem;
+    font-weight: 500;
+  }
+}
+
+@media (width < 768px) {
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #log-in--registration,
+  main:has(#contact-us-frequently-asked-questions) .default-content-wrapper #working-with-us {
+    font-size: 1.375rem;
+    font-weight: 500;
+  }
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-item {
+  border-top: 1px solid #e4e3e3;
+  interpolate-size: allow-keywords;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-item:last-child {
+  border-bottom: 1px solid #e4e3e3;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-item::details-content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease, content-visibility 0.3s ease allow-discrete;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-item[open]::details-content {
+  height: auto;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-label {
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  overflow: auto;
+  padding: 13.5px 2px;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-label::-webkit-details-marker {
+  display: none;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background-image: url("../icons/chevron_32.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-item[open] > .contact-us-faq-label::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-label > h3 {
+  margin: 0;
+  padding: 0 32px 0 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: left;
+  color: var(--text-dark-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-body > :is(p, ol, ul) {
+  margin: 8px 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .default-content-wrapper .contact-us-faq-body > ul {
+  padding-left: 24px;
+}
+
+/* Accordion on Contact Us — prefer DA variant `accordion (contact-us)`.
+   Page-scoped rules also cover pages still authored as request-supplement. */
+main:has(#contact-us-frequently-asked-questions) .accordion,
+.accordion.contact-us {
+  margin-bottom: 0;
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body,
+.accordion.contact-us .accordion-item-body {
+  padding: 6px 0 8px 2px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body > p,
+.accordion.contact-us .accordion-item-body > p {
+  margin: 8px 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+/* Bold copy should read as emphasis (600), not heavy black (700) */
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body :is(strong, b),
+.accordion.contact-us .accordion-item-body :is(strong, b),
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p :is(strong, b) {
+  font-weight: 600;
+}
+
+/* Links in answers — including Forgot ID / Forgot Password list links */
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body a,
+.accordion.contact-us .accordion-item-body a {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  color: var(--link-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body ul,
+.accordion.contact-us .accordion-item-body ul {
+  margin: 24px 0 16px;
+  padding-left: 24px;
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body ul li,
+.accordion.contact-us .accordion-item-body ul li {
+  padding: 0 0 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .accordion .accordion-item-body > h3,
+.accordion.contact-us .accordion-item-body > h3 {
+  margin: 16px 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+/* Closing copy authored outside the accordion — after decoration those
+   paragraphs land in their own .default-content-wrapper (not beside .accordion). */
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-dark-color);
+}
+
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p:first-child {
+  margin-top: 16px;
+}
+
+main:has(#contact-us-frequently-asked-questions) .section > .default-content-wrapper:last-of-type > p a {
+  font-weight: 600;
+}
+
+body:has(#contact-us-frequently-asked-questions) > footer {
+  margin-top: 64px;
+}
+/* stylelint-enable selector-id-pattern, no-descending-specificity */
 
 @media (width <=990px) {
   .default-content-wrapper  {
@@ -1693,4 +2164,58 @@ main:has(#medical-provider-portal--claim-view) > .section > .default-content-wra
   font-size: 39px;
   font-weight: 600;
   color: var(--dark-gray-color);
+}
+
+/* The SSR Hero's rich text remains in light DOM so authored links retain their
+   normal behavior. Its login paragraph is explicitly mapped by the generator. */
+/* stylelint-disable-next-line no-descending-specificity */
+sf-hero > .hero-login a {
+  display: inline-block;
+  padding: 14px 48px;
+  border-radius: 24px;
+  background: var(--link-color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.default-content-wrapper #coupa-supplier-portal-training {
+  line-height: 1;
+  font-size: 39px;
+  font-weight: 600;
+  margin: 64px 0 24px;
+  color: var(--dark-gray-color);
+}
+
+main:has(.default-content-wrapper > #auto-repair-facility-survey) .breadcrumbs-container {
+  display: none;
+}
+
+@media (width <= 1024px) {
+  .default-content-wrapper #auto-repair-facility-survey {
+    font-size: 33px;
+    margin: 56px 0 50px;
+  }
+
+  .default-content-wrapper #coupa-supplier-portal-training {
+    font-size: 33px;
+    margin: 56px 0 24px;
+  }
+}
+
+@media (width <= 560px) {
+  .default-content-wrapper:has(#auto-repair-facility-survey) {
+    margin-bottom: 100px;
+  }
+
+  .default-content-wrapper #auto-repair-facility-survey {
+    font-size: 25px;
+    margin: 48px 0 50px;
+  }
+
+  .default-content-wrapper #coupa-supplier-portal-training {
+    font-size: 25px;
+    margin: 48px 0 24px;
+  }
 }

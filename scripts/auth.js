@@ -71,7 +71,7 @@ export function isAuthenticated() {
 
 /**
  * The current page's URL in a given state — login adds the parameter, logout
- * removes it. Used as the Log In / Log Out href so both work without JS.
+ * removes it. Used for logout and address-bar sync.
  * @param {boolean} authenticated the state to switch to
  * @returns {string} a path-relative href
  */
@@ -79,6 +79,29 @@ function authActionHref(authenticated) {
   const url = new URL(window.location.href);
   if (authenticated) url.searchParams.set(PARAM, 'true');
   else url.searchParams.delete(PARAM);
+  // simulation-only chat flag — never carry it into auth navigations
+  url.searchParams.delete('external');
+  url.hash = '';
+  return `${url.pathname}${url.search}`;
+}
+
+/**
+ * Login destination from the DA-authored href only (plus simulation `loggedIn`).
+ * This portal has no `/` index — authored `/` means B2B home.
+ * @param {HTMLElement} control the Log In control
+ * @returns {string|null} path-relative href, or null when DA gave no page URL
+ */
+function loginDestinationHref(control) {
+  const authored = control.getAttribute('href');
+  if (!authored || authored.startsWith('#')) return null;
+
+  // origin is only the parse base for root-relative DA paths — not the login target
+  const url = new URL(authored, window.location.origin);
+  if (url.origin === window.location.origin && (url.pathname === '/' || url.pathname === '')) {
+    url.pathname = '/b2b-content';
+  }
+  url.searchParams.set(PARAM, 'true');
+  url.searchParams.delete('external');
   url.hash = '';
   return `${url.pathname}${url.search}`;
 }
@@ -111,6 +134,12 @@ export function initAuthState() {
     const trigger = event.target.closest('[data-auth-action]');
     if (!trigger) return;
     event.preventDefault();
+    // Prefer the decorated href (may be an authored destination + loggedIn).
+    const href = trigger.getAttribute('href');
+    if (href) {
+      window.location.replace(href);
+      return;
+    }
     applyAuthState(trigger.dataset.authAction === 'login');
   });
 }
@@ -160,6 +189,7 @@ export function decorateAuthLinks(main) {
 /**
  * Points a Log In / Log Out control at the current state. Sets `title` too,
  * because decorateButtons() has already copied the old label into it.
+ * Login uses the DA-authored href; logout clears `loggedIn` on the current page.
  * @param {HTMLElement} control the authored Log In link
  */
 export function decorateAuthControl(control) {
@@ -167,7 +197,15 @@ export function decorateAuthControl(control) {
   control.textContent = authenticated ? 'Log Out' : 'Log In';
   control.title = control.textContent;
   control.dataset.authAction = authenticated ? 'logout' : 'login';
-  if ('href' in control) control.href = authActionHref(!authenticated);
+  if (!('href' in control)) return;
+
+  if (authenticated) {
+    control.href = authActionHref(false);
+    return;
+  }
+
+  const dest = loginDestinationHref(control);
+  if (dest) control.href = dest;
 }
 
 /**
@@ -190,6 +228,10 @@ const isAuthHelpParagraph = (el) => el?.tagName === 'P'
   && [...el.querySelectorAll('a[href]')]
     .some((a) => AUTH_HELP_HOSTS.some((host) => a.href.includes(host)));
 
+/** Authored "Log In" / "Log Out" control sitting with the gate prompt. */
+const isGateLoginParagraph = (el) => el?.tagName === 'P'
+  && /^log\s*(in|out)$/i.test(el.textContent.replace(/\s+/g, ' ').trim());
+
 /**
  * Tags the gate heading and everything it guards so CSS can hide/show them.
  * Matches an exact heading whitelist, never an H1, to avoid false gates.
@@ -206,10 +248,10 @@ export function decorateAuthGate(main) {
   const wrapper = gate.parentElement;
   if (!section || !wrapper) return;
 
-  // the gate prompt: the heading plus the auth-help paragraphs following it
+  // Gate prompt stays visible when logged out: heading, authored Log In, help links.
   const gateNodes = [gate];
   let next = gate.nextElementSibling;
-  while (isAuthHelpParagraph(next)) {
+  while (isGateLoginParagraph(next) || isAuthHelpParagraph(next)) {
     gateNodes.push(next);
     next = next.nextElementSibling;
   }

@@ -156,10 +156,6 @@
     font-size: 23px;
     line-height: 26px;
   }
-
-  .select-service>ul {
-    padding: 15px !important;
-  }
 }
 
 @media (width <=560px) {
@@ -554,10 +550,6 @@
     text-align: left;
   }
 
-  .select-service>ul {
-    padding: 15px !important;
-  }
-
   .select-service .cards-card-body p:first-child a {
     max-width: 300px;
   }
@@ -673,7 +665,17 @@
   line-height: 22px;
 }
 
+@media (width <= 1024px) {
+  .columns-auth-3-cols > div > div:nth-child(2) > #electronic-payments {
+    font-size: 39px;
+  }
+}
+
 @media (width <= 560px) {
+  .columns-auth-3-cols > div > div:nth-child(2) > #electronic-payments {
+    font-size: 28px;
+  }
+  
   .columns-auth-wrapper > .home-auto-lenders {
     padding: 0 15px;
   }

@@ -1,0 +1,31 @@
+.video-wrapper {
+  padding: 0 !important;
+}
+
+.video-wrapper > .video {
+   margin: 50px 0 130px;
+}
+
+.video-wrapper > .video:has(> video[data-video-state='loaded']) {
+  height: 314px;
+  width: 564px;
+}
+
+.video-wrapper > .video:has(> video:not([data-video-state='loaded'])) {
+  width: 100%;
+  height: 641px;
+}
+
+@media (width <= 1024px) {
+  .video-wrapper > .video:has(> video:not([data-video-state='loaded'])) {
+    height: auto;
+  }
+}
+
+@media (width <= 560px) {
+  .video-wrapper > .video:has(> video[data-video-state='loaded']),
+  .video-wrapper > .video:has(> video:not([data-video-state='loaded'])) {
+    width: auto;
+    height: auto;
+  }
+}
